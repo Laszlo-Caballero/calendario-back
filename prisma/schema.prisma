@@ -1,0 +1,19 @@
+generator client {
+  provider     = "prisma-client"
+  output       = "../src/generated/prisma"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Schedule {
+  scheduleId  Int      @id @default(autoincrement())
+  title       String
+  description String
+  date        DateTime
+  startTime   DateTime
+  endTime     DateTime
+  color       String
+}
