@@ -4,6 +4,8 @@ import { UpdateScheduleDto } from './dto/update-schedule.dto';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateScheduleManyDto, DaysDto } from './dto/create-schedule-many.dto';
 import { QueryScheduleDto } from './dto/query.dto';
+import { UpdateHourDto } from './dto/query/update-hour.dto';
+import { QueryPatchScheduleDto } from './dto/query/query-patch.dto';
 
 @Injectable()
 export class ScheduleService {
@@ -153,5 +155,27 @@ export class ScheduleService {
     return this.prisma.schedule.delete({
       where: { scheduleId: id },
     });
+  }
+
+  async updateHour(query: QueryPatchScheduleDto, updateHourDto: UpdateHourDto) {
+    const { id, startDate, endDate } = query;
+
+    const findedSchedule = await this.prisma.schedule.findUnique({
+      where: { scheduleId: id },
+    });
+
+    if (!findedSchedule) {
+      throw new HttpException(`Schedule with id ${id} not found`, 404);
+    }
+
+    const updatedSchedules = await this.prisma.schedule.update({
+      where: { scheduleId: id },
+      data: {
+        startTime: updateHourDto.startTime,
+        endTime: updateHourDto.endTime,
+      },
+    });
+
+    return updatedSchedules;
   }
 }

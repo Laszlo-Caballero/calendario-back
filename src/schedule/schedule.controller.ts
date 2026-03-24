@@ -13,6 +13,8 @@ import { CreateScheduleDto } from './dto/create-schedule.dto';
 import { UpdateScheduleDto } from './dto/update-schedule.dto';
 import { CreateScheduleManyDto } from './dto/create-schedule-many.dto';
 import { QueryScheduleDto } from './dto/query.dto';
+import { QueryPatchScheduleDto } from './dto/query/query-patch.dto';
+import { UpdateHourDto } from './dto/query/update-hour.dto';
 
 @Controller('schedule')
 export class ScheduleController {
@@ -44,6 +46,14 @@ export class ScheduleController {
     @Body() updateScheduleDto: UpdateScheduleDto,
   ) {
     return this.scheduleService.update(+id, updateScheduleDto);
+  }
+
+  @Patch()
+  updateMany(
+    @Query() query: QueryPatchScheduleDto,
+    @Body() updateHourDto: UpdateHourDto,
+  ) {
+    return this.scheduleService.updateHour(query, updateHourDto);
   }
 
   @Delete(':id')
