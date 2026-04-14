@@ -17,7 +17,9 @@ import { QueryPatchScheduleDto } from './dto/query/query-patch.dto';
 import { UpdateHourDto } from './dto/query/update-hour.dto';
 import { User } from '../common/decorator/user/user.decorator';
 import type { JwtPayload } from '../common/interface/type';
+import { Auth } from '../common/decorator/auth/auth.decorator';
 
+@Auth()
 @Controller('schedule')
 export class ScheduleController {
   constructor(private readonly scheduleService: ScheduleService) {}
@@ -27,17 +29,20 @@ export class ScheduleController {
     @Body() createScheduleDto: CreateScheduleDto,
     @User() user: JwtPayload,
   ) {
-    return this.scheduleService.create(createScheduleDto);
+    return this.scheduleService.create(createScheduleDto, user);
   }
 
   @Post('many')
-  createMany(@Body() createScheduleDto: CreateScheduleManyDto) {
-    return this.scheduleService.createMany(createScheduleDto);
+  createMany(
+    @Body() createScheduleDto: CreateScheduleManyDto,
+    @User() user: JwtPayload,
+  ) {
+    return this.scheduleService.createMany(createScheduleDto, user);
   }
 
   @Get()
-  findAll(@Query() query: QueryScheduleDto) {
-    return this.scheduleService.findAll(query);
+  findAll(@Query() query: QueryScheduleDto, @User() user: JwtPayload) {
+    return this.scheduleService.findAll(query, user);
   }
 
   @Get(':id')

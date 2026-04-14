@@ -14,6 +14,7 @@ import { CalendarDto } from './dto/calendar.dto';
 import { User } from '../common/decorator/user/user.decorator';
 import type { JwtPayload } from '../common/interface/type';
 
+@Auth()
 @Controller('calendar')
 export class CalendarController {
   constructor(private readonly calendarService: CalendarService) {}

@@ -8,8 +8,8 @@ import { JwtPayload } from '../common/interface/type';
 export class CalendarService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async getAllCalendars(user: JwtPayload) {
-    if (user.role === Role.ADMIN) {
+  async getAllCalendars(user?: JwtPayload) {
+    if (user?.role === Role.ADMIN) {
       return this.prisma.calendar.findMany();
     }
     return this.prisma.calendar.findMany({
