@@ -40,3 +40,27 @@ model Schedule {
   calendarId  Int?
   calendar    Calendar? @relation(fields: [calendarId], references: [calendarId])
 }
+
+model Todos {
+  todosId Int     @id @default(autoincrement())
+  title   String
+  status  Boolean @default(true)
+  todos   Todo[]
+}
+
+enum TodoStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+  CANCELED
+  DRAFT
+}
+
+model Todo {
+  todoId      Int        @id @default(autoincrement())
+  title       String
+  description String
+  status      TodoStatus @default(PENDING)
+  todosId     Int
+  todos       Todos      @relation(fields: [todosId], references: [todosId])
+}
