@@ -1,5 +1,5 @@
 import { Type } from 'class-transformer';
-import { IsDate, IsNotEmpty, IsString } from 'class-validator';
+import { IsDate, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
 export class CreateScheduleDto {
   @IsString()
@@ -28,4 +28,8 @@ export class CreateScheduleDto {
   @IsString()
   @IsNotEmpty()
   color: string;
+
+  @IsNumber()
+  @IsNotEmpty()
+  calendarId: number;
 }

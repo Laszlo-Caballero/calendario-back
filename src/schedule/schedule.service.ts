@@ -6,6 +6,7 @@ import { CreateScheduleManyDto, DaysDto } from './dto/create-schedule-many.dto';
 import { QueryScheduleDto } from './dto/query.dto';
 import { UpdateHourDto } from './dto/query/update-hour.dto';
 import { QueryPatchScheduleDto } from './dto/query/query-patch.dto';
+import { JwtPayload } from '../common/interface/type';
 
 @Injectable()
 export class ScheduleService {
@@ -21,13 +22,40 @@ export class ScheduleService {
     'saturday',
   ];
 
-  create(createScheduleDto: CreateScheduleDto) {
+  async create(createScheduleDto: CreateScheduleDto, user: JwtPayload) {
+    const findCalendar = await this.prisma.calendar.findUnique({
+      where: {
+        calendarId: createScheduleDto.calendarId,
+        status: true,
+      },
+    });
+
+    if (!findCalendar) {
+      throw new HttpException(
+        `Calendar with id ${createScheduleDto.calendarId} not found`,
+        404,
+      );
+    }
+
+    if (!findCalendar.isPublic && user.role != 'ADMIN') {
+      throw new HttpException(
+        `Calendar with id ${createScheduleDto.calendarId} is not public`,
+        403,
+      );
+    }
+
     return this.prisma.schedule.create({
-      data: createScheduleDto,
+      data: {
+        ...createScheduleDto,
+        calendarId: createScheduleDto.calendarId,
+      },
     });
   }
 
-  async createMany(createScheduleManyDto: CreateScheduleManyDto) {
+  async createMany(
+    createScheduleManyDto: CreateScheduleManyDto,
+    user: JwtPayload,
+  ) {
     const {
       title,
       description,
@@ -37,6 +65,7 @@ export class ScheduleService {
       endTime,
       color,
       days,
+      calendarId,
     } = createScheduleManyDto;
 
     if (startDate > endDate) {
@@ -51,6 +80,24 @@ export class ScheduleService {
       throw new HttpException('At least one day must be selected', 400);
     }
 
+    const findCalendar = await this.prisma.calendar.findUnique({
+      where: {
+        calendarId,
+        status: true,
+      },
+    });
+
+    if (!findCalendar) {
+      throw new HttpException(`Calendar with id ${calendarId} not found`, 404);
+    }
+
+    if (!findCalendar.isPublic && user.role != 'ADMIN') {
+      throw new HttpException(
+        `Calendar with id ${calendarId} is not public`,
+        403,
+      );
+    }
+
     const schedules = this.getDatesInRange(startDate, endDate)
       .filter((date) => days[this.dayMap[date.getDay()]])
       .map((date) => ({
@@ -60,6 +107,7 @@ export class ScheduleService {
         startTime: this.combineDateAndTime(date, startTime),
         endTime: this.combineDateAndTime(date, endTime),
         color,
+        calendarId,
       }));
 
     if (schedules.length === 0) {
@@ -108,13 +156,34 @@ export class ScheduleService {
     );
   }
 
-  findAll(query: QueryScheduleDto) {
+  async findAll(query: QueryScheduleDto, user: JwtPayload) {
+    const findCalendar = await this.prisma.calendar.findUnique({
+      where: {
+        calendarId: query.calendarId,
+      },
+    });
+
+    if (!findCalendar?.isPublic && user.role != 'ADMIN') {
+      throw new HttpException(
+        `Calendar with id ${query.calendarId} is not public`,
+        403,
+      );
+    }
+
+    if (findCalendar?.status === false && user.role != 'ADMIN') {
+      throw new HttpException(
+        `Calendar with id ${query.calendarId} is not active`,
+        403,
+      );
+    }
+
     return this.prisma.schedule.findMany({
       where: {
         date: {
           gte: this.buildDateAtMidnight(query.startDate),
           lte: this.buildDateAtMidnight(query.endDate),
         },
+        calendarId: query.calendarId,
       },
     });
   }
@@ -137,6 +206,8 @@ export class ScheduleService {
     if (!findedSchedule) {
       throw new HttpException(`Schedule with id ${id} not found`, 404);
     }
+
+    delete updateScheduleDto.calendarId;
 
     return this.prisma.schedule.update({
       where: { scheduleId: id },

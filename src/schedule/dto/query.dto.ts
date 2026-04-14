@@ -1,5 +1,5 @@
 import { Type } from 'class-transformer';
-import { IsDate, IsNotEmpty } from 'class-validator';
+import { IsDate, IsNotEmpty, IsNumber } from 'class-validator';
 
 export class QueryScheduleDto {
   @IsDate()
@@ -10,4 +10,9 @@ export class QueryScheduleDto {
   @IsNotEmpty()
   @Type(() => Date)
   endDate: Date;
+
+  @IsNumber()
+  @IsNotEmpty()
+  @Type(() => Number)
+  calendarId: number;
 }

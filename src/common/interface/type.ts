@@ -1,7 +1,9 @@
 import { Request } from 'express';
+import { Role } from '../../generated/prisma/enums';
 
 export interface JwtPayload {
-  idEmpleado: number;
+  idUser: number;
+  role: Role;
 }
 
 export interface RequestUser extends Request {
