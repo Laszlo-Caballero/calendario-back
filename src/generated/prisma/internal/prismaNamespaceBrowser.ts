@@ -51,6 +51,8 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
+  User: 'User',
+  Calendar: 'Calendar',
   Schedule: 'Schedule'
 } as const
 
@@ -67,6 +69,27 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
+export const UserScalarFieldEnum = {
+  userId: 'userId',
+  name: 'name',
+  email: 'email',
+  password: 'password',
+  role: 'role'
+} as const
+
+export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+export const CalendarScalarFieldEnum = {
+  calendarId: 'calendarId',
+  name: 'name',
+  isPublic: 'isPublic',
+  status: 'status'
+} as const
+
+export type CalendarScalarFieldEnum = (typeof CalendarScalarFieldEnum)[keyof typeof CalendarScalarFieldEnum]
+
+
 export const ScheduleScalarFieldEnum = {
   scheduleId: 'scheduleId',
   title: 'title',
@@ -74,7 +97,8 @@ export const ScheduleScalarFieldEnum = {
   date: 'date',
   startTime: 'startTime',
   endTime: 'endTime',
-  color: 'color'
+  color: 'color',
+  calendarId: 'calendarId'
 } as const
 
 export type ScheduleScalarFieldEnum = (typeof ScheduleScalarFieldEnum)[keyof typeof ScheduleScalarFieldEnum]
@@ -86,4 +110,12 @@ export const SortOrder = {
 } as const
 
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 

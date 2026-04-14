@@ -3,6 +3,7 @@ import {
   IsBoolean,
   IsDate,
   IsNotEmpty,
+  IsNumber,
   IsString,
   ValidateNested,
 } from 'class-validator';
@@ -74,4 +75,8 @@ export class CreateScheduleManyDto {
   @IsNotEmpty()
   @Type(() => DaysDto)
   days: DaysDto;
+
+  @IsNumber()
+  @IsNotEmpty()
+  calendarId: number;
 }

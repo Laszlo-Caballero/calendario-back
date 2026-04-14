@@ -15,13 +15,18 @@ import { CreateScheduleManyDto } from './dto/create-schedule-many.dto';
 import { QueryScheduleDto } from './dto/query.dto';
 import { QueryPatchScheduleDto } from './dto/query/query-patch.dto';
 import { UpdateHourDto } from './dto/query/update-hour.dto';
+import { User } from '../common/decorator/user/user.decorator';
+import type { JwtPayload } from '../common/interface/type';
 
 @Controller('schedule')
 export class ScheduleController {
   constructor(private readonly scheduleService: ScheduleService) {}
 
   @Post()
-  create(@Body() createScheduleDto: CreateScheduleDto) {
+  create(
+    @Body() createScheduleDto: CreateScheduleDto,
+    @User() user: JwtPayload,
+  ) {
     return this.scheduleService.create(createScheduleDto);
   }
 

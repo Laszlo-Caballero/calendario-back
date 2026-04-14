@@ -21,9 +21,26 @@ export class ScheduleService {
     'saturday',
   ];
 
-  create(createScheduleDto: CreateScheduleDto) {
+  async create(createScheduleDto: CreateScheduleDto) {
+    const findCalendar = await this.prisma.calendar.findUnique({
+      where: {
+        calendarId: createScheduleDto.calendarId,
+        status: true,
+      },
+    });
+
+    if (!findCalendar) {
+      throw new HttpException(
+        `Calendar with id ${createScheduleDto.calendarId} not found`,
+        404,
+      );
+    }
+
     return this.prisma.schedule.create({
-      data: createScheduleDto,
+      data: {
+        ...createScheduleDto,
+        calendarId: createScheduleDto.calendarId,
+      },
     });
   }
 
@@ -37,6 +54,7 @@ export class ScheduleService {
       endTime,
       color,
       days,
+      calendarId,
     } = createScheduleManyDto;
 
     if (startDate > endDate) {
@@ -51,6 +69,17 @@ export class ScheduleService {
       throw new HttpException('At least one day must be selected', 400);
     }
 
+    const findCalendar = await this.prisma.calendar.findUnique({
+      where: {
+        calendarId,
+        status: true,
+      },
+    });
+
+    if (!findCalendar) {
+      throw new HttpException(`Calendar with id ${calendarId} not found`, 404);
+    }
+
     const schedules = this.getDatesInRange(startDate, endDate)
       .filter((date) => days[this.dayMap[date.getDay()]])
       .map((date) => ({
@@ -60,6 +89,7 @@ export class ScheduleService {
         startTime: this.combineDateAndTime(date, startTime),
         endTime: this.combineDateAndTime(date, endTime),
         color,
+        calendarId,
       }));
 
     if (schedules.length === 0) {
@@ -115,6 +145,7 @@ export class ScheduleService {
           gte: this.buildDateAtMidnight(query.startDate),
           lte: this.buildDateAtMidnight(query.endDate),
         },
+        calendarId: query.calendarId,
       },
     });
   }

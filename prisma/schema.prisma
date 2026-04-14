@@ -8,12 +8,35 @@ datasource db {
   provider = "sqlite"
 }
 
+enum Role {
+  USER
+  ADMIN
+}
+
+model User {
+  userId   Int    @id @default(autoincrement())
+  name     String
+  email    String @unique
+  password String
+  role     Role   @default(USER)
+}
+
+model Calendar {
+  calendarId Int        @id @default(autoincrement())
+  name       String
+  isPublic   Boolean
+  status     Boolean    @default(true)
+  schedules  Schedule[]
+}
+
 model Schedule {
-  scheduleId  Int      @id @default(autoincrement())
+  scheduleId  Int       @id @default(autoincrement())
   title       String
   description String
   date        DateTime
   startTime   DateTime
   endTime     DateTime
   color       String
+  calendarId  Int?
+  calendar    Calendar? @relation(fields: [calendarId], references: [calendarId])
 }

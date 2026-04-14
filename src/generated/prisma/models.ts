@@ -8,5 +8,7 @@
  *
  * 🟢 You can import this file directly.
  */
+export type * from './models/User.js'
+export type * from './models/Calendar.js'
 export type * from './models/Schedule.js'
 export type * from './commonInputTypes.js'
