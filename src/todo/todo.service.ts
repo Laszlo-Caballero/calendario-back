@@ -100,4 +100,31 @@ export class TodoService {
       },
     });
   }
+
+  async deleteTodo(id: number, user?: JwtPayload) {
+    const findTodo = await this.prisma.todo.findUnique({
+      where: {
+        todoId: id,
+      },
+      include: {
+        todos: true,
+      },
+    });
+
+    if (!findTodo) {
+      throw new NotFoundException(`Todo with id ${id} not found`);
+    }
+
+    const { todos } = findTodo;
+
+    if (!todos.isPublic && user?.role !== 'ADMIN') {
+      throw new ForbiddenException(`Todo with id ${id} not found`);
+    }
+
+    return this.prisma.todo.delete({
+      where: {
+        todoId: id,
+      },
+    });
+  }
 }

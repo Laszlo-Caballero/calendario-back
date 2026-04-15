@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   Patch,
@@ -39,5 +40,10 @@ export class TodoController {
   @Put(':id')
   async changeStatus(@Param('id') id: number, @Body() data: ChangeStatusDto) {
     return this.todoService.changeStatus(id, data);
+  }
+
+  @Delete(':id')
+  async deleteTodo(@Param('id') id: number, @User() user: JwtPayload) {
+    return this.todoService.deleteTodo(id, user);
   }
 }
