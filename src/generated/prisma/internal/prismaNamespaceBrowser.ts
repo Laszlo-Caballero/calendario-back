@@ -53,7 +53,9 @@ export const AnyNull = runtime.AnyNull
 export const ModelName = {
   User: 'User',
   Calendar: 'Calendar',
-  Schedule: 'Schedule'
+  Schedule: 'Schedule',
+  Todos: 'Todos',
+  Todo: 'Todo'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -102,6 +104,27 @@ export const ScheduleScalarFieldEnum = {
 } as const
 
 export type ScheduleScalarFieldEnum = (typeof ScheduleScalarFieldEnum)[keyof typeof ScheduleScalarFieldEnum]
+
+
+export const TodosScalarFieldEnum = {
+  todosId: 'todosId',
+  title: 'title',
+  status: 'status',
+  isPublic: 'isPublic'
+} as const
+
+export type TodosScalarFieldEnum = (typeof TodosScalarFieldEnum)[keyof typeof TodosScalarFieldEnum]
+
+
+export const TodoScalarFieldEnum = {
+  todoId: 'todoId',
+  title: 'title',
+  description: 'description',
+  status: 'status',
+  todosId: 'todosId'
+} as const
+
+export type TodoScalarFieldEnum = (typeof TodoScalarFieldEnum)[keyof typeof TodoScalarFieldEnum]
 
 
 export const SortOrder = {

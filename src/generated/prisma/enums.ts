@@ -15,3 +15,15 @@ export const Role = {
 } as const
 
 export type Role = (typeof Role)[keyof typeof Role]
+
+
+export const TodoStatus = {
+  PENDING: 'PENDING',
+  IN_PROGRESS: 'IN_PROGRESS',
+  COMPLETED: 'COMPLETED',
+  CANCELED: 'CANCELED',
+  DRAFT: 'DRAFT',
+  ARCHIVED: 'ARCHIVED'
+} as const
+
+export type TodoStatus = (typeof TodoStatus)[keyof typeof TodoStatus]

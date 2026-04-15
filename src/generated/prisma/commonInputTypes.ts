@@ -159,6 +159,23 @@ export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedIntNullableFilter<$PrismaModel>
 }
 
+export type EnumTodoStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.TodoStatus | Prisma.EnumTodoStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.TodoStatus[]
+  notIn?: $Enums.TodoStatus[]
+  not?: Prisma.NestedEnumTodoStatusFilter<$PrismaModel> | $Enums.TodoStatus
+}
+
+export type EnumTodoStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.TodoStatus | Prisma.EnumTodoStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.TodoStatus[]
+  notIn?: $Enums.TodoStatus[]
+  not?: Prisma.NestedEnumTodoStatusWithAggregatesFilter<$PrismaModel> | $Enums.TodoStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumTodoStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumTodoStatusFilter<$PrismaModel>
+}
+
 export type NestedIntFilter<$PrismaModel = never> = {
   equals?: number | Prisma.IntFieldRefInput<$PrismaModel>
   in?: number[]
@@ -319,6 +336,23 @@ export type NestedFloatNullableFilter<$PrismaModel = never> = {
   gt?: number | Prisma.FloatFieldRefInput<$PrismaModel>
   gte?: number | Prisma.FloatFieldRefInput<$PrismaModel>
   not?: Prisma.NestedFloatNullableFilter<$PrismaModel> | number | null
+}
+
+export type NestedEnumTodoStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.TodoStatus | Prisma.EnumTodoStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.TodoStatus[]
+  notIn?: $Enums.TodoStatus[]
+  not?: Prisma.NestedEnumTodoStatusFilter<$PrismaModel> | $Enums.TodoStatus
+}
+
+export type NestedEnumTodoStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.TodoStatus | Prisma.EnumTodoStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.TodoStatus[]
+  notIn?: $Enums.TodoStatus[]
+  not?: Prisma.NestedEnumTodoStatusWithAggregatesFilter<$PrismaModel> | $Enums.TodoStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumTodoStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumTodoStatusFilter<$PrismaModel>
 }
 
 

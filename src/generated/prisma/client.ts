@@ -54,3 +54,13 @@ export type Calendar = Prisma.CalendarModel
  * 
  */
 export type Schedule = Prisma.ScheduleModel
+/**
+ * Model Todos
+ * 
+ */
+export type Todos = Prisma.TodosModel
+/**
+ * Model Todo
+ * 
+ */
+export type Todo = Prisma.TodoModel

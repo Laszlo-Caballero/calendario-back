@@ -42,10 +42,11 @@ model Schedule {
 }
 
 model Todos {
-  todosId Int     @id @default(autoincrement())
-  title   String
-  status  Boolean @default(true)
-  todos   Todo[]
+  todosId  Int     @id @default(autoincrement())
+  title    String
+  status   Boolean @default(true)
+  isPublic Boolean @default(false)
+  todos    Todo[]
 }
 
 enum TodoStatus {
@@ -54,6 +55,7 @@ enum TodoStatus {
   COMPLETED
   CANCELED
   DRAFT
+  ARCHIVED
 }
 
 model Todo {
