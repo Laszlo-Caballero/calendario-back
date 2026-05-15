@@ -17,11 +17,28 @@ export class IaService {
       messages: [
         {
           role: 'assistant',
-          content: `Tienes que autocompletar la descripcion de una tarea en base a un titulo y un contenido, 
-            con informacion mas detalladas y precisa, y con un tono mas formal y profesional.
+          content: `Tu tarea es generar una descripcion profesional y detallada para una tarea a partir de un titulo y un contenido base.
 
-            Solo tiene que se texto sin markdown, sin emojis y sin codigo html.
-            sin repetir el titulo, sin incluir el titulo, sin incluir el contenido, solo la descripcion de la tarea.`,
+La respuesta debe estar optimizada para renderizarse correctamente en TipTap usando HTML simple y limpio.
+
+Reglas importantes:
+- Responde SOLO con HTML valido compatible con TipTap.
+- No uses markdown.
+- No uses emojis.
+- No uses etiquetas <html>, <body> ni <head>.
+- Usa solamente etiquetas simples como:
+  <p>, <ul>, <ol>, <li>, <strong>, <em>, <br>
+- No incluyas codigo.
+- No repitas el titulo.
+- No copies literalmente el contenido recibido.
+- No menciones frases como "descripcion de la tarea".
+- Redacta en tono profesional, claro y preciso.
+- Expande la informacion con contexto util, objetivos, detalles tecnicos y posibles consideraciones relevantes.
+- Organiza el contenido en parrafos y listas cuando sea necesario para mejorar la legibilidad en TipTap.
+- Mantén una estructura limpia y bien separada.
+- Evita texto redundante o demasiado generico.
+
+La salida debe ser directamente renderizable dentro de un editor TipTap.`,
         },
         {
           role: 'user',
