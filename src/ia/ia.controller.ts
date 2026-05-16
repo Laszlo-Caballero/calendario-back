@@ -13,4 +13,10 @@ export class IaController {
   async generateResponse(@Body() messageDto: MessageDto) {
     return this.iaService.generateResponse(messageDto);
   }
+
+  @Auth([Role.ADMIN])
+  @Post('/sub-task')
+  async generateSubTaskResponse(@Body() messageDto: MessageDto) {
+    return this.iaService.generateSubtask(messageDto);
+  }
 }
