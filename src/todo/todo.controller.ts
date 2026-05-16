@@ -16,6 +16,8 @@ import type { JwtPayload } from '../common/interface/type';
 import { TodoQueryDto } from './dto/query.dto';
 import { TodoDto } from './dto/todo.dto';
 import { ChangeStatusDto } from './dto/changeStatus.dto';
+import { Role } from '../generated/prisma/enums';
+import { ImportsTodoDto } from './dto/imports-todo.dto';
 
 @Auth()
 @Controller('todo')
@@ -45,5 +47,11 @@ export class TodoController {
   @Delete(':id')
   async deleteTodo(@Param('id') id: number, @User() user: JwtPayload) {
     return this.todoService.deleteTodo(id, user);
+  }
+
+  @Auth([Role.ADMIN])
+  @Post('/import')
+  async importTodo(@Body() data: ImportsTodoDto) {
+    return this.todoService.importTodo(data);
   }
 }

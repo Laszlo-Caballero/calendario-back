@@ -8,6 +8,7 @@ import { JwtPayload } from '../common/interface/type';
 import { TodoQueryDto } from './dto/query.dto';
 import { TodoDto } from './dto/todo.dto';
 import { ChangeStatusDto } from './dto/changeStatus.dto';
+import { ImportsTodoDto } from './dto/imports-todo.dto';
 
 @Injectable()
 export class TodoService {
@@ -126,5 +127,42 @@ export class TodoService {
         todoId: id,
       },
     });
+  }
+
+  async importTodo(data: ImportsTodoDto) {
+    const { todoIds, todosId } = data;
+
+    const findTodos = await this.prisma.todo.findMany({
+      where: {
+        todoId: {
+          in: todoIds,
+        },
+      },
+    });
+
+    if (findTodos.length !== todoIds.length) {
+      throw new NotFoundException(`One or more Todos not found`);
+    }
+
+    const createImports = findTodos.map((todo) => {
+      return this.prisma.todo.create({
+        data: {
+          title: todo.title,
+          description: todo.description,
+          status: 'PENDING',
+          todosId: todosId,
+        },
+      });
+    });
+
+    const deletedImports = todoIds.map((id) => {
+      return this.prisma.todo.delete({
+        where: {
+          todoId: id,
+        },
+      });
+    });
+
+    return this.prisma.$transaction([...createImports, ...deletedImports]);
   }
 }

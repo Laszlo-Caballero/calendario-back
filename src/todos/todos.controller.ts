@@ -42,4 +42,10 @@ export class TodosController {
   async deleteTodo(@Param('id') id: number) {
     return this.todosService.deleteTodo(id);
   }
+
+  @Auth([Role.ADMIN])
+  @Get('/with-todo')
+  async getAllTodosWithTodo() {
+    return this.todosService.getAllTodosWithTodo();
+  }
 }

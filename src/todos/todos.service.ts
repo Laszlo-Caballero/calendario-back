@@ -64,4 +64,15 @@ export class TodosService {
       },
     });
   }
+
+  async getAllTodosWithTodo() {
+    return this.prisma.todos.findMany({
+      where: {
+        status: true,
+      },
+      include: {
+        todos: true,
+      },
+    });
+  }
 }
