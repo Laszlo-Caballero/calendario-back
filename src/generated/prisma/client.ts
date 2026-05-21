@@ -64,3 +64,13 @@ export type Todos = Prisma.TodosModel
  * 
  */
 export type Todo = Prisma.TodoModel
+/**
+ * Model TodoImage
+ * 
+ */
+export type TodoImage = Prisma.TodoImageModel
+/**
+ * Model Images
+ * 
+ */
+export type Images = Prisma.ImagesModel

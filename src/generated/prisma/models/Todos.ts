@@ -185,7 +185,7 @@ export type TodosGroupByOutputType = {
   _max: TodosMaxAggregateOutputType | null
 }
 
-type GetTodosGroupByPayload<T extends TodosGroupByArgs> = Prisma.PrismaPromise<
+export type GetTodosGroupByPayload<T extends TodosGroupByArgs> = Prisma.PrismaPromise<
   Array<
     Prisma.PickEnumerable<TodosGroupByOutputType, T['by']> &
       {

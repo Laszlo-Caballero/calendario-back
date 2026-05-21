@@ -1,0 +1,15 @@
+-- CreateTable
+CREATE TABLE "TodoImage" (
+    "todoImageId" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "url" TEXT NOT NULL,
+    "todoId" INTEGER NOT NULL,
+    "imageId" INTEGER NOT NULL,
+    CONSTRAINT "TodoImage_todoId_fkey" FOREIGN KEY ("todoId") REFERENCES "Todo" ("todoId") ON DELETE RESTRICT ON UPDATE CASCADE,
+    CONSTRAINT "TodoImage_imageId_fkey" FOREIGN KEY ("imageId") REFERENCES "Images" ("imageId") ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
+-- CreateTable
+CREATE TABLE "Images" (
+    "imageId" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "url" TEXT NOT NULL
+);

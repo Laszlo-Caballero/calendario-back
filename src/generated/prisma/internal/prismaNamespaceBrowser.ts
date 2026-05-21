@@ -55,7 +55,9 @@ export const ModelName = {
   Calendar: 'Calendar',
   Schedule: 'Schedule',
   Todos: 'Todos',
-  Todo: 'Todo'
+  Todo: 'Todo',
+  TodoImage: 'TodoImage',
+  Images: 'Images'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -125,6 +127,23 @@ export const TodoScalarFieldEnum = {
 } as const
 
 export type TodoScalarFieldEnum = (typeof TodoScalarFieldEnum)[keyof typeof TodoScalarFieldEnum]
+
+
+export const TodoImageScalarFieldEnum = {
+  todoImageId: 'todoImageId',
+  todoId: 'todoId',
+  imageId: 'imageId'
+} as const
+
+export type TodoImageScalarFieldEnum = (typeof TodoImageScalarFieldEnum)[keyof typeof TodoImageScalarFieldEnum]
+
+
+export const ImagesScalarFieldEnum = {
+  imageId: 'imageId',
+  url: 'url'
+} as const
+
+export type ImagesScalarFieldEnum = (typeof ImagesScalarFieldEnum)[keyof typeof ImagesScalarFieldEnum]
 
 
 export const SortOrder = {

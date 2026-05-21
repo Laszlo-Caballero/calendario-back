@@ -8,6 +8,8 @@ import {
   Post,
   Put,
   Query,
+  UploadedFile,
+  UseInterceptors,
 } from '@nestjs/common';
 import { TodoService } from './todo.service';
 import { Auth } from '../common/decorator/auth/auth.decorator';
@@ -18,6 +20,9 @@ import { TodoDto } from './dto/todo.dto';
 import { ChangeStatusDto } from './dto/changeStatus.dto';
 import { Role } from '../generated/prisma/enums';
 import { ImportsTodoDto } from './dto/imports-todo.dto';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { ImageUploadDto } from './dto/image.dto';
+import { DeleteImagenDto } from './dto/delete-image.dto';
 
 @Auth()
 @Controller('todo')
@@ -53,5 +58,21 @@ export class TodoController {
   @Post('/import')
   async importTodo(@Body() data: ImportsTodoDto) {
     return this.todoService.importTodo(data);
+  }
+
+  @Auth([Role.ADMIN])
+  @Post('/upload-image')
+  @UseInterceptors(FileInterceptor('file'))
+  async uploadImage(
+    @UploadedFile() file: Express.Multer.File,
+    @Body() body: ImageUploadDto,
+  ) {
+    return this.todoService.uploadImage(file, body);
+  }
+
+  @Auth([Role.ADMIN])
+  @Delete('image/delete')
+  async deleteImage(@Body() body: DeleteImagenDto) {
+    return this.todoService.deleteImage(body);
   }
 }

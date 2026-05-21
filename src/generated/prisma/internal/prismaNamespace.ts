@@ -80,12 +80,12 @@ export type PrismaVersion = {
 }
 
 /**
- * Prisma Client JS version: 7.5.0
- * Query Engine version: 280c870be64f457428992c43c1f6d557fab6e29e
+ * Prisma Client JS version: 7.8.0
+ * Query Engine version: 3c6e192761c0362d496ed980de936e2f3cebcd3a
  */
 export const prismaVersion: PrismaVersion = {
-  client: "7.5.0",
-  engine: "280c870be64f457428992c43c1f6d557fab6e29e"
+  client: "7.8.0",
+  engine: "3c6e192761c0362d496ed980de936e2f3cebcd3a"
 }
 
 /**
@@ -388,7 +388,9 @@ export const ModelName = {
   Calendar: 'Calendar',
   Schedule: 'Schedule',
   Todos: 'Todos',
-  Todo: 'Todo'
+  Todo: 'Todo',
+  TodoImage: 'TodoImage',
+  Images: 'Images'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -404,7 +406,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "calendar" | "schedule" | "todos" | "todo"
+    modelProps: "user" | "calendar" | "schedule" | "todos" | "todo" | "todoImage" | "images"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -778,6 +780,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    TodoImage: {
+      payload: Prisma.$TodoImagePayload<ExtArgs>
+      fields: Prisma.TodoImageFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.TodoImageFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TodoImagePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.TodoImageFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TodoImagePayload>
+        }
+        findFirst: {
+          args: Prisma.TodoImageFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TodoImagePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.TodoImageFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TodoImagePayload>
+        }
+        findMany: {
+          args: Prisma.TodoImageFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TodoImagePayload>[]
+        }
+        create: {
+          args: Prisma.TodoImageCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TodoImagePayload>
+        }
+        createMany: {
+          args: Prisma.TodoImageCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.TodoImageCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TodoImagePayload>[]
+        }
+        delete: {
+          args: Prisma.TodoImageDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TodoImagePayload>
+        }
+        update: {
+          args: Prisma.TodoImageUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TodoImagePayload>
+        }
+        deleteMany: {
+          args: Prisma.TodoImageDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.TodoImageUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.TodoImageUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TodoImagePayload>[]
+        }
+        upsert: {
+          args: Prisma.TodoImageUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TodoImagePayload>
+        }
+        aggregate: {
+          args: Prisma.TodoImageAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateTodoImage>
+        }
+        groupBy: {
+          args: Prisma.TodoImageGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TodoImageGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.TodoImageCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TodoImageCountAggregateOutputType> | number
+        }
+      }
+    }
+    Images: {
+      payload: Prisma.$ImagesPayload<ExtArgs>
+      fields: Prisma.ImagesFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ImagesFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ImagesPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ImagesFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ImagesPayload>
+        }
+        findFirst: {
+          args: Prisma.ImagesFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ImagesPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ImagesFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ImagesPayload>
+        }
+        findMany: {
+          args: Prisma.ImagesFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ImagesPayload>[]
+        }
+        create: {
+          args: Prisma.ImagesCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ImagesPayload>
+        }
+        createMany: {
+          args: Prisma.ImagesCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ImagesCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ImagesPayload>[]
+        }
+        delete: {
+          args: Prisma.ImagesDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ImagesPayload>
+        }
+        update: {
+          args: Prisma.ImagesUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ImagesPayload>
+        }
+        deleteMany: {
+          args: Prisma.ImagesDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ImagesUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ImagesUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ImagesPayload>[]
+        }
+        upsert: {
+          args: Prisma.ImagesUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ImagesPayload>
+        }
+        aggregate: {
+          args: Prisma.ImagesAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateImages>
+        }
+        groupBy: {
+          args: Prisma.ImagesGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ImagesGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ImagesCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ImagesCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -868,6 +1018,23 @@ export const TodoScalarFieldEnum = {
 } as const
 
 export type TodoScalarFieldEnum = (typeof TodoScalarFieldEnum)[keyof typeof TodoScalarFieldEnum]
+
+
+export const TodoImageScalarFieldEnum = {
+  todoImageId: 'todoImageId',
+  todoId: 'todoId',
+  imageId: 'imageId'
+} as const
+
+export type TodoImageScalarFieldEnum = (typeof TodoImageScalarFieldEnum)[keyof typeof TodoImageScalarFieldEnum]
+
+
+export const ImagesScalarFieldEnum = {
+  imageId: 'imageId',
+  url: 'url'
+} as const
+
+export type ImagesScalarFieldEnum = (typeof ImagesScalarFieldEnum)[keyof typeof ImagesScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1033,6 +1200,21 @@ export type PrismaClientOptions = ({
    * ```
    */
   comments?: runtime.SqlCommenterPlugin[]
+  /**
+   * Optional maximum size for the query plan cache. If not provided, a default size will be used.
+   * A value of `0` can be used to disable the cache entirely. A higher cache size can improve
+   * performance for applications that execute a large number of unique queries, while a smaller
+   * cache size can reduce memory usage.
+   * 
+   * @example
+   * ```
+   * const prisma = new PrismaClient({
+   *   adapter,
+   *   queryPlanCacheMaxSize: 100,
+   * })
+   * ```
+   */
+  queryPlanCacheMaxSize?: number
 }
 export type GlobalOmitConfig = {
   user?: Prisma.UserOmit
@@ -1040,6 +1222,8 @@ export type GlobalOmitConfig = {
   schedule?: Prisma.ScheduleOmit
   todos?: Prisma.TodosOmit
   todo?: Prisma.TodoOmit
+  todoImage?: Prisma.TodoImageOmit
+  images?: Prisma.ImagesOmit
 }
 
 /* Types for Logging */

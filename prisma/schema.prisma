@@ -59,10 +59,25 @@ enum TodoStatus {
 }
 
 model Todo {
-  todoId      Int        @id @default(autoincrement())
+  todoId      Int         @id @default(autoincrement())
   title       String
   description String
-  status      TodoStatus @default(PENDING)
+  status      TodoStatus  @default(PENDING)
   todosId     Int
-  todos       Todos      @relation(fields: [todosId], references: [todosId])
+  todos       Todos       @relation(fields: [todosId], references: [todosId])
+  images      TodoImage[]
+}
+
+model TodoImage {
+  todoImageId Int    @id @default(autoincrement())
+  todoId      Int
+  todo        Todo   @relation(fields: [todoId], references: [todoId])
+  imageId     Int
+  image       Images @relation(fields: [imageId], references: [imageId])
+}
+
+model Images {
+  imageId   Int         @id @default(autoincrement())
+  url       String
+  todoImage TodoImage[]
 }

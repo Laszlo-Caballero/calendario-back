@@ -196,7 +196,7 @@ export type TodoGroupByOutputType = {
   _max: TodoMaxAggregateOutputType | null
 }
 
-type GetTodoGroupByPayload<T extends TodoGroupByArgs> = Prisma.PrismaPromise<
+export type GetTodoGroupByPayload<T extends TodoGroupByArgs> = Prisma.PrismaPromise<
   Array<
     Prisma.PickEnumerable<TodoGroupByOutputType, T['by']> &
       {
@@ -221,6 +221,7 @@ export type TodoWhereInput = {
   status?: Prisma.EnumTodoStatusFilter<"Todo"> | $Enums.TodoStatus
   todosId?: Prisma.IntFilter<"Todo"> | number
   todos?: Prisma.XOR<Prisma.TodosScalarRelationFilter, Prisma.TodosWhereInput>
+  images?: Prisma.TodoImageListRelationFilter
 }
 
 export type TodoOrderByWithRelationInput = {
@@ -230,6 +231,7 @@ export type TodoOrderByWithRelationInput = {
   status?: Prisma.SortOrder
   todosId?: Prisma.SortOrder
   todos?: Prisma.TodosOrderByWithRelationInput
+  images?: Prisma.TodoImageOrderByRelationAggregateInput
 }
 
 export type TodoWhereUniqueInput = Prisma.AtLeast<{
@@ -242,6 +244,7 @@ export type TodoWhereUniqueInput = Prisma.AtLeast<{
   status?: Prisma.EnumTodoStatusFilter<"Todo"> | $Enums.TodoStatus
   todosId?: Prisma.IntFilter<"Todo"> | number
   todos?: Prisma.XOR<Prisma.TodosScalarRelationFilter, Prisma.TodosWhereInput>
+  images?: Prisma.TodoImageListRelationFilter
 }, "todoId">
 
 export type TodoOrderByWithAggregationInput = {
@@ -273,6 +276,7 @@ export type TodoCreateInput = {
   description: string
   status?: $Enums.TodoStatus
   todos: Prisma.TodosCreateNestedOneWithoutTodosInput
+  images?: Prisma.TodoImageCreateNestedManyWithoutTodoInput
 }
 
 export type TodoUncheckedCreateInput = {
@@ -281,6 +285,7 @@ export type TodoUncheckedCreateInput = {
   description: string
   status?: $Enums.TodoStatus
   todosId: number
+  images?: Prisma.TodoImageUncheckedCreateNestedManyWithoutTodoInput
 }
 
 export type TodoUpdateInput = {
@@ -288,6 +293,7 @@ export type TodoUpdateInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumTodoStatusFieldUpdateOperationsInput | $Enums.TodoStatus
   todos?: Prisma.TodosUpdateOneRequiredWithoutTodosNestedInput
+  images?: Prisma.TodoImageUpdateManyWithoutTodoNestedInput
 }
 
 export type TodoUncheckedUpdateInput = {
@@ -296,6 +302,7 @@ export type TodoUncheckedUpdateInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumTodoStatusFieldUpdateOperationsInput | $Enums.TodoStatus
   todosId?: Prisma.IntFieldUpdateOperationsInput | number
+  images?: Prisma.TodoImageUncheckedUpdateManyWithoutTodoNestedInput
 }
 
 export type TodoCreateManyInput = {
@@ -364,6 +371,11 @@ export type TodoSumOrderByAggregateInput = {
   todosId?: Prisma.SortOrder
 }
 
+export type TodoScalarRelationFilter = {
+  is?: Prisma.TodoWhereInput
+  isNot?: Prisma.TodoWhereInput
+}
+
 export type TodoCreateNestedManyWithoutTodosInput = {
   create?: Prisma.XOR<Prisma.TodoCreateWithoutTodosInput, Prisma.TodoUncheckedCreateWithoutTodosInput> | Prisma.TodoCreateWithoutTodosInput[] | Prisma.TodoUncheckedCreateWithoutTodosInput[]
   connectOrCreate?: Prisma.TodoCreateOrConnectWithoutTodosInput | Prisma.TodoCreateOrConnectWithoutTodosInput[]
@@ -410,10 +422,25 @@ export type EnumTodoStatusFieldUpdateOperationsInput = {
   set?: $Enums.TodoStatus
 }
 
+export type TodoCreateNestedOneWithoutImagesInput = {
+  create?: Prisma.XOR<Prisma.TodoCreateWithoutImagesInput, Prisma.TodoUncheckedCreateWithoutImagesInput>
+  connectOrCreate?: Prisma.TodoCreateOrConnectWithoutImagesInput
+  connect?: Prisma.TodoWhereUniqueInput
+}
+
+export type TodoUpdateOneRequiredWithoutImagesNestedInput = {
+  create?: Prisma.XOR<Prisma.TodoCreateWithoutImagesInput, Prisma.TodoUncheckedCreateWithoutImagesInput>
+  connectOrCreate?: Prisma.TodoCreateOrConnectWithoutImagesInput
+  upsert?: Prisma.TodoUpsertWithoutImagesInput
+  connect?: Prisma.TodoWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TodoUpdateToOneWithWhereWithoutImagesInput, Prisma.TodoUpdateWithoutImagesInput>, Prisma.TodoUncheckedUpdateWithoutImagesInput>
+}
+
 export type TodoCreateWithoutTodosInput = {
   title: string
   description: string
   status?: $Enums.TodoStatus
+  images?: Prisma.TodoImageCreateNestedManyWithoutTodoInput
 }
 
 export type TodoUncheckedCreateWithoutTodosInput = {
@@ -421,6 +448,7 @@ export type TodoUncheckedCreateWithoutTodosInput = {
   title: string
   description: string
   status?: $Enums.TodoStatus
+  images?: Prisma.TodoImageUncheckedCreateNestedManyWithoutTodoInput
 }
 
 export type TodoCreateOrConnectWithoutTodosInput = {
@@ -459,6 +487,52 @@ export type TodoScalarWhereInput = {
   todosId?: Prisma.IntFilter<"Todo"> | number
 }
 
+export type TodoCreateWithoutImagesInput = {
+  title: string
+  description: string
+  status?: $Enums.TodoStatus
+  todos: Prisma.TodosCreateNestedOneWithoutTodosInput
+}
+
+export type TodoUncheckedCreateWithoutImagesInput = {
+  todoId?: number
+  title: string
+  description: string
+  status?: $Enums.TodoStatus
+  todosId: number
+}
+
+export type TodoCreateOrConnectWithoutImagesInput = {
+  where: Prisma.TodoWhereUniqueInput
+  create: Prisma.XOR<Prisma.TodoCreateWithoutImagesInput, Prisma.TodoUncheckedCreateWithoutImagesInput>
+}
+
+export type TodoUpsertWithoutImagesInput = {
+  update: Prisma.XOR<Prisma.TodoUpdateWithoutImagesInput, Prisma.TodoUncheckedUpdateWithoutImagesInput>
+  create: Prisma.XOR<Prisma.TodoCreateWithoutImagesInput, Prisma.TodoUncheckedCreateWithoutImagesInput>
+  where?: Prisma.TodoWhereInput
+}
+
+export type TodoUpdateToOneWithWhereWithoutImagesInput = {
+  where?: Prisma.TodoWhereInput
+  data: Prisma.XOR<Prisma.TodoUpdateWithoutImagesInput, Prisma.TodoUncheckedUpdateWithoutImagesInput>
+}
+
+export type TodoUpdateWithoutImagesInput = {
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumTodoStatusFieldUpdateOperationsInput | $Enums.TodoStatus
+  todos?: Prisma.TodosUpdateOneRequiredWithoutTodosNestedInput
+}
+
+export type TodoUncheckedUpdateWithoutImagesInput = {
+  todoId?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumTodoStatusFieldUpdateOperationsInput | $Enums.TodoStatus
+  todosId?: Prisma.IntFieldUpdateOperationsInput | number
+}
+
 export type TodoCreateManyTodosInput = {
   todoId?: number
   title: string
@@ -470,6 +544,7 @@ export type TodoUpdateWithoutTodosInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumTodoStatusFieldUpdateOperationsInput | $Enums.TodoStatus
+  images?: Prisma.TodoImageUpdateManyWithoutTodoNestedInput
 }
 
 export type TodoUncheckedUpdateWithoutTodosInput = {
@@ -477,6 +552,7 @@ export type TodoUncheckedUpdateWithoutTodosInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumTodoStatusFieldUpdateOperationsInput | $Enums.TodoStatus
+  images?: Prisma.TodoImageUncheckedUpdateManyWithoutTodoNestedInput
 }
 
 export type TodoUncheckedUpdateManyWithoutTodosInput = {
@@ -487,6 +563,35 @@ export type TodoUncheckedUpdateManyWithoutTodosInput = {
 }
 
 
+/**
+ * Count Type TodoCountOutputType
+ */
+
+export type TodoCountOutputType = {
+  images: number
+}
+
+export type TodoCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  images?: boolean | TodoCountOutputTypeCountImagesArgs
+}
+
+/**
+ * TodoCountOutputType without action
+ */
+export type TodoCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the TodoCountOutputType
+   */
+  select?: Prisma.TodoCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * TodoCountOutputType without action
+ */
+export type TodoCountOutputTypeCountImagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TodoImageWhereInput
+}
+
 
 export type TodoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   todoId?: boolean
@@ -495,6 +600,8 @@ export type TodoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   status?: boolean
   todosId?: boolean
   todos?: boolean | Prisma.TodosDefaultArgs<ExtArgs>
+  images?: boolean | Prisma.Todo$imagesArgs<ExtArgs>
+  _count?: boolean | Prisma.TodoCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["todo"]>
 
 export type TodoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -526,6 +633,8 @@ export type TodoSelectScalar = {
 export type TodoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"todoId" | "title" | "description" | "status" | "todosId", ExtArgs["result"]["todo"]>
 export type TodoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   todos?: boolean | Prisma.TodosDefaultArgs<ExtArgs>
+  images?: boolean | Prisma.Todo$imagesArgs<ExtArgs>
+  _count?: boolean | Prisma.TodoCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type TodoIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   todos?: boolean | Prisma.TodosDefaultArgs<ExtArgs>
@@ -538,6 +647,7 @@ export type $TodoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   name: "Todo"
   objects: {
     todos: Prisma.$TodosPayload<ExtArgs>
+    images: Prisma.$TodoImagePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     todoId: number
@@ -940,6 +1050,7 @@ readonly fields: TodoFieldRefs;
 export interface Prisma__TodoClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   todos<T extends Prisma.TodosDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TodosDefaultArgs<ExtArgs>>): Prisma.Prisma__TodosClient<runtime.Types.Result.GetResult<Prisma.$TodosPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  images<T extends Prisma.Todo$imagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Todo$imagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TodoImagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1370,6 +1481,30 @@ export type TodoDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
    * Limit how many Todos to delete.
    */
   limit?: number
+}
+
+/**
+ * Todo.images
+ */
+export type Todo$imagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the TodoImage
+   */
+  select?: Prisma.TodoImageSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the TodoImage
+   */
+  omit?: Prisma.TodoImageOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TodoImageInclude<ExtArgs> | null
+  where?: Prisma.TodoImageWhereInput
+  orderBy?: Prisma.TodoImageOrderByWithRelationInput | Prisma.TodoImageOrderByWithRelationInput[]
+  cursor?: Prisma.TodoImageWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TodoImageScalarFieldEnum | Prisma.TodoImageScalarFieldEnum[]
 }
 
 /**
