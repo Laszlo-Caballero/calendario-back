@@ -287,4 +287,25 @@ export class TodoService {
 
     return deletedTodoImage;
   }
+
+  async archiveTodo(id: number) {
+    const findTodo = await this.prisma.todo.findUnique({
+      where: {
+        todoId: id,
+      },
+    });
+
+    if (!findTodo) {
+      throw new NotFoundException(`Todo with id ${id} not found`);
+    }
+
+    return this.prisma.todo.update({
+      where: {
+        todoId: id,
+      },
+      data: {
+        isArchived: !findTodo.isArchived,
+      },
+    });
+  }
 }

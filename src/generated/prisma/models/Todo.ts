@@ -42,6 +42,7 @@ export type TodoMinAggregateOutputType = {
   description: string | null
   status: $Enums.TodoStatus | null
   todosId: number | null
+  isArchived: boolean | null
 }
 
 export type TodoMaxAggregateOutputType = {
@@ -50,6 +51,7 @@ export type TodoMaxAggregateOutputType = {
   description: string | null
   status: $Enums.TodoStatus | null
   todosId: number | null
+  isArchived: boolean | null
 }
 
 export type TodoCountAggregateOutputType = {
@@ -58,6 +60,7 @@ export type TodoCountAggregateOutputType = {
   description: number
   status: number
   todosId: number
+  isArchived: number
   _all: number
 }
 
@@ -78,6 +81,7 @@ export type TodoMinAggregateInputType = {
   description?: true
   status?: true
   todosId?: true
+  isArchived?: true
 }
 
 export type TodoMaxAggregateInputType = {
@@ -86,6 +90,7 @@ export type TodoMaxAggregateInputType = {
   description?: true
   status?: true
   todosId?: true
+  isArchived?: true
 }
 
 export type TodoCountAggregateInputType = {
@@ -94,6 +99,7 @@ export type TodoCountAggregateInputType = {
   description?: true
   status?: true
   todosId?: true
+  isArchived?: true
   _all?: true
 }
 
@@ -189,6 +195,7 @@ export type TodoGroupByOutputType = {
   description: string
   status: $Enums.TodoStatus
   todosId: number
+  isArchived: boolean
   _count: TodoCountAggregateOutputType | null
   _avg: TodoAvgAggregateOutputType | null
   _sum: TodoSumAggregateOutputType | null
@@ -220,6 +227,7 @@ export type TodoWhereInput = {
   description?: Prisma.StringFilter<"Todo"> | string
   status?: Prisma.EnumTodoStatusFilter<"Todo"> | $Enums.TodoStatus
   todosId?: Prisma.IntFilter<"Todo"> | number
+  isArchived?: Prisma.BoolFilter<"Todo"> | boolean
   todos?: Prisma.XOR<Prisma.TodosScalarRelationFilter, Prisma.TodosWhereInput>
   images?: Prisma.TodoImageListRelationFilter
 }
@@ -230,6 +238,7 @@ export type TodoOrderByWithRelationInput = {
   description?: Prisma.SortOrder
   status?: Prisma.SortOrder
   todosId?: Prisma.SortOrder
+  isArchived?: Prisma.SortOrder
   todos?: Prisma.TodosOrderByWithRelationInput
   images?: Prisma.TodoImageOrderByRelationAggregateInput
 }
@@ -243,6 +252,7 @@ export type TodoWhereUniqueInput = Prisma.AtLeast<{
   description?: Prisma.StringFilter<"Todo"> | string
   status?: Prisma.EnumTodoStatusFilter<"Todo"> | $Enums.TodoStatus
   todosId?: Prisma.IntFilter<"Todo"> | number
+  isArchived?: Prisma.BoolFilter<"Todo"> | boolean
   todos?: Prisma.XOR<Prisma.TodosScalarRelationFilter, Prisma.TodosWhereInput>
   images?: Prisma.TodoImageListRelationFilter
 }, "todoId">
@@ -253,6 +263,7 @@ export type TodoOrderByWithAggregationInput = {
   description?: Prisma.SortOrder
   status?: Prisma.SortOrder
   todosId?: Prisma.SortOrder
+  isArchived?: Prisma.SortOrder
   _count?: Prisma.TodoCountOrderByAggregateInput
   _avg?: Prisma.TodoAvgOrderByAggregateInput
   _max?: Prisma.TodoMaxOrderByAggregateInput
@@ -269,12 +280,14 @@ export type TodoScalarWhereWithAggregatesInput = {
   description?: Prisma.StringWithAggregatesFilter<"Todo"> | string
   status?: Prisma.EnumTodoStatusWithAggregatesFilter<"Todo"> | $Enums.TodoStatus
   todosId?: Prisma.IntWithAggregatesFilter<"Todo"> | number
+  isArchived?: Prisma.BoolWithAggregatesFilter<"Todo"> | boolean
 }
 
 export type TodoCreateInput = {
   title: string
   description: string
   status?: $Enums.TodoStatus
+  isArchived?: boolean
   todos: Prisma.TodosCreateNestedOneWithoutTodosInput
   images?: Prisma.TodoImageCreateNestedManyWithoutTodoInput
 }
@@ -285,6 +298,7 @@ export type TodoUncheckedCreateInput = {
   description: string
   status?: $Enums.TodoStatus
   todosId: number
+  isArchived?: boolean
   images?: Prisma.TodoImageUncheckedCreateNestedManyWithoutTodoInput
 }
 
@@ -292,6 +306,7 @@ export type TodoUpdateInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumTodoStatusFieldUpdateOperationsInput | $Enums.TodoStatus
+  isArchived?: Prisma.BoolFieldUpdateOperationsInput | boolean
   todos?: Prisma.TodosUpdateOneRequiredWithoutTodosNestedInput
   images?: Prisma.TodoImageUpdateManyWithoutTodoNestedInput
 }
@@ -302,6 +317,7 @@ export type TodoUncheckedUpdateInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumTodoStatusFieldUpdateOperationsInput | $Enums.TodoStatus
   todosId?: Prisma.IntFieldUpdateOperationsInput | number
+  isArchived?: Prisma.BoolFieldUpdateOperationsInput | boolean
   images?: Prisma.TodoImageUncheckedUpdateManyWithoutTodoNestedInput
 }
 
@@ -311,12 +327,14 @@ export type TodoCreateManyInput = {
   description: string
   status?: $Enums.TodoStatus
   todosId: number
+  isArchived?: boolean
 }
 
 export type TodoUpdateManyMutationInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumTodoStatusFieldUpdateOperationsInput | $Enums.TodoStatus
+  isArchived?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type TodoUncheckedUpdateManyInput = {
@@ -325,6 +343,7 @@ export type TodoUncheckedUpdateManyInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumTodoStatusFieldUpdateOperationsInput | $Enums.TodoStatus
   todosId?: Prisma.IntFieldUpdateOperationsInput | number
+  isArchived?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type TodoListRelationFilter = {
@@ -343,6 +362,7 @@ export type TodoCountOrderByAggregateInput = {
   description?: Prisma.SortOrder
   status?: Prisma.SortOrder
   todosId?: Prisma.SortOrder
+  isArchived?: Prisma.SortOrder
 }
 
 export type TodoAvgOrderByAggregateInput = {
@@ -356,6 +376,7 @@ export type TodoMaxOrderByAggregateInput = {
   description?: Prisma.SortOrder
   status?: Prisma.SortOrder
   todosId?: Prisma.SortOrder
+  isArchived?: Prisma.SortOrder
 }
 
 export type TodoMinOrderByAggregateInput = {
@@ -364,6 +385,7 @@ export type TodoMinOrderByAggregateInput = {
   description?: Prisma.SortOrder
   status?: Prisma.SortOrder
   todosId?: Prisma.SortOrder
+  isArchived?: Prisma.SortOrder
 }
 
 export type TodoSumOrderByAggregateInput = {
@@ -440,6 +462,7 @@ export type TodoCreateWithoutTodosInput = {
   title: string
   description: string
   status?: $Enums.TodoStatus
+  isArchived?: boolean
   images?: Prisma.TodoImageCreateNestedManyWithoutTodoInput
 }
 
@@ -448,6 +471,7 @@ export type TodoUncheckedCreateWithoutTodosInput = {
   title: string
   description: string
   status?: $Enums.TodoStatus
+  isArchived?: boolean
   images?: Prisma.TodoImageUncheckedCreateNestedManyWithoutTodoInput
 }
 
@@ -485,12 +509,14 @@ export type TodoScalarWhereInput = {
   description?: Prisma.StringFilter<"Todo"> | string
   status?: Prisma.EnumTodoStatusFilter<"Todo"> | $Enums.TodoStatus
   todosId?: Prisma.IntFilter<"Todo"> | number
+  isArchived?: Prisma.BoolFilter<"Todo"> | boolean
 }
 
 export type TodoCreateWithoutImagesInput = {
   title: string
   description: string
   status?: $Enums.TodoStatus
+  isArchived?: boolean
   todos: Prisma.TodosCreateNestedOneWithoutTodosInput
 }
 
@@ -500,6 +526,7 @@ export type TodoUncheckedCreateWithoutImagesInput = {
   description: string
   status?: $Enums.TodoStatus
   todosId: number
+  isArchived?: boolean
 }
 
 export type TodoCreateOrConnectWithoutImagesInput = {
@@ -522,6 +549,7 @@ export type TodoUpdateWithoutImagesInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumTodoStatusFieldUpdateOperationsInput | $Enums.TodoStatus
+  isArchived?: Prisma.BoolFieldUpdateOperationsInput | boolean
   todos?: Prisma.TodosUpdateOneRequiredWithoutTodosNestedInput
 }
 
@@ -531,6 +559,7 @@ export type TodoUncheckedUpdateWithoutImagesInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumTodoStatusFieldUpdateOperationsInput | $Enums.TodoStatus
   todosId?: Prisma.IntFieldUpdateOperationsInput | number
+  isArchived?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type TodoCreateManyTodosInput = {
@@ -538,12 +567,14 @@ export type TodoCreateManyTodosInput = {
   title: string
   description: string
   status?: $Enums.TodoStatus
+  isArchived?: boolean
 }
 
 export type TodoUpdateWithoutTodosInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumTodoStatusFieldUpdateOperationsInput | $Enums.TodoStatus
+  isArchived?: Prisma.BoolFieldUpdateOperationsInput | boolean
   images?: Prisma.TodoImageUpdateManyWithoutTodoNestedInput
 }
 
@@ -552,6 +583,7 @@ export type TodoUncheckedUpdateWithoutTodosInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumTodoStatusFieldUpdateOperationsInput | $Enums.TodoStatus
+  isArchived?: Prisma.BoolFieldUpdateOperationsInput | boolean
   images?: Prisma.TodoImageUncheckedUpdateManyWithoutTodoNestedInput
 }
 
@@ -560,6 +592,7 @@ export type TodoUncheckedUpdateManyWithoutTodosInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumTodoStatusFieldUpdateOperationsInput | $Enums.TodoStatus
+  isArchived?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 
@@ -599,6 +632,7 @@ export type TodoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   description?: boolean
   status?: boolean
   todosId?: boolean
+  isArchived?: boolean
   todos?: boolean | Prisma.TodosDefaultArgs<ExtArgs>
   images?: boolean | Prisma.Todo$imagesArgs<ExtArgs>
   _count?: boolean | Prisma.TodoCountOutputTypeDefaultArgs<ExtArgs>
@@ -610,6 +644,7 @@ export type TodoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   description?: boolean
   status?: boolean
   todosId?: boolean
+  isArchived?: boolean
   todos?: boolean | Prisma.TodosDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["todo"]>
 
@@ -619,6 +654,7 @@ export type TodoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   description?: boolean
   status?: boolean
   todosId?: boolean
+  isArchived?: boolean
   todos?: boolean | Prisma.TodosDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["todo"]>
 
@@ -628,9 +664,10 @@ export type TodoSelectScalar = {
   description?: boolean
   status?: boolean
   todosId?: boolean
+  isArchived?: boolean
 }
 
-export type TodoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"todoId" | "title" | "description" | "status" | "todosId", ExtArgs["result"]["todo"]>
+export type TodoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"todoId" | "title" | "description" | "status" | "todosId" | "isArchived", ExtArgs["result"]["todo"]>
 export type TodoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   todos?: boolean | Prisma.TodosDefaultArgs<ExtArgs>
   images?: boolean | Prisma.Todo$imagesArgs<ExtArgs>
@@ -655,6 +692,7 @@ export type $TodoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     description: string
     status: $Enums.TodoStatus
     todosId: number
+    isArchived: boolean
   }, ExtArgs["result"]["todo"]>
   composites: {}
 }
@@ -1085,6 +1123,7 @@ export interface TodoFieldRefs {
   readonly description: Prisma.FieldRef<"Todo", 'String'>
   readonly status: Prisma.FieldRef<"Todo", 'TodoStatus'>
   readonly todosId: Prisma.FieldRef<"Todo", 'Int'>
+  readonly isArchived: Prisma.FieldRef<"Todo", 'Boolean'>
 }
     
 

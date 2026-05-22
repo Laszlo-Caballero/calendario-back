@@ -49,6 +49,11 @@ export class TodoController {
     return this.todoService.changeStatus(id, data);
   }
 
+  @Put(':id/archive')
+  async archiveTodo(@Param('id') id: number) {
+    return this.todoService.archiveTodo(id);
+  }
+
   @Delete(':id')
   async deleteTodo(@Param('id') id: number, @User() user: JwtPayload) {
     return this.todoService.deleteTodo(id, user);

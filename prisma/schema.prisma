@@ -66,6 +66,7 @@ model Todo {
   todosId     Int
   todos       Todos       @relation(fields: [todosId], references: [todosId])
   images      TodoImage[]
+  isArchived  Boolean     @default(false)
 }
 
 model TodoImage {
