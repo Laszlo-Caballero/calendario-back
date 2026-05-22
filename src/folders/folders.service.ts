@@ -17,12 +17,12 @@ export class FoldersService {
   ) {}
 
   async getAllFolders(query: FolderQueryDto, user?: JwtPayload) {
-    const { name } = query;
+    const { id } = query;
 
-    if (name) {
+    if (id) {
       const findFolder = await this.prisma.folder.findFirst({
         where: {
-          name,
+          folderId: id,
         },
         include: {
           folders: {
@@ -36,11 +36,11 @@ export class FoldersService {
       });
 
       if (!findFolder) {
-        throw new NotFoundException(`Folder with name ${name} not found`);
+        throw new NotFoundException(`Folder with id ${id} not found`);
       }
 
       if (!findFolder.isPublic && user?.role !== 'ADMIN') {
-        throw new NotFoundException(`Folder with name ${name} not found`);
+        throw new NotFoundException(`Folder with id ${id} not found`);
       }
 
       return findFolder;

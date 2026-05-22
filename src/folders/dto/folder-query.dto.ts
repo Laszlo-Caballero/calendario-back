@@ -1,7 +1,9 @@
-import { IsOptional, IsString } from 'class-validator';
+import { Type } from 'class-transformer';
+import { IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class FolderQueryDto {
-  @IsString()
+  @IsNumber()
+  @Type(() => Number)
   @IsOptional()
-  name?: string;
+  id?: number;
 }
