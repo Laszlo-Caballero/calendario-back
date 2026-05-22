@@ -74,3 +74,13 @@ export type TodoImage = Prisma.TodoImageModel
  * 
  */
 export type Images = Prisma.ImagesModel
+/**
+ * Model Archives
+ * 
+ */
+export type Archives = Prisma.ArchivesModel
+/**
+ * Model Folder
+ * 
+ */
+export type Folder = Prisma.FolderModel

@@ -7,9 +7,10 @@ import { CalendarModule } from './calendar/calendar.module';
 import { TodoModule } from './todo/todo.module';
 import { TodosModule } from './todos/todos.module';
 import { IaModule } from './ia/ia.module';
+import { FoldersModule } from './folders/folders.module';
 
 @Module({
-  imports: [ScheduleModule, AuthModule, CalendarModule, TodoModule, TodosModule, IaModule],
+  imports: [ScheduleModule, AuthModule, CalendarModule, TodoModule, TodosModule, IaModule, FoldersModule],
   controllers: [AppController],
   providers: [AppService],
 })

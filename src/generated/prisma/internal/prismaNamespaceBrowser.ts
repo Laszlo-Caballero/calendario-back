@@ -57,7 +57,9 @@ export const ModelName = {
   Todos: 'Todos',
   Todo: 'Todo',
   TodoImage: 'TodoImage',
-  Images: 'Images'
+  Images: 'Images',
+  Archives: 'Archives',
+  Folder: 'Folder'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -144,6 +146,29 @@ export const ImagesScalarFieldEnum = {
 } as const
 
 export type ImagesScalarFieldEnum = (typeof ImagesScalarFieldEnum)[keyof typeof ImagesScalarFieldEnum]
+
+
+export const ArchivesScalarFieldEnum = {
+  archiveId: 'archiveId',
+  url: 'url',
+  public_id: 'public_id',
+  type: 'type',
+  name: 'name',
+  createdAt: 'createdAt',
+  folderId: 'folderId'
+} as const
+
+export type ArchivesScalarFieldEnum = (typeof ArchivesScalarFieldEnum)[keyof typeof ArchivesScalarFieldEnum]
+
+
+export const FolderScalarFieldEnum = {
+  folderId: 'folderId',
+  name: 'name',
+  isPublic: 'isPublic',
+  parentFolderId: 'parentFolderId'
+} as const
+
+export type FolderScalarFieldEnum = (typeof FolderScalarFieldEnum)[keyof typeof FolderScalarFieldEnum]
 
 
 export const SortOrder = {

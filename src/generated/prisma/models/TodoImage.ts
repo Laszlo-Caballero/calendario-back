@@ -186,7 +186,7 @@ export type TodoImageGroupByOutputType = {
   _max: TodoImageMaxAggregateOutputType | null
 }
 
-export type GetTodoImageGroupByPayload<T extends TodoImageGroupByArgs> = Prisma.PrismaPromise<
+type GetTodoImageGroupByPayload<T extends TodoImageGroupByArgs> = Prisma.PrismaPromise<
   Array<
     Prisma.PickEnumerable<TodoImageGroupByOutputType, T['by']> &
       {

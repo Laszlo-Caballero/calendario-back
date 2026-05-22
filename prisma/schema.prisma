@@ -81,3 +81,24 @@ model Images {
   url       String
   todoImage TodoImage[]
 }
+
+model Archives {
+  archiveId Int      @id @default(autoincrement())
+  url       String
+  public_id String
+  type      String
+  name      String   @default("Untitled")
+  createdAt DateTime @default(now())
+  folderId  Int?
+  folder    Folder?  @relation(fields: [folderId], references: [folderId])
+}
+
+model Folder {
+  folderId       Int        @id @default(autoincrement())
+  name           String
+  archives       Archives[]
+  isPublic       Boolean    @default(false)
+  parentFolderId Int?
+  parent         Folder?    @relation("FolderHierarchy", fields: [parentFolderId], references: [folderId])
+  folders        Folder[]   @relation("FolderHierarchy")
+}
