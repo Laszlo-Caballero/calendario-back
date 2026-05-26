@@ -91,9 +91,4 @@ export class ScheduleController {
   async deleteImage(@Param('id') id: number) {
     return this.scheduleService.deleteImage(id);
   }
-
-  @Get('raw/:id')
-  findAllRaw(@Param('id') id: number) {
-    return this.scheduleService.findAllRaw(id);
-  }
 }

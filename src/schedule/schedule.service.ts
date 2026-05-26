@@ -162,15 +162,6 @@ export class ScheduleService {
     );
   }
 
-  findAllRaw(id: number) {
-    return this.prisma.schedule.findMany({
-      where: { calendarId: id },
-      include: {
-        image: true,
-      },
-    });
-  }
-
   async findAll(query: QueryScheduleDto, user: JwtPayload) {
     const findCalendar = await this.prisma.calendar.findUnique({
       where: {
