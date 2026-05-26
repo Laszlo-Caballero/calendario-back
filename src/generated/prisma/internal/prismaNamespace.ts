@@ -1143,7 +1143,8 @@ export const ScheduleScalarFieldEnum = {
   startTime: 'startTime',
   endTime: 'endTime',
   color: 'color',
-  calendarId: 'calendarId'
+  calendarId: 'calendarId',
+  imageId: 'imageId'
 } as const
 
 export type ScheduleScalarFieldEnum = (typeof ScheduleScalarFieldEnum)[keyof typeof ScheduleScalarFieldEnum]
@@ -1182,7 +1183,8 @@ export type TodoImageScalarFieldEnum = (typeof TodoImageScalarFieldEnum)[keyof t
 
 export const ImagesScalarFieldEnum = {
   imageId: 'imageId',
-  url: 'url'
+  url: 'url',
+  public_id: 'public_id'
 } as const
 
 export type ImagesScalarFieldEnum = (typeof ImagesScalarFieldEnum)[keyof typeof ImagesScalarFieldEnum]

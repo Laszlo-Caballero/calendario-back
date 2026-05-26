@@ -37,16 +37,19 @@ export type ImagesSumAggregateOutputType = {
 export type ImagesMinAggregateOutputType = {
   imageId: number | null
   url: string | null
+  public_id: string | null
 }
 
 export type ImagesMaxAggregateOutputType = {
   imageId: number | null
   url: string | null
+  public_id: string | null
 }
 
 export type ImagesCountAggregateOutputType = {
   imageId: number
   url: number
+  public_id: number
   _all: number
 }
 
@@ -62,16 +65,19 @@ export type ImagesSumAggregateInputType = {
 export type ImagesMinAggregateInputType = {
   imageId?: true
   url?: true
+  public_id?: true
 }
 
 export type ImagesMaxAggregateInputType = {
   imageId?: true
   url?: true
+  public_id?: true
 }
 
 export type ImagesCountAggregateInputType = {
   imageId?: true
   url?: true
+  public_id?: true
   _all?: true
 }
 
@@ -164,6 +170,7 @@ export type ImagesGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalA
 export type ImagesGroupByOutputType = {
   imageId: number
   url: string
+  public_id: string
   _count: ImagesCountAggregateOutputType | null
   _avg: ImagesAvgAggregateOutputType | null
   _sum: ImagesSumAggregateOutputType | null
@@ -192,13 +199,17 @@ export type ImagesWhereInput = {
   NOT?: Prisma.ImagesWhereInput | Prisma.ImagesWhereInput[]
   imageId?: Prisma.IntFilter<"Images"> | number
   url?: Prisma.StringFilter<"Images"> | string
+  public_id?: Prisma.StringFilter<"Images"> | string
   todoImage?: Prisma.TodoImageListRelationFilter
+  schedule?: Prisma.ScheduleListRelationFilter
 }
 
 export type ImagesOrderByWithRelationInput = {
   imageId?: Prisma.SortOrder
   url?: Prisma.SortOrder
+  public_id?: Prisma.SortOrder
   todoImage?: Prisma.TodoImageOrderByRelationAggregateInput
+  schedule?: Prisma.ScheduleOrderByRelationAggregateInput
 }
 
 export type ImagesWhereUniqueInput = Prisma.AtLeast<{
@@ -207,12 +218,15 @@ export type ImagesWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.ImagesWhereInput[]
   NOT?: Prisma.ImagesWhereInput | Prisma.ImagesWhereInput[]
   url?: Prisma.StringFilter<"Images"> | string
+  public_id?: Prisma.StringFilter<"Images"> | string
   todoImage?: Prisma.TodoImageListRelationFilter
+  schedule?: Prisma.ScheduleListRelationFilter
 }, "imageId">
 
 export type ImagesOrderByWithAggregationInput = {
   imageId?: Prisma.SortOrder
   url?: Prisma.SortOrder
+  public_id?: Prisma.SortOrder
   _count?: Prisma.ImagesCountOrderByAggregateInput
   _avg?: Prisma.ImagesAvgOrderByAggregateInput
   _max?: Prisma.ImagesMaxOrderByAggregateInput
@@ -226,42 +240,59 @@ export type ImagesScalarWhereWithAggregatesInput = {
   NOT?: Prisma.ImagesScalarWhereWithAggregatesInput | Prisma.ImagesScalarWhereWithAggregatesInput[]
   imageId?: Prisma.IntWithAggregatesFilter<"Images"> | number
   url?: Prisma.StringWithAggregatesFilter<"Images"> | string
+  public_id?: Prisma.StringWithAggregatesFilter<"Images"> | string
 }
 
 export type ImagesCreateInput = {
   url: string
+  public_id?: string
   todoImage?: Prisma.TodoImageCreateNestedManyWithoutImageInput
+  schedule?: Prisma.ScheduleCreateNestedManyWithoutImageInput
 }
 
 export type ImagesUncheckedCreateInput = {
   imageId?: number
   url: string
+  public_id?: string
   todoImage?: Prisma.TodoImageUncheckedCreateNestedManyWithoutImageInput
+  schedule?: Prisma.ScheduleUncheckedCreateNestedManyWithoutImageInput
 }
 
 export type ImagesUpdateInput = {
   url?: Prisma.StringFieldUpdateOperationsInput | string
+  public_id?: Prisma.StringFieldUpdateOperationsInput | string
   todoImage?: Prisma.TodoImageUpdateManyWithoutImageNestedInput
+  schedule?: Prisma.ScheduleUpdateManyWithoutImageNestedInput
 }
 
 export type ImagesUncheckedUpdateInput = {
   imageId?: Prisma.IntFieldUpdateOperationsInput | number
   url?: Prisma.StringFieldUpdateOperationsInput | string
+  public_id?: Prisma.StringFieldUpdateOperationsInput | string
   todoImage?: Prisma.TodoImageUncheckedUpdateManyWithoutImageNestedInput
+  schedule?: Prisma.ScheduleUncheckedUpdateManyWithoutImageNestedInput
 }
 
 export type ImagesCreateManyInput = {
   imageId?: number
   url: string
+  public_id?: string
 }
 
 export type ImagesUpdateManyMutationInput = {
   url?: Prisma.StringFieldUpdateOperationsInput | string
+  public_id?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ImagesUncheckedUpdateManyInput = {
   imageId?: Prisma.IntFieldUpdateOperationsInput | number
   url?: Prisma.StringFieldUpdateOperationsInput | string
+  public_id?: Prisma.StringFieldUpdateOperationsInput | string
+}
+
+export type ImagesNullableScalarRelationFilter = {
+  is?: Prisma.ImagesWhereInput | null
+  isNot?: Prisma.ImagesWhereInput | null
 }
 
 export type ImagesScalarRelationFilter = {
@@ -272,6 +303,7 @@ export type ImagesScalarRelationFilter = {
 export type ImagesCountOrderByAggregateInput = {
   imageId?: Prisma.SortOrder
   url?: Prisma.SortOrder
+  public_id?: Prisma.SortOrder
 }
 
 export type ImagesAvgOrderByAggregateInput = {
@@ -281,15 +313,33 @@ export type ImagesAvgOrderByAggregateInput = {
 export type ImagesMaxOrderByAggregateInput = {
   imageId?: Prisma.SortOrder
   url?: Prisma.SortOrder
+  public_id?: Prisma.SortOrder
 }
 
 export type ImagesMinOrderByAggregateInput = {
   imageId?: Prisma.SortOrder
   url?: Prisma.SortOrder
+  public_id?: Prisma.SortOrder
 }
 
 export type ImagesSumOrderByAggregateInput = {
   imageId?: Prisma.SortOrder
+}
+
+export type ImagesCreateNestedOneWithoutScheduleInput = {
+  create?: Prisma.XOR<Prisma.ImagesCreateWithoutScheduleInput, Prisma.ImagesUncheckedCreateWithoutScheduleInput>
+  connectOrCreate?: Prisma.ImagesCreateOrConnectWithoutScheduleInput
+  connect?: Prisma.ImagesWhereUniqueInput
+}
+
+export type ImagesUpdateOneWithoutScheduleNestedInput = {
+  create?: Prisma.XOR<Prisma.ImagesCreateWithoutScheduleInput, Prisma.ImagesUncheckedCreateWithoutScheduleInput>
+  connectOrCreate?: Prisma.ImagesCreateOrConnectWithoutScheduleInput
+  upsert?: Prisma.ImagesUpsertWithoutScheduleInput
+  disconnect?: Prisma.ImagesWhereInput | boolean
+  delete?: Prisma.ImagesWhereInput | boolean
+  connect?: Prisma.ImagesWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ImagesUpdateToOneWithWhereWithoutScheduleInput, Prisma.ImagesUpdateWithoutScheduleInput>, Prisma.ImagesUncheckedUpdateWithoutScheduleInput>
 }
 
 export type ImagesCreateNestedOneWithoutTodoImageInput = {
@@ -306,13 +356,59 @@ export type ImagesUpdateOneRequiredWithoutTodoImageNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ImagesUpdateToOneWithWhereWithoutTodoImageInput, Prisma.ImagesUpdateWithoutTodoImageInput>, Prisma.ImagesUncheckedUpdateWithoutTodoImageInput>
 }
 
+export type ImagesCreateWithoutScheduleInput = {
+  url: string
+  public_id?: string
+  todoImage?: Prisma.TodoImageCreateNestedManyWithoutImageInput
+}
+
+export type ImagesUncheckedCreateWithoutScheduleInput = {
+  imageId?: number
+  url: string
+  public_id?: string
+  todoImage?: Prisma.TodoImageUncheckedCreateNestedManyWithoutImageInput
+}
+
+export type ImagesCreateOrConnectWithoutScheduleInput = {
+  where: Prisma.ImagesWhereUniqueInput
+  create: Prisma.XOR<Prisma.ImagesCreateWithoutScheduleInput, Prisma.ImagesUncheckedCreateWithoutScheduleInput>
+}
+
+export type ImagesUpsertWithoutScheduleInput = {
+  update: Prisma.XOR<Prisma.ImagesUpdateWithoutScheduleInput, Prisma.ImagesUncheckedUpdateWithoutScheduleInput>
+  create: Prisma.XOR<Prisma.ImagesCreateWithoutScheduleInput, Prisma.ImagesUncheckedCreateWithoutScheduleInput>
+  where?: Prisma.ImagesWhereInput
+}
+
+export type ImagesUpdateToOneWithWhereWithoutScheduleInput = {
+  where?: Prisma.ImagesWhereInput
+  data: Prisma.XOR<Prisma.ImagesUpdateWithoutScheduleInput, Prisma.ImagesUncheckedUpdateWithoutScheduleInput>
+}
+
+export type ImagesUpdateWithoutScheduleInput = {
+  url?: Prisma.StringFieldUpdateOperationsInput | string
+  public_id?: Prisma.StringFieldUpdateOperationsInput | string
+  todoImage?: Prisma.TodoImageUpdateManyWithoutImageNestedInput
+}
+
+export type ImagesUncheckedUpdateWithoutScheduleInput = {
+  imageId?: Prisma.IntFieldUpdateOperationsInput | number
+  url?: Prisma.StringFieldUpdateOperationsInput | string
+  public_id?: Prisma.StringFieldUpdateOperationsInput | string
+  todoImage?: Prisma.TodoImageUncheckedUpdateManyWithoutImageNestedInput
+}
+
 export type ImagesCreateWithoutTodoImageInput = {
   url: string
+  public_id?: string
+  schedule?: Prisma.ScheduleCreateNestedManyWithoutImageInput
 }
 
 export type ImagesUncheckedCreateWithoutTodoImageInput = {
   imageId?: number
   url: string
+  public_id?: string
+  schedule?: Prisma.ScheduleUncheckedCreateNestedManyWithoutImageInput
 }
 
 export type ImagesCreateOrConnectWithoutTodoImageInput = {
@@ -333,11 +429,15 @@ export type ImagesUpdateToOneWithWhereWithoutTodoImageInput = {
 
 export type ImagesUpdateWithoutTodoImageInput = {
   url?: Prisma.StringFieldUpdateOperationsInput | string
+  public_id?: Prisma.StringFieldUpdateOperationsInput | string
+  schedule?: Prisma.ScheduleUpdateManyWithoutImageNestedInput
 }
 
 export type ImagesUncheckedUpdateWithoutTodoImageInput = {
   imageId?: Prisma.IntFieldUpdateOperationsInput | number
   url?: Prisma.StringFieldUpdateOperationsInput | string
+  public_id?: Prisma.StringFieldUpdateOperationsInput | string
+  schedule?: Prisma.ScheduleUncheckedUpdateManyWithoutImageNestedInput
 }
 
 
@@ -347,10 +447,12 @@ export type ImagesUncheckedUpdateWithoutTodoImageInput = {
 
 export type ImagesCountOutputType = {
   todoImage: number
+  schedule: number
 }
 
 export type ImagesCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   todoImage?: boolean | ImagesCountOutputTypeCountTodoImageArgs
+  schedule?: boolean | ImagesCountOutputTypeCountScheduleArgs
 }
 
 /**
@@ -370,32 +472,45 @@ export type ImagesCountOutputTypeCountTodoImageArgs<ExtArgs extends runtime.Type
   where?: Prisma.TodoImageWhereInput
 }
 
+/**
+ * ImagesCountOutputType without action
+ */
+export type ImagesCountOutputTypeCountScheduleArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ScheduleWhereInput
+}
+
 
 export type ImagesSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   imageId?: boolean
   url?: boolean
+  public_id?: boolean
   todoImage?: boolean | Prisma.Images$todoImageArgs<ExtArgs>
+  schedule?: boolean | Prisma.Images$scheduleArgs<ExtArgs>
   _count?: boolean | Prisma.ImagesCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["images"]>
 
 export type ImagesSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   imageId?: boolean
   url?: boolean
+  public_id?: boolean
 }, ExtArgs["result"]["images"]>
 
 export type ImagesSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   imageId?: boolean
   url?: boolean
+  public_id?: boolean
 }, ExtArgs["result"]["images"]>
 
 export type ImagesSelectScalar = {
   imageId?: boolean
   url?: boolean
+  public_id?: boolean
 }
 
-export type ImagesOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"imageId" | "url", ExtArgs["result"]["images"]>
+export type ImagesOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"imageId" | "url" | "public_id", ExtArgs["result"]["images"]>
 export type ImagesInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   todoImage?: boolean | Prisma.Images$todoImageArgs<ExtArgs>
+  schedule?: boolean | Prisma.Images$scheduleArgs<ExtArgs>
   _count?: boolean | Prisma.ImagesCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ImagesIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -405,10 +520,12 @@ export type $ImagesPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
   name: "Images"
   objects: {
     todoImage: Prisma.$TodoImagePayload<ExtArgs>[]
+    schedule: Prisma.$SchedulePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     imageId: number
     url: string
+    public_id: string
   }, ExtArgs["result"]["images"]>
   composites: {}
 }
@@ -804,6 +921,7 @@ readonly fields: ImagesFieldRefs;
 export interface Prisma__ImagesClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   todoImage<T extends Prisma.Images$todoImageArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Images$todoImageArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TodoImagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  schedule<T extends Prisma.Images$scheduleArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Images$scheduleArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SchedulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -835,6 +953,7 @@ export interface Prisma__ImagesClient<T, Null = never, ExtArgs extends runtime.T
 export interface ImagesFieldRefs {
   readonly imageId: Prisma.FieldRef<"Images", 'Int'>
   readonly url: Prisma.FieldRef<"Images", 'String'>
+  readonly public_id: Prisma.FieldRef<"Images", 'String'>
 }
     
 
@@ -1247,6 +1366,30 @@ export type Images$todoImageArgs<ExtArgs extends runtime.Types.Extensions.Intern
   take?: number
   skip?: number
   distinct?: Prisma.TodoImageScalarFieldEnum | Prisma.TodoImageScalarFieldEnum[]
+}
+
+/**
+ * Images.schedule
+ */
+export type Images$scheduleArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Schedule
+   */
+  select?: Prisma.ScheduleSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Schedule
+   */
+  omit?: Prisma.ScheduleOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ScheduleInclude<ExtArgs> | null
+  where?: Prisma.ScheduleWhereInput
+  orderBy?: Prisma.ScheduleOrderByWithRelationInput | Prisma.ScheduleOrderByWithRelationInput[]
+  cursor?: Prisma.ScheduleWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ScheduleScalarFieldEnum | Prisma.ScheduleScalarFieldEnum[]
 }
 
 /**

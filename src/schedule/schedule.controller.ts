@@ -7,6 +7,8 @@ import {
   Param,
   Delete,
   Query,
+  UseInterceptors,
+  UploadedFile,
 } from '@nestjs/common';
 import { ScheduleService } from './schedule.service';
 import { CreateScheduleDto } from './dto/create-schedule.dto';
@@ -18,6 +20,9 @@ import { UpdateHourDto } from './dto/query/update-hour.dto';
 import { User } from '../common/decorator/user/user.decorator';
 import type { JwtPayload } from '../common/interface/type';
 import { Auth } from '../common/decorator/auth/auth.decorator';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { ImageUploadDto } from './dto/image-upload.dto';
+import { Role } from '../generated/prisma/enums';
 
 @Auth()
 @Controller('schedule')
@@ -69,5 +74,26 @@ export class ScheduleController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.scheduleService.remove(+id);
+  }
+
+  @Auth([Role.ADMIN])
+  @Post('upload-image')
+  @UseInterceptors(FileInterceptor('file'))
+  async uploadImage(
+    @UploadedFile() file: Express.Multer.File,
+    @Body() body: ImageUploadDto,
+  ) {
+    return this.scheduleService.uploadImage(file, body);
+  }
+
+  @Auth([Role.ADMIN])
+  @Delete(':id/image')
+  async deleteImage(@Param('id') id: number) {
+    return this.scheduleService.deleteImage(id);
+  }
+
+  @Get('raw/:id')
+  findAllRaw(@Param('id') id: number) {
+    return this.scheduleService.findAllRaw(id);
   }
 }

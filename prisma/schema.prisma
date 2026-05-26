@@ -39,6 +39,8 @@ model Schedule {
   color       String
   calendarId  Int?
   calendar    Calendar? @relation(fields: [calendarId], references: [calendarId])
+  imageId     Int?
+  image       Images?   @relation(fields: [imageId], references: [imageId])
 }
 
 model Todos {
@@ -80,7 +82,9 @@ model TodoImage {
 model Images {
   imageId   Int         @id @default(autoincrement())
   url       String
+  public_id String      @default("Untitled")
   todoImage TodoImage[]
+  schedule  Schedule[]
 }
 
 model Archives {

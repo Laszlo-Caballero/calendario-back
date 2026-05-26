@@ -7,10 +7,16 @@ import { QueryScheduleDto } from './dto/query.dto';
 import { UpdateHourDto } from './dto/query/update-hour.dto';
 import { QueryPatchScheduleDto } from './dto/query/query-patch.dto';
 import { JwtPayload } from '../common/interface/type';
+import { ImageUploadDto } from './dto/image-upload.dto';
+import { CloudinaryService } from '../common/cloudinary/cloudinary.service';
+import { startOfDay, endOfDay } from 'date-fns';
 
 @Injectable()
 export class ScheduleService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly cloudinaryService: CloudinaryService,
+  ) {}
 
   private readonly dayMap: Array<keyof DaysDto> = [
     'sunday',
@@ -156,6 +162,15 @@ export class ScheduleService {
     );
   }
 
+  findAllRaw(id: number) {
+    return this.prisma.schedule.findMany({
+      where: { calendarId: id },
+      include: {
+        image: true,
+      },
+    });
+  }
+
   async findAll(query: QueryScheduleDto, user: JwtPayload) {
     const findCalendar = await this.prisma.calendar.findUnique({
       where: {
@@ -180,10 +195,13 @@ export class ScheduleService {
     return this.prisma.schedule.findMany({
       where: {
         date: {
-          gte: this.buildDateAtMidnight(query.startDate),
-          lte: this.buildDateAtMidnight(query.endDate),
+          gte: startOfDay(query.startDate),
+          lte: endOfDay(query.endDate),
         },
         calendarId: query.calendarId,
+      },
+      include: {
+        image: true,
       },
     });
   }
@@ -248,5 +266,81 @@ export class ScheduleService {
     });
 
     return updatedSchedules;
+  }
+
+  async uploadImage(file: Express.Multer.File, body: ImageUploadDto) {
+    const { scheduleId } = body;
+
+    if (!file) {
+      throw new HttpException('No file uploaded', 400);
+    }
+
+    const findedSchedule = await this.prisma.schedule.findUnique({
+      where: { scheduleId },
+    });
+
+    if (!findedSchedule) {
+      throw new HttpException(`Schedule with id ${scheduleId} not found`, 404);
+    }
+
+    const [error, res] = await this.cloudinaryService.uploadImage(file);
+
+    if (error) {
+      throw new HttpException(`Error uploading image: ${error.message}`, 500);
+    }
+
+    const { secure_url, public_id } = res;
+
+    const newImage = await this.prisma.images.create({
+      data: {
+        url: secure_url,
+        public_id,
+      },
+    });
+
+    return this.prisma.schedule.update({
+      where: { scheduleId },
+      data: {
+        image: {
+          connect: {
+            imageId: newImage.imageId,
+          },
+        },
+      },
+    });
+  }
+
+  async deleteImage(scheduleId: number) {
+    const findedSchedule = await this.prisma.schedule.findUnique({
+      where: { scheduleId },
+      include: {
+        image: true,
+      },
+    });
+
+    if (!findedSchedule) {
+      throw new HttpException(`Schedule with id ${scheduleId} not found`, 404);
+    }
+
+    if (!findedSchedule.image) {
+      throw new HttpException(
+        `Schedule with id ${scheduleId} has no image`,
+        404,
+      );
+    }
+
+    const { public_id } = findedSchedule.image;
+
+    const [error, res] = await this.cloudinaryService.deleteImage(public_id);
+
+    if (error) {
+      throw new HttpException(`Error deleting image: ${error.message}`, 500);
+    }
+
+    return this.prisma.images.delete({
+      where: {
+        imageId: findedSchedule.image.imageId,
+      },
+    });
   }
 }

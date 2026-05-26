@@ -29,11 +29,13 @@ export type AggregateSchedule = {
 export type ScheduleAvgAggregateOutputType = {
   scheduleId: number | null
   calendarId: number | null
+  imageId: number | null
 }
 
 export type ScheduleSumAggregateOutputType = {
   scheduleId: number | null
   calendarId: number | null
+  imageId: number | null
 }
 
 export type ScheduleMinAggregateOutputType = {
@@ -45,6 +47,7 @@ export type ScheduleMinAggregateOutputType = {
   endTime: Date | null
   color: string | null
   calendarId: number | null
+  imageId: number | null
 }
 
 export type ScheduleMaxAggregateOutputType = {
@@ -56,6 +59,7 @@ export type ScheduleMaxAggregateOutputType = {
   endTime: Date | null
   color: string | null
   calendarId: number | null
+  imageId: number | null
 }
 
 export type ScheduleCountAggregateOutputType = {
@@ -67,6 +71,7 @@ export type ScheduleCountAggregateOutputType = {
   endTime: number
   color: number
   calendarId: number
+  imageId: number
   _all: number
 }
 
@@ -74,11 +79,13 @@ export type ScheduleCountAggregateOutputType = {
 export type ScheduleAvgAggregateInputType = {
   scheduleId?: true
   calendarId?: true
+  imageId?: true
 }
 
 export type ScheduleSumAggregateInputType = {
   scheduleId?: true
   calendarId?: true
+  imageId?: true
 }
 
 export type ScheduleMinAggregateInputType = {
@@ -90,6 +97,7 @@ export type ScheduleMinAggregateInputType = {
   endTime?: true
   color?: true
   calendarId?: true
+  imageId?: true
 }
 
 export type ScheduleMaxAggregateInputType = {
@@ -101,6 +109,7 @@ export type ScheduleMaxAggregateInputType = {
   endTime?: true
   color?: true
   calendarId?: true
+  imageId?: true
 }
 
 export type ScheduleCountAggregateInputType = {
@@ -112,6 +121,7 @@ export type ScheduleCountAggregateInputType = {
   endTime?: true
   color?: true
   calendarId?: true
+  imageId?: true
   _all?: true
 }
 
@@ -210,6 +220,7 @@ export type ScheduleGroupByOutputType = {
   endTime: Date
   color: string
   calendarId: number | null
+  imageId: number | null
   _count: ScheduleCountAggregateOutputType | null
   _avg: ScheduleAvgAggregateOutputType | null
   _sum: ScheduleSumAggregateOutputType | null
@@ -244,7 +255,9 @@ export type ScheduleWhereInput = {
   endTime?: Prisma.DateTimeFilter<"Schedule"> | Date | string
   color?: Prisma.StringFilter<"Schedule"> | string
   calendarId?: Prisma.IntNullableFilter<"Schedule"> | number | null
+  imageId?: Prisma.IntNullableFilter<"Schedule"> | number | null
   calendar?: Prisma.XOR<Prisma.CalendarNullableScalarRelationFilter, Prisma.CalendarWhereInput> | null
+  image?: Prisma.XOR<Prisma.ImagesNullableScalarRelationFilter, Prisma.ImagesWhereInput> | null
 }
 
 export type ScheduleOrderByWithRelationInput = {
@@ -256,7 +269,9 @@ export type ScheduleOrderByWithRelationInput = {
   endTime?: Prisma.SortOrder
   color?: Prisma.SortOrder
   calendarId?: Prisma.SortOrderInput | Prisma.SortOrder
+  imageId?: Prisma.SortOrderInput | Prisma.SortOrder
   calendar?: Prisma.CalendarOrderByWithRelationInput
+  image?: Prisma.ImagesOrderByWithRelationInput
 }
 
 export type ScheduleWhereUniqueInput = Prisma.AtLeast<{
@@ -271,7 +286,9 @@ export type ScheduleWhereUniqueInput = Prisma.AtLeast<{
   endTime?: Prisma.DateTimeFilter<"Schedule"> | Date | string
   color?: Prisma.StringFilter<"Schedule"> | string
   calendarId?: Prisma.IntNullableFilter<"Schedule"> | number | null
+  imageId?: Prisma.IntNullableFilter<"Schedule"> | number | null
   calendar?: Prisma.XOR<Prisma.CalendarNullableScalarRelationFilter, Prisma.CalendarWhereInput> | null
+  image?: Prisma.XOR<Prisma.ImagesNullableScalarRelationFilter, Prisma.ImagesWhereInput> | null
 }, "scheduleId">
 
 export type ScheduleOrderByWithAggregationInput = {
@@ -283,6 +300,7 @@ export type ScheduleOrderByWithAggregationInput = {
   endTime?: Prisma.SortOrder
   color?: Prisma.SortOrder
   calendarId?: Prisma.SortOrderInput | Prisma.SortOrder
+  imageId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.ScheduleCountOrderByAggregateInput
   _avg?: Prisma.ScheduleAvgOrderByAggregateInput
   _max?: Prisma.ScheduleMaxOrderByAggregateInput
@@ -302,6 +320,7 @@ export type ScheduleScalarWhereWithAggregatesInput = {
   endTime?: Prisma.DateTimeWithAggregatesFilter<"Schedule"> | Date | string
   color?: Prisma.StringWithAggregatesFilter<"Schedule"> | string
   calendarId?: Prisma.IntNullableWithAggregatesFilter<"Schedule"> | number | null
+  imageId?: Prisma.IntNullableWithAggregatesFilter<"Schedule"> | number | null
 }
 
 export type ScheduleCreateInput = {
@@ -312,6 +331,7 @@ export type ScheduleCreateInput = {
   endTime: Date | string
   color: string
   calendar?: Prisma.CalendarCreateNestedOneWithoutSchedulesInput
+  image?: Prisma.ImagesCreateNestedOneWithoutScheduleInput
 }
 
 export type ScheduleUncheckedCreateInput = {
@@ -323,6 +343,7 @@ export type ScheduleUncheckedCreateInput = {
   endTime: Date | string
   color: string
   calendarId?: number | null
+  imageId?: number | null
 }
 
 export type ScheduleUpdateInput = {
@@ -333,6 +354,7 @@ export type ScheduleUpdateInput = {
   endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   color?: Prisma.StringFieldUpdateOperationsInput | string
   calendar?: Prisma.CalendarUpdateOneWithoutSchedulesNestedInput
+  image?: Prisma.ImagesUpdateOneWithoutScheduleNestedInput
 }
 
 export type ScheduleUncheckedUpdateInput = {
@@ -344,6 +366,7 @@ export type ScheduleUncheckedUpdateInput = {
   endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   color?: Prisma.StringFieldUpdateOperationsInput | string
   calendarId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  imageId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type ScheduleCreateManyInput = {
@@ -355,6 +378,7 @@ export type ScheduleCreateManyInput = {
   endTime: Date | string
   color: string
   calendarId?: number | null
+  imageId?: number | null
 }
 
 export type ScheduleUpdateManyMutationInput = {
@@ -375,6 +399,7 @@ export type ScheduleUncheckedUpdateManyInput = {
   endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   color?: Prisma.StringFieldUpdateOperationsInput | string
   calendarId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  imageId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type ScheduleListRelationFilter = {
@@ -396,11 +421,13 @@ export type ScheduleCountOrderByAggregateInput = {
   endTime?: Prisma.SortOrder
   color?: Prisma.SortOrder
   calendarId?: Prisma.SortOrder
+  imageId?: Prisma.SortOrder
 }
 
 export type ScheduleAvgOrderByAggregateInput = {
   scheduleId?: Prisma.SortOrder
   calendarId?: Prisma.SortOrder
+  imageId?: Prisma.SortOrder
 }
 
 export type ScheduleMaxOrderByAggregateInput = {
@@ -412,6 +439,7 @@ export type ScheduleMaxOrderByAggregateInput = {
   endTime?: Prisma.SortOrder
   color?: Prisma.SortOrder
   calendarId?: Prisma.SortOrder
+  imageId?: Prisma.SortOrder
 }
 
 export type ScheduleMinOrderByAggregateInput = {
@@ -423,11 +451,13 @@ export type ScheduleMinOrderByAggregateInput = {
   endTime?: Prisma.SortOrder
   color?: Prisma.SortOrder
   calendarId?: Prisma.SortOrder
+  imageId?: Prisma.SortOrder
 }
 
 export type ScheduleSumOrderByAggregateInput = {
   scheduleId?: Prisma.SortOrder
   calendarId?: Prisma.SortOrder
+  imageId?: Prisma.SortOrder
 }
 
 export type ScheduleCreateNestedManyWithoutCalendarInput = {
@@ -484,6 +514,48 @@ export type NullableIntFieldUpdateOperationsInput = {
   divide?: number
 }
 
+export type ScheduleCreateNestedManyWithoutImageInput = {
+  create?: Prisma.XOR<Prisma.ScheduleCreateWithoutImageInput, Prisma.ScheduleUncheckedCreateWithoutImageInput> | Prisma.ScheduleCreateWithoutImageInput[] | Prisma.ScheduleUncheckedCreateWithoutImageInput[]
+  connectOrCreate?: Prisma.ScheduleCreateOrConnectWithoutImageInput | Prisma.ScheduleCreateOrConnectWithoutImageInput[]
+  createMany?: Prisma.ScheduleCreateManyImageInputEnvelope
+  connect?: Prisma.ScheduleWhereUniqueInput | Prisma.ScheduleWhereUniqueInput[]
+}
+
+export type ScheduleUncheckedCreateNestedManyWithoutImageInput = {
+  create?: Prisma.XOR<Prisma.ScheduleCreateWithoutImageInput, Prisma.ScheduleUncheckedCreateWithoutImageInput> | Prisma.ScheduleCreateWithoutImageInput[] | Prisma.ScheduleUncheckedCreateWithoutImageInput[]
+  connectOrCreate?: Prisma.ScheduleCreateOrConnectWithoutImageInput | Prisma.ScheduleCreateOrConnectWithoutImageInput[]
+  createMany?: Prisma.ScheduleCreateManyImageInputEnvelope
+  connect?: Prisma.ScheduleWhereUniqueInput | Prisma.ScheduleWhereUniqueInput[]
+}
+
+export type ScheduleUpdateManyWithoutImageNestedInput = {
+  create?: Prisma.XOR<Prisma.ScheduleCreateWithoutImageInput, Prisma.ScheduleUncheckedCreateWithoutImageInput> | Prisma.ScheduleCreateWithoutImageInput[] | Prisma.ScheduleUncheckedCreateWithoutImageInput[]
+  connectOrCreate?: Prisma.ScheduleCreateOrConnectWithoutImageInput | Prisma.ScheduleCreateOrConnectWithoutImageInput[]
+  upsert?: Prisma.ScheduleUpsertWithWhereUniqueWithoutImageInput | Prisma.ScheduleUpsertWithWhereUniqueWithoutImageInput[]
+  createMany?: Prisma.ScheduleCreateManyImageInputEnvelope
+  set?: Prisma.ScheduleWhereUniqueInput | Prisma.ScheduleWhereUniqueInput[]
+  disconnect?: Prisma.ScheduleWhereUniqueInput | Prisma.ScheduleWhereUniqueInput[]
+  delete?: Prisma.ScheduleWhereUniqueInput | Prisma.ScheduleWhereUniqueInput[]
+  connect?: Prisma.ScheduleWhereUniqueInput | Prisma.ScheduleWhereUniqueInput[]
+  update?: Prisma.ScheduleUpdateWithWhereUniqueWithoutImageInput | Prisma.ScheduleUpdateWithWhereUniqueWithoutImageInput[]
+  updateMany?: Prisma.ScheduleUpdateManyWithWhereWithoutImageInput | Prisma.ScheduleUpdateManyWithWhereWithoutImageInput[]
+  deleteMany?: Prisma.ScheduleScalarWhereInput | Prisma.ScheduleScalarWhereInput[]
+}
+
+export type ScheduleUncheckedUpdateManyWithoutImageNestedInput = {
+  create?: Prisma.XOR<Prisma.ScheduleCreateWithoutImageInput, Prisma.ScheduleUncheckedCreateWithoutImageInput> | Prisma.ScheduleCreateWithoutImageInput[] | Prisma.ScheduleUncheckedCreateWithoutImageInput[]
+  connectOrCreate?: Prisma.ScheduleCreateOrConnectWithoutImageInput | Prisma.ScheduleCreateOrConnectWithoutImageInput[]
+  upsert?: Prisma.ScheduleUpsertWithWhereUniqueWithoutImageInput | Prisma.ScheduleUpsertWithWhereUniqueWithoutImageInput[]
+  createMany?: Prisma.ScheduleCreateManyImageInputEnvelope
+  set?: Prisma.ScheduleWhereUniqueInput | Prisma.ScheduleWhereUniqueInput[]
+  disconnect?: Prisma.ScheduleWhereUniqueInput | Prisma.ScheduleWhereUniqueInput[]
+  delete?: Prisma.ScheduleWhereUniqueInput | Prisma.ScheduleWhereUniqueInput[]
+  connect?: Prisma.ScheduleWhereUniqueInput | Prisma.ScheduleWhereUniqueInput[]
+  update?: Prisma.ScheduleUpdateWithWhereUniqueWithoutImageInput | Prisma.ScheduleUpdateWithWhereUniqueWithoutImageInput[]
+  updateMany?: Prisma.ScheduleUpdateManyWithWhereWithoutImageInput | Prisma.ScheduleUpdateManyWithWhereWithoutImageInput[]
+  deleteMany?: Prisma.ScheduleScalarWhereInput | Prisma.ScheduleScalarWhereInput[]
+}
+
 export type ScheduleCreateWithoutCalendarInput = {
   title: string
   description: string
@@ -491,6 +563,7 @@ export type ScheduleCreateWithoutCalendarInput = {
   startTime: Date | string
   endTime: Date | string
   color: string
+  image?: Prisma.ImagesCreateNestedOneWithoutScheduleInput
 }
 
 export type ScheduleUncheckedCreateWithoutCalendarInput = {
@@ -501,6 +574,7 @@ export type ScheduleUncheckedCreateWithoutCalendarInput = {
   startTime: Date | string
   endTime: Date | string
   color: string
+  imageId?: number | null
 }
 
 export type ScheduleCreateOrConnectWithoutCalendarInput = {
@@ -540,6 +614,53 @@ export type ScheduleScalarWhereInput = {
   endTime?: Prisma.DateTimeFilter<"Schedule"> | Date | string
   color?: Prisma.StringFilter<"Schedule"> | string
   calendarId?: Prisma.IntNullableFilter<"Schedule"> | number | null
+  imageId?: Prisma.IntNullableFilter<"Schedule"> | number | null
+}
+
+export type ScheduleCreateWithoutImageInput = {
+  title: string
+  description: string
+  date: Date | string
+  startTime: Date | string
+  endTime: Date | string
+  color: string
+  calendar?: Prisma.CalendarCreateNestedOneWithoutSchedulesInput
+}
+
+export type ScheduleUncheckedCreateWithoutImageInput = {
+  scheduleId?: number
+  title: string
+  description: string
+  date: Date | string
+  startTime: Date | string
+  endTime: Date | string
+  color: string
+  calendarId?: number | null
+}
+
+export type ScheduleCreateOrConnectWithoutImageInput = {
+  where: Prisma.ScheduleWhereUniqueInput
+  create: Prisma.XOR<Prisma.ScheduleCreateWithoutImageInput, Prisma.ScheduleUncheckedCreateWithoutImageInput>
+}
+
+export type ScheduleCreateManyImageInputEnvelope = {
+  data: Prisma.ScheduleCreateManyImageInput | Prisma.ScheduleCreateManyImageInput[]
+}
+
+export type ScheduleUpsertWithWhereUniqueWithoutImageInput = {
+  where: Prisma.ScheduleWhereUniqueInput
+  update: Prisma.XOR<Prisma.ScheduleUpdateWithoutImageInput, Prisma.ScheduleUncheckedUpdateWithoutImageInput>
+  create: Prisma.XOR<Prisma.ScheduleCreateWithoutImageInput, Prisma.ScheduleUncheckedCreateWithoutImageInput>
+}
+
+export type ScheduleUpdateWithWhereUniqueWithoutImageInput = {
+  where: Prisma.ScheduleWhereUniqueInput
+  data: Prisma.XOR<Prisma.ScheduleUpdateWithoutImageInput, Prisma.ScheduleUncheckedUpdateWithoutImageInput>
+}
+
+export type ScheduleUpdateManyWithWhereWithoutImageInput = {
+  where: Prisma.ScheduleScalarWhereInput
+  data: Prisma.XOR<Prisma.ScheduleUpdateManyMutationInput, Prisma.ScheduleUncheckedUpdateManyWithoutImageInput>
 }
 
 export type ScheduleCreateManyCalendarInput = {
@@ -550,6 +671,7 @@ export type ScheduleCreateManyCalendarInput = {
   startTime: Date | string
   endTime: Date | string
   color: string
+  imageId?: number | null
 }
 
 export type ScheduleUpdateWithoutCalendarInput = {
@@ -559,6 +681,7 @@ export type ScheduleUpdateWithoutCalendarInput = {
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   color?: Prisma.StringFieldUpdateOperationsInput | string
+  image?: Prisma.ImagesUpdateOneWithoutScheduleNestedInput
 }
 
 export type ScheduleUncheckedUpdateWithoutCalendarInput = {
@@ -569,6 +692,7 @@ export type ScheduleUncheckedUpdateWithoutCalendarInput = {
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   color?: Prisma.StringFieldUpdateOperationsInput | string
+  imageId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type ScheduleUncheckedUpdateManyWithoutCalendarInput = {
@@ -579,6 +703,50 @@ export type ScheduleUncheckedUpdateManyWithoutCalendarInput = {
   startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   color?: Prisma.StringFieldUpdateOperationsInput | string
+  imageId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+}
+
+export type ScheduleCreateManyImageInput = {
+  scheduleId?: number
+  title: string
+  description: string
+  date: Date | string
+  startTime: Date | string
+  endTime: Date | string
+  color: string
+  calendarId?: number | null
+}
+
+export type ScheduleUpdateWithoutImageInput = {
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  color?: Prisma.StringFieldUpdateOperationsInput | string
+  calendar?: Prisma.CalendarUpdateOneWithoutSchedulesNestedInput
+}
+
+export type ScheduleUncheckedUpdateWithoutImageInput = {
+  scheduleId?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  color?: Prisma.StringFieldUpdateOperationsInput | string
+  calendarId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+}
+
+export type ScheduleUncheckedUpdateManyWithoutImageInput = {
+  scheduleId?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  startTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  color?: Prisma.StringFieldUpdateOperationsInput | string
+  calendarId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 
@@ -592,7 +760,9 @@ export type ScheduleSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   endTime?: boolean
   color?: boolean
   calendarId?: boolean
+  imageId?: boolean
   calendar?: boolean | Prisma.Schedule$calendarArgs<ExtArgs>
+  image?: boolean | Prisma.Schedule$imageArgs<ExtArgs>
 }, ExtArgs["result"]["schedule"]>
 
 export type ScheduleSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -604,7 +774,9 @@ export type ScheduleSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   endTime?: boolean
   color?: boolean
   calendarId?: boolean
+  imageId?: boolean
   calendar?: boolean | Prisma.Schedule$calendarArgs<ExtArgs>
+  image?: boolean | Prisma.Schedule$imageArgs<ExtArgs>
 }, ExtArgs["result"]["schedule"]>
 
 export type ScheduleSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -616,7 +788,9 @@ export type ScheduleSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   endTime?: boolean
   color?: boolean
   calendarId?: boolean
+  imageId?: boolean
   calendar?: boolean | Prisma.Schedule$calendarArgs<ExtArgs>
+  image?: boolean | Prisma.Schedule$imageArgs<ExtArgs>
 }, ExtArgs["result"]["schedule"]>
 
 export type ScheduleSelectScalar = {
@@ -628,23 +802,28 @@ export type ScheduleSelectScalar = {
   endTime?: boolean
   color?: boolean
   calendarId?: boolean
+  imageId?: boolean
 }
 
-export type ScheduleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"scheduleId" | "title" | "description" | "date" | "startTime" | "endTime" | "color" | "calendarId", ExtArgs["result"]["schedule"]>
+export type ScheduleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"scheduleId" | "title" | "description" | "date" | "startTime" | "endTime" | "color" | "calendarId" | "imageId", ExtArgs["result"]["schedule"]>
 export type ScheduleInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   calendar?: boolean | Prisma.Schedule$calendarArgs<ExtArgs>
+  image?: boolean | Prisma.Schedule$imageArgs<ExtArgs>
 }
 export type ScheduleIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   calendar?: boolean | Prisma.Schedule$calendarArgs<ExtArgs>
+  image?: boolean | Prisma.Schedule$imageArgs<ExtArgs>
 }
 export type ScheduleIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   calendar?: boolean | Prisma.Schedule$calendarArgs<ExtArgs>
+  image?: boolean | Prisma.Schedule$imageArgs<ExtArgs>
 }
 
 export type $SchedulePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Schedule"
   objects: {
     calendar: Prisma.$CalendarPayload<ExtArgs> | null
+    image: Prisma.$ImagesPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     scheduleId: number
@@ -655,6 +834,7 @@ export type $SchedulePayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     endTime: Date
     color: string
     calendarId: number | null
+    imageId: number | null
   }, ExtArgs["result"]["schedule"]>
   composites: {}
 }
@@ -1050,6 +1230,7 @@ readonly fields: ScheduleFieldRefs;
 export interface Prisma__ScheduleClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   calendar<T extends Prisma.Schedule$calendarArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Schedule$calendarArgs<ExtArgs>>): Prisma.Prisma__CalendarClient<runtime.Types.Result.GetResult<Prisma.$CalendarPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  image<T extends Prisma.Schedule$imageArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Schedule$imageArgs<ExtArgs>>): Prisma.Prisma__ImagesClient<runtime.Types.Result.GetResult<Prisma.$ImagesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1087,6 +1268,7 @@ export interface ScheduleFieldRefs {
   readonly endTime: Prisma.FieldRef<"Schedule", 'DateTime'>
   readonly color: Prisma.FieldRef<"Schedule", 'String'>
   readonly calendarId: Prisma.FieldRef<"Schedule", 'Int'>
+  readonly imageId: Prisma.FieldRef<"Schedule", 'Int'>
 }
     
 
@@ -1502,6 +1684,25 @@ export type Schedule$calendarArgs<ExtArgs extends runtime.Types.Extensions.Inter
    */
   include?: Prisma.CalendarInclude<ExtArgs> | null
   where?: Prisma.CalendarWhereInput
+}
+
+/**
+ * Schedule.image
+ */
+export type Schedule$imageArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Images
+   */
+  select?: Prisma.ImagesSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Images
+   */
+  omit?: Prisma.ImagesOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ImagesInclude<ExtArgs> | null
+  where?: Prisma.ImagesWhereInput
 }
 
 /**

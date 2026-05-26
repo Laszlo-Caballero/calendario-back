@@ -239,11 +239,12 @@ export class TodoService {
       throw new HttpException(`Error uploading image: ${error.message}`, 500);
     }
 
-    const { secure_url } = res;
+    const { secure_url, public_id } = res;
 
     const newImage = await this.prisma.images.create({
       data: {
         url: secure_url,
+        public_id,
       },
     });
 
