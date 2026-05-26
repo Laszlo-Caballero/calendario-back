@@ -80,4 +80,10 @@ export class TodoController {
   async deleteImage(@Body() body: DeleteImagenDto) {
     return this.todoService.deleteImage(body);
   }
+
+  @Auth([Role.ADMIN])
+  @Put(':id/pinned')
+  async togglePinned(@Param('id') id: number) {
+    return this.todoService.togglePinned(id);
+  }
 }

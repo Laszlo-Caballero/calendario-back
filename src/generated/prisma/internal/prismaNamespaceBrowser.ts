@@ -127,7 +127,8 @@ export const TodoScalarFieldEnum = {
   description: 'description',
   status: 'status',
   todosId: 'todosId',
-  isArchived: 'isArchived'
+  isArchived: 'isArchived',
+  pinned: 'pinned'
 } as const
 
 export type TodoScalarFieldEnum = (typeof TodoScalarFieldEnum)[keyof typeof TodoScalarFieldEnum]

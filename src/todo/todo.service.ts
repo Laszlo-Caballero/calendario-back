@@ -309,4 +309,25 @@ export class TodoService {
       },
     });
   }
+
+  async togglePinned(id: number) {
+    const findTodo = await this.prisma.todo.findUnique({
+      where: {
+        todoId: id,
+      },
+    });
+
+    if (!findTodo) {
+      throw new NotFoundException(`Todo with id ${id} not found`);
+    }
+
+    return this.prisma.todo.update({
+      where: {
+        todoId: id,
+      },
+      data: {
+        pinned: !findTodo.pinned,
+      },
+    });
+  }
 }
