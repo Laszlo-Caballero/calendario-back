@@ -221,6 +221,9 @@ export class ScheduleService {
     return this.prisma.schedule.update({
       where: { scheduleId: id },
       data: updateScheduleDto,
+      include: {
+        image: true,
+      },
     });
   }
 
@@ -253,6 +256,9 @@ export class ScheduleService {
       data: {
         startTime: updateHourDto.startTime,
         endTime: updateHourDto.endTime,
+      },
+      include: {
+        image: true,
       },
     });
 
