@@ -13,6 +13,7 @@ import { ImportsTodoDto } from './dto/imports-todo.dto';
 import { ImageUploadDto } from './dto/image.dto';
 import { CloudinaryService } from '../common/cloudinary/cloudinary.service';
 import { DeleteImagenDto } from './dto/delete-image.dto';
+import { TodoStatus } from '../generated/prisma/enums';
 
 @Injectable()
 export class TodoService {
@@ -329,5 +330,56 @@ export class TodoService {
         pinned: !findTodo.pinned,
       },
     });
+  }
+
+  async getNotCompleteTodos() {
+    const [count, todos] = await this.prisma.$transaction([
+      this.prisma.todo.count({
+        where: {
+          status: {
+            notIn: [TodoStatus.COMPLETED, TodoStatus.ARCHIVED],
+          },
+          isArchived: false,
+          todos: {
+            status: true,
+          },
+        },
+      }),
+      this.prisma.todos.findMany({
+        where: {
+          todos: {
+            some: {
+              status: {
+                notIn: [TodoStatus.COMPLETED, TodoStatus.ARCHIVED],
+              },
+              isArchived: false,
+            },
+          },
+          status: true,
+        },
+        include: {
+          todos: {
+            where: {
+              status: {
+                notIn: [TodoStatus.COMPLETED, TodoStatus.ARCHIVED],
+              },
+              isArchived: false,
+            },
+            include: {
+              images: {
+                include: {
+                  image: true,
+                },
+              },
+            },
+          },
+        },
+      }),
+    ]);
+
+    return {
+      count,
+      todos,
+    };
   }
 }

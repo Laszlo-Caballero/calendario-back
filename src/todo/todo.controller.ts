@@ -86,4 +86,10 @@ export class TodoController {
   async togglePinned(@Param('id') id: number) {
     return this.todoService.togglePinned(id);
   }
+
+  @Auth()
+  @Get('not-complete')
+  async getNotCompleteTodos() {
+    return this.todoService.getNotCompleteTodos();
+  }
 }
