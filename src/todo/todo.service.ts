@@ -113,6 +113,7 @@ export class TodoService {
       },
       data: {
         status: status.status,
+        completedAt: status.status == TodoStatus.COMPLETED ? new Date() : null,
       },
     });
   }

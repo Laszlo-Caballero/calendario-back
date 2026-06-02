@@ -70,6 +70,7 @@ model Todo {
   images      TodoImage[]
   isArchived  Boolean     @default(false)
   pinned      Boolean     @default(false)
+  completedAt DateTime?
 }
 
 model TodoImage {
