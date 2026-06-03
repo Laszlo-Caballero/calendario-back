@@ -45,6 +45,7 @@ export type TodoMinAggregateOutputType = {
   isArchived: boolean | null
   pinned: boolean | null
   completedAt: Date | null
+  hourNotification: Date | null
 }
 
 export type TodoMaxAggregateOutputType = {
@@ -56,6 +57,7 @@ export type TodoMaxAggregateOutputType = {
   isArchived: boolean | null
   pinned: boolean | null
   completedAt: Date | null
+  hourNotification: Date | null
 }
 
 export type TodoCountAggregateOutputType = {
@@ -67,6 +69,7 @@ export type TodoCountAggregateOutputType = {
   isArchived: number
   pinned: number
   completedAt: number
+  hourNotification: number
   _all: number
 }
 
@@ -90,6 +93,7 @@ export type TodoMinAggregateInputType = {
   isArchived?: true
   pinned?: true
   completedAt?: true
+  hourNotification?: true
 }
 
 export type TodoMaxAggregateInputType = {
@@ -101,6 +105,7 @@ export type TodoMaxAggregateInputType = {
   isArchived?: true
   pinned?: true
   completedAt?: true
+  hourNotification?: true
 }
 
 export type TodoCountAggregateInputType = {
@@ -112,6 +117,7 @@ export type TodoCountAggregateInputType = {
   isArchived?: true
   pinned?: true
   completedAt?: true
+  hourNotification?: true
   _all?: true
 }
 
@@ -210,6 +216,7 @@ export type TodoGroupByOutputType = {
   isArchived: boolean
   pinned: boolean
   completedAt: Date | null
+  hourNotification: Date | null
   _count: TodoCountAggregateOutputType | null
   _avg: TodoAvgAggregateOutputType | null
   _sum: TodoSumAggregateOutputType | null
@@ -244,6 +251,7 @@ export type TodoWhereInput = {
   isArchived?: Prisma.BoolFilter<"Todo"> | boolean
   pinned?: Prisma.BoolFilter<"Todo"> | boolean
   completedAt?: Prisma.DateTimeNullableFilter<"Todo"> | Date | string | null
+  hourNotification?: Prisma.DateTimeNullableFilter<"Todo"> | Date | string | null
   todos?: Prisma.XOR<Prisma.TodosScalarRelationFilter, Prisma.TodosWhereInput>
   images?: Prisma.TodoImageListRelationFilter
 }
@@ -257,6 +265,7 @@ export type TodoOrderByWithRelationInput = {
   isArchived?: Prisma.SortOrder
   pinned?: Prisma.SortOrder
   completedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  hourNotification?: Prisma.SortOrderInput | Prisma.SortOrder
   todos?: Prisma.TodosOrderByWithRelationInput
   images?: Prisma.TodoImageOrderByRelationAggregateInput
 }
@@ -273,6 +282,7 @@ export type TodoWhereUniqueInput = Prisma.AtLeast<{
   isArchived?: Prisma.BoolFilter<"Todo"> | boolean
   pinned?: Prisma.BoolFilter<"Todo"> | boolean
   completedAt?: Prisma.DateTimeNullableFilter<"Todo"> | Date | string | null
+  hourNotification?: Prisma.DateTimeNullableFilter<"Todo"> | Date | string | null
   todos?: Prisma.XOR<Prisma.TodosScalarRelationFilter, Prisma.TodosWhereInput>
   images?: Prisma.TodoImageListRelationFilter
 }, "todoId">
@@ -286,6 +296,7 @@ export type TodoOrderByWithAggregationInput = {
   isArchived?: Prisma.SortOrder
   pinned?: Prisma.SortOrder
   completedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  hourNotification?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.TodoCountOrderByAggregateInput
   _avg?: Prisma.TodoAvgOrderByAggregateInput
   _max?: Prisma.TodoMaxOrderByAggregateInput
@@ -305,6 +316,7 @@ export type TodoScalarWhereWithAggregatesInput = {
   isArchived?: Prisma.BoolWithAggregatesFilter<"Todo"> | boolean
   pinned?: Prisma.BoolWithAggregatesFilter<"Todo"> | boolean
   completedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Todo"> | Date | string | null
+  hourNotification?: Prisma.DateTimeNullableWithAggregatesFilter<"Todo"> | Date | string | null
 }
 
 export type TodoCreateInput = {
@@ -314,6 +326,7 @@ export type TodoCreateInput = {
   isArchived?: boolean
   pinned?: boolean
   completedAt?: Date | string | null
+  hourNotification?: Date | string | null
   todos: Prisma.TodosCreateNestedOneWithoutTodosInput
   images?: Prisma.TodoImageCreateNestedManyWithoutTodoInput
 }
@@ -327,6 +340,7 @@ export type TodoUncheckedCreateInput = {
   isArchived?: boolean
   pinned?: boolean
   completedAt?: Date | string | null
+  hourNotification?: Date | string | null
   images?: Prisma.TodoImageUncheckedCreateNestedManyWithoutTodoInput
 }
 
@@ -337,6 +351,7 @@ export type TodoUpdateInput = {
   isArchived?: Prisma.BoolFieldUpdateOperationsInput | boolean
   pinned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hourNotification?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   todos?: Prisma.TodosUpdateOneRequiredWithoutTodosNestedInput
   images?: Prisma.TodoImageUpdateManyWithoutTodoNestedInput
 }
@@ -350,6 +365,7 @@ export type TodoUncheckedUpdateInput = {
   isArchived?: Prisma.BoolFieldUpdateOperationsInput | boolean
   pinned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hourNotification?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   images?: Prisma.TodoImageUncheckedUpdateManyWithoutTodoNestedInput
 }
 
@@ -362,6 +378,7 @@ export type TodoCreateManyInput = {
   isArchived?: boolean
   pinned?: boolean
   completedAt?: Date | string | null
+  hourNotification?: Date | string | null
 }
 
 export type TodoUpdateManyMutationInput = {
@@ -371,6 +388,7 @@ export type TodoUpdateManyMutationInput = {
   isArchived?: Prisma.BoolFieldUpdateOperationsInput | boolean
   pinned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hourNotification?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type TodoUncheckedUpdateManyInput = {
@@ -382,6 +400,7 @@ export type TodoUncheckedUpdateManyInput = {
   isArchived?: Prisma.BoolFieldUpdateOperationsInput | boolean
   pinned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hourNotification?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type TodoListRelationFilter = {
@@ -403,6 +422,7 @@ export type TodoCountOrderByAggregateInput = {
   isArchived?: Prisma.SortOrder
   pinned?: Prisma.SortOrder
   completedAt?: Prisma.SortOrder
+  hourNotification?: Prisma.SortOrder
 }
 
 export type TodoAvgOrderByAggregateInput = {
@@ -419,6 +439,7 @@ export type TodoMaxOrderByAggregateInput = {
   isArchived?: Prisma.SortOrder
   pinned?: Prisma.SortOrder
   completedAt?: Prisma.SortOrder
+  hourNotification?: Prisma.SortOrder
 }
 
 export type TodoMinOrderByAggregateInput = {
@@ -430,6 +451,7 @@ export type TodoMinOrderByAggregateInput = {
   isArchived?: Prisma.SortOrder
   pinned?: Prisma.SortOrder
   completedAt?: Prisma.SortOrder
+  hourNotification?: Prisma.SortOrder
 }
 
 export type TodoSumOrderByAggregateInput = {
@@ -513,6 +535,7 @@ export type TodoCreateWithoutTodosInput = {
   isArchived?: boolean
   pinned?: boolean
   completedAt?: Date | string | null
+  hourNotification?: Date | string | null
   images?: Prisma.TodoImageCreateNestedManyWithoutTodoInput
 }
 
@@ -524,6 +547,7 @@ export type TodoUncheckedCreateWithoutTodosInput = {
   isArchived?: boolean
   pinned?: boolean
   completedAt?: Date | string | null
+  hourNotification?: Date | string | null
   images?: Prisma.TodoImageUncheckedCreateNestedManyWithoutTodoInput
 }
 
@@ -564,6 +588,7 @@ export type TodoScalarWhereInput = {
   isArchived?: Prisma.BoolFilter<"Todo"> | boolean
   pinned?: Prisma.BoolFilter<"Todo"> | boolean
   completedAt?: Prisma.DateTimeNullableFilter<"Todo"> | Date | string | null
+  hourNotification?: Prisma.DateTimeNullableFilter<"Todo"> | Date | string | null
 }
 
 export type TodoCreateWithoutImagesInput = {
@@ -573,6 +598,7 @@ export type TodoCreateWithoutImagesInput = {
   isArchived?: boolean
   pinned?: boolean
   completedAt?: Date | string | null
+  hourNotification?: Date | string | null
   todos: Prisma.TodosCreateNestedOneWithoutTodosInput
 }
 
@@ -585,6 +611,7 @@ export type TodoUncheckedCreateWithoutImagesInput = {
   isArchived?: boolean
   pinned?: boolean
   completedAt?: Date | string | null
+  hourNotification?: Date | string | null
 }
 
 export type TodoCreateOrConnectWithoutImagesInput = {
@@ -610,6 +637,7 @@ export type TodoUpdateWithoutImagesInput = {
   isArchived?: Prisma.BoolFieldUpdateOperationsInput | boolean
   pinned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hourNotification?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   todos?: Prisma.TodosUpdateOneRequiredWithoutTodosNestedInput
 }
 
@@ -622,6 +650,7 @@ export type TodoUncheckedUpdateWithoutImagesInput = {
   isArchived?: Prisma.BoolFieldUpdateOperationsInput | boolean
   pinned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hourNotification?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type TodoCreateManyTodosInput = {
@@ -632,6 +661,7 @@ export type TodoCreateManyTodosInput = {
   isArchived?: boolean
   pinned?: boolean
   completedAt?: Date | string | null
+  hourNotification?: Date | string | null
 }
 
 export type TodoUpdateWithoutTodosInput = {
@@ -641,6 +671,7 @@ export type TodoUpdateWithoutTodosInput = {
   isArchived?: Prisma.BoolFieldUpdateOperationsInput | boolean
   pinned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hourNotification?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   images?: Prisma.TodoImageUpdateManyWithoutTodoNestedInput
 }
 
@@ -652,6 +683,7 @@ export type TodoUncheckedUpdateWithoutTodosInput = {
   isArchived?: Prisma.BoolFieldUpdateOperationsInput | boolean
   pinned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hourNotification?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   images?: Prisma.TodoImageUncheckedUpdateManyWithoutTodoNestedInput
 }
 
@@ -663,6 +695,7 @@ export type TodoUncheckedUpdateManyWithoutTodosInput = {
   isArchived?: Prisma.BoolFieldUpdateOperationsInput | boolean
   pinned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  hourNotification?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
@@ -705,6 +738,7 @@ export type TodoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   isArchived?: boolean
   pinned?: boolean
   completedAt?: boolean
+  hourNotification?: boolean
   todos?: boolean | Prisma.TodosDefaultArgs<ExtArgs>
   images?: boolean | Prisma.Todo$imagesArgs<ExtArgs>
   _count?: boolean | Prisma.TodoCountOutputTypeDefaultArgs<ExtArgs>
@@ -719,6 +753,7 @@ export type TodoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   isArchived?: boolean
   pinned?: boolean
   completedAt?: boolean
+  hourNotification?: boolean
   todos?: boolean | Prisma.TodosDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["todo"]>
 
@@ -731,6 +766,7 @@ export type TodoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   isArchived?: boolean
   pinned?: boolean
   completedAt?: boolean
+  hourNotification?: boolean
   todos?: boolean | Prisma.TodosDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["todo"]>
 
@@ -743,9 +779,10 @@ export type TodoSelectScalar = {
   isArchived?: boolean
   pinned?: boolean
   completedAt?: boolean
+  hourNotification?: boolean
 }
 
-export type TodoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"todoId" | "title" | "description" | "status" | "todosId" | "isArchived" | "pinned" | "completedAt", ExtArgs["result"]["todo"]>
+export type TodoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"todoId" | "title" | "description" | "status" | "todosId" | "isArchived" | "pinned" | "completedAt" | "hourNotification", ExtArgs["result"]["todo"]>
 export type TodoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   todos?: boolean | Prisma.TodosDefaultArgs<ExtArgs>
   images?: boolean | Prisma.Todo$imagesArgs<ExtArgs>
@@ -773,6 +810,7 @@ export type $TodoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     isArchived: boolean
     pinned: boolean
     completedAt: Date | null
+    hourNotification: Date | null
   }, ExtArgs["result"]["todo"]>
   composites: {}
 }
@@ -1206,6 +1244,7 @@ export interface TodoFieldRefs {
   readonly isArchived: Prisma.FieldRef<"Todo", 'Boolean'>
   readonly pinned: Prisma.FieldRef<"Todo", 'Boolean'>
   readonly completedAt: Prisma.FieldRef<"Todo", 'DateTime'>
+  readonly hourNotification: Prisma.FieldRef<"Todo", 'DateTime'>
 }
     
 

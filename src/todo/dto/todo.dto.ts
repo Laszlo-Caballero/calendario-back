@@ -1,5 +1,13 @@
-import { IsEnum, IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import {
+  IsDate,
+  IsEnum,
+  IsNotEmpty,
+  IsNumber,
+  IsOptional,
+  IsString,
+} from 'class-validator';
 import { TodoStatus } from '../../generated/prisma/enums';
+import { Type } from 'class-transformer';
 
 export class TodoDto {
   @IsString()
@@ -17,4 +25,9 @@ export class TodoDto {
   @IsNumber()
   @IsNotEmpty()
   todosId: number;
+
+  @IsDate()
+  @Type(() => Date)
+  @IsOptional()
+  hourNotification?: Date;
 }

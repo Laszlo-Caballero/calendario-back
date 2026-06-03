@@ -61,16 +61,17 @@ enum TodoStatus {
 }
 
 model Todo {
-  todoId      Int         @id @default(autoincrement())
-  title       String
-  description String
-  status      TodoStatus  @default(PENDING)
-  todosId     Int
-  todos       Todos       @relation(fields: [todosId], references: [todosId])
-  images      TodoImage[]
-  isArchived  Boolean     @default(false)
-  pinned      Boolean     @default(false)
-  completedAt DateTime?
+  todoId           Int         @id @default(autoincrement())
+  title            String
+  description      String
+  status           TodoStatus  @default(PENDING)
+  todosId          Int
+  todos            Todos       @relation(fields: [todosId], references: [todosId])
+  images           TodoImage[]
+  isArchived       Boolean     @default(false)
+  pinned           Boolean     @default(false)
+  completedAt      DateTime?
+  hourNotification DateTime?
 }
 
 model TodoImage {
