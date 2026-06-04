@@ -29,11 +29,13 @@ export type AggregateTodo = {
 export type TodoAvgAggregateOutputType = {
   todoId: number | null
   todosId: number | null
+  importance: number | null
 }
 
 export type TodoSumAggregateOutputType = {
   todoId: number | null
   todosId: number | null
+  importance: number | null
 }
 
 export type TodoMinAggregateOutputType = {
@@ -46,6 +48,7 @@ export type TodoMinAggregateOutputType = {
   pinned: boolean | null
   completedAt: Date | null
   hourNotification: Date | null
+  importance: number | null
 }
 
 export type TodoMaxAggregateOutputType = {
@@ -58,6 +61,7 @@ export type TodoMaxAggregateOutputType = {
   pinned: boolean | null
   completedAt: Date | null
   hourNotification: Date | null
+  importance: number | null
 }
 
 export type TodoCountAggregateOutputType = {
@@ -70,6 +74,7 @@ export type TodoCountAggregateOutputType = {
   pinned: number
   completedAt: number
   hourNotification: number
+  importance: number
   _all: number
 }
 
@@ -77,11 +82,13 @@ export type TodoCountAggregateOutputType = {
 export type TodoAvgAggregateInputType = {
   todoId?: true
   todosId?: true
+  importance?: true
 }
 
 export type TodoSumAggregateInputType = {
   todoId?: true
   todosId?: true
+  importance?: true
 }
 
 export type TodoMinAggregateInputType = {
@@ -94,6 +101,7 @@ export type TodoMinAggregateInputType = {
   pinned?: true
   completedAt?: true
   hourNotification?: true
+  importance?: true
 }
 
 export type TodoMaxAggregateInputType = {
@@ -106,6 +114,7 @@ export type TodoMaxAggregateInputType = {
   pinned?: true
   completedAt?: true
   hourNotification?: true
+  importance?: true
 }
 
 export type TodoCountAggregateInputType = {
@@ -118,6 +127,7 @@ export type TodoCountAggregateInputType = {
   pinned?: true
   completedAt?: true
   hourNotification?: true
+  importance?: true
   _all?: true
 }
 
@@ -217,6 +227,7 @@ export type TodoGroupByOutputType = {
   pinned: boolean
   completedAt: Date | null
   hourNotification: Date | null
+  importance: number
   _count: TodoCountAggregateOutputType | null
   _avg: TodoAvgAggregateOutputType | null
   _sum: TodoSumAggregateOutputType | null
@@ -252,6 +263,7 @@ export type TodoWhereInput = {
   pinned?: Prisma.BoolFilter<"Todo"> | boolean
   completedAt?: Prisma.DateTimeNullableFilter<"Todo"> | Date | string | null
   hourNotification?: Prisma.DateTimeNullableFilter<"Todo"> | Date | string | null
+  importance?: Prisma.IntFilter<"Todo"> | number
   todos?: Prisma.XOR<Prisma.TodosScalarRelationFilter, Prisma.TodosWhereInput>
   images?: Prisma.TodoImageListRelationFilter
 }
@@ -266,6 +278,7 @@ export type TodoOrderByWithRelationInput = {
   pinned?: Prisma.SortOrder
   completedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   hourNotification?: Prisma.SortOrderInput | Prisma.SortOrder
+  importance?: Prisma.SortOrder
   todos?: Prisma.TodosOrderByWithRelationInput
   images?: Prisma.TodoImageOrderByRelationAggregateInput
 }
@@ -283,6 +296,7 @@ export type TodoWhereUniqueInput = Prisma.AtLeast<{
   pinned?: Prisma.BoolFilter<"Todo"> | boolean
   completedAt?: Prisma.DateTimeNullableFilter<"Todo"> | Date | string | null
   hourNotification?: Prisma.DateTimeNullableFilter<"Todo"> | Date | string | null
+  importance?: Prisma.IntFilter<"Todo"> | number
   todos?: Prisma.XOR<Prisma.TodosScalarRelationFilter, Prisma.TodosWhereInput>
   images?: Prisma.TodoImageListRelationFilter
 }, "todoId">
@@ -297,6 +311,7 @@ export type TodoOrderByWithAggregationInput = {
   pinned?: Prisma.SortOrder
   completedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   hourNotification?: Prisma.SortOrderInput | Prisma.SortOrder
+  importance?: Prisma.SortOrder
   _count?: Prisma.TodoCountOrderByAggregateInput
   _avg?: Prisma.TodoAvgOrderByAggregateInput
   _max?: Prisma.TodoMaxOrderByAggregateInput
@@ -317,6 +332,7 @@ export type TodoScalarWhereWithAggregatesInput = {
   pinned?: Prisma.BoolWithAggregatesFilter<"Todo"> | boolean
   completedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Todo"> | Date | string | null
   hourNotification?: Prisma.DateTimeNullableWithAggregatesFilter<"Todo"> | Date | string | null
+  importance?: Prisma.IntWithAggregatesFilter<"Todo"> | number
 }
 
 export type TodoCreateInput = {
@@ -327,6 +343,7 @@ export type TodoCreateInput = {
   pinned?: boolean
   completedAt?: Date | string | null
   hourNotification?: Date | string | null
+  importance?: number
   todos: Prisma.TodosCreateNestedOneWithoutTodosInput
   images?: Prisma.TodoImageCreateNestedManyWithoutTodoInput
 }
@@ -341,6 +358,7 @@ export type TodoUncheckedCreateInput = {
   pinned?: boolean
   completedAt?: Date | string | null
   hourNotification?: Date | string | null
+  importance?: number
   images?: Prisma.TodoImageUncheckedCreateNestedManyWithoutTodoInput
 }
 
@@ -352,6 +370,7 @@ export type TodoUpdateInput = {
   pinned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   hourNotification?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  importance?: Prisma.IntFieldUpdateOperationsInput | number
   todos?: Prisma.TodosUpdateOneRequiredWithoutTodosNestedInput
   images?: Prisma.TodoImageUpdateManyWithoutTodoNestedInput
 }
@@ -366,6 +385,7 @@ export type TodoUncheckedUpdateInput = {
   pinned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   hourNotification?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  importance?: Prisma.IntFieldUpdateOperationsInput | number
   images?: Prisma.TodoImageUncheckedUpdateManyWithoutTodoNestedInput
 }
 
@@ -379,6 +399,7 @@ export type TodoCreateManyInput = {
   pinned?: boolean
   completedAt?: Date | string | null
   hourNotification?: Date | string | null
+  importance?: number
 }
 
 export type TodoUpdateManyMutationInput = {
@@ -389,6 +410,7 @@ export type TodoUpdateManyMutationInput = {
   pinned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   hourNotification?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  importance?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type TodoUncheckedUpdateManyInput = {
@@ -401,6 +423,7 @@ export type TodoUncheckedUpdateManyInput = {
   pinned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   hourNotification?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  importance?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type TodoListRelationFilter = {
@@ -423,11 +446,13 @@ export type TodoCountOrderByAggregateInput = {
   pinned?: Prisma.SortOrder
   completedAt?: Prisma.SortOrder
   hourNotification?: Prisma.SortOrder
+  importance?: Prisma.SortOrder
 }
 
 export type TodoAvgOrderByAggregateInput = {
   todoId?: Prisma.SortOrder
   todosId?: Prisma.SortOrder
+  importance?: Prisma.SortOrder
 }
 
 export type TodoMaxOrderByAggregateInput = {
@@ -440,6 +465,7 @@ export type TodoMaxOrderByAggregateInput = {
   pinned?: Prisma.SortOrder
   completedAt?: Prisma.SortOrder
   hourNotification?: Prisma.SortOrder
+  importance?: Prisma.SortOrder
 }
 
 export type TodoMinOrderByAggregateInput = {
@@ -452,11 +478,13 @@ export type TodoMinOrderByAggregateInput = {
   pinned?: Prisma.SortOrder
   completedAt?: Prisma.SortOrder
   hourNotification?: Prisma.SortOrder
+  importance?: Prisma.SortOrder
 }
 
 export type TodoSumOrderByAggregateInput = {
   todoId?: Prisma.SortOrder
   todosId?: Prisma.SortOrder
+  importance?: Prisma.SortOrder
 }
 
 export type TodoScalarRelationFilter = {
@@ -536,6 +564,7 @@ export type TodoCreateWithoutTodosInput = {
   pinned?: boolean
   completedAt?: Date | string | null
   hourNotification?: Date | string | null
+  importance?: number
   images?: Prisma.TodoImageCreateNestedManyWithoutTodoInput
 }
 
@@ -548,6 +577,7 @@ export type TodoUncheckedCreateWithoutTodosInput = {
   pinned?: boolean
   completedAt?: Date | string | null
   hourNotification?: Date | string | null
+  importance?: number
   images?: Prisma.TodoImageUncheckedCreateNestedManyWithoutTodoInput
 }
 
@@ -589,6 +619,7 @@ export type TodoScalarWhereInput = {
   pinned?: Prisma.BoolFilter<"Todo"> | boolean
   completedAt?: Prisma.DateTimeNullableFilter<"Todo"> | Date | string | null
   hourNotification?: Prisma.DateTimeNullableFilter<"Todo"> | Date | string | null
+  importance?: Prisma.IntFilter<"Todo"> | number
 }
 
 export type TodoCreateWithoutImagesInput = {
@@ -599,6 +630,7 @@ export type TodoCreateWithoutImagesInput = {
   pinned?: boolean
   completedAt?: Date | string | null
   hourNotification?: Date | string | null
+  importance?: number
   todos: Prisma.TodosCreateNestedOneWithoutTodosInput
 }
 
@@ -612,6 +644,7 @@ export type TodoUncheckedCreateWithoutImagesInput = {
   pinned?: boolean
   completedAt?: Date | string | null
   hourNotification?: Date | string | null
+  importance?: number
 }
 
 export type TodoCreateOrConnectWithoutImagesInput = {
@@ -638,6 +671,7 @@ export type TodoUpdateWithoutImagesInput = {
   pinned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   hourNotification?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  importance?: Prisma.IntFieldUpdateOperationsInput | number
   todos?: Prisma.TodosUpdateOneRequiredWithoutTodosNestedInput
 }
 
@@ -651,6 +685,7 @@ export type TodoUncheckedUpdateWithoutImagesInput = {
   pinned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   hourNotification?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  importance?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type TodoCreateManyTodosInput = {
@@ -662,6 +697,7 @@ export type TodoCreateManyTodosInput = {
   pinned?: boolean
   completedAt?: Date | string | null
   hourNotification?: Date | string | null
+  importance?: number
 }
 
 export type TodoUpdateWithoutTodosInput = {
@@ -672,6 +708,7 @@ export type TodoUpdateWithoutTodosInput = {
   pinned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   hourNotification?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  importance?: Prisma.IntFieldUpdateOperationsInput | number
   images?: Prisma.TodoImageUpdateManyWithoutTodoNestedInput
 }
 
@@ -684,6 +721,7 @@ export type TodoUncheckedUpdateWithoutTodosInput = {
   pinned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   hourNotification?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  importance?: Prisma.IntFieldUpdateOperationsInput | number
   images?: Prisma.TodoImageUncheckedUpdateManyWithoutTodoNestedInput
 }
 
@@ -696,6 +734,7 @@ export type TodoUncheckedUpdateManyWithoutTodosInput = {
   pinned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   hourNotification?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  importance?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 
@@ -739,6 +778,7 @@ export type TodoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   pinned?: boolean
   completedAt?: boolean
   hourNotification?: boolean
+  importance?: boolean
   todos?: boolean | Prisma.TodosDefaultArgs<ExtArgs>
   images?: boolean | Prisma.Todo$imagesArgs<ExtArgs>
   _count?: boolean | Prisma.TodoCountOutputTypeDefaultArgs<ExtArgs>
@@ -754,6 +794,7 @@ export type TodoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   pinned?: boolean
   completedAt?: boolean
   hourNotification?: boolean
+  importance?: boolean
   todos?: boolean | Prisma.TodosDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["todo"]>
 
@@ -767,6 +808,7 @@ export type TodoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   pinned?: boolean
   completedAt?: boolean
   hourNotification?: boolean
+  importance?: boolean
   todos?: boolean | Prisma.TodosDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["todo"]>
 
@@ -780,9 +822,10 @@ export type TodoSelectScalar = {
   pinned?: boolean
   completedAt?: boolean
   hourNotification?: boolean
+  importance?: boolean
 }
 
-export type TodoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"todoId" | "title" | "description" | "status" | "todosId" | "isArchived" | "pinned" | "completedAt" | "hourNotification", ExtArgs["result"]["todo"]>
+export type TodoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"todoId" | "title" | "description" | "status" | "todosId" | "isArchived" | "pinned" | "completedAt" | "hourNotification" | "importance", ExtArgs["result"]["todo"]>
 export type TodoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   todos?: boolean | Prisma.TodosDefaultArgs<ExtArgs>
   images?: boolean | Prisma.Todo$imagesArgs<ExtArgs>
@@ -811,6 +854,7 @@ export type $TodoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     pinned: boolean
     completedAt: Date | null
     hourNotification: Date | null
+    importance: number
   }, ExtArgs["result"]["todo"]>
   composites: {}
 }
@@ -1245,6 +1289,7 @@ export interface TodoFieldRefs {
   readonly pinned: Prisma.FieldRef<"Todo", 'Boolean'>
   readonly completedAt: Prisma.FieldRef<"Todo", 'DateTime'>
   readonly hourNotification: Prisma.FieldRef<"Todo", 'DateTime'>
+  readonly importance: Prisma.FieldRef<"Todo", 'Int'>
 }
     
 

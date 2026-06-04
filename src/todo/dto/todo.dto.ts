@@ -30,4 +30,8 @@ export class TodoDto {
   @Type(() => Date)
   @IsOptional()
   hourNotification?: Date;
+
+  @IsNumber()
+  @IsNotEmpty()
+  importance: number;
 }

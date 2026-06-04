@@ -92,4 +92,10 @@ export class TodoController {
   async getNotCompleteTodos() {
     return this.todoService.getNotCompleteTodos();
   }
+
+  @Auth()
+  @Get('importance/:num')
+  async getTodosByImportance(@Param('num') num: number) {
+    return this.todoService.getTodosByImportance(num);
+  }
 }

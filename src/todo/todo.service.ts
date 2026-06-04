@@ -383,4 +383,39 @@ export class TodoService {
       todos,
     };
   }
+
+  async getTodosByImportance(num: number) {
+    const [count, todos] = await this.prisma.$transaction([
+      this.prisma.todo.count({
+        where: {
+          importance: num,
+          isArchived: false,
+          todos: {
+            status: true,
+          },
+        },
+      }),
+      this.prisma.todo.findMany({
+        where: {
+          importance: num,
+          isArchived: false,
+          todos: {
+            status: true,
+          },
+        },
+        include: {
+          images: {
+            include: {
+              image: true,
+            },
+          },
+        },
+      }),
+    ]);
+
+    return {
+      count,
+      todos,
+    };
+  }
 }
