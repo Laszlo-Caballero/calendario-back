@@ -1808,7 +1808,8 @@ export const ExpenseScalarFieldEnum = {
   userId: 'userId',
   expenseCategoryExpenseCategoryId: 'expenseCategoryExpenseCategoryId',
   paymentMethodPaymentMethodId: 'paymentMethodPaymentMethodId',
-  status: 'status'
+  status: 'status',
+  from: 'from'
 } as const
 
 export type ExpenseScalarFieldEnum = (typeof ExpenseScalarFieldEnum)[keyof typeof ExpenseScalarFieldEnum]
@@ -1999,6 +2000,13 @@ export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel,
  * Reference to a field of type 'SalaryParameter'
  */
 export type EnumSalaryParameterFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SalaryParameter'>
+    
+
+
+/**
+ * Reference to a field of type 'ExpenseFrom'
+ */
+export type EnumExpenseFromFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ExpenseFrom'>
     
 
 

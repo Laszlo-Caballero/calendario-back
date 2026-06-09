@@ -59,6 +59,7 @@ export type ExpenseMinAggregateOutputType = {
   expenseCategoryExpenseCategoryId: number | null
   paymentMethodPaymentMethodId: number | null
   status: boolean | null
+  from: $Enums.ExpenseFrom | null
 }
 
 export type ExpenseMaxAggregateOutputType = {
@@ -74,6 +75,7 @@ export type ExpenseMaxAggregateOutputType = {
   expenseCategoryExpenseCategoryId: number | null
   paymentMethodPaymentMethodId: number | null
   status: boolean | null
+  from: $Enums.ExpenseFrom | null
 }
 
 export type ExpenseCountAggregateOutputType = {
@@ -89,6 +91,7 @@ export type ExpenseCountAggregateOutputType = {
   expenseCategoryExpenseCategoryId: number
   paymentMethodPaymentMethodId: number
   status: number
+  from: number
   _all: number
 }
 
@@ -126,6 +129,7 @@ export type ExpenseMinAggregateInputType = {
   expenseCategoryExpenseCategoryId?: true
   paymentMethodPaymentMethodId?: true
   status?: true
+  from?: true
 }
 
 export type ExpenseMaxAggregateInputType = {
@@ -141,6 +145,7 @@ export type ExpenseMaxAggregateInputType = {
   expenseCategoryExpenseCategoryId?: true
   paymentMethodPaymentMethodId?: true
   status?: true
+  from?: true
 }
 
 export type ExpenseCountAggregateInputType = {
@@ -156,6 +161,7 @@ export type ExpenseCountAggregateInputType = {
   expenseCategoryExpenseCategoryId?: true
   paymentMethodPaymentMethodId?: true
   status?: true
+  from?: true
   _all?: true
 }
 
@@ -258,6 +264,7 @@ export type ExpenseGroupByOutputType = {
   expenseCategoryExpenseCategoryId: number | null
   paymentMethodPaymentMethodId: number | null
   status: boolean
+  from: $Enums.ExpenseFrom
   _count: ExpenseCountAggregateOutputType | null
   _avg: ExpenseAvgAggregateOutputType | null
   _sum: ExpenseSumAggregateOutputType | null
@@ -296,6 +303,7 @@ export type ExpenseWhereInput = {
   expenseCategoryExpenseCategoryId?: Prisma.IntNullableFilter<"Expense"> | number | null
   paymentMethodPaymentMethodId?: Prisma.IntNullableFilter<"Expense"> | number | null
   status?: Prisma.BoolFilter<"Expense"> | boolean
+  from?: Prisma.EnumExpenseFromFilter<"Expense"> | $Enums.ExpenseFrom
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   expenseCategory?: Prisma.XOR<Prisma.ExpenseCategoryNullableScalarRelationFilter, Prisma.ExpenseCategoryWhereInput> | null
   paymentMethod?: Prisma.XOR<Prisma.PaymentMethodNullableScalarRelationFilter, Prisma.PaymentMethodWhereInput> | null
@@ -314,6 +322,7 @@ export type ExpenseOrderByWithRelationInput = {
   expenseCategoryExpenseCategoryId?: Prisma.SortOrderInput | Prisma.SortOrder
   paymentMethodPaymentMethodId?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
+  from?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
   expenseCategory?: Prisma.ExpenseCategoryOrderByWithRelationInput
   paymentMethod?: Prisma.PaymentMethodOrderByWithRelationInput
@@ -335,6 +344,7 @@ export type ExpenseWhereUniqueInput = Prisma.AtLeast<{
   expenseCategoryExpenseCategoryId?: Prisma.IntNullableFilter<"Expense"> | number | null
   paymentMethodPaymentMethodId?: Prisma.IntNullableFilter<"Expense"> | number | null
   status?: Prisma.BoolFilter<"Expense"> | boolean
+  from?: Prisma.EnumExpenseFromFilter<"Expense"> | $Enums.ExpenseFrom
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   expenseCategory?: Prisma.XOR<Prisma.ExpenseCategoryNullableScalarRelationFilter, Prisma.ExpenseCategoryWhereInput> | null
   paymentMethod?: Prisma.XOR<Prisma.PaymentMethodNullableScalarRelationFilter, Prisma.PaymentMethodWhereInput> | null
@@ -353,6 +363,7 @@ export type ExpenseOrderByWithAggregationInput = {
   expenseCategoryExpenseCategoryId?: Prisma.SortOrderInput | Prisma.SortOrder
   paymentMethodPaymentMethodId?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
+  from?: Prisma.SortOrder
   _count?: Prisma.ExpenseCountOrderByAggregateInput
   _avg?: Prisma.ExpenseAvgOrderByAggregateInput
   _max?: Prisma.ExpenseMaxOrderByAggregateInput
@@ -376,6 +387,7 @@ export type ExpenseScalarWhereWithAggregatesInput = {
   expenseCategoryExpenseCategoryId?: Prisma.IntNullableWithAggregatesFilter<"Expense"> | number | null
   paymentMethodPaymentMethodId?: Prisma.IntNullableWithAggregatesFilter<"Expense"> | number | null
   status?: Prisma.BoolWithAggregatesFilter<"Expense"> | boolean
+  from?: Prisma.EnumExpenseFromWithAggregatesFilter<"Expense"> | $Enums.ExpenseFrom
 }
 
 export type ExpenseCreateInput = {
@@ -387,6 +399,7 @@ export type ExpenseCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   status?: boolean
+  from: $Enums.ExpenseFrom
   user: Prisma.UserCreateNestedOneWithoutExpensesInput
   expenseCategory?: Prisma.ExpenseCategoryCreateNestedOneWithoutExpensesInput
   paymentMethod?: Prisma.PaymentMethodCreateNestedOneWithoutExpensesInput
@@ -405,6 +418,7 @@ export type ExpenseUncheckedCreateInput = {
   expenseCategoryExpenseCategoryId?: number | null
   paymentMethodPaymentMethodId?: number | null
   status?: boolean
+  from: $Enums.ExpenseFrom
 }
 
 export type ExpenseUpdateInput = {
@@ -416,6 +430,7 @@ export type ExpenseUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  from?: Prisma.EnumExpenseFromFieldUpdateOperationsInput | $Enums.ExpenseFrom
   user?: Prisma.UserUpdateOneRequiredWithoutExpensesNestedInput
   expenseCategory?: Prisma.ExpenseCategoryUpdateOneWithoutExpensesNestedInput
   paymentMethod?: Prisma.PaymentMethodUpdateOneWithoutExpensesNestedInput
@@ -434,6 +449,7 @@ export type ExpenseUncheckedUpdateInput = {
   expenseCategoryExpenseCategoryId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   paymentMethodPaymentMethodId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   status?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  from?: Prisma.EnumExpenseFromFieldUpdateOperationsInput | $Enums.ExpenseFrom
 }
 
 export type ExpenseCreateManyInput = {
@@ -449,6 +465,7 @@ export type ExpenseCreateManyInput = {
   expenseCategoryExpenseCategoryId?: number | null
   paymentMethodPaymentMethodId?: number | null
   status?: boolean
+  from: $Enums.ExpenseFrom
 }
 
 export type ExpenseUpdateManyMutationInput = {
@@ -460,6 +477,7 @@ export type ExpenseUpdateManyMutationInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  from?: Prisma.EnumExpenseFromFieldUpdateOperationsInput | $Enums.ExpenseFrom
 }
 
 export type ExpenseUncheckedUpdateManyInput = {
@@ -475,6 +493,7 @@ export type ExpenseUncheckedUpdateManyInput = {
   expenseCategoryExpenseCategoryId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   paymentMethodPaymentMethodId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   status?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  from?: Prisma.EnumExpenseFromFieldUpdateOperationsInput | $Enums.ExpenseFrom
 }
 
 export type ExpenseListRelationFilter = {
@@ -500,6 +519,7 @@ export type ExpenseCountOrderByAggregateInput = {
   expenseCategoryExpenseCategoryId?: Prisma.SortOrder
   paymentMethodPaymentMethodId?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  from?: Prisma.SortOrder
 }
 
 export type ExpenseAvgOrderByAggregateInput = {
@@ -525,6 +545,7 @@ export type ExpenseMaxOrderByAggregateInput = {
   expenseCategoryExpenseCategoryId?: Prisma.SortOrder
   paymentMethodPaymentMethodId?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  from?: Prisma.SortOrder
 }
 
 export type ExpenseMinOrderByAggregateInput = {
@@ -540,6 +561,7 @@ export type ExpenseMinOrderByAggregateInput = {
   expenseCategoryExpenseCategoryId?: Prisma.SortOrder
   paymentMethodPaymentMethodId?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  from?: Prisma.SortOrder
 }
 
 export type ExpenseSumOrderByAggregateInput = {
@@ -600,6 +622,10 @@ export type NullableFloatFieldUpdateOperationsInput = {
   decrement?: number
   multiply?: number
   divide?: number
+}
+
+export type EnumExpenseFromFieldUpdateOperationsInput = {
+  set?: $Enums.ExpenseFrom
 }
 
 export type ExpenseCreateNestedManyWithoutExpenseCategoryInput = {
@@ -695,6 +721,7 @@ export type ExpenseCreateWithoutUserInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   status?: boolean
+  from: $Enums.ExpenseFrom
   expenseCategory?: Prisma.ExpenseCategoryCreateNestedOneWithoutExpensesInput
   paymentMethod?: Prisma.PaymentMethodCreateNestedOneWithoutExpensesInput
 }
@@ -711,6 +738,7 @@ export type ExpenseUncheckedCreateWithoutUserInput = {
   expenseCategoryExpenseCategoryId?: number | null
   paymentMethodPaymentMethodId?: number | null
   status?: boolean
+  from: $Enums.ExpenseFrom
 }
 
 export type ExpenseCreateOrConnectWithoutUserInput = {
@@ -754,6 +782,7 @@ export type ExpenseScalarWhereInput = {
   expenseCategoryExpenseCategoryId?: Prisma.IntNullableFilter<"Expense"> | number | null
   paymentMethodPaymentMethodId?: Prisma.IntNullableFilter<"Expense"> | number | null
   status?: Prisma.BoolFilter<"Expense"> | boolean
+  from?: Prisma.EnumExpenseFromFilter<"Expense"> | $Enums.ExpenseFrom
 }
 
 export type ExpenseCreateWithoutExpenseCategoryInput = {
@@ -765,6 +794,7 @@ export type ExpenseCreateWithoutExpenseCategoryInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   status?: boolean
+  from: $Enums.ExpenseFrom
   user: Prisma.UserCreateNestedOneWithoutExpensesInput
   paymentMethod?: Prisma.PaymentMethodCreateNestedOneWithoutExpensesInput
 }
@@ -781,6 +811,7 @@ export type ExpenseUncheckedCreateWithoutExpenseCategoryInput = {
   userId: number
   paymentMethodPaymentMethodId?: number | null
   status?: boolean
+  from: $Enums.ExpenseFrom
 }
 
 export type ExpenseCreateOrConnectWithoutExpenseCategoryInput = {
@@ -817,6 +848,7 @@ export type ExpenseCreateWithoutPaymentMethodInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   status?: boolean
+  from: $Enums.ExpenseFrom
   user: Prisma.UserCreateNestedOneWithoutExpensesInput
   expenseCategory?: Prisma.ExpenseCategoryCreateNestedOneWithoutExpensesInput
 }
@@ -833,6 +865,7 @@ export type ExpenseUncheckedCreateWithoutPaymentMethodInput = {
   userId: number
   expenseCategoryExpenseCategoryId?: number | null
   status?: boolean
+  from: $Enums.ExpenseFrom
 }
 
 export type ExpenseCreateOrConnectWithoutPaymentMethodInput = {
@@ -872,6 +905,7 @@ export type ExpenseCreateManyUserInput = {
   expenseCategoryExpenseCategoryId?: number | null
   paymentMethodPaymentMethodId?: number | null
   status?: boolean
+  from: $Enums.ExpenseFrom
 }
 
 export type ExpenseUpdateWithoutUserInput = {
@@ -883,6 +917,7 @@ export type ExpenseUpdateWithoutUserInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  from?: Prisma.EnumExpenseFromFieldUpdateOperationsInput | $Enums.ExpenseFrom
   expenseCategory?: Prisma.ExpenseCategoryUpdateOneWithoutExpensesNestedInput
   paymentMethod?: Prisma.PaymentMethodUpdateOneWithoutExpensesNestedInput
 }
@@ -899,6 +934,7 @@ export type ExpenseUncheckedUpdateWithoutUserInput = {
   expenseCategoryExpenseCategoryId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   paymentMethodPaymentMethodId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   status?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  from?: Prisma.EnumExpenseFromFieldUpdateOperationsInput | $Enums.ExpenseFrom
 }
 
 export type ExpenseUncheckedUpdateManyWithoutUserInput = {
@@ -913,6 +949,7 @@ export type ExpenseUncheckedUpdateManyWithoutUserInput = {
   expenseCategoryExpenseCategoryId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   paymentMethodPaymentMethodId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   status?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  from?: Prisma.EnumExpenseFromFieldUpdateOperationsInput | $Enums.ExpenseFrom
 }
 
 export type ExpenseCreateManyExpenseCategoryInput = {
@@ -927,6 +964,7 @@ export type ExpenseCreateManyExpenseCategoryInput = {
   userId: number
   paymentMethodPaymentMethodId?: number | null
   status?: boolean
+  from: $Enums.ExpenseFrom
 }
 
 export type ExpenseUpdateWithoutExpenseCategoryInput = {
@@ -938,6 +976,7 @@ export type ExpenseUpdateWithoutExpenseCategoryInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  from?: Prisma.EnumExpenseFromFieldUpdateOperationsInput | $Enums.ExpenseFrom
   user?: Prisma.UserUpdateOneRequiredWithoutExpensesNestedInput
   paymentMethod?: Prisma.PaymentMethodUpdateOneWithoutExpensesNestedInput
 }
@@ -954,6 +993,7 @@ export type ExpenseUncheckedUpdateWithoutExpenseCategoryInput = {
   userId?: Prisma.IntFieldUpdateOperationsInput | number
   paymentMethodPaymentMethodId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   status?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  from?: Prisma.EnumExpenseFromFieldUpdateOperationsInput | $Enums.ExpenseFrom
 }
 
 export type ExpenseUncheckedUpdateManyWithoutExpenseCategoryInput = {
@@ -968,6 +1008,7 @@ export type ExpenseUncheckedUpdateManyWithoutExpenseCategoryInput = {
   userId?: Prisma.IntFieldUpdateOperationsInput | number
   paymentMethodPaymentMethodId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   status?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  from?: Prisma.EnumExpenseFromFieldUpdateOperationsInput | $Enums.ExpenseFrom
 }
 
 export type ExpenseCreateManyPaymentMethodInput = {
@@ -982,6 +1023,7 @@ export type ExpenseCreateManyPaymentMethodInput = {
   userId: number
   expenseCategoryExpenseCategoryId?: number | null
   status?: boolean
+  from: $Enums.ExpenseFrom
 }
 
 export type ExpenseUpdateWithoutPaymentMethodInput = {
@@ -993,6 +1035,7 @@ export type ExpenseUpdateWithoutPaymentMethodInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  from?: Prisma.EnumExpenseFromFieldUpdateOperationsInput | $Enums.ExpenseFrom
   user?: Prisma.UserUpdateOneRequiredWithoutExpensesNestedInput
   expenseCategory?: Prisma.ExpenseCategoryUpdateOneWithoutExpensesNestedInput
 }
@@ -1009,6 +1052,7 @@ export type ExpenseUncheckedUpdateWithoutPaymentMethodInput = {
   userId?: Prisma.IntFieldUpdateOperationsInput | number
   expenseCategoryExpenseCategoryId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   status?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  from?: Prisma.EnumExpenseFromFieldUpdateOperationsInput | $Enums.ExpenseFrom
 }
 
 export type ExpenseUncheckedUpdateManyWithoutPaymentMethodInput = {
@@ -1023,6 +1067,7 @@ export type ExpenseUncheckedUpdateManyWithoutPaymentMethodInput = {
   userId?: Prisma.IntFieldUpdateOperationsInput | number
   expenseCategoryExpenseCategoryId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   status?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  from?: Prisma.EnumExpenseFromFieldUpdateOperationsInput | $Enums.ExpenseFrom
 }
 
 
@@ -1040,6 +1085,7 @@ export type ExpenseSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   expenseCategoryExpenseCategoryId?: boolean
   paymentMethodPaymentMethodId?: boolean
   status?: boolean
+  from?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   expenseCategory?: boolean | Prisma.Expense$expenseCategoryArgs<ExtArgs>
   paymentMethod?: boolean | Prisma.Expense$paymentMethodArgs<ExtArgs>
@@ -1058,6 +1104,7 @@ export type ExpenseSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   expenseCategoryExpenseCategoryId?: boolean
   paymentMethodPaymentMethodId?: boolean
   status?: boolean
+  from?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   expenseCategory?: boolean | Prisma.Expense$expenseCategoryArgs<ExtArgs>
   paymentMethod?: boolean | Prisma.Expense$paymentMethodArgs<ExtArgs>
@@ -1076,6 +1123,7 @@ export type ExpenseSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   expenseCategoryExpenseCategoryId?: boolean
   paymentMethodPaymentMethodId?: boolean
   status?: boolean
+  from?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   expenseCategory?: boolean | Prisma.Expense$expenseCategoryArgs<ExtArgs>
   paymentMethod?: boolean | Prisma.Expense$paymentMethodArgs<ExtArgs>
@@ -1094,9 +1142,10 @@ export type ExpenseSelectScalar = {
   expenseCategoryExpenseCategoryId?: boolean
   paymentMethodPaymentMethodId?: boolean
   status?: boolean
+  from?: boolean
 }
 
-export type ExpenseOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"expenseId" | "title" | "amount" | "quantity" | "unitPrice" | "date" | "createdAt" | "updatedAt" | "userId" | "expenseCategoryExpenseCategoryId" | "paymentMethodPaymentMethodId" | "status", ExtArgs["result"]["expense"]>
+export type ExpenseOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"expenseId" | "title" | "amount" | "quantity" | "unitPrice" | "date" | "createdAt" | "updatedAt" | "userId" | "expenseCategoryExpenseCategoryId" | "paymentMethodPaymentMethodId" | "status" | "from", ExtArgs["result"]["expense"]>
 export type ExpenseInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   expenseCategory?: boolean | Prisma.Expense$expenseCategoryArgs<ExtArgs>
@@ -1133,6 +1182,7 @@ export type $ExpensePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     expenseCategoryExpenseCategoryId: number | null
     paymentMethodPaymentMethodId: number | null
     status: boolean
+    from: $Enums.ExpenseFrom
   }, ExtArgs["result"]["expense"]>
   composites: {}
 }
@@ -1571,6 +1621,7 @@ export interface ExpenseFieldRefs {
   readonly expenseCategoryExpenseCategoryId: Prisma.FieldRef<"Expense", 'Int'>
   readonly paymentMethodPaymentMethodId: Prisma.FieldRef<"Expense", 'Int'>
   readonly status: Prisma.FieldRef<"Expense", 'Boolean'>
+  readonly from: Prisma.FieldRef<"Expense", 'ExpenseFrom'>
 }
     
 

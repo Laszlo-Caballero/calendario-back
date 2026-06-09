@@ -177,7 +177,8 @@ export const ExpenseScalarFieldEnum = {
   userId: 'userId',
   expenseCategoryExpenseCategoryId: 'expenseCategoryExpenseCategoryId',
   paymentMethodPaymentMethodId: 'paymentMethodPaymentMethodId',
-  status: 'status'
+  status: 'status',
+  from: 'from'
 } as const
 
 export type ExpenseScalarFieldEnum = (typeof ExpenseScalarFieldEnum)[keyof typeof ExpenseScalarFieldEnum]

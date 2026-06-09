@@ -214,6 +214,13 @@ export type FloatNullableFilter<$PrismaModel = never> = {
   not?: Prisma.NestedFloatNullableFilter<$PrismaModel> | number | null
 }
 
+export type EnumExpenseFromFilter<$PrismaModel = never> = {
+  equals?: $Enums.ExpenseFrom | Prisma.EnumExpenseFromFieldRefInput<$PrismaModel>
+  in?: $Enums.ExpenseFrom[]
+  notIn?: $Enums.ExpenseFrom[]
+  not?: Prisma.NestedEnumExpenseFromFilter<$PrismaModel> | $Enums.ExpenseFrom
+}
+
 export type FloatNullableWithAggregatesFilter<$PrismaModel = never> = {
   equals?: number | Prisma.FloatFieldRefInput<$PrismaModel> | null
   in?: number[] | null
@@ -228,6 +235,16 @@ export type FloatNullableWithAggregatesFilter<$PrismaModel = never> = {
   _sum?: Prisma.NestedFloatNullableFilter<$PrismaModel>
   _min?: Prisma.NestedFloatNullableFilter<$PrismaModel>
   _max?: Prisma.NestedFloatNullableFilter<$PrismaModel>
+}
+
+export type EnumExpenseFromWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.ExpenseFrom | Prisma.EnumExpenseFromFieldRefInput<$PrismaModel>
+  in?: $Enums.ExpenseFrom[]
+  notIn?: $Enums.ExpenseFrom[]
+  not?: Prisma.NestedEnumExpenseFromWithAggregatesFilter<$PrismaModel> | $Enums.ExpenseFrom
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumExpenseFromFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumExpenseFromFilter<$PrismaModel>
 }
 
 export type EnumTodoStatusFilter<$PrismaModel = never> = {
@@ -467,6 +484,13 @@ export type NestedFloatNullableFilter<$PrismaModel = never> = {
   not?: Prisma.NestedFloatNullableFilter<$PrismaModel> | number | null
 }
 
+export type NestedEnumExpenseFromFilter<$PrismaModel = never> = {
+  equals?: $Enums.ExpenseFrom | Prisma.EnumExpenseFromFieldRefInput<$PrismaModel>
+  in?: $Enums.ExpenseFrom[]
+  notIn?: $Enums.ExpenseFrom[]
+  not?: Prisma.NestedEnumExpenseFromFilter<$PrismaModel> | $Enums.ExpenseFrom
+}
+
 export type NestedFloatNullableWithAggregatesFilter<$PrismaModel = never> = {
   equals?: number | Prisma.FloatFieldRefInput<$PrismaModel> | null
   in?: number[] | null
@@ -481,6 +505,16 @@ export type NestedFloatNullableWithAggregatesFilter<$PrismaModel = never> = {
   _sum?: Prisma.NestedFloatNullableFilter<$PrismaModel>
   _min?: Prisma.NestedFloatNullableFilter<$PrismaModel>
   _max?: Prisma.NestedFloatNullableFilter<$PrismaModel>
+}
+
+export type NestedEnumExpenseFromWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.ExpenseFrom | Prisma.EnumExpenseFromFieldRefInput<$PrismaModel>
+  in?: $Enums.ExpenseFrom[]
+  notIn?: $Enums.ExpenseFrom[]
+  not?: Prisma.NestedEnumExpenseFromWithAggregatesFilter<$PrismaModel> | $Enums.ExpenseFrom
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumExpenseFromFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumExpenseFromFilter<$PrismaModel>
 }
 
 export type NestedEnumTodoStatusFilter<$PrismaModel = never> = {

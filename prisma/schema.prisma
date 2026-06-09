@@ -94,6 +94,13 @@ model DebtPayment {
   debt          Debts    @relation(fields: [debtId], references: [debtId])
 }
 
+enum ExpenseFrom {
+  YAPE
+  BCP
+  MANUAL
+  EXCEL
+}
+
 model Expense {
   expenseId                        Int              @id @default(autoincrement())
   title                            String
@@ -110,6 +117,7 @@ model Expense {
   paymentMethod                    PaymentMethod?   @relation(fields: [paymentMethodPaymentMethodId], references: [paymentMethodId])
   paymentMethodPaymentMethodId     Int?
   status                           Boolean          @default(true)
+  from                             ExpenseFrom
 }
 
 model ExpenseCategory {

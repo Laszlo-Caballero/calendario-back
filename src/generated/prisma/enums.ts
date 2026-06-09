@@ -26,6 +26,16 @@ export const SalaryParameter = {
 export type SalaryParameter = (typeof SalaryParameter)[keyof typeof SalaryParameter]
 
 
+export const ExpenseFrom = {
+  YAPE: 'YAPE',
+  BCP: 'BCP',
+  MANUAL: 'MANUAL',
+  EXCEL: 'EXCEL'
+} as const
+
+export type ExpenseFrom = (typeof ExpenseFrom)[keyof typeof ExpenseFrom]
+
+
 export const TodoStatus = {
   PENDING: 'PENDING',
   IN_PROGRESS: 'IN_PROGRESS',
