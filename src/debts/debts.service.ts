@@ -90,6 +90,7 @@ export class DebtsService {
           amount: addPaymentDto.amount,
           date: addPaymentDto.date,
           debtId,
+          subscriber: addPaymentDto.subscriber,
         },
       });
 
@@ -106,5 +107,29 @@ export class DebtsService {
     });
 
     return queryResult;
+  }
+
+  async updateSubscriber(
+    paymentId: number,
+    userId: number,
+    subscriberDto: { subscriber: boolean },
+  ) {
+    const payment = await this.prisma.debtPayment.findUnique({
+      where: { debtPaymentId: paymentId },
+      include: {
+        debt: true,
+      },
+    });
+
+    if (!payment || payment.debt.userId !== userId) {
+      throw new NotFoundException('Payment not found');
+    }
+
+    return this.prisma.debtPayment.update({
+      where: { debtPaymentId: paymentId },
+      data: {
+        subscriber: subscriberDto.subscriber,
+      },
+    });
   }
 }

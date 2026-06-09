@@ -3,6 +3,7 @@ import {
   Controller,
   Delete,
   Get,
+  Patch,
   Post,
   Put,
   Query,
@@ -53,5 +54,15 @@ export class DebtsController {
     @User('idUser') user: number,
   ) {
     return this.debtsService.addPayment(debtId, user, addPaymentDto);
+  }
+
+  @Patch('subscriber/:id')
+  @Auth()
+  updateSubscriber(
+    @Query('id') debtId: number,
+    @Body() subscriberDto: { subscriber: boolean },
+    @User('idUser') user: number,
+  ) {
+    return this.debtsService.updateSubscriber(debtId, user, subscriberDto);
   }
 }

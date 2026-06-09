@@ -155,7 +155,8 @@ export const DebtPaymentScalarFieldEnum = {
   debtPaymentId: 'debtPaymentId',
   amount: 'amount',
   date: 'date',
-  debtId: 'debtId'
+  debtId: 'debtId',
+  subscriber: 'subscriber'
 } as const
 
 export type DebtPaymentScalarFieldEnum = (typeof DebtPaymentScalarFieldEnum)[keyof typeof DebtPaymentScalarFieldEnum]

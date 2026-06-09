@@ -89,6 +89,7 @@ model DebtPayment {
   amount        Float
   date          DateTime
   debtId        Int
+  subscriber    Boolean  @default(false)
   debt          Debts    @relation(fields: [debtId], references: [debtId])
 }
 

@@ -1,5 +1,11 @@
 import { Type } from 'class-transformer';
-import { IsDate, IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import {
+  IsBoolean,
+  IsDate,
+  IsNotEmpty,
+  IsNumber,
+  IsString,
+} from 'class-validator';
 
 export class DebtsDto {
   @IsNumber()
@@ -42,4 +48,8 @@ export class AddPaymentDto {
   @IsNotEmpty()
   @Type(() => Date)
   date: Date;
+
+  @IsBoolean()
+  @IsNotEmpty()
+  subscriber: boolean;
 }

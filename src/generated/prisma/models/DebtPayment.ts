@@ -43,6 +43,7 @@ export type DebtPaymentMinAggregateOutputType = {
   amount: number | null
   date: Date | null
   debtId: number | null
+  subscriber: boolean | null
 }
 
 export type DebtPaymentMaxAggregateOutputType = {
@@ -50,6 +51,7 @@ export type DebtPaymentMaxAggregateOutputType = {
   amount: number | null
   date: Date | null
   debtId: number | null
+  subscriber: boolean | null
 }
 
 export type DebtPaymentCountAggregateOutputType = {
@@ -57,6 +59,7 @@ export type DebtPaymentCountAggregateOutputType = {
   amount: number
   date: number
   debtId: number
+  subscriber: number
   _all: number
 }
 
@@ -78,6 +81,7 @@ export type DebtPaymentMinAggregateInputType = {
   amount?: true
   date?: true
   debtId?: true
+  subscriber?: true
 }
 
 export type DebtPaymentMaxAggregateInputType = {
@@ -85,6 +89,7 @@ export type DebtPaymentMaxAggregateInputType = {
   amount?: true
   date?: true
   debtId?: true
+  subscriber?: true
 }
 
 export type DebtPaymentCountAggregateInputType = {
@@ -92,6 +97,7 @@ export type DebtPaymentCountAggregateInputType = {
   amount?: true
   date?: true
   debtId?: true
+  subscriber?: true
   _all?: true
 }
 
@@ -186,6 +192,7 @@ export type DebtPaymentGroupByOutputType = {
   amount: number
   date: Date
   debtId: number
+  subscriber: boolean
   _count: DebtPaymentCountAggregateOutputType | null
   _avg: DebtPaymentAvgAggregateOutputType | null
   _sum: DebtPaymentSumAggregateOutputType | null
@@ -216,6 +223,7 @@ export type DebtPaymentWhereInput = {
   amount?: Prisma.FloatFilter<"DebtPayment"> | number
   date?: Prisma.DateTimeFilter<"DebtPayment"> | Date | string
   debtId?: Prisma.IntFilter<"DebtPayment"> | number
+  subscriber?: Prisma.BoolFilter<"DebtPayment"> | boolean
   debt?: Prisma.XOR<Prisma.DebtsScalarRelationFilter, Prisma.DebtsWhereInput>
 }
 
@@ -224,6 +232,7 @@ export type DebtPaymentOrderByWithRelationInput = {
   amount?: Prisma.SortOrder
   date?: Prisma.SortOrder
   debtId?: Prisma.SortOrder
+  subscriber?: Prisma.SortOrder
   debt?: Prisma.DebtsOrderByWithRelationInput
 }
 
@@ -235,6 +244,7 @@ export type DebtPaymentWhereUniqueInput = Prisma.AtLeast<{
   amount?: Prisma.FloatFilter<"DebtPayment"> | number
   date?: Prisma.DateTimeFilter<"DebtPayment"> | Date | string
   debtId?: Prisma.IntFilter<"DebtPayment"> | number
+  subscriber?: Prisma.BoolFilter<"DebtPayment"> | boolean
   debt?: Prisma.XOR<Prisma.DebtsScalarRelationFilter, Prisma.DebtsWhereInput>
 }, "debtPaymentId">
 
@@ -243,6 +253,7 @@ export type DebtPaymentOrderByWithAggregationInput = {
   amount?: Prisma.SortOrder
   date?: Prisma.SortOrder
   debtId?: Prisma.SortOrder
+  subscriber?: Prisma.SortOrder
   _count?: Prisma.DebtPaymentCountOrderByAggregateInput
   _avg?: Prisma.DebtPaymentAvgOrderByAggregateInput
   _max?: Prisma.DebtPaymentMaxOrderByAggregateInput
@@ -258,11 +269,13 @@ export type DebtPaymentScalarWhereWithAggregatesInput = {
   amount?: Prisma.FloatWithAggregatesFilter<"DebtPayment"> | number
   date?: Prisma.DateTimeWithAggregatesFilter<"DebtPayment"> | Date | string
   debtId?: Prisma.IntWithAggregatesFilter<"DebtPayment"> | number
+  subscriber?: Prisma.BoolWithAggregatesFilter<"DebtPayment"> | boolean
 }
 
 export type DebtPaymentCreateInput = {
   amount: number
   date: Date | string
+  subscriber?: boolean
   debt: Prisma.DebtsCreateNestedOneWithoutPaymentsInput
 }
 
@@ -271,11 +284,13 @@ export type DebtPaymentUncheckedCreateInput = {
   amount: number
   date: Date | string
   debtId: number
+  subscriber?: boolean
 }
 
 export type DebtPaymentUpdateInput = {
   amount?: Prisma.FloatFieldUpdateOperationsInput | number
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subscriber?: Prisma.BoolFieldUpdateOperationsInput | boolean
   debt?: Prisma.DebtsUpdateOneRequiredWithoutPaymentsNestedInput
 }
 
@@ -284,6 +299,7 @@ export type DebtPaymentUncheckedUpdateInput = {
   amount?: Prisma.FloatFieldUpdateOperationsInput | number
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   debtId?: Prisma.IntFieldUpdateOperationsInput | number
+  subscriber?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type DebtPaymentCreateManyInput = {
@@ -291,11 +307,13 @@ export type DebtPaymentCreateManyInput = {
   amount: number
   date: Date | string
   debtId: number
+  subscriber?: boolean
 }
 
 export type DebtPaymentUpdateManyMutationInput = {
   amount?: Prisma.FloatFieldUpdateOperationsInput | number
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subscriber?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type DebtPaymentUncheckedUpdateManyInput = {
@@ -303,6 +321,7 @@ export type DebtPaymentUncheckedUpdateManyInput = {
   amount?: Prisma.FloatFieldUpdateOperationsInput | number
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   debtId?: Prisma.IntFieldUpdateOperationsInput | number
+  subscriber?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type DebtPaymentListRelationFilter = {
@@ -320,6 +339,7 @@ export type DebtPaymentCountOrderByAggregateInput = {
   amount?: Prisma.SortOrder
   date?: Prisma.SortOrder
   debtId?: Prisma.SortOrder
+  subscriber?: Prisma.SortOrder
 }
 
 export type DebtPaymentAvgOrderByAggregateInput = {
@@ -333,6 +353,7 @@ export type DebtPaymentMaxOrderByAggregateInput = {
   amount?: Prisma.SortOrder
   date?: Prisma.SortOrder
   debtId?: Prisma.SortOrder
+  subscriber?: Prisma.SortOrder
 }
 
 export type DebtPaymentMinOrderByAggregateInput = {
@@ -340,6 +361,7 @@ export type DebtPaymentMinOrderByAggregateInput = {
   amount?: Prisma.SortOrder
   date?: Prisma.SortOrder
   debtId?: Prisma.SortOrder
+  subscriber?: Prisma.SortOrder
 }
 
 export type DebtPaymentSumOrderByAggregateInput = {
@@ -393,12 +415,14 @@ export type DebtPaymentUncheckedUpdateManyWithoutDebtNestedInput = {
 export type DebtPaymentCreateWithoutDebtInput = {
   amount: number
   date: Date | string
+  subscriber?: boolean
 }
 
 export type DebtPaymentUncheckedCreateWithoutDebtInput = {
   debtPaymentId?: number
   amount: number
   date: Date | string
+  subscriber?: boolean
 }
 
 export type DebtPaymentCreateOrConnectWithoutDebtInput = {
@@ -434,29 +458,34 @@ export type DebtPaymentScalarWhereInput = {
   amount?: Prisma.FloatFilter<"DebtPayment"> | number
   date?: Prisma.DateTimeFilter<"DebtPayment"> | Date | string
   debtId?: Prisma.IntFilter<"DebtPayment"> | number
+  subscriber?: Prisma.BoolFilter<"DebtPayment"> | boolean
 }
 
 export type DebtPaymentCreateManyDebtInput = {
   debtPaymentId?: number
   amount: number
   date: Date | string
+  subscriber?: boolean
 }
 
 export type DebtPaymentUpdateWithoutDebtInput = {
   amount?: Prisma.FloatFieldUpdateOperationsInput | number
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subscriber?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type DebtPaymentUncheckedUpdateWithoutDebtInput = {
   debtPaymentId?: Prisma.IntFieldUpdateOperationsInput | number
   amount?: Prisma.FloatFieldUpdateOperationsInput | number
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subscriber?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type DebtPaymentUncheckedUpdateManyWithoutDebtInput = {
   debtPaymentId?: Prisma.IntFieldUpdateOperationsInput | number
   amount?: Prisma.FloatFieldUpdateOperationsInput | number
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subscriber?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 
@@ -466,6 +495,7 @@ export type DebtPaymentSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   amount?: boolean
   date?: boolean
   debtId?: boolean
+  subscriber?: boolean
   debt?: boolean | Prisma.DebtsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["debtPayment"]>
 
@@ -474,6 +504,7 @@ export type DebtPaymentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
   amount?: boolean
   date?: boolean
   debtId?: boolean
+  subscriber?: boolean
   debt?: boolean | Prisma.DebtsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["debtPayment"]>
 
@@ -482,6 +513,7 @@ export type DebtPaymentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
   amount?: boolean
   date?: boolean
   debtId?: boolean
+  subscriber?: boolean
   debt?: boolean | Prisma.DebtsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["debtPayment"]>
 
@@ -490,9 +522,10 @@ export type DebtPaymentSelectScalar = {
   amount?: boolean
   date?: boolean
   debtId?: boolean
+  subscriber?: boolean
 }
 
-export type DebtPaymentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"debtPaymentId" | "amount" | "date" | "debtId", ExtArgs["result"]["debtPayment"]>
+export type DebtPaymentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"debtPaymentId" | "amount" | "date" | "debtId" | "subscriber", ExtArgs["result"]["debtPayment"]>
 export type DebtPaymentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   debt?: boolean | Prisma.DebtsDefaultArgs<ExtArgs>
 }
@@ -513,6 +546,7 @@ export type $DebtPaymentPayload<ExtArgs extends runtime.Types.Extensions.Interna
     amount: number
     date: Date
     debtId: number
+    subscriber: boolean
   }, ExtArgs["result"]["debtPayment"]>
   composites: {}
 }
@@ -941,6 +975,7 @@ export interface DebtPaymentFieldRefs {
   readonly amount: Prisma.FieldRef<"DebtPayment", 'Float'>
   readonly date: Prisma.FieldRef<"DebtPayment", 'DateTime'>
   readonly debtId: Prisma.FieldRef<"DebtPayment", 'Int'>
+  readonly subscriber: Prisma.FieldRef<"DebtPayment", 'Boolean'>
 }
     
 
