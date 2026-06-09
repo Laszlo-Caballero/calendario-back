@@ -13,6 +13,7 @@ import { Auth } from '../common/decorator/auth/auth.decorator';
 import { User } from '../common/decorator/user/user.decorator';
 import { QueryDto } from '../common/dto/QueryDto';
 import { AddPaymentDto, DebtsDto } from './dto/debts.dto';
+import { MonthlyDto } from '../bonus/interface/types';
 
 @Controller('debts')
 export class DebtsController {
@@ -22,6 +23,12 @@ export class DebtsController {
   @Auth()
   getAllDebts(@Query() query: QueryDto, @User('idUser') user: number) {
     return this.debtsService.getAllDebts(query, user);
+  }
+
+  @Auth()
+  @Get('monthly')
+  getMonthlyDebts(@User('idUser') user: number, @Query() query: MonthlyDto) {
+    return this.debtsService.getMonthlyDebts(user, query);
   }
 
   @Post()

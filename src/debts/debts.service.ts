@@ -3,6 +3,7 @@ import { PrismaService } from '../prisma/prisma.service';
 import { AddPaymentDto, DebtsDto } from './dto/debts.dto';
 import { QueryDto } from '../common/dto/QueryDto';
 import { ResponseApiPaginated } from '../common/interface/type';
+import { BonusByMonth, MonthlyDto } from '../bonus/interface/types';
 
 @Injectable()
 export class DebtsService {
@@ -131,5 +132,27 @@ export class DebtsService {
         subscriber: subscriberDto.subscriber,
       },
     });
+  }
+
+  async getMonthlyDebts(userId: number, query: MonthlyDto) {
+    const { startDate, endDate } = query;
+
+    return this.prisma.$queryRaw<BonusByMonth[]>`
+    SELECT
+    strftime('%Y', dp.date) AS year,
+    strftime('%m', dp.date) AS month,
+    SUM(dp.amount) AS total
+    FROM DebtPayment dp
+    INNER JOIN Debts d ON d.debtId = dp.debtId
+    WHERE d.userId = ${userId}
+      AND dp.date BETWEEN ${startDate} AND ${endDate}
+      AND dp.subscriber = 0
+    GROUP BY
+        strftime('%Y', dp.date),
+        strftime('%m', dp.date)
+    ORDER BY
+        year,
+        month;
+    `;
   }
 }
