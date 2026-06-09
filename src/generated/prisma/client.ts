@@ -60,6 +60,16 @@ export type Bonus = Prisma.BonusModel
  */
 export type Discount = Prisma.DiscountModel
 /**
+ * Model Debts
+ * 
+ */
+export type Debts = Prisma.DebtsModel
+/**
+ * Model DebtPayment
+ * 
+ */
+export type DebtPayment = Prisma.DebtPaymentModel
+/**
  * Model Calendar
  * 
  */

@@ -5,6 +5,7 @@ import {
 } from '@nestjs/common';
 import { DiscountDto, UpdateDiscountDto } from './dto/create-discount.dto';
 import { PrismaService } from '../prisma/prisma.service';
+import { BonusByMonth, MonthlyDto } from '../bonus/interface/types';
 
 @Injectable()
 export class DiscountService {
@@ -59,5 +60,24 @@ export class DiscountService {
       where: { discountId: id },
       data: { status: false },
     });
+  }
+
+  async getDiscountByMonth({ endDate, startDate }: MonthlyDto, idUser: number) {
+    return this.prisma.$queryRaw<BonusByMonth[]>`
+      SELECT
+      strftime('%Y', date) AS year,
+      strftime('%m', date) AS month,
+      SUM(amount) AS total
+      FROM Discount
+      WHERE userId = ${idUser}
+        AND status = 1
+        AND date BETWEEN ${startDate.toISOString()} AND ${endDate.toISOString()}
+      GROUP BY
+        strftime('%Y', date),
+        strftime('%m', date)
+      ORDER BY
+        year,
+        month
+    `;
   }
 }

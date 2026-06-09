@@ -7,11 +7,13 @@ import {
   Param,
   Delete,
   Put,
+  Query,
 } from '@nestjs/common';
 import { DiscountService } from './discount.service';
 import { DiscountDto, UpdateDiscountDto } from './dto/create-discount.dto';
 import { User } from '../common/decorator/user/user.decorator';
 import { Auth } from '../common/decorator/auth/auth.decorator';
+import { MonthlyDto } from '../bonus/interface/types';
 
 @Controller('discount')
 export class DiscountController {
@@ -40,5 +42,14 @@ export class DiscountController {
   @Delete(':id')
   remove(@Param('id') id: string, @User('idUser') idUser: number) {
     return this.discountService.remove(+id, idUser);
+  }
+
+  @Auth()
+  @Get('monthly')
+  getDiscountByMonth(
+    @User('idUser') idUser: number,
+    @Query() query: MonthlyDto,
+  ) {
+    return this.discountService.getDiscountByMonth(query, idUser);
   }
 }

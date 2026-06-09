@@ -22,6 +22,7 @@ model User {
   salaries            Salary[]
   bonuses             Bonus[]
   discounts           Discount[]
+  debts               Debts[]
   monthlyExpenseLimit Float      @default(0)
 }
 
@@ -63,6 +64,33 @@ model Discount {
   createdAt  DateTime @default(now())
   status     Boolean  @default(true)
   user       User     @relation(fields: [userId], references: [userId])
+}
+
+model Debts {
+  debtId            Int           @id @default(autoincrement())
+  maxMothlyPayment  Float
+  totalInstallments Int
+  paidInstallments  Int           @default(0)
+  payment           Float
+  title             String
+  description       String
+  startDate         DateTime
+  endDate           DateTime
+  userId            Int
+  date              DateTime
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+  status            Boolean       @default(true)
+  user              User          @relation(fields: [userId], references: [userId])
+  payments          DebtPayment[]
+}
+
+model DebtPayment {
+  debtPaymentId Int      @id @default(autoincrement())
+  amount        Float
+  date          DateTime
+  debtId        Int
+  debt          Debts    @relation(fields: [debtId], references: [debtId])
 }
 
 model Calendar {

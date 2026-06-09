@@ -7,6 +7,7 @@ import { BonusDto, UpdateBonusDto } from './dto/bonus.dto';
 import { PrismaService } from '../prisma/prisma.service';
 import { QueryBonusDto } from './dto/query-bonus.dto';
 import { ResponseApiPaginated } from '../common/interface/type';
+import { BonusByMonth, MonthlyDto } from './interface/types';
 
 @Injectable()
 export class BonusService {
@@ -96,5 +97,24 @@ export class BonusService {
         status: false,
       },
     });
+  }
+
+  async getBonusByMonth({ endDate, startDate }: MonthlyDto, idUser: number) {
+    return this.prisma.$queryRaw<BonusByMonth[]>`
+      SELECT
+      strftime('%Y', date) AS year,
+      strftime('%m', date) AS month,
+      SUM(amount) AS total
+      FROM Bonus
+      WHERE userId = ${idUser}
+        AND status = 1
+        AND date BETWEEN ${startDate.toISOString()} AND ${endDate.toISOString()}
+      GROUP BY
+        strftime('%Y', date),
+        strftime('%m', date)
+      ORDER BY
+        year,
+        month
+  `;
   }
 }

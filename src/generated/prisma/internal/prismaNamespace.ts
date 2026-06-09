@@ -388,6 +388,8 @@ export const ModelName = {
   Salary: 'Salary',
   Bonus: 'Bonus',
   Discount: 'Discount',
+  Debts: 'Debts',
+  DebtPayment: 'DebtPayment',
   Calendar: 'Calendar',
   Schedule: 'Schedule',
   Todos: 'Todos',
@@ -411,7 +413,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "salary" | "bonus" | "discount" | "calendar" | "schedule" | "todos" | "todo" | "todoImage" | "images" | "archives" | "folder"
+    modelProps: "user" | "salary" | "bonus" | "discount" | "debts" | "debtPayment" | "calendar" | "schedule" | "todos" | "todo" | "todoImage" | "images" | "archives" | "folder"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -708,6 +710,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.DiscountCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.DiscountCountAggregateOutputType> | number
+        }
+      }
+    }
+    Debts: {
+      payload: Prisma.$DebtsPayload<ExtArgs>
+      fields: Prisma.DebtsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.DebtsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DebtsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.DebtsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DebtsPayload>
+        }
+        findFirst: {
+          args: Prisma.DebtsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DebtsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.DebtsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DebtsPayload>
+        }
+        findMany: {
+          args: Prisma.DebtsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DebtsPayload>[]
+        }
+        create: {
+          args: Prisma.DebtsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DebtsPayload>
+        }
+        createMany: {
+          args: Prisma.DebtsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.DebtsCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DebtsPayload>[]
+        }
+        delete: {
+          args: Prisma.DebtsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DebtsPayload>
+        }
+        update: {
+          args: Prisma.DebtsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DebtsPayload>
+        }
+        deleteMany: {
+          args: Prisma.DebtsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.DebtsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.DebtsUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DebtsPayload>[]
+        }
+        upsert: {
+          args: Prisma.DebtsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DebtsPayload>
+        }
+        aggregate: {
+          args: Prisma.DebtsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateDebts>
+        }
+        groupBy: {
+          args: Prisma.DebtsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DebtsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.DebtsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DebtsCountAggregateOutputType> | number
+        }
+      }
+    }
+    DebtPayment: {
+      payload: Prisma.$DebtPaymentPayload<ExtArgs>
+      fields: Prisma.DebtPaymentFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.DebtPaymentFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DebtPaymentPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.DebtPaymentFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DebtPaymentPayload>
+        }
+        findFirst: {
+          args: Prisma.DebtPaymentFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DebtPaymentPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.DebtPaymentFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DebtPaymentPayload>
+        }
+        findMany: {
+          args: Prisma.DebtPaymentFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DebtPaymentPayload>[]
+        }
+        create: {
+          args: Prisma.DebtPaymentCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DebtPaymentPayload>
+        }
+        createMany: {
+          args: Prisma.DebtPaymentCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.DebtPaymentCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DebtPaymentPayload>[]
+        }
+        delete: {
+          args: Prisma.DebtPaymentDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DebtPaymentPayload>
+        }
+        update: {
+          args: Prisma.DebtPaymentUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DebtPaymentPayload>
+        }
+        deleteMany: {
+          args: Prisma.DebtPaymentDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.DebtPaymentUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.DebtPaymentUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DebtPaymentPayload>[]
+        }
+        upsert: {
+          args: Prisma.DebtPaymentUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DebtPaymentPayload>
+        }
+        aggregate: {
+          args: Prisma.DebtPaymentAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateDebtPayment>
+        }
+        groupBy: {
+          args: Prisma.DebtPaymentGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DebtPaymentGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.DebtPaymentCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DebtPaymentCountAggregateOutputType> | number
         }
       }
     }
@@ -1391,6 +1541,36 @@ export const DiscountScalarFieldEnum = {
 export type DiscountScalarFieldEnum = (typeof DiscountScalarFieldEnum)[keyof typeof DiscountScalarFieldEnum]
 
 
+export const DebtsScalarFieldEnum = {
+  debtId: 'debtId',
+  maxMothlyPayment: 'maxMothlyPayment',
+  totalInstallments: 'totalInstallments',
+  paidInstallments: 'paidInstallments',
+  payment: 'payment',
+  title: 'title',
+  description: 'description',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  userId: 'userId',
+  date: 'date',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  status: 'status'
+} as const
+
+export type DebtsScalarFieldEnum = (typeof DebtsScalarFieldEnum)[keyof typeof DebtsScalarFieldEnum]
+
+
+export const DebtPaymentScalarFieldEnum = {
+  debtPaymentId: 'debtPaymentId',
+  amount: 'amount',
+  date: 'date',
+  debtId: 'debtId'
+} as const
+
+export type DebtPaymentScalarFieldEnum = (typeof DebtPaymentScalarFieldEnum)[keyof typeof DebtPaymentScalarFieldEnum]
+
+
 export const CalendarScalarFieldEnum = {
   calendarId: 'calendarId',
   name: 'name',
@@ -1659,6 +1839,8 @@ export type GlobalOmitConfig = {
   salary?: Prisma.SalaryOmit
   bonus?: Prisma.BonusOmit
   discount?: Prisma.DiscountOmit
+  debts?: Prisma.DebtsOmit
+  debtPayment?: Prisma.DebtPaymentOmit
   calendar?: Prisma.CalendarOmit
   schedule?: Prisma.ScheduleOmit
   todos?: Prisma.TodosOmit

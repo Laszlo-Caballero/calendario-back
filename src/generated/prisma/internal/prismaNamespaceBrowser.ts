@@ -55,6 +55,8 @@ export const ModelName = {
   Salary: 'Salary',
   Bonus: 'Bonus',
   Discount: 'Discount',
+  Debts: 'Debts',
+  DebtPayment: 'DebtPayment',
   Calendar: 'Calendar',
   Schedule: 'Schedule',
   Todos: 'Todos',
@@ -128,6 +130,36 @@ export const DiscountScalarFieldEnum = {
 } as const
 
 export type DiscountScalarFieldEnum = (typeof DiscountScalarFieldEnum)[keyof typeof DiscountScalarFieldEnum]
+
+
+export const DebtsScalarFieldEnum = {
+  debtId: 'debtId',
+  maxMothlyPayment: 'maxMothlyPayment',
+  totalInstallments: 'totalInstallments',
+  paidInstallments: 'paidInstallments',
+  payment: 'payment',
+  title: 'title',
+  description: 'description',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  userId: 'userId',
+  date: 'date',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  status: 'status'
+} as const
+
+export type DebtsScalarFieldEnum = (typeof DebtsScalarFieldEnum)[keyof typeof DebtsScalarFieldEnum]
+
+
+export const DebtPaymentScalarFieldEnum = {
+  debtPaymentId: 'debtPaymentId',
+  amount: 'amount',
+  date: 'date',
+  debtId: 'debtId'
+} as const
+
+export type DebtPaymentScalarFieldEnum = (typeof DebtPaymentScalarFieldEnum)[keyof typeof DebtPaymentScalarFieldEnum]
 
 
 export const CalendarScalarFieldEnum = {

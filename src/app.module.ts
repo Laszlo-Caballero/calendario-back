@@ -11,9 +11,22 @@ import { FoldersModule } from './folders/folders.module';
 import { SalaryModule } from './salary/salary.module';
 import { BonusModule } from './bonus/bonus.module';
 import { DiscountModule } from './discount/discount.module';
+import { DebtsModule } from './debts/debts.module';
 
 @Module({
-  imports: [ScheduleModule, AuthModule, CalendarModule, TodoModule, TodosModule, IaModule, FoldersModule, SalaryModule, BonusModule, DiscountModule],
+  imports: [
+    ScheduleModule,
+    AuthModule,
+    CalendarModule,
+    TodoModule,
+    TodosModule,
+    IaModule,
+    FoldersModule,
+    SalaryModule,
+    BonusModule,
+    DiscountModule,
+    DebtsModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

@@ -13,6 +13,7 @@ import { BonusDto, UpdateBonusDto } from './dto/bonus.dto';
 import { Auth } from '../common/decorator/auth/auth.decorator';
 import { User } from '../common/decorator/user/user.decorator';
 import { QueryBonusDto } from './dto/query-bonus.dto';
+import { MonthlyDto } from './interface/types';
 
 @Controller('bonus')
 export class BonusController {
@@ -44,5 +45,11 @@ export class BonusController {
   @Delete(':id')
   remove(@Param('id') id: string, @User('idUser') idUser: number) {
     return this.bonusService.remove(+id, idUser);
+  }
+
+  @Auth()
+  @Get('monthly')
+  getBonusByMonth(@Query() query: MonthlyDto, @User('idUser') idUser: number) {
+    return this.bonusService.getBonusByMonth(query, idUser);
   }
 }
