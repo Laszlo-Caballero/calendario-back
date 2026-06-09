@@ -9,6 +9,7 @@ import { RegisterDto } from './dto/register.dto';
 import { JwtService } from '@nestjs/jwt';
 import { compare, hash } from 'bcryptjs';
 import { JwtPayload } from '../common/interface/type';
+import { UpdateProfileDto } from './dto/update-profile.dto';
 
 @Injectable()
 export class AuthService {
@@ -78,5 +79,41 @@ export class AuthService {
       data: user,
       token: jwtToken,
     };
+  }
+
+  async getProfile(idUser: number) {
+    const user = await this.prisma.user.findUnique({
+      where: { userId: idUser },
+      include: {
+        salaries: true,
+        discounts: true,
+      },
+    });
+
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+
+    return user;
+  }
+
+  async updateProfile(idUser: number, updateProfileDto: UpdateProfileDto) {
+    const user = await this.prisma.user.findUnique({
+      where: { userId: idUser },
+    });
+
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+
+    const password = await hash(updateProfileDto.password, 10);
+
+    return this.prisma.user.update({
+      where: { userId: idUser },
+      data: {
+        ...updateProfileDto,
+        password,
+      },
+    });
   }
 }

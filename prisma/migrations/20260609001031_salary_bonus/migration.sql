@@ -1,0 +1,24 @@
+-- CreateTable
+CREATE TABLE "Salary" (
+    "salaryId" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "amount" REAL NOT NULL,
+    "userId" INTEGER NOT NULL,
+    "datebegin" DATETIME NOT NULL,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "status" BOOLEAN NOT NULL DEFAULT true,
+    "parameter" TEXT NOT NULL,
+    "dayPayment" INTEGER,
+    CONSTRAINT "Salary_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("userId") ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
+-- CreateTable
+CREATE TABLE "Bonus" (
+    "bonusId" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "amount" REAL NOT NULL,
+    "note" TEXT NOT NULL,
+    "userId" INTEGER NOT NULL,
+    "date" DATETIME NOT NULL,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "status" BOOLEAN NOT NULL DEFAULT true,
+    CONSTRAINT "Bonus_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("userId") ON DELETE RESTRICT ON UPDATE CASCADE
+);

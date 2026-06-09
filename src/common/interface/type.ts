@@ -15,9 +15,18 @@ export interface ResponseApi<T> {
   status: number;
   token?: string;
   errors?: string[];
+  pagination?: ResponseApiPaginated;
+}
+
+export interface ResponseApiPaginated {
+  total: number;
+  page: number;
+  limit: number;
+  totalPages: number;
 }
 
 export interface ResponseExtras<T> {
   data: T;
   token?: string;
+  pagination?: ResponseApiPaginated;
 }

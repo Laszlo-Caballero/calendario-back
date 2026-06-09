@@ -17,6 +17,15 @@ export const Role = {
 export type Role = (typeof Role)[keyof typeof Role]
 
 
+export const SalaryParameter = {
+  MOTHLY: 'MOTHLY',
+  FORHOUR: 'FORHOUR',
+  FORTNIGHTLY: 'FORTNIGHTLY'
+} as const
+
+export type SalaryParameter = (typeof SalaryParameter)[keyof typeof SalaryParameter]
+
+
 export const TodoStatus = {
   PENDING: 'PENDING',
   IN_PROGRESS: 'IN_PROGRESS',

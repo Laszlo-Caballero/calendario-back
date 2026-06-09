@@ -336,10 +336,6 @@ export type CalendarNullableScalarRelationFilter = {
   isNot?: Prisma.CalendarWhereInput | null
 }
 
-export type BoolFieldUpdateOperationsInput = {
-  set?: boolean
-}
-
 export type CalendarCreateNestedOneWithoutSchedulesInput = {
   create?: Prisma.XOR<Prisma.CalendarCreateWithoutSchedulesInput, Prisma.CalendarUncheckedCreateWithoutSchedulesInput>
   connectOrCreate?: Prisma.CalendarCreateOrConnectWithoutSchedulesInput

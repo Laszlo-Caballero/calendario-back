@@ -28,10 +28,12 @@ export type AggregateUser = {
 
 export type UserAvgAggregateOutputType = {
   userId: number | null
+  monthlyExpenseLimit: number | null
 }
 
 export type UserSumAggregateOutputType = {
   userId: number | null
+  monthlyExpenseLimit: number | null
 }
 
 export type UserMinAggregateOutputType = {
@@ -40,6 +42,7 @@ export type UserMinAggregateOutputType = {
   email: string | null
   password: string | null
   role: $Enums.Role | null
+  monthlyExpenseLimit: number | null
 }
 
 export type UserMaxAggregateOutputType = {
@@ -48,6 +51,7 @@ export type UserMaxAggregateOutputType = {
   email: string | null
   password: string | null
   role: $Enums.Role | null
+  monthlyExpenseLimit: number | null
 }
 
 export type UserCountAggregateOutputType = {
@@ -56,16 +60,19 @@ export type UserCountAggregateOutputType = {
   email: number
   password: number
   role: number
+  monthlyExpenseLimit: number
   _all: number
 }
 
 
 export type UserAvgAggregateInputType = {
   userId?: true
+  monthlyExpenseLimit?: true
 }
 
 export type UserSumAggregateInputType = {
   userId?: true
+  monthlyExpenseLimit?: true
 }
 
 export type UserMinAggregateInputType = {
@@ -74,6 +81,7 @@ export type UserMinAggregateInputType = {
   email?: true
   password?: true
   role?: true
+  monthlyExpenseLimit?: true
 }
 
 export type UserMaxAggregateInputType = {
@@ -82,6 +90,7 @@ export type UserMaxAggregateInputType = {
   email?: true
   password?: true
   role?: true
+  monthlyExpenseLimit?: true
 }
 
 export type UserCountAggregateInputType = {
@@ -90,6 +99,7 @@ export type UserCountAggregateInputType = {
   email?: true
   password?: true
   role?: true
+  monthlyExpenseLimit?: true
   _all?: true
 }
 
@@ -185,6 +195,7 @@ export type UserGroupByOutputType = {
   email: string
   password: string
   role: $Enums.Role
+  monthlyExpenseLimit: number
   _count: UserCountAggregateOutputType | null
   _avg: UserAvgAggregateOutputType | null
   _sum: UserSumAggregateOutputType | null
@@ -216,6 +227,10 @@ export type UserWhereInput = {
   email?: Prisma.StringFilter<"User"> | string
   password?: Prisma.StringFilter<"User"> | string
   role?: Prisma.EnumRoleFilter<"User"> | $Enums.Role
+  monthlyExpenseLimit?: Prisma.FloatFilter<"User"> | number
+  salaries?: Prisma.SalaryListRelationFilter
+  bonuses?: Prisma.BonusListRelationFilter
+  discounts?: Prisma.DiscountListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -224,6 +239,10 @@ export type UserOrderByWithRelationInput = {
   email?: Prisma.SortOrder
   password?: Prisma.SortOrder
   role?: Prisma.SortOrder
+  monthlyExpenseLimit?: Prisma.SortOrder
+  salaries?: Prisma.SalaryOrderByRelationAggregateInput
+  bonuses?: Prisma.BonusOrderByRelationAggregateInput
+  discounts?: Prisma.DiscountOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -235,6 +254,10 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   name?: Prisma.StringFilter<"User"> | string
   password?: Prisma.StringFilter<"User"> | string
   role?: Prisma.EnumRoleFilter<"User"> | $Enums.Role
+  monthlyExpenseLimit?: Prisma.FloatFilter<"User"> | number
+  salaries?: Prisma.SalaryListRelationFilter
+  bonuses?: Prisma.BonusListRelationFilter
+  discounts?: Prisma.DiscountListRelationFilter
 }, "userId" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -243,6 +266,7 @@ export type UserOrderByWithAggregationInput = {
   email?: Prisma.SortOrder
   password?: Prisma.SortOrder
   role?: Prisma.SortOrder
+  monthlyExpenseLimit?: Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
   _avg?: Prisma.UserAvgOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
@@ -259,6 +283,7 @@ export type UserScalarWhereWithAggregatesInput = {
   email?: Prisma.StringWithAggregatesFilter<"User"> | string
   password?: Prisma.StringWithAggregatesFilter<"User"> | string
   role?: Prisma.EnumRoleWithAggregatesFilter<"User"> | $Enums.Role
+  monthlyExpenseLimit?: Prisma.FloatWithAggregatesFilter<"User"> | number
 }
 
 export type UserCreateInput = {
@@ -266,6 +291,10 @@ export type UserCreateInput = {
   email: string
   password: string
   role?: $Enums.Role
+  monthlyExpenseLimit?: number
+  salaries?: Prisma.SalaryCreateNestedManyWithoutUserInput
+  bonuses?: Prisma.BonusCreateNestedManyWithoutUserInput
+  discounts?: Prisma.DiscountCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -274,6 +303,10 @@ export type UserUncheckedCreateInput = {
   email: string
   password: string
   role?: $Enums.Role
+  monthlyExpenseLimit?: number
+  salaries?: Prisma.SalaryUncheckedCreateNestedManyWithoutUserInput
+  bonuses?: Prisma.BonusUncheckedCreateNestedManyWithoutUserInput
+  discounts?: Prisma.DiscountUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -281,6 +314,10 @@ export type UserUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  monthlyExpenseLimit?: Prisma.FloatFieldUpdateOperationsInput | number
+  salaries?: Prisma.SalaryUpdateManyWithoutUserNestedInput
+  bonuses?: Prisma.BonusUpdateManyWithoutUserNestedInput
+  discounts?: Prisma.DiscountUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -289,6 +326,10 @@ export type UserUncheckedUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  monthlyExpenseLimit?: Prisma.FloatFieldUpdateOperationsInput | number
+  salaries?: Prisma.SalaryUncheckedUpdateManyWithoutUserNestedInput
+  bonuses?: Prisma.BonusUncheckedUpdateManyWithoutUserNestedInput
+  discounts?: Prisma.DiscountUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -297,6 +338,7 @@ export type UserCreateManyInput = {
   email: string
   password: string
   role?: $Enums.Role
+  monthlyExpenseLimit?: number
 }
 
 export type UserUpdateManyMutationInput = {
@@ -304,6 +346,7 @@ export type UserUpdateManyMutationInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  monthlyExpenseLimit?: Prisma.FloatFieldUpdateOperationsInput | number
 }
 
 export type UserUncheckedUpdateManyInput = {
@@ -312,6 +355,7 @@ export type UserUncheckedUpdateManyInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  monthlyExpenseLimit?: Prisma.FloatFieldUpdateOperationsInput | number
 }
 
 export type UserCountOrderByAggregateInput = {
@@ -320,10 +364,12 @@ export type UserCountOrderByAggregateInput = {
   email?: Prisma.SortOrder
   password?: Prisma.SortOrder
   role?: Prisma.SortOrder
+  monthlyExpenseLimit?: Prisma.SortOrder
 }
 
 export type UserAvgOrderByAggregateInput = {
   userId?: Prisma.SortOrder
+  monthlyExpenseLimit?: Prisma.SortOrder
 }
 
 export type UserMaxOrderByAggregateInput = {
@@ -332,6 +378,7 @@ export type UserMaxOrderByAggregateInput = {
   email?: Prisma.SortOrder
   password?: Prisma.SortOrder
   role?: Prisma.SortOrder
+  monthlyExpenseLimit?: Prisma.SortOrder
 }
 
 export type UserMinOrderByAggregateInput = {
@@ -340,10 +387,17 @@ export type UserMinOrderByAggregateInput = {
   email?: Prisma.SortOrder
   password?: Prisma.SortOrder
   role?: Prisma.SortOrder
+  monthlyExpenseLimit?: Prisma.SortOrder
 }
 
 export type UserSumOrderByAggregateInput = {
   userId?: Prisma.SortOrder
+  monthlyExpenseLimit?: Prisma.SortOrder
+}
+
+export type UserScalarRelationFilter = {
+  is?: Prisma.UserWhereInput
+  isNot?: Prisma.UserWhereInput
 }
 
 export type StringFieldUpdateOperationsInput = {
@@ -354,6 +408,14 @@ export type EnumRoleFieldUpdateOperationsInput = {
   set?: $Enums.Role
 }
 
+export type FloatFieldUpdateOperationsInput = {
+  set?: number
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
 export type IntFieldUpdateOperationsInput = {
   set?: number
   increment?: number
@@ -362,6 +424,269 @@ export type IntFieldUpdateOperationsInput = {
   divide?: number
 }
 
+export type UserCreateNestedOneWithoutSalariesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSalariesInput, Prisma.UserUncheckedCreateWithoutSalariesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSalariesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutSalariesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSalariesInput, Prisma.UserUncheckedCreateWithoutSalariesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSalariesInput
+  upsert?: Prisma.UserUpsertWithoutSalariesInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutSalariesInput, Prisma.UserUpdateWithoutSalariesInput>, Prisma.UserUncheckedUpdateWithoutSalariesInput>
+}
+
+export type UserCreateNestedOneWithoutBonusesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutBonusesInput, Prisma.UserUncheckedCreateWithoutBonusesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutBonusesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutBonusesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutBonusesInput, Prisma.UserUncheckedCreateWithoutBonusesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutBonusesInput
+  upsert?: Prisma.UserUpsertWithoutBonusesInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutBonusesInput, Prisma.UserUpdateWithoutBonusesInput>, Prisma.UserUncheckedUpdateWithoutBonusesInput>
+}
+
+export type UserCreateNestedOneWithoutDiscountsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutDiscountsInput, Prisma.UserUncheckedCreateWithoutDiscountsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutDiscountsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutDiscountsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutDiscountsInput, Prisma.UserUncheckedCreateWithoutDiscountsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutDiscountsInput
+  upsert?: Prisma.UserUpsertWithoutDiscountsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutDiscountsInput, Prisma.UserUpdateWithoutDiscountsInput>, Prisma.UserUncheckedUpdateWithoutDiscountsInput>
+}
+
+export type UserCreateWithoutSalariesInput = {
+  name: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  monthlyExpenseLimit?: number
+  bonuses?: Prisma.BonusCreateNestedManyWithoutUserInput
+  discounts?: Prisma.DiscountCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutSalariesInput = {
+  userId?: number
+  name: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  monthlyExpenseLimit?: number
+  bonuses?: Prisma.BonusUncheckedCreateNestedManyWithoutUserInput
+  discounts?: Prisma.DiscountUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutSalariesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutSalariesInput, Prisma.UserUncheckedCreateWithoutSalariesInput>
+}
+
+export type UserUpsertWithoutSalariesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutSalariesInput, Prisma.UserUncheckedUpdateWithoutSalariesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutSalariesInput, Prisma.UserUncheckedCreateWithoutSalariesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutSalariesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutSalariesInput, Prisma.UserUncheckedUpdateWithoutSalariesInput>
+}
+
+export type UserUpdateWithoutSalariesInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  monthlyExpenseLimit?: Prisma.FloatFieldUpdateOperationsInput | number
+  bonuses?: Prisma.BonusUpdateManyWithoutUserNestedInput
+  discounts?: Prisma.DiscountUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutSalariesInput = {
+  userId?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  monthlyExpenseLimit?: Prisma.FloatFieldUpdateOperationsInput | number
+  bonuses?: Prisma.BonusUncheckedUpdateManyWithoutUserNestedInput
+  discounts?: Prisma.DiscountUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutBonusesInput = {
+  name: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  monthlyExpenseLimit?: number
+  salaries?: Prisma.SalaryCreateNestedManyWithoutUserInput
+  discounts?: Prisma.DiscountCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutBonusesInput = {
+  userId?: number
+  name: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  monthlyExpenseLimit?: number
+  salaries?: Prisma.SalaryUncheckedCreateNestedManyWithoutUserInput
+  discounts?: Prisma.DiscountUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutBonusesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutBonusesInput, Prisma.UserUncheckedCreateWithoutBonusesInput>
+}
+
+export type UserUpsertWithoutBonusesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutBonusesInput, Prisma.UserUncheckedUpdateWithoutBonusesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutBonusesInput, Prisma.UserUncheckedCreateWithoutBonusesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutBonusesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutBonusesInput, Prisma.UserUncheckedUpdateWithoutBonusesInput>
+}
+
+export type UserUpdateWithoutBonusesInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  monthlyExpenseLimit?: Prisma.FloatFieldUpdateOperationsInput | number
+  salaries?: Prisma.SalaryUpdateManyWithoutUserNestedInput
+  discounts?: Prisma.DiscountUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutBonusesInput = {
+  userId?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  monthlyExpenseLimit?: Prisma.FloatFieldUpdateOperationsInput | number
+  salaries?: Prisma.SalaryUncheckedUpdateManyWithoutUserNestedInput
+  discounts?: Prisma.DiscountUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutDiscountsInput = {
+  name: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  monthlyExpenseLimit?: number
+  salaries?: Prisma.SalaryCreateNestedManyWithoutUserInput
+  bonuses?: Prisma.BonusCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutDiscountsInput = {
+  userId?: number
+  name: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  monthlyExpenseLimit?: number
+  salaries?: Prisma.SalaryUncheckedCreateNestedManyWithoutUserInput
+  bonuses?: Prisma.BonusUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutDiscountsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutDiscountsInput, Prisma.UserUncheckedCreateWithoutDiscountsInput>
+}
+
+export type UserUpsertWithoutDiscountsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutDiscountsInput, Prisma.UserUncheckedUpdateWithoutDiscountsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutDiscountsInput, Prisma.UserUncheckedCreateWithoutDiscountsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutDiscountsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutDiscountsInput, Prisma.UserUncheckedUpdateWithoutDiscountsInput>
+}
+
+export type UserUpdateWithoutDiscountsInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  monthlyExpenseLimit?: Prisma.FloatFieldUpdateOperationsInput | number
+  salaries?: Prisma.SalaryUpdateManyWithoutUserNestedInput
+  bonuses?: Prisma.BonusUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutDiscountsInput = {
+  userId?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  monthlyExpenseLimit?: Prisma.FloatFieldUpdateOperationsInput | number
+  salaries?: Prisma.SalaryUncheckedUpdateManyWithoutUserNestedInput
+  bonuses?: Prisma.BonusUncheckedUpdateManyWithoutUserNestedInput
+}
+
+
+/**
+ * Count Type UserCountOutputType
+ */
+
+export type UserCountOutputType = {
+  salaries: number
+  bonuses: number
+  discounts: number
+}
+
+export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  salaries?: boolean | UserCountOutputTypeCountSalariesArgs
+  bonuses?: boolean | UserCountOutputTypeCountBonusesArgs
+  discounts?: boolean | UserCountOutputTypeCountDiscountsArgs
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the UserCountOutputType
+   */
+  select?: Prisma.UserCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountSalariesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SalaryWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountBonusesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.BonusWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountDiscountsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DiscountWhereInput
+}
 
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -370,6 +695,11 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   email?: boolean
   password?: boolean
   role?: boolean
+  monthlyExpenseLimit?: boolean
+  salaries?: boolean | Prisma.User$salariesArgs<ExtArgs>
+  bonuses?: boolean | Prisma.User$bonusesArgs<ExtArgs>
+  discounts?: boolean | Prisma.User$discountsArgs<ExtArgs>
+  _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -378,6 +708,7 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   email?: boolean
   password?: boolean
   role?: boolean
+  monthlyExpenseLimit?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -386,6 +717,7 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   email?: boolean
   password?: boolean
   role?: boolean
+  monthlyExpenseLimit?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectScalar = {
@@ -394,19 +726,33 @@ export type UserSelectScalar = {
   email?: boolean
   password?: boolean
   role?: boolean
+  monthlyExpenseLimit?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"userId" | "name" | "email" | "password" | "role", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"userId" | "name" | "email" | "password" | "role" | "monthlyExpenseLimit", ExtArgs["result"]["user"]>
+export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  salaries?: boolean | Prisma.User$salariesArgs<ExtArgs>
+  bonuses?: boolean | Prisma.User$bonusesArgs<ExtArgs>
+  discounts?: boolean | Prisma.User$discountsArgs<ExtArgs>
+  _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
+}
+export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
 
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "User"
-  objects: {}
+  objects: {
+    salaries: Prisma.$SalaryPayload<ExtArgs>[]
+    bonuses: Prisma.$BonusPayload<ExtArgs>[]
+    discounts: Prisma.$DiscountPayload<ExtArgs>[]
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     userId: number
     name: string
     email: string
     password: string
     role: $Enums.Role
+    monthlyExpenseLimit: number
   }, ExtArgs["result"]["user"]>
   composites: {}
 }
@@ -801,6 +1147,9 @@ readonly fields: UserFieldRefs;
  */
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  salaries<T extends Prisma.User$salariesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$salariesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SalaryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  bonuses<T extends Prisma.User$bonusesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$bonusesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BonusPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  discounts<T extends Prisma.User$discountsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$discountsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DiscountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -835,6 +1184,7 @@ export interface UserFieldRefs {
   readonly email: Prisma.FieldRef<"User", 'String'>
   readonly password: Prisma.FieldRef<"User", 'String'>
   readonly role: Prisma.FieldRef<"User", 'Role'>
+  readonly monthlyExpenseLimit: Prisma.FieldRef<"User", 'Float'>
 }
     
 
@@ -851,6 +1201,10 @@ export type UserFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.Internal
    * Omit specific fields from the User
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
   /**
    * Filter, which User to fetch.
    */
@@ -870,6 +1224,10 @@ export type UserFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions.I
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  /**
    * Filter, which User to fetch.
    */
   where: Prisma.UserWhereUniqueInput
@@ -887,6 +1245,10 @@ export type UserFindFirstArgs<ExtArgs extends runtime.Types.Extensions.InternalA
    * Omit specific fields from the User
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
   /**
    * Filter, which User to fetch.
    */
@@ -936,6 +1298,10 @@ export type UserFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.In
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  /**
    * Filter, which User to fetch.
    */
   where?: Prisma.UserWhereInput
@@ -983,6 +1349,10 @@ export type UserFindManyArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    * Omit specific fields from the User
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
   /**
    * Filter, which Users to fetch.
    */
@@ -1032,6 +1402,10 @@ export type UserCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  /**
    * The data needed to create a User.
    */
   data: Prisma.XOR<Prisma.UserCreateInput, Prisma.UserUncheckedCreateInput>
@@ -1077,6 +1451,10 @@ export type UserUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    * Omit specific fields from the User
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
   /**
    * The data needed to update a User.
    */
@@ -1144,6 +1522,10 @@ export type UserUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  /**
    * The filter to search for the User to update in case it exists.
    */
   where: Prisma.UserWhereUniqueInput
@@ -1170,6 +1552,10 @@ export type UserDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  /**
    * Filter which User to delete.
    */
   where: Prisma.UserWhereUniqueInput
@@ -1190,6 +1576,78 @@ export type UserDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
+ * User.salaries
+ */
+export type User$salariesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Salary
+   */
+  select?: Prisma.SalarySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Salary
+   */
+  omit?: Prisma.SalaryOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SalaryInclude<ExtArgs> | null
+  where?: Prisma.SalaryWhereInput
+  orderBy?: Prisma.SalaryOrderByWithRelationInput | Prisma.SalaryOrderByWithRelationInput[]
+  cursor?: Prisma.SalaryWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SalaryScalarFieldEnum | Prisma.SalaryScalarFieldEnum[]
+}
+
+/**
+ * User.bonuses
+ */
+export type User$bonusesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Bonus
+   */
+  select?: Prisma.BonusSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Bonus
+   */
+  omit?: Prisma.BonusOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BonusInclude<ExtArgs> | null
+  where?: Prisma.BonusWhereInput
+  orderBy?: Prisma.BonusOrderByWithRelationInput | Prisma.BonusOrderByWithRelationInput[]
+  cursor?: Prisma.BonusWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.BonusScalarFieldEnum | Prisma.BonusScalarFieldEnum[]
+}
+
+/**
+ * User.discounts
+ */
+export type User$discountsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Discount
+   */
+  select?: Prisma.DiscountSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Discount
+   */
+  omit?: Prisma.DiscountOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DiscountInclude<ExtArgs> | null
+  where?: Prisma.DiscountWhereInput
+  orderBy?: Prisma.DiscountOrderByWithRelationInput | Prisma.DiscountOrderByWithRelationInput[]
+  cursor?: Prisma.DiscountWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DiscountScalarFieldEnum | Prisma.DiscountScalarFieldEnum[]
+}
+
+/**
  * User without action
  */
 export type UserDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1201,4 +1659,8 @@ export type UserDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
    * Omit specific fields from the User
    */
   omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
 }

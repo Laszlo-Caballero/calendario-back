@@ -8,9 +8,12 @@ import { TodoModule } from './todo/todo.module';
 import { TodosModule } from './todos/todos.module';
 import { IaModule } from './ia/ia.module';
 import { FoldersModule } from './folders/folders.module';
+import { SalaryModule } from './salary/salary.module';
+import { BonusModule } from './bonus/bonus.module';
+import { DiscountModule } from './discount/discount.module';
 
 @Module({
-  imports: [ScheduleModule, AuthModule, CalendarModule, TodoModule, TodosModule, IaModule, FoldersModule],
+  imports: [ScheduleModule, AuthModule, CalendarModule, TodoModule, TodosModule, IaModule, FoldersModule, SalaryModule, BonusModule, DiscountModule],
   controllers: [AppController],
   providers: [AppService],
 })

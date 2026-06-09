@@ -52,6 +52,9 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   User: 'User',
+  Salary: 'Salary',
+  Bonus: 'Bonus',
+  Discount: 'Discount',
   Calendar: 'Calendar',
   Schedule: 'Schedule',
   Todos: 'Todos',
@@ -80,10 +83,51 @@ export const UserScalarFieldEnum = {
   name: 'name',
   email: 'email',
   password: 'password',
-  role: 'role'
+  role: 'role',
+  monthlyExpenseLimit: 'monthlyExpenseLimit'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+export const SalaryScalarFieldEnum = {
+  salaryId: 'salaryId',
+  amount: 'amount',
+  userId: 'userId',
+  datebegin: 'datebegin',
+  createdAt: 'createdAt',
+  status: 'status',
+  parameter: 'parameter',
+  dayPayment: 'dayPayment'
+} as const
+
+export type SalaryScalarFieldEnum = (typeof SalaryScalarFieldEnum)[keyof typeof SalaryScalarFieldEnum]
+
+
+export const BonusScalarFieldEnum = {
+  bonusId: 'bonusId',
+  amount: 'amount',
+  note: 'note',
+  userId: 'userId',
+  date: 'date',
+  createdAt: 'createdAt',
+  status: 'status'
+} as const
+
+export type BonusScalarFieldEnum = (typeof BonusScalarFieldEnum)[keyof typeof BonusScalarFieldEnum]
+
+
+export const DiscountScalarFieldEnum = {
+  discountId: 'discountId',
+  amount: 'amount',
+  note: 'note',
+  userId: 'userId',
+  date: 'date',
+  createdAt: 'createdAt',
+  status: 'status'
+} as const
+
+export type DiscountScalarFieldEnum = (typeof DiscountScalarFieldEnum)[keyof typeof DiscountScalarFieldEnum]
 
 
 export const CalendarScalarFieldEnum = {

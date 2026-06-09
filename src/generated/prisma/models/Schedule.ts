@@ -502,18 +502,6 @@ export type ScheduleUncheckedUpdateManyWithoutCalendarNestedInput = {
   deleteMany?: Prisma.ScheduleScalarWhereInput | Prisma.ScheduleScalarWhereInput[]
 }
 
-export type DateTimeFieldUpdateOperationsInput = {
-  set?: Date | string
-}
-
-export type NullableIntFieldUpdateOperationsInput = {
-  set?: number | null
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
 export type ScheduleCreateNestedManyWithoutImageInput = {
   create?: Prisma.XOR<Prisma.ScheduleCreateWithoutImageInput, Prisma.ScheduleUncheckedCreateWithoutImageInput> | Prisma.ScheduleCreateWithoutImageInput[] | Prisma.ScheduleUncheckedCreateWithoutImageInput[]
   connectOrCreate?: Prisma.ScheduleCreateOrConnectWithoutImageInput | Prisma.ScheduleCreateOrConnectWithoutImageInput[]

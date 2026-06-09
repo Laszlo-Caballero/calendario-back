@@ -9,6 +9,9 @@
  * 🟢 You can import this file directly.
  */
 export type * from './models/User.js'
+export type * from './models/Salary.js'
+export type * from './models/Bonus.js'
+export type * from './models/Discount.js'
 export type * from './models/Calendar.js'
 export type * from './models/Schedule.js'
 export type * from './models/Todos.js'

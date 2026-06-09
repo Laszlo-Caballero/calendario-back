@@ -14,11 +14,55 @@ enum Role {
 }
 
 model User {
-  userId   Int    @id @default(autoincrement())
-  name     String
-  email    String @unique
-  password String
-  role     Role   @default(USER)
+  userId              Int        @id @default(autoincrement())
+  name                String
+  email               String     @unique
+  password            String
+  role                Role       @default(USER)
+  salaries            Salary[]
+  bonuses             Bonus[]
+  discounts           Discount[]
+  monthlyExpenseLimit Float      @default(0)
+}
+
+enum SalaryParameter {
+  MOTHLY
+  FORHOUR
+  FORTNIGHTLY
+}
+
+model Salary {
+  salaryId   Int             @id @default(autoincrement())
+  amount     Float
+  userId     Int
+  datebegin  DateTime
+  createdAt  DateTime        @default(now())
+  status     Boolean         @default(true)
+  parameter  SalaryParameter
+  user       User            @relation(fields: [userId], references: [userId])
+  dayPayment Int?
+}
+
+model Bonus {
+  bonusId   Int      @id @default(autoincrement())
+  amount    Float
+  note      String
+  userId    Int
+  date      DateTime
+  createdAt DateTime @default(now())
+  status    Boolean  @default(true)
+  user      User     @relation(fields: [userId], references: [userId])
+}
+
+model Discount {
+  discountId Int      @id @default(autoincrement())
+  amount     Float
+  note       String
+  userId     Int
+  date       DateTime
+  createdAt  DateTime @default(now())
+  status     Boolean  @default(true)
+  user       User     @relation(fields: [userId], references: [userId])
 }
 
 model Calendar {
