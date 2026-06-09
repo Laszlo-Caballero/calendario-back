@@ -24,6 +24,7 @@ model User {
   discounts           Discount[]
   debts               Debts[]
   monthlyExpenseLimit Float      @default(0)
+  expenses            Expense[]
 }
 
 enum SalaryParameter {
@@ -91,6 +92,45 @@ model DebtPayment {
   debtId        Int
   subscriber    Boolean  @default(false)
   debt          Debts    @relation(fields: [debtId], references: [debtId])
+}
+
+model Expense {
+  expenseId                        Int              @id @default(autoincrement())
+  title                            String
+  amount                           Float
+  quantity                         Int              @default(1)
+  unitPrice                        Float?
+  date                             DateTime
+  createdAt                        DateTime         @default(now())
+  updatedAt                        DateTime         @updatedAt
+  userId                           Int
+  user                             User             @relation(fields: [userId], references: [userId])
+  expenseCategory                  ExpenseCategory? @relation(fields: [expenseCategoryExpenseCategoryId], references: [expenseCategoryId])
+  expenseCategoryExpenseCategoryId Int?
+  paymentMethod                    PaymentMethod?   @relation(fields: [paymentMethodPaymentMethodId], references: [paymentMethodId])
+  paymentMethodPaymentMethodId     Int?
+  status                           Boolean          @default(true)
+}
+
+model ExpenseCategory {
+  expenseCategoryId Int       @id @default(autoincrement())
+  name              String
+  description       String
+  icon              String
+  status            Boolean   @default(true)
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  expenses          Expense[]
+}
+
+model PaymentMethod {
+  paymentMethodId Int       @id @default(autoincrement())
+  name            String
+  description     String
+  status          Boolean   @default(true)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  expenses        Expense[]
 }
 
 model Calendar {

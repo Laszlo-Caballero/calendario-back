@@ -57,6 +57,9 @@ export const ModelName = {
   Discount: 'Discount',
   Debts: 'Debts',
   DebtPayment: 'DebtPayment',
+  Expense: 'Expense',
+  ExpenseCategory: 'ExpenseCategory',
+  PaymentMethod: 'PaymentMethod',
   Calendar: 'Calendar',
   Schedule: 'Schedule',
   Todos: 'Todos',
@@ -160,6 +163,49 @@ export const DebtPaymentScalarFieldEnum = {
 } as const
 
 export type DebtPaymentScalarFieldEnum = (typeof DebtPaymentScalarFieldEnum)[keyof typeof DebtPaymentScalarFieldEnum]
+
+
+export const ExpenseScalarFieldEnum = {
+  expenseId: 'expenseId',
+  title: 'title',
+  amount: 'amount',
+  quantity: 'quantity',
+  unitPrice: 'unitPrice',
+  date: 'date',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  userId: 'userId',
+  expenseCategoryExpenseCategoryId: 'expenseCategoryExpenseCategoryId',
+  paymentMethodPaymentMethodId: 'paymentMethodPaymentMethodId',
+  status: 'status'
+} as const
+
+export type ExpenseScalarFieldEnum = (typeof ExpenseScalarFieldEnum)[keyof typeof ExpenseScalarFieldEnum]
+
+
+export const ExpenseCategoryScalarFieldEnum = {
+  expenseCategoryId: 'expenseCategoryId',
+  name: 'name',
+  description: 'description',
+  icon: 'icon',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ExpenseCategoryScalarFieldEnum = (typeof ExpenseCategoryScalarFieldEnum)[keyof typeof ExpenseCategoryScalarFieldEnum]
+
+
+export const PaymentMethodScalarFieldEnum = {
+  paymentMethodId: 'paymentMethodId',
+  name: 'name',
+  description: 'description',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PaymentMethodScalarFieldEnum = (typeof PaymentMethodScalarFieldEnum)[keyof typeof PaymentMethodScalarFieldEnum]
 
 
 export const CalendarScalarFieldEnum = {

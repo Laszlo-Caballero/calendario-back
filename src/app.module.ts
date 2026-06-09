@@ -12,6 +12,8 @@ import { SalaryModule } from './salary/salary.module';
 import { BonusModule } from './bonus/bonus.module';
 import { DiscountModule } from './discount/discount.module';
 import { DebtsModule } from './debts/debts.module';
+import { ExpenseCategoryModule } from './expense-category/expense-category.module';
+import { PaymentMethodModule } from './payment-method/payment-method.module';
 
 @Module({
   imports: [
@@ -26,6 +28,8 @@ import { DebtsModule } from './debts/debts.module';
     BonusModule,
     DiscountModule,
     DebtsModule,
+    ExpenseCategoryModule,
+    PaymentMethodModule,
   ],
   controllers: [AppController],
   providers: [AppService],

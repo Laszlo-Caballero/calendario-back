@@ -48,6 +48,21 @@ export type Debts = Prisma.DebtsModel
  */
 export type DebtPayment = Prisma.DebtPaymentModel
 /**
+ * Model Expense
+ * 
+ */
+export type Expense = Prisma.ExpenseModel
+/**
+ * Model ExpenseCategory
+ * 
+ */
+export type ExpenseCategory = Prisma.ExpenseCategoryModel
+/**
+ * Model PaymentMethod
+ * 
+ */
+export type PaymentMethod = Prisma.PaymentMethodModel
+/**
  * Model Calendar
  * 
  */
