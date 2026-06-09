@@ -1552,7 +1552,6 @@ export const DebtsScalarFieldEnum = {
   startDate: 'startDate',
   endDate: 'endDate',
   userId: 'userId',
-  date: 'date',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   status: 'status'

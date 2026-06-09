@@ -55,7 +55,6 @@ export type DebtsMinAggregateOutputType = {
   startDate: Date | null
   endDate: Date | null
   userId: number | null
-  date: Date | null
   createdAt: Date | null
   updatedAt: Date | null
   status: boolean | null
@@ -72,7 +71,6 @@ export type DebtsMaxAggregateOutputType = {
   startDate: Date | null
   endDate: Date | null
   userId: number | null
-  date: Date | null
   createdAt: Date | null
   updatedAt: Date | null
   status: boolean | null
@@ -89,7 +87,6 @@ export type DebtsCountAggregateOutputType = {
   startDate: number
   endDate: number
   userId: number
-  date: number
   createdAt: number
   updatedAt: number
   status: number
@@ -126,7 +123,6 @@ export type DebtsMinAggregateInputType = {
   startDate?: true
   endDate?: true
   userId?: true
-  date?: true
   createdAt?: true
   updatedAt?: true
   status?: true
@@ -143,7 +139,6 @@ export type DebtsMaxAggregateInputType = {
   startDate?: true
   endDate?: true
   userId?: true
-  date?: true
   createdAt?: true
   updatedAt?: true
   status?: true
@@ -160,7 +155,6 @@ export type DebtsCountAggregateInputType = {
   startDate?: true
   endDate?: true
   userId?: true
-  date?: true
   createdAt?: true
   updatedAt?: true
   status?: true
@@ -264,7 +258,6 @@ export type DebtsGroupByOutputType = {
   startDate: Date
   endDate: Date
   userId: number
-  date: Date
   createdAt: Date
   updatedAt: Date
   status: boolean
@@ -304,7 +297,6 @@ export type DebtsWhereInput = {
   startDate?: Prisma.DateTimeFilter<"Debts"> | Date | string
   endDate?: Prisma.DateTimeFilter<"Debts"> | Date | string
   userId?: Prisma.IntFilter<"Debts"> | number
-  date?: Prisma.DateTimeFilter<"Debts"> | Date | string
   createdAt?: Prisma.DateTimeFilter<"Debts"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Debts"> | Date | string
   status?: Prisma.BoolFilter<"Debts"> | boolean
@@ -323,7 +315,6 @@ export type DebtsOrderByWithRelationInput = {
   startDate?: Prisma.SortOrder
   endDate?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  date?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   status?: Prisma.SortOrder
@@ -345,7 +336,6 @@ export type DebtsWhereUniqueInput = Prisma.AtLeast<{
   startDate?: Prisma.DateTimeFilter<"Debts"> | Date | string
   endDate?: Prisma.DateTimeFilter<"Debts"> | Date | string
   userId?: Prisma.IntFilter<"Debts"> | number
-  date?: Prisma.DateTimeFilter<"Debts"> | Date | string
   createdAt?: Prisma.DateTimeFilter<"Debts"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Debts"> | Date | string
   status?: Prisma.BoolFilter<"Debts"> | boolean
@@ -364,7 +354,6 @@ export type DebtsOrderByWithAggregationInput = {
   startDate?: Prisma.SortOrder
   endDate?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  date?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   status?: Prisma.SortOrder
@@ -389,7 +378,6 @@ export type DebtsScalarWhereWithAggregatesInput = {
   startDate?: Prisma.DateTimeWithAggregatesFilter<"Debts"> | Date | string
   endDate?: Prisma.DateTimeWithAggregatesFilter<"Debts"> | Date | string
   userId?: Prisma.IntWithAggregatesFilter<"Debts"> | number
-  date?: Prisma.DateTimeWithAggregatesFilter<"Debts"> | Date | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Debts"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Debts"> | Date | string
   status?: Prisma.BoolWithAggregatesFilter<"Debts"> | boolean
@@ -404,7 +392,6 @@ export type DebtsCreateInput = {
   description: string
   startDate: Date | string
   endDate: Date | string
-  date: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   status?: boolean
@@ -423,7 +410,6 @@ export type DebtsUncheckedCreateInput = {
   startDate: Date | string
   endDate: Date | string
   userId: number
-  date: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   status?: boolean
@@ -439,7 +425,6 @@ export type DebtsUpdateInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -458,7 +443,6 @@ export type DebtsUncheckedUpdateInput = {
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.IntFieldUpdateOperationsInput | number
-  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -476,7 +460,6 @@ export type DebtsCreateManyInput = {
   startDate: Date | string
   endDate: Date | string
   userId: number
-  date: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   status?: boolean
@@ -491,7 +474,6 @@ export type DebtsUpdateManyMutationInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -508,7 +490,6 @@ export type DebtsUncheckedUpdateManyInput = {
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.IntFieldUpdateOperationsInput | number
-  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -535,7 +516,6 @@ export type DebtsCountOrderByAggregateInput = {
   startDate?: Prisma.SortOrder
   endDate?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  date?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   status?: Prisma.SortOrder
@@ -561,7 +541,6 @@ export type DebtsMaxOrderByAggregateInput = {
   startDate?: Prisma.SortOrder
   endDate?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  date?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   status?: Prisma.SortOrder
@@ -578,7 +557,6 @@ export type DebtsMinOrderByAggregateInput = {
   startDate?: Prisma.SortOrder
   endDate?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  date?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   status?: Prisma.SortOrder
@@ -663,7 +641,6 @@ export type DebtsCreateWithoutUserInput = {
   description: string
   startDate: Date | string
   endDate: Date | string
-  date: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   status?: boolean
@@ -680,7 +657,6 @@ export type DebtsUncheckedCreateWithoutUserInput = {
   description: string
   startDate: Date | string
   endDate: Date | string
-  date: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   status?: boolean
@@ -726,7 +702,6 @@ export type DebtsScalarWhereInput = {
   startDate?: Prisma.DateTimeFilter<"Debts"> | Date | string
   endDate?: Prisma.DateTimeFilter<"Debts"> | Date | string
   userId?: Prisma.IntFilter<"Debts"> | number
-  date?: Prisma.DateTimeFilter<"Debts"> | Date | string
   createdAt?: Prisma.DateTimeFilter<"Debts"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Debts"> | Date | string
   status?: Prisma.BoolFilter<"Debts"> | boolean
@@ -741,7 +716,6 @@ export type DebtsCreateWithoutPaymentsInput = {
   description: string
   startDate: Date | string
   endDate: Date | string
-  date: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   status?: boolean
@@ -759,7 +733,6 @@ export type DebtsUncheckedCreateWithoutPaymentsInput = {
   startDate: Date | string
   endDate: Date | string
   userId: number
-  date: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   status?: boolean
@@ -790,7 +763,6 @@ export type DebtsUpdateWithoutPaymentsInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -808,7 +780,6 @@ export type DebtsUncheckedUpdateWithoutPaymentsInput = {
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.IntFieldUpdateOperationsInput | number
-  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -824,7 +795,6 @@ export type DebtsCreateManyUserInput = {
   description: string
   startDate: Date | string
   endDate: Date | string
-  date: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   status?: boolean
@@ -839,7 +809,6 @@ export type DebtsUpdateWithoutUserInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -856,7 +825,6 @@ export type DebtsUncheckedUpdateWithoutUserInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -873,7 +841,6 @@ export type DebtsUncheckedUpdateManyWithoutUserInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -921,7 +888,6 @@ export type DebtsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   startDate?: boolean
   endDate?: boolean
   userId?: boolean
-  date?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   status?: boolean
@@ -941,7 +907,6 @@ export type DebtsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   startDate?: boolean
   endDate?: boolean
   userId?: boolean
-  date?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   status?: boolean
@@ -959,7 +924,6 @@ export type DebtsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   startDate?: boolean
   endDate?: boolean
   userId?: boolean
-  date?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   status?: boolean
@@ -977,13 +941,12 @@ export type DebtsSelectScalar = {
   startDate?: boolean
   endDate?: boolean
   userId?: boolean
-  date?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   status?: boolean
 }
 
-export type DebtsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"debtId" | "maxMothlyPayment" | "totalInstallments" | "paidInstallments" | "payment" | "title" | "description" | "startDate" | "endDate" | "userId" | "date" | "createdAt" | "updatedAt" | "status", ExtArgs["result"]["debts"]>
+export type DebtsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"debtId" | "maxMothlyPayment" | "totalInstallments" | "paidInstallments" | "payment" | "title" | "description" | "startDate" | "endDate" | "userId" | "createdAt" | "updatedAt" | "status", ExtArgs["result"]["debts"]>
 export type DebtsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   payments?: boolean | Prisma.Debts$paymentsArgs<ExtArgs>
@@ -1013,7 +976,6 @@ export type $DebtsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     startDate: Date
     endDate: Date
     userId: number
-    date: Date
     createdAt: Date
     updatedAt: Date
     status: boolean
@@ -1452,7 +1414,6 @@ export interface DebtsFieldRefs {
   readonly startDate: Prisma.FieldRef<"Debts", 'DateTime'>
   readonly endDate: Prisma.FieldRef<"Debts", 'DateTime'>
   readonly userId: Prisma.FieldRef<"Debts", 'Int'>
-  readonly date: Prisma.FieldRef<"Debts", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"Debts", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Debts", 'DateTime'>
   readonly status: Prisma.FieldRef<"Debts", 'Boolean'>

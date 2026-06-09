@@ -4,7 +4,7 @@ import { IsDate, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 export class DebtsDto {
   @IsNumber()
   @IsNotEmpty()
-  maxMonthlyPayment: number;
+  maxMothlyPayment: number;
 
   @IsNumber()
   @IsNotEmpty()
@@ -31,4 +31,15 @@ export class DebtsDto {
   @IsNotEmpty()
   @Type(() => Date)
   endDate: Date;
+}
+
+export class AddPaymentDto {
+  @IsNumber()
+  @IsNotEmpty()
+  amount: number;
+
+  @IsDate()
+  @IsNotEmpty()
+  @Type(() => Date)
+  date: Date;
 }

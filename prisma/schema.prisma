@@ -77,7 +77,6 @@ model Debts {
   startDate         DateTime
   endDate           DateTime
   userId            Int
-  date              DateTime
   createdAt         DateTime      @default(now())
   updatedAt         DateTime      @updatedAt
   status            Boolean       @default(true)
