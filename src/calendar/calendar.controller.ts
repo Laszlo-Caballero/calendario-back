@@ -24,13 +24,17 @@ export class CalendarController {
     return this.calendarService.getAllCalendars(user);
   }
 
-  @Auth([Role.ADMIN])
+  @Auth({
+    role: [Role.ADMIN],
+  })
   @Post()
   async createCalendar(@Body() calendarDto: CalendarDto) {
     return this.calendarService.createCalendar(calendarDto);
   }
 
-  @Auth([Role.ADMIN])
+  @Auth({
+    role: [Role.ADMIN],
+  })
   @Patch(':id')
   async updateCalendar(
     @Body() calendarDto: CalendarDto,
@@ -39,7 +43,9 @@ export class CalendarController {
     return this.calendarService.updateCalendar(+id, calendarDto);
   }
 
-  @Auth([Role.ADMIN])
+  @Auth({
+    role: [Role.ADMIN],
+  })
   @Delete(':id')
   async deleteCalendar(@Param('id') id: string) {
     return this.calendarService.deleteCalendar(+id);

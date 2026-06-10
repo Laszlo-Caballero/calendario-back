@@ -33,13 +33,17 @@ export class FoldersController {
     return this.foldersService.getAllFolders(query, user);
   }
 
-  @Auth([Role.ADMIN])
+  @Auth({
+    role: [Role.ADMIN],
+  })
   @Post()
   async createFolder(@Body() folderDto: FolderDto) {
     return this.foldersService.createFolder(folderDto);
   }
 
-  @Auth([Role.ADMIN])
+  @Auth({
+    role: [Role.ADMIN],
+  })
   @Patch(':id')
   async updateFolder(
     @Param('id', ParseIntPipe) id: number,
@@ -59,7 +63,9 @@ export class FoldersController {
     return this.foldersService.uploadFile(file, user, folderId);
   }
 
-  @Auth([Role.ADMIN])
+  @Auth({
+    role: [Role.ADMIN],
+  })
   @Delete(':id')
   async deleteFile(@Param('id', ParseIntPipe) id: number) {
     return this.foldersService.deleteFile(id);

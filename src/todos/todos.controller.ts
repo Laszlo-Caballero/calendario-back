@@ -25,25 +25,33 @@ export class TodosController {
     return this.todosService.getAllTodos(user);
   }
 
-  @Auth([Role.ADMIN])
+  @Auth({
+    role: [Role.ADMIN],
+  })
   @Post()
   async createTodo(@Body() data: CreateTodoDto) {
     return this.todosService.createTodo(data);
   }
 
-  @Auth([Role.ADMIN])
+  @Auth({
+    role: [Role.ADMIN],
+  })
   @Patch(':id')
   async updateTodo(@Param('id') id: number, @Body() updateDto: UpdateTodoDto) {
     return this.todosService.updateTodo(id, updateDto);
   }
 
-  @Auth([Role.ADMIN])
+  @Auth({
+    role: [Role.ADMIN],
+  })
   @Delete(':id')
   async deleteTodo(@Param('id') id: number) {
     return this.todosService.deleteTodo(id);
   }
 
-  @Auth([Role.ADMIN])
+  @Auth({
+    role: [Role.ADMIN],
+  })
   @Get('/with-todo')
   async getAllTodosWithTodo() {
     return this.todosService.getAllTodosWithTodo();

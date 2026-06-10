@@ -22,19 +22,25 @@ export class PaymentMethodController {
     return this.paymentMethodService.findAll();
   }
 
-  @Auth([Role.ADMIN])
+  @Auth({
+    role: [Role.ADMIN],
+  })
   @Post()
   create(@Body() paymentMethodDto: PaymentMethodDto) {
     return this.paymentMethodService.create(paymentMethodDto);
   }
 
-  @Auth([Role.ADMIN])
+  @Auth({
+    role: [Role.ADMIN],
+  })
   @Put(':id')
   update(@Body() paymentMethodDto: PaymentMethodDto, @Param('id') id: number) {
     return this.paymentMethodService.update(paymentMethodDto, id);
   }
 
-  @Auth([Role.ADMIN])
+  @Auth({
+    role: [Role.ADMIN],
+  })
   @Delete(':id')
   remove(@Param('id') id: number) {
     return this.paymentMethodService.remove(id);

@@ -21,19 +21,23 @@ import { FileInterceptor } from '@nestjs/platform-express';
 export class ExpenseController {
   constructor(private readonly expenseService: ExpenseService) {}
 
-  @Auth()
+  @Auth({
+    jwtRequired: true,
+  })
   @Get()
   getExpenses(@Query() query: QueryExpenseDto, @User('idUser') userId: number) {
     return this.expenseService.getExpenses(query, userId);
   }
-
-  @Auth()
+  @Auth({
+    jwtRequired: true,
+  })
   @Post()
   createExpense(@Body() data: ExpenseDto, @User('idUser') userId: number) {
     return this.expenseService.createExpense(data, userId);
   }
-
-  @Auth()
+  @Auth({
+    jwtRequired: true,
+  })
   @Post('sync/yape')
   @UseInterceptors(FileInterceptor('file'))
   syncYape(
@@ -42,8 +46,9 @@ export class ExpenseController {
   ) {
     return this.expenseService.syncYape(file, userId);
   }
-
-  @Auth()
+  @Auth({
+    jwtRequired: true,
+  })
   @Put(':id')
   updateExpense(
     @Param('id') id: number,
@@ -52,8 +57,9 @@ export class ExpenseController {
   ) {
     return this.expenseService.updateExpense(id, data, userId);
   }
-
-  @Auth()
+  @Auth({
+    jwtRequired: true,
+  })
   @Delete(':id')
   deleteExpense(@Param('id') id: number, @User('idUser') userId: number) {
     return this.expenseService.deleteExpense(id, userId);

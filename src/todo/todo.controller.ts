@@ -59,13 +59,17 @@ export class TodoController {
     return this.todoService.deleteTodo(id, user);
   }
 
-  @Auth([Role.ADMIN])
+  @Auth({
+    role: [Role.ADMIN],
+  })
   @Post('/import')
   async importTodo(@Body() data: ImportsTodoDto) {
     return this.todoService.importTodo(data);
   }
 
-  @Auth([Role.ADMIN])
+  @Auth({
+    role: [Role.ADMIN],
+  })
   @Post('/upload-image')
   @UseInterceptors(FileInterceptor('file'))
   async uploadImage(
@@ -75,13 +79,17 @@ export class TodoController {
     return this.todoService.uploadImage(file, body);
   }
 
-  @Auth([Role.ADMIN])
+  @Auth({
+    role: [Role.ADMIN],
+  })
   @Delete('image/delete')
   async deleteImage(@Body() body: DeleteImagenDto) {
     return this.todoService.deleteImage(body);
   }
 
-  @Auth([Role.ADMIN])
+  @Auth({
+    role: [Role.ADMIN],
+  })
   @Put(':id/pinned')
   async togglePinned(@Param('id') id: number) {
     return this.todoService.togglePinned(id);

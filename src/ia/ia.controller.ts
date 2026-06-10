@@ -8,13 +8,17 @@ import { MessageDto } from './dto/message.dto';
 export class IaController {
   constructor(private readonly iaService: IaService) {}
 
-  @Auth([Role.ADMIN])
+  @Auth({
+    role: [Role.ADMIN],
+  })
   @Post()
   async generateResponse(@Body() messageDto: MessageDto) {
     return this.iaService.generateResponse(messageDto);
   }
 
-  @Auth([Role.ADMIN])
+  @Auth({
+    role: [Role.ADMIN],
+  })
   @Post('/sub-task')
   async generateSubTaskResponse(@Body() messageDto: MessageDto) {
     return this.iaService.generateSubtask(messageDto);

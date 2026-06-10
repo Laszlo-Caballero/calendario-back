@@ -24,13 +24,17 @@ export class ExpenseCategoryController {
     return this.expenseCategoryService.findAll();
   }
 
-  @Auth([Role.ADMIN])
+  @Auth({
+    role: [Role.ADMIN],
+  })
   @Post()
   create(@Body() expenseCategoryDto: ExpenseCategoryDto) {
     return this.expenseCategoryService.create(expenseCategoryDto);
   }
 
-  @Auth([Role.ADMIN])
+  @Auth({
+    role: [Role.ADMIN],
+  })
   @Put(':id')
   update(
     @Body() expenseCategoryDto: ExpenseCategoryDto,
@@ -39,7 +43,9 @@ export class ExpenseCategoryController {
     return this.expenseCategoryService.update(expenseCategoryDto, id);
   }
 
-  @Auth([Role.ADMIN])
+  @Auth({
+    role: [Role.ADMIN],
+  })
   @Delete(':id')
   remove(@Param('id') id: number) {
     return this.expenseCategoryService.remove(id);

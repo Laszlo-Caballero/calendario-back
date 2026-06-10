@@ -76,7 +76,9 @@ export class ScheduleController {
     return this.scheduleService.remove(+id);
   }
 
-  @Auth([Role.ADMIN])
+  @Auth({
+    role: [Role.ADMIN],
+  })
   @Post('upload-image')
   @UseInterceptors(FileInterceptor('file'))
   async uploadImage(
@@ -86,7 +88,9 @@ export class ScheduleController {
     return this.scheduleService.uploadImage(file, body);
   }
 
-  @Auth([Role.ADMIN])
+  @Auth({
+    role: [Role.ADMIN],
+  })
   @Delete(':id/image')
   async deleteImage(@Param('id') id: number) {
     return this.scheduleService.deleteImage(id);
