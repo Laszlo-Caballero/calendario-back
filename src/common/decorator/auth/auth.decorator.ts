@@ -10,7 +10,7 @@ interface AuthOptions {
 }
 
 export const Auth = (options?: AuthOptions) => {
-  const role = options?.role || [];
+  const role = options?.role
   const jwtRequired = options?.jwtRequired ?? false;
   return applyDecorators(
     SetMetadata(ROLE_KEY, role),
