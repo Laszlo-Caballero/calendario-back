@@ -4,7 +4,25 @@ import { ExtractJwt, Strategy } from 'passport-jwt';
 import { JwtPayload } from '../interface/type';
 
 @Injectable()
-export class JwtStrategy extends PassportStrategy(Strategy) {
+export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
+  constructor() {
+    super({
+      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+      ignoreExpiration: false,
+      secretOrKey: process.env.JWT_SECRET!,
+    });
+  }
+
+  validate(payload: JwtPayload) {
+    return payload;
+  }
+}
+
+@Injectable()
+export class JwtRequiredStrategy extends PassportStrategy(
+  Strategy,
+  'jwt-required',
+) {
   constructor() {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
