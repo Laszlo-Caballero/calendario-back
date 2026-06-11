@@ -78,6 +78,11 @@ export type Schedule = Prisma.ScheduleModel
  */
 export type Todos = Prisma.TodosModel
 /**
+ * Model TodoNote
+ * 
+ */
+export type TodoNote = Prisma.TodoNoteModel
+/**
  * Model Todo
  * 
  */

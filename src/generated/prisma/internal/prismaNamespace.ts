@@ -396,6 +396,7 @@ export const ModelName = {
   Calendar: 'Calendar',
   Schedule: 'Schedule',
   Todos: 'Todos',
+  TodoNote: 'TodoNote',
   Todo: 'Todo',
   TodoImage: 'TodoImage',
   Images: 'Images',
@@ -416,7 +417,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "salary" | "bonus" | "discount" | "debts" | "debtPayment" | "expense" | "expenseCategory" | "paymentMethod" | "calendar" | "schedule" | "todos" | "todo" | "todoImage" | "images" | "archives" | "folder"
+    modelProps: "user" | "salary" | "bonus" | "discount" | "debts" | "debtPayment" | "expense" | "expenseCategory" | "paymentMethod" | "calendar" | "schedule" | "todos" | "todoNote" | "todo" | "todoImage" | "images" | "archives" | "folder"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1308,6 +1309,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    TodoNote: {
+      payload: Prisma.$TodoNotePayload<ExtArgs>
+      fields: Prisma.TodoNoteFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.TodoNoteFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TodoNotePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.TodoNoteFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TodoNotePayload>
+        }
+        findFirst: {
+          args: Prisma.TodoNoteFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TodoNotePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.TodoNoteFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TodoNotePayload>
+        }
+        findMany: {
+          args: Prisma.TodoNoteFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TodoNotePayload>[]
+        }
+        create: {
+          args: Prisma.TodoNoteCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TodoNotePayload>
+        }
+        createMany: {
+          args: Prisma.TodoNoteCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.TodoNoteCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TodoNotePayload>[]
+        }
+        delete: {
+          args: Prisma.TodoNoteDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TodoNotePayload>
+        }
+        update: {
+          args: Prisma.TodoNoteUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TodoNotePayload>
+        }
+        deleteMany: {
+          args: Prisma.TodoNoteDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.TodoNoteUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.TodoNoteUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TodoNotePayload>[]
+        }
+        upsert: {
+          args: Prisma.TodoNoteUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TodoNotePayload>
+        }
+        aggregate: {
+          args: Prisma.TodoNoteAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateTodoNote>
+        }
+        groupBy: {
+          args: Prisma.TodoNoteGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TodoNoteGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.TodoNoteCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TodoNoteCountAggregateOutputType> | number
+        }
+      }
+    }
     Todo: {
       payload: Prisma.$TodoPayload<ExtArgs>
       fields: Prisma.TodoFieldRefs
@@ -1875,6 +1950,20 @@ export const TodosScalarFieldEnum = {
 export type TodosScalarFieldEnum = (typeof TodosScalarFieldEnum)[keyof typeof TodosScalarFieldEnum]
 
 
+export const TodoNoteScalarFieldEnum = {
+  todoNoteId: 'todoNoteId',
+  title: 'title',
+  content: 'content',
+  isPinned: 'isPinned',
+  isArchived: 'isArchived',
+  status: 'status',
+  createdAt: 'createdAt',
+  todosTodosId: 'todosTodosId'
+} as const
+
+export type TodoNoteScalarFieldEnum = (typeof TodoNoteScalarFieldEnum)[keyof typeof TodoNoteScalarFieldEnum]
+
+
 export const TodoScalarFieldEnum = {
   todoId: 'todoId',
   title: 'title',
@@ -2123,6 +2212,7 @@ export type GlobalOmitConfig = {
   calendar?: Prisma.CalendarOmit
   schedule?: Prisma.ScheduleOmit
   todos?: Prisma.TodosOmit
+  todoNote?: Prisma.TodoNoteOmit
   todo?: Prisma.TodoOmit
   todoImage?: Prisma.TodoImageOmit
   images?: Prisma.ImagesOmit

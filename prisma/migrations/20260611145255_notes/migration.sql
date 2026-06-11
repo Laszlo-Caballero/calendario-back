@@ -1,0 +1,12 @@
+-- CreateTable
+CREATE TABLE "TodoNote" (
+    "todoNoteId" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "todoId" INTEGER NOT NULL,
+    "title" TEXT NOT NULL,
+    "content" TEXT NOT NULL,
+    "isPinned" BOOLEAN NOT NULL DEFAULT false,
+    "isArchived" BOOLEAN NOT NULL DEFAULT false,
+    "status" BOOLEAN NOT NULL DEFAULT true,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT "TodoNote_todoId_fkey" FOREIGN KEY ("todoId") REFERENCES "Todo" ("todoId") ON DELETE RESTRICT ON UPDATE CASCADE
+);

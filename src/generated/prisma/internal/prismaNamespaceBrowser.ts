@@ -63,6 +63,7 @@ export const ModelName = {
   Calendar: 'Calendar',
   Schedule: 'Schedule',
   Todos: 'Todos',
+  TodoNote: 'TodoNote',
   Todo: 'Todo',
   TodoImage: 'TodoImage',
   Images: 'Images',
@@ -242,6 +243,20 @@ export const TodosScalarFieldEnum = {
 } as const
 
 export type TodosScalarFieldEnum = (typeof TodosScalarFieldEnum)[keyof typeof TodosScalarFieldEnum]
+
+
+export const TodoNoteScalarFieldEnum = {
+  todoNoteId: 'todoNoteId',
+  title: 'title',
+  content: 'content',
+  isPinned: 'isPinned',
+  isArchived: 'isArchived',
+  status: 'status',
+  createdAt: 'createdAt',
+  todosTodosId: 'todosTodosId'
+} as const
+
+export type TodoNoteScalarFieldEnum = (typeof TodoNoteScalarFieldEnum)[keyof typeof TodoNoteScalarFieldEnum]
 
 
 export const TodoScalarFieldEnum = {

@@ -164,11 +164,24 @@ model Schedule {
 }
 
 model Todos {
-  todosId  Int     @id @default(autoincrement())
+  todosId  Int        @id @default(autoincrement())
   title    String
-  status   Boolean @default(true)
-  isPublic Boolean @default(false)
+  status   Boolean    @default(true)
+  isPublic Boolean    @default(false)
   todos    Todo[]
+  notes    TodoNote[]
+}
+
+model TodoNote {
+  todoNoteId   Int      @id @default(autoincrement())
+  title        String
+  content      String
+  isPinned     Boolean  @default(false)
+  isArchived   Boolean  @default(false)
+  status       Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  todos        Todos?   @relation(fields: [todosTodosId], references: [todosId])
+  todosTodosId Int?
 }
 
 enum TodoStatus {
