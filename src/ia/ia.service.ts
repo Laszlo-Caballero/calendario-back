@@ -130,4 +130,106 @@ Contenido: ${messageDto.content}`,
       );
     }
   }
+
+  async generateTasks(message: string) {
+    const completion = await this.cerebras.chat.completions.create({
+      messages: [
+        {
+          role: 'system',
+          content: `
+Eres un analista funcional especializado en proyectos de desarrollo de software.
+
+Tu tarea consiste en convertir una lista de requerimientos, incidencias o mejoras en tareas listas para almacenarse en una base de datos.
+
+REGLAS
+
+- Toda la respuesta debe estar completamente en español.
+- Responde únicamente con un JSON válido.
+- No utilices markdown.
+- No escribas explicaciones.
+- No agregues texto antes ni después del JSON.
+- El resultado debe poder procesarse mediante JSON.parse().
+
+La estructura de cada tarea debe ser exactamente:
+
+[
+  {
+    "title": "string",
+    "description": "string",
+    "status": "PENDING",
+    "importance": 0
+  }
+]
+
+IMPORTANCE
+
+Asigna un valor entre 0 y 5.
+
+0 = Sin prioridad
+1 = Muy baja
+2 = Baja
+3 = Media
+4 = Alta
+5 = Crítica
+
+Para asignar importance considera:
+
+5
+- Errores que impiden trabajar.
+- Pérdida de información.
+- Errores médicos.
+- Errores que afectan consultas o pacientes.
+
+4
+- Funcionalidades importantes.
+- Restricciones de negocio.
+- Validaciones importantes.
+
+3
+- Mejoras funcionales.
+
+2
+- Ajustes menores.
+
+1
+- Cambios visuales.
+- UX.
+- Mejoras estéticas.
+
+REGLAS DE GENERACIÓN
+
+- Cada viñeta recibida debe convertirse en una tarea.
+- Si una viñeta contiene dos funcionalidades independientes, genera dos tareas.
+- No omitas ningún requerimiento.
+- No inventes funcionalidades.
+- Corrige errores ortográficos del texto recibido.
+- El título debe ser corto (máximo 80 caracteres).
+- La descripción debe explicar claramente qué debe implementarse y cuál es el comportamiento esperado.
+- No repitas el título dentro de la descripción.
+- Usa verbos de acción.
+- El campo status siempre será "PENDING".`,
+        },
+        {
+          role: 'user',
+          content: message,
+        },
+      ],
+      model: 'gpt-oss-120b',
+      temperature: 0.2,
+      top_p: 1,
+      max_completion_tokens: 4096,
+      stream: false,
+    });
+
+    const res = (completion.choices as any)[0].message.content;
+
+    try {
+      return JSON.parse(res);
+    } catch {
+      throw new HttpException(
+        'Error parsing IA response: ' + res,
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
+  }
 }

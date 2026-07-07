@@ -23,4 +23,12 @@ export class IaController {
   async generateSubTaskResponse(@Body() messageDto: MessageDto) {
     return this.iaService.generateSubtask(messageDto);
   }
+
+  @Auth({
+    role: [Role.ADMIN],
+  })
+  @Post('/generate-tasks')
+  async generateTasks(@Body('message') messageDto: string) {
+    return this.iaService.generateTasks(messageDto);
+  }
 }
