@@ -19,6 +19,7 @@ export class TodosService {
                 where: {
                   status: {
                     in: [TodoStatus.PENDING, TodoStatus.IN_PROGRESS],
+                    notIn: [TodoStatus.COMPLETED, TodoStatus.ARCHIVED],
                   },
                 },
               },
@@ -40,6 +41,7 @@ export class TodosService {
               where: {
                 status: {
                   in: [TodoStatus.PENDING, TodoStatus.IN_PROGRESS],
+                  notIn: [TodoStatus.COMPLETED, TodoStatus.ARCHIVED],
                 },
               },
             },
