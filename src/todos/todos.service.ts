@@ -3,6 +3,7 @@ import { PrismaService } from '../prisma/prisma.service';
 import { JwtPayload } from '../common/interface/type';
 import { CreateTodoDto } from './dto/todos.dto';
 import { UpdateTodoDto } from './dto/updateTodos.dto';
+import { TodoStatus } from '../generated/prisma/enums';
 
 @Injectable()
 export class TodosService {
@@ -10,13 +11,40 @@ export class TodosService {
 
   async getAllTodos(user?: JwtPayload) {
     if (user?.role === 'ADMIN') {
-      return this.prisma.todos.findMany();
+      return this.prisma.todos.findMany({
+        include: {
+          _count: {
+            select: {
+              todos: {
+                where: {
+                  status: {
+                    in: [TodoStatus.PENDING, TodoStatus.IN_PROGRESS],
+                  },
+                },
+              },
+            },
+          },
+        },
+      });
     }
 
     return this.prisma.todos.findMany({
       where: {
         isPublic: true,
         status: true,
+      },
+      include: {
+        _count: {
+          select: {
+            todos: {
+              where: {
+                status: {
+                  in: [TodoStatus.PENDING, TodoStatus.IN_PROGRESS],
+                },
+              },
+            },
+          },
+        },
       },
     });
   }
