@@ -106,4 +106,10 @@ export class TodoController {
   async getTodosByImportance(@Param('num') num: number) {
     return this.todoService.getTodosByImportance(num);
   }
+
+  @Auth()
+  @Get('/resume')
+  async getAllTodosWithResume() {
+    return this.todoService.getResume();
+  }
 }

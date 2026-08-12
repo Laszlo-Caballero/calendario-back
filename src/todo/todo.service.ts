@@ -418,4 +418,39 @@ export class TodoService {
       todos,
     };
   }
+
+  async getResume() {
+    return this.prisma.todo.findMany({
+      where: {
+        isArchived: false,
+        status: {
+          notIn: [TodoStatus.COMPLETED, TodoStatus.ARCHIVED],
+        },
+        todos: {
+          status: true,
+        },
+        OR: [
+          {
+            pinned: true,
+          },
+          {
+            importance: {
+              in: [3, 2],
+            },
+          },
+          {
+            status: TodoStatus.IN_PROGRESS,
+          },
+        ],
+      },
+      include: {
+        images: {
+          include: {
+            image: true,
+          },
+        },
+        todos: true,
+      },
+    });
+  }
 }
