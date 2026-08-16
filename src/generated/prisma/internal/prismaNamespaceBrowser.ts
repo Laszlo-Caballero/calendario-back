@@ -62,8 +62,10 @@ export const ModelName = {
   PaymentMethod: 'PaymentMethod',
   Calendar: 'Calendar',
   Schedule: 'Schedule',
+  TodosAsigment: 'TodosAsigment',
   Todos: 'Todos',
   TodoNote: 'TodoNote',
+  AssignmentTodo: 'AssignmentTodo',
   Todo: 'Todo',
   TodoImage: 'TodoImage',
   Images: 'Images',
@@ -235,11 +237,23 @@ export const ScheduleScalarFieldEnum = {
 export type ScheduleScalarFieldEnum = (typeof ScheduleScalarFieldEnum)[keyof typeof ScheduleScalarFieldEnum]
 
 
+export const TodosAsigmentScalarFieldEnum = {
+  todosAsigmentId: 'todosAsigmentId',
+  todosId: 'todosId',
+  userId: 'userId',
+  createdAt: 'createdAt'
+} as const
+
+export type TodosAsigmentScalarFieldEnum = (typeof TodosAsigmentScalarFieldEnum)[keyof typeof TodosAsigmentScalarFieldEnum]
+
+
 export const TodosScalarFieldEnum = {
   todosId: 'todosId',
   title: 'title',
   status: 'status',
-  isPublic: 'isPublic'
+  isPublic: 'isPublic',
+  createdAt: 'createdAt',
+  userId: 'userId'
 } as const
 
 export type TodosScalarFieldEnum = (typeof TodosScalarFieldEnum)[keyof typeof TodosScalarFieldEnum]
@@ -253,10 +267,21 @@ export const TodoNoteScalarFieldEnum = {
   isArchived: 'isArchived',
   status: 'status',
   createdAt: 'createdAt',
+  createdBy: 'createdBy',
   todosTodosId: 'todosTodosId'
 } as const
 
 export type TodoNoteScalarFieldEnum = (typeof TodoNoteScalarFieldEnum)[keyof typeof TodoNoteScalarFieldEnum]
+
+
+export const AssignmentTodoScalarFieldEnum = {
+  assignmentTodoId: 'assignmentTodoId',
+  todoId: 'todoId',
+  userId: 'userId',
+  createdAt: 'createdAt'
+} as const
+
+export type AssignmentTodoScalarFieldEnum = (typeof AssignmentTodoScalarFieldEnum)[keyof typeof AssignmentTodoScalarFieldEnum]
 
 
 export const TodoScalarFieldEnum = {
@@ -269,7 +294,8 @@ export const TodoScalarFieldEnum = {
   pinned: 'pinned',
   completedAt: 'completedAt',
   hourNotification: 'hourNotification',
-  importance: 'importance'
+  importance: 'importance',
+  createById: 'createById'
 } as const
 
 export type TodoScalarFieldEnum = (typeof TodoScalarFieldEnum)[keyof typeof TodoScalarFieldEnum]

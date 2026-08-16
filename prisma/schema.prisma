@@ -14,17 +14,22 @@ enum Role {
 }
 
 model User {
-  userId              Int        @id @default(autoincrement())
+  userId              Int              @id @default(autoincrement())
   name                String
-  email               String     @unique
+  email               String           @unique
   password            String
-  role                Role       @default(USER)
+  role                Role             @default(USER)
   salaries            Salary[]
   bonuses             Bonus[]
   discounts           Discount[]
   debts               Debts[]
-  monthlyExpenseLimit Float      @default(0)
+  monthlyExpenseLimit Float            @default(0)
   expenses            Expense[]
+  todoAssigment       Todo[]
+  todosAsigments      TodosAsigment[]
+  todos               Todos[]
+  todoNotes           TodoNote[]
+  assignmentTodos     AssignmentTodo[]
 }
 
 enum SalaryParameter {
@@ -163,13 +168,26 @@ model Schedule {
   image       Images?   @relation(fields: [imageId], references: [imageId])
 }
 
+model TodosAsigment {
+  todosAsigmentId Int      @id @default(autoincrement())
+  todosId         Int
+  userId          Int
+  todos           Todos    @relation(fields: [todosId], references: [todosId])
+  user            User     @relation(fields: [userId], references: [userId])
+  createdAt       DateTime @default(now())
+}
+
 model Todos {
-  todosId  Int        @id @default(autoincrement())
-  title    String
-  status   Boolean    @default(true)
-  isPublic Boolean    @default(false)
-  todos    Todo[]
-  notes    TodoNote[]
+  todosId        Int             @id @default(autoincrement())
+  title          String
+  status         Boolean         @default(true)
+  isPublic       Boolean         @default(false)
+  createdAt      DateTime        @default(now())
+  userId         Int
+  user           User            @relation(fields: [userId], references: [userId])
+  todos          Todo[]
+  notes          TodoNote[]
+  todosAsigments TodosAsigment[]
 }
 
 model TodoNote {
@@ -181,6 +199,8 @@ model TodoNote {
   status       Boolean  @default(true)
   createdAt    DateTime @default(now())
   todos        Todos?   @relation(fields: [todosTodosId], references: [todosId])
+  createdBy    Int?
+  user         User?    @relation(fields: [createdBy], references: [userId])
   todosTodosId Int?
 }
 
@@ -193,19 +213,31 @@ enum TodoStatus {
   ARCHIVED
 }
 
+model AssignmentTodo {
+  assignmentTodoId Int      @id @default(autoincrement())
+  todoId           Int
+  userId           Int
+  todo             Todo     @relation(fields: [todoId], references: [todoId])
+  user             User     @relation(fields: [userId], references: [userId])
+  createdAt        DateTime @default(now())
+}
+
 model Todo {
-  todoId           Int         @id @default(autoincrement())
+  todoId           Int              @id @default(autoincrement())
   title            String
   description      String
-  status           TodoStatus  @default(PENDING)
+  status           TodoStatus       @default(PENDING)
   todosId          Int
-  todos            Todos       @relation(fields: [todosId], references: [todosId])
+  todos            Todos            @relation(fields: [todosId], references: [todosId])
   images           TodoImage[]
-  isArchived       Boolean     @default(false)
-  pinned           Boolean     @default(false)
+  isArchived       Boolean          @default(false)
+  pinned           Boolean          @default(false)
   completedAt      DateTime?
   hourNotification DateTime?
-  importance       Int         @default(0)
+  importance       Int              @default(0)
+  createById       Int?
+  createBy         User?            @relation(fields: [createById], references: [userId])
+  assignmentTodos  AssignmentTodo[]
 }
 
 model TodoImage {

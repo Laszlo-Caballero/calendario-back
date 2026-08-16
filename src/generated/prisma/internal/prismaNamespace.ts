@@ -395,8 +395,10 @@ export const ModelName = {
   PaymentMethod: 'PaymentMethod',
   Calendar: 'Calendar',
   Schedule: 'Schedule',
+  TodosAsigment: 'TodosAsigment',
   Todos: 'Todos',
   TodoNote: 'TodoNote',
+  AssignmentTodo: 'AssignmentTodo',
   Todo: 'Todo',
   TodoImage: 'TodoImage',
   Images: 'Images',
@@ -417,7 +419,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "salary" | "bonus" | "discount" | "debts" | "debtPayment" | "expense" | "expenseCategory" | "paymentMethod" | "calendar" | "schedule" | "todos" | "todoNote" | "todo" | "todoImage" | "images" | "archives" | "folder"
+    modelProps: "user" | "salary" | "bonus" | "discount" | "debts" | "debtPayment" | "expense" | "expenseCategory" | "paymentMethod" | "calendar" | "schedule" | "todosAsigment" | "todos" | "todoNote" | "assignmentTodo" | "todo" | "todoImage" | "images" | "archives" | "folder"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1235,6 +1237,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    TodosAsigment: {
+      payload: Prisma.$TodosAsigmentPayload<ExtArgs>
+      fields: Prisma.TodosAsigmentFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.TodosAsigmentFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TodosAsigmentPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.TodosAsigmentFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TodosAsigmentPayload>
+        }
+        findFirst: {
+          args: Prisma.TodosAsigmentFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TodosAsigmentPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.TodosAsigmentFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TodosAsigmentPayload>
+        }
+        findMany: {
+          args: Prisma.TodosAsigmentFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TodosAsigmentPayload>[]
+        }
+        create: {
+          args: Prisma.TodosAsigmentCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TodosAsigmentPayload>
+        }
+        createMany: {
+          args: Prisma.TodosAsigmentCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.TodosAsigmentCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TodosAsigmentPayload>[]
+        }
+        delete: {
+          args: Prisma.TodosAsigmentDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TodosAsigmentPayload>
+        }
+        update: {
+          args: Prisma.TodosAsigmentUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TodosAsigmentPayload>
+        }
+        deleteMany: {
+          args: Prisma.TodosAsigmentDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.TodosAsigmentUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.TodosAsigmentUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TodosAsigmentPayload>[]
+        }
+        upsert: {
+          args: Prisma.TodosAsigmentUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TodosAsigmentPayload>
+        }
+        aggregate: {
+          args: Prisma.TodosAsigmentAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateTodosAsigment>
+        }
+        groupBy: {
+          args: Prisma.TodosAsigmentGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TodosAsigmentGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.TodosAsigmentCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TodosAsigmentCountAggregateOutputType> | number
+        }
+      }
+    }
     Todos: {
       payload: Prisma.$TodosPayload<ExtArgs>
       fields: Prisma.TodosFieldRefs
@@ -1380,6 +1456,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.TodoNoteCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.TodoNoteCountAggregateOutputType> | number
+        }
+      }
+    }
+    AssignmentTodo: {
+      payload: Prisma.$AssignmentTodoPayload<ExtArgs>
+      fields: Prisma.AssignmentTodoFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AssignmentTodoFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssignmentTodoPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AssignmentTodoFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssignmentTodoPayload>
+        }
+        findFirst: {
+          args: Prisma.AssignmentTodoFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssignmentTodoPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AssignmentTodoFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssignmentTodoPayload>
+        }
+        findMany: {
+          args: Prisma.AssignmentTodoFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssignmentTodoPayload>[]
+        }
+        create: {
+          args: Prisma.AssignmentTodoCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssignmentTodoPayload>
+        }
+        createMany: {
+          args: Prisma.AssignmentTodoCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.AssignmentTodoCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssignmentTodoPayload>[]
+        }
+        delete: {
+          args: Prisma.AssignmentTodoDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssignmentTodoPayload>
+        }
+        update: {
+          args: Prisma.AssignmentTodoUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssignmentTodoPayload>
+        }
+        deleteMany: {
+          args: Prisma.AssignmentTodoDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AssignmentTodoUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.AssignmentTodoUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssignmentTodoPayload>[]
+        }
+        upsert: {
+          args: Prisma.AssignmentTodoUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssignmentTodoPayload>
+        }
+        aggregate: {
+          args: Prisma.AssignmentTodoAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAssignmentTodo>
+        }
+        groupBy: {
+          args: Prisma.AssignmentTodoGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AssignmentTodoGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AssignmentTodoCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AssignmentTodoCountAggregateOutputType> | number
         }
       }
     }
@@ -1940,11 +2090,23 @@ export const ScheduleScalarFieldEnum = {
 export type ScheduleScalarFieldEnum = (typeof ScheduleScalarFieldEnum)[keyof typeof ScheduleScalarFieldEnum]
 
 
+export const TodosAsigmentScalarFieldEnum = {
+  todosAsigmentId: 'todosAsigmentId',
+  todosId: 'todosId',
+  userId: 'userId',
+  createdAt: 'createdAt'
+} as const
+
+export type TodosAsigmentScalarFieldEnum = (typeof TodosAsigmentScalarFieldEnum)[keyof typeof TodosAsigmentScalarFieldEnum]
+
+
 export const TodosScalarFieldEnum = {
   todosId: 'todosId',
   title: 'title',
   status: 'status',
-  isPublic: 'isPublic'
+  isPublic: 'isPublic',
+  createdAt: 'createdAt',
+  userId: 'userId'
 } as const
 
 export type TodosScalarFieldEnum = (typeof TodosScalarFieldEnum)[keyof typeof TodosScalarFieldEnum]
@@ -1958,10 +2120,21 @@ export const TodoNoteScalarFieldEnum = {
   isArchived: 'isArchived',
   status: 'status',
   createdAt: 'createdAt',
+  createdBy: 'createdBy',
   todosTodosId: 'todosTodosId'
 } as const
 
 export type TodoNoteScalarFieldEnum = (typeof TodoNoteScalarFieldEnum)[keyof typeof TodoNoteScalarFieldEnum]
+
+
+export const AssignmentTodoScalarFieldEnum = {
+  assignmentTodoId: 'assignmentTodoId',
+  todoId: 'todoId',
+  userId: 'userId',
+  createdAt: 'createdAt'
+} as const
+
+export type AssignmentTodoScalarFieldEnum = (typeof AssignmentTodoScalarFieldEnum)[keyof typeof AssignmentTodoScalarFieldEnum]
 
 
 export const TodoScalarFieldEnum = {
@@ -1974,7 +2147,8 @@ export const TodoScalarFieldEnum = {
   pinned: 'pinned',
   completedAt: 'completedAt',
   hourNotification: 'hourNotification',
-  importance: 'importance'
+  importance: 'importance',
+  createById: 'createById'
 } as const
 
 export type TodoScalarFieldEnum = (typeof TodoScalarFieldEnum)[keyof typeof TodoScalarFieldEnum]
@@ -2211,8 +2385,10 @@ export type GlobalOmitConfig = {
   paymentMethod?: Prisma.PaymentMethodOmit
   calendar?: Prisma.CalendarOmit
   schedule?: Prisma.ScheduleOmit
+  todosAsigment?: Prisma.TodosAsigmentOmit
   todos?: Prisma.TodosOmit
   todoNote?: Prisma.TodoNoteOmit
+  assignmentTodo?: Prisma.AssignmentTodoOmit
   todo?: Prisma.TodoOmit
   todoImage?: Prisma.TodoImageOmit
   images?: Prisma.ImagesOmit

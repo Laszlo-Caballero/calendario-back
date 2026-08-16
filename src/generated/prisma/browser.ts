@@ -73,6 +73,11 @@ export type Calendar = Prisma.CalendarModel
  */
 export type Schedule = Prisma.ScheduleModel
 /**
+ * Model TodosAsigment
+ * 
+ */
+export type TodosAsigment = Prisma.TodosAsigmentModel
+/**
  * Model Todos
  * 
  */
@@ -82,6 +87,11 @@ export type Todos = Prisma.TodosModel
  * 
  */
 export type TodoNote = Prisma.TodoNoteModel
+/**
+ * Model AssignmentTodo
+ * 
+ */
+export type AssignmentTodo = Prisma.AssignmentTodoModel
 /**
  * Model Todo
  * 

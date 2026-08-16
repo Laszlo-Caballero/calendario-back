@@ -233,6 +233,11 @@ export type UserWhereInput = {
   discounts?: Prisma.DiscountListRelationFilter
   debts?: Prisma.DebtsListRelationFilter
   expenses?: Prisma.ExpenseListRelationFilter
+  todoAssigment?: Prisma.TodoListRelationFilter
+  todosAsigments?: Prisma.TodosAsigmentListRelationFilter
+  todos?: Prisma.TodosListRelationFilter
+  todoNotes?: Prisma.TodoNoteListRelationFilter
+  assignmentTodos?: Prisma.AssignmentTodoListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -247,6 +252,11 @@ export type UserOrderByWithRelationInput = {
   discounts?: Prisma.DiscountOrderByRelationAggregateInput
   debts?: Prisma.DebtsOrderByRelationAggregateInput
   expenses?: Prisma.ExpenseOrderByRelationAggregateInput
+  todoAssigment?: Prisma.TodoOrderByRelationAggregateInput
+  todosAsigments?: Prisma.TodosAsigmentOrderByRelationAggregateInput
+  todos?: Prisma.TodosOrderByRelationAggregateInput
+  todoNotes?: Prisma.TodoNoteOrderByRelationAggregateInput
+  assignmentTodos?: Prisma.AssignmentTodoOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -264,6 +274,11 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   discounts?: Prisma.DiscountListRelationFilter
   debts?: Prisma.DebtsListRelationFilter
   expenses?: Prisma.ExpenseListRelationFilter
+  todoAssigment?: Prisma.TodoListRelationFilter
+  todosAsigments?: Prisma.TodosAsigmentListRelationFilter
+  todos?: Prisma.TodosListRelationFilter
+  todoNotes?: Prisma.TodoNoteListRelationFilter
+  assignmentTodos?: Prisma.AssignmentTodoListRelationFilter
 }, "userId" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -303,6 +318,11 @@ export type UserCreateInput = {
   discounts?: Prisma.DiscountCreateNestedManyWithoutUserInput
   debts?: Prisma.DebtsCreateNestedManyWithoutUserInput
   expenses?: Prisma.ExpenseCreateNestedManyWithoutUserInput
+  todoAssigment?: Prisma.TodoCreateNestedManyWithoutCreateByInput
+  todosAsigments?: Prisma.TodosAsigmentCreateNestedManyWithoutUserInput
+  todos?: Prisma.TodosCreateNestedManyWithoutUserInput
+  todoNotes?: Prisma.TodoNoteCreateNestedManyWithoutUserInput
+  assignmentTodos?: Prisma.AssignmentTodoCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -317,6 +337,11 @@ export type UserUncheckedCreateInput = {
   discounts?: Prisma.DiscountUncheckedCreateNestedManyWithoutUserInput
   debts?: Prisma.DebtsUncheckedCreateNestedManyWithoutUserInput
   expenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutUserInput
+  todoAssigment?: Prisma.TodoUncheckedCreateNestedManyWithoutCreateByInput
+  todosAsigments?: Prisma.TodosAsigmentUncheckedCreateNestedManyWithoutUserInput
+  todos?: Prisma.TodosUncheckedCreateNestedManyWithoutUserInput
+  todoNotes?: Prisma.TodoNoteUncheckedCreateNestedManyWithoutUserInput
+  assignmentTodos?: Prisma.AssignmentTodoUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -330,6 +355,11 @@ export type UserUpdateInput = {
   discounts?: Prisma.DiscountUpdateManyWithoutUserNestedInput
   debts?: Prisma.DebtsUpdateManyWithoutUserNestedInput
   expenses?: Prisma.ExpenseUpdateManyWithoutUserNestedInput
+  todoAssigment?: Prisma.TodoUpdateManyWithoutCreateByNestedInput
+  todosAsigments?: Prisma.TodosAsigmentUpdateManyWithoutUserNestedInput
+  todos?: Prisma.TodosUpdateManyWithoutUserNestedInput
+  todoNotes?: Prisma.TodoNoteUpdateManyWithoutUserNestedInput
+  assignmentTodos?: Prisma.AssignmentTodoUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -344,6 +374,11 @@ export type UserUncheckedUpdateInput = {
   discounts?: Prisma.DiscountUncheckedUpdateManyWithoutUserNestedInput
   debts?: Prisma.DebtsUncheckedUpdateManyWithoutUserNestedInput
   expenses?: Prisma.ExpenseUncheckedUpdateManyWithoutUserNestedInput
+  todoAssigment?: Prisma.TodoUncheckedUpdateManyWithoutCreateByNestedInput
+  todosAsigments?: Prisma.TodosAsigmentUncheckedUpdateManyWithoutUserNestedInput
+  todos?: Prisma.TodosUncheckedUpdateManyWithoutUserNestedInput
+  todoNotes?: Prisma.TodoNoteUncheckedUpdateManyWithoutUserNestedInput
+  assignmentTodos?: Prisma.AssignmentTodoUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -412,6 +447,11 @@ export type UserSumOrderByAggregateInput = {
 export type UserScalarRelationFilter = {
   is?: Prisma.UserWhereInput
   isNot?: Prisma.UserWhereInput
+}
+
+export type UserNullableScalarRelationFilter = {
+  is?: Prisma.UserWhereInput | null
+  isNot?: Prisma.UserWhereInput | null
 }
 
 export type StringFieldUpdateOperationsInput = {
@@ -508,6 +548,80 @@ export type UserUpdateOneRequiredWithoutExpensesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutExpensesInput, Prisma.UserUpdateWithoutExpensesInput>, Prisma.UserUncheckedUpdateWithoutExpensesInput>
 }
 
+export type UserCreateNestedOneWithoutTodosAsigmentsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTodosAsigmentsInput, Prisma.UserUncheckedCreateWithoutTodosAsigmentsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTodosAsigmentsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutTodosAsigmentsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTodosAsigmentsInput, Prisma.UserUncheckedCreateWithoutTodosAsigmentsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTodosAsigmentsInput
+  upsert?: Prisma.UserUpsertWithoutTodosAsigmentsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTodosAsigmentsInput, Prisma.UserUpdateWithoutTodosAsigmentsInput>, Prisma.UserUncheckedUpdateWithoutTodosAsigmentsInput>
+}
+
+export type UserCreateNestedOneWithoutTodosInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTodosInput, Prisma.UserUncheckedCreateWithoutTodosInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTodosInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutTodosNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTodosInput, Prisma.UserUncheckedCreateWithoutTodosInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTodosInput
+  upsert?: Prisma.UserUpsertWithoutTodosInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTodosInput, Prisma.UserUpdateWithoutTodosInput>, Prisma.UserUncheckedUpdateWithoutTodosInput>
+}
+
+export type UserCreateNestedOneWithoutTodoNotesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTodoNotesInput, Prisma.UserUncheckedCreateWithoutTodoNotesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTodoNotesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutTodoNotesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTodoNotesInput, Prisma.UserUncheckedCreateWithoutTodoNotesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTodoNotesInput
+  upsert?: Prisma.UserUpsertWithoutTodoNotesInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTodoNotesInput, Prisma.UserUpdateWithoutTodoNotesInput>, Prisma.UserUncheckedUpdateWithoutTodoNotesInput>
+}
+
+export type UserCreateNestedOneWithoutAssignmentTodosInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAssignmentTodosInput, Prisma.UserUncheckedCreateWithoutAssignmentTodosInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAssignmentTodosInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutAssignmentTodosNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAssignmentTodosInput, Prisma.UserUncheckedCreateWithoutAssignmentTodosInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAssignmentTodosInput
+  upsert?: Prisma.UserUpsertWithoutAssignmentTodosInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAssignmentTodosInput, Prisma.UserUpdateWithoutAssignmentTodosInput>, Prisma.UserUncheckedUpdateWithoutAssignmentTodosInput>
+}
+
+export type UserCreateNestedOneWithoutTodoAssigmentInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTodoAssigmentInput, Prisma.UserUncheckedCreateWithoutTodoAssigmentInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTodoAssigmentInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutTodoAssigmentNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTodoAssigmentInput, Prisma.UserUncheckedCreateWithoutTodoAssigmentInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTodoAssigmentInput
+  upsert?: Prisma.UserUpsertWithoutTodoAssigmentInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTodoAssigmentInput, Prisma.UserUpdateWithoutTodoAssigmentInput>, Prisma.UserUncheckedUpdateWithoutTodoAssigmentInput>
+}
+
 export type UserCreateWithoutSalariesInput = {
   name: string
   email: string
@@ -518,6 +632,11 @@ export type UserCreateWithoutSalariesInput = {
   discounts?: Prisma.DiscountCreateNestedManyWithoutUserInput
   debts?: Prisma.DebtsCreateNestedManyWithoutUserInput
   expenses?: Prisma.ExpenseCreateNestedManyWithoutUserInput
+  todoAssigment?: Prisma.TodoCreateNestedManyWithoutCreateByInput
+  todosAsigments?: Prisma.TodosAsigmentCreateNestedManyWithoutUserInput
+  todos?: Prisma.TodosCreateNestedManyWithoutUserInput
+  todoNotes?: Prisma.TodoNoteCreateNestedManyWithoutUserInput
+  assignmentTodos?: Prisma.AssignmentTodoCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutSalariesInput = {
@@ -531,6 +650,11 @@ export type UserUncheckedCreateWithoutSalariesInput = {
   discounts?: Prisma.DiscountUncheckedCreateNestedManyWithoutUserInput
   debts?: Prisma.DebtsUncheckedCreateNestedManyWithoutUserInput
   expenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutUserInput
+  todoAssigment?: Prisma.TodoUncheckedCreateNestedManyWithoutCreateByInput
+  todosAsigments?: Prisma.TodosAsigmentUncheckedCreateNestedManyWithoutUserInput
+  todos?: Prisma.TodosUncheckedCreateNestedManyWithoutUserInput
+  todoNotes?: Prisma.TodoNoteUncheckedCreateNestedManyWithoutUserInput
+  assignmentTodos?: Prisma.AssignmentTodoUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutSalariesInput = {
@@ -559,6 +683,11 @@ export type UserUpdateWithoutSalariesInput = {
   discounts?: Prisma.DiscountUpdateManyWithoutUserNestedInput
   debts?: Prisma.DebtsUpdateManyWithoutUserNestedInput
   expenses?: Prisma.ExpenseUpdateManyWithoutUserNestedInput
+  todoAssigment?: Prisma.TodoUpdateManyWithoutCreateByNestedInput
+  todosAsigments?: Prisma.TodosAsigmentUpdateManyWithoutUserNestedInput
+  todos?: Prisma.TodosUpdateManyWithoutUserNestedInput
+  todoNotes?: Prisma.TodoNoteUpdateManyWithoutUserNestedInput
+  assignmentTodos?: Prisma.AssignmentTodoUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSalariesInput = {
@@ -572,6 +701,11 @@ export type UserUncheckedUpdateWithoutSalariesInput = {
   discounts?: Prisma.DiscountUncheckedUpdateManyWithoutUserNestedInput
   debts?: Prisma.DebtsUncheckedUpdateManyWithoutUserNestedInput
   expenses?: Prisma.ExpenseUncheckedUpdateManyWithoutUserNestedInput
+  todoAssigment?: Prisma.TodoUncheckedUpdateManyWithoutCreateByNestedInput
+  todosAsigments?: Prisma.TodosAsigmentUncheckedUpdateManyWithoutUserNestedInput
+  todos?: Prisma.TodosUncheckedUpdateManyWithoutUserNestedInput
+  todoNotes?: Prisma.TodoNoteUncheckedUpdateManyWithoutUserNestedInput
+  assignmentTodos?: Prisma.AssignmentTodoUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutBonusesInput = {
@@ -584,6 +718,11 @@ export type UserCreateWithoutBonusesInput = {
   discounts?: Prisma.DiscountCreateNestedManyWithoutUserInput
   debts?: Prisma.DebtsCreateNestedManyWithoutUserInput
   expenses?: Prisma.ExpenseCreateNestedManyWithoutUserInput
+  todoAssigment?: Prisma.TodoCreateNestedManyWithoutCreateByInput
+  todosAsigments?: Prisma.TodosAsigmentCreateNestedManyWithoutUserInput
+  todos?: Prisma.TodosCreateNestedManyWithoutUserInput
+  todoNotes?: Prisma.TodoNoteCreateNestedManyWithoutUserInput
+  assignmentTodos?: Prisma.AssignmentTodoCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutBonusesInput = {
@@ -597,6 +736,11 @@ export type UserUncheckedCreateWithoutBonusesInput = {
   discounts?: Prisma.DiscountUncheckedCreateNestedManyWithoutUserInput
   debts?: Prisma.DebtsUncheckedCreateNestedManyWithoutUserInput
   expenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutUserInput
+  todoAssigment?: Prisma.TodoUncheckedCreateNestedManyWithoutCreateByInput
+  todosAsigments?: Prisma.TodosAsigmentUncheckedCreateNestedManyWithoutUserInput
+  todos?: Prisma.TodosUncheckedCreateNestedManyWithoutUserInput
+  todoNotes?: Prisma.TodoNoteUncheckedCreateNestedManyWithoutUserInput
+  assignmentTodos?: Prisma.AssignmentTodoUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutBonusesInput = {
@@ -625,6 +769,11 @@ export type UserUpdateWithoutBonusesInput = {
   discounts?: Prisma.DiscountUpdateManyWithoutUserNestedInput
   debts?: Prisma.DebtsUpdateManyWithoutUserNestedInput
   expenses?: Prisma.ExpenseUpdateManyWithoutUserNestedInput
+  todoAssigment?: Prisma.TodoUpdateManyWithoutCreateByNestedInput
+  todosAsigments?: Prisma.TodosAsigmentUpdateManyWithoutUserNestedInput
+  todos?: Prisma.TodosUpdateManyWithoutUserNestedInput
+  todoNotes?: Prisma.TodoNoteUpdateManyWithoutUserNestedInput
+  assignmentTodos?: Prisma.AssignmentTodoUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutBonusesInput = {
@@ -638,6 +787,11 @@ export type UserUncheckedUpdateWithoutBonusesInput = {
   discounts?: Prisma.DiscountUncheckedUpdateManyWithoutUserNestedInput
   debts?: Prisma.DebtsUncheckedUpdateManyWithoutUserNestedInput
   expenses?: Prisma.ExpenseUncheckedUpdateManyWithoutUserNestedInput
+  todoAssigment?: Prisma.TodoUncheckedUpdateManyWithoutCreateByNestedInput
+  todosAsigments?: Prisma.TodosAsigmentUncheckedUpdateManyWithoutUserNestedInput
+  todos?: Prisma.TodosUncheckedUpdateManyWithoutUserNestedInput
+  todoNotes?: Prisma.TodoNoteUncheckedUpdateManyWithoutUserNestedInput
+  assignmentTodos?: Prisma.AssignmentTodoUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutDiscountsInput = {
@@ -650,6 +804,11 @@ export type UserCreateWithoutDiscountsInput = {
   bonuses?: Prisma.BonusCreateNestedManyWithoutUserInput
   debts?: Prisma.DebtsCreateNestedManyWithoutUserInput
   expenses?: Prisma.ExpenseCreateNestedManyWithoutUserInput
+  todoAssigment?: Prisma.TodoCreateNestedManyWithoutCreateByInput
+  todosAsigments?: Prisma.TodosAsigmentCreateNestedManyWithoutUserInput
+  todos?: Prisma.TodosCreateNestedManyWithoutUserInput
+  todoNotes?: Prisma.TodoNoteCreateNestedManyWithoutUserInput
+  assignmentTodos?: Prisma.AssignmentTodoCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutDiscountsInput = {
@@ -663,6 +822,11 @@ export type UserUncheckedCreateWithoutDiscountsInput = {
   bonuses?: Prisma.BonusUncheckedCreateNestedManyWithoutUserInput
   debts?: Prisma.DebtsUncheckedCreateNestedManyWithoutUserInput
   expenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutUserInput
+  todoAssigment?: Prisma.TodoUncheckedCreateNestedManyWithoutCreateByInput
+  todosAsigments?: Prisma.TodosAsigmentUncheckedCreateNestedManyWithoutUserInput
+  todos?: Prisma.TodosUncheckedCreateNestedManyWithoutUserInput
+  todoNotes?: Prisma.TodoNoteUncheckedCreateNestedManyWithoutUserInput
+  assignmentTodos?: Prisma.AssignmentTodoUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutDiscountsInput = {
@@ -691,6 +855,11 @@ export type UserUpdateWithoutDiscountsInput = {
   bonuses?: Prisma.BonusUpdateManyWithoutUserNestedInput
   debts?: Prisma.DebtsUpdateManyWithoutUserNestedInput
   expenses?: Prisma.ExpenseUpdateManyWithoutUserNestedInput
+  todoAssigment?: Prisma.TodoUpdateManyWithoutCreateByNestedInput
+  todosAsigments?: Prisma.TodosAsigmentUpdateManyWithoutUserNestedInput
+  todos?: Prisma.TodosUpdateManyWithoutUserNestedInput
+  todoNotes?: Prisma.TodoNoteUpdateManyWithoutUserNestedInput
+  assignmentTodos?: Prisma.AssignmentTodoUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDiscountsInput = {
@@ -704,6 +873,11 @@ export type UserUncheckedUpdateWithoutDiscountsInput = {
   bonuses?: Prisma.BonusUncheckedUpdateManyWithoutUserNestedInput
   debts?: Prisma.DebtsUncheckedUpdateManyWithoutUserNestedInput
   expenses?: Prisma.ExpenseUncheckedUpdateManyWithoutUserNestedInput
+  todoAssigment?: Prisma.TodoUncheckedUpdateManyWithoutCreateByNestedInput
+  todosAsigments?: Prisma.TodosAsigmentUncheckedUpdateManyWithoutUserNestedInput
+  todos?: Prisma.TodosUncheckedUpdateManyWithoutUserNestedInput
+  todoNotes?: Prisma.TodoNoteUncheckedUpdateManyWithoutUserNestedInput
+  assignmentTodos?: Prisma.AssignmentTodoUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutDebtsInput = {
@@ -716,6 +890,11 @@ export type UserCreateWithoutDebtsInput = {
   bonuses?: Prisma.BonusCreateNestedManyWithoutUserInput
   discounts?: Prisma.DiscountCreateNestedManyWithoutUserInput
   expenses?: Prisma.ExpenseCreateNestedManyWithoutUserInput
+  todoAssigment?: Prisma.TodoCreateNestedManyWithoutCreateByInput
+  todosAsigments?: Prisma.TodosAsigmentCreateNestedManyWithoutUserInput
+  todos?: Prisma.TodosCreateNestedManyWithoutUserInput
+  todoNotes?: Prisma.TodoNoteCreateNestedManyWithoutUserInput
+  assignmentTodos?: Prisma.AssignmentTodoCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutDebtsInput = {
@@ -729,6 +908,11 @@ export type UserUncheckedCreateWithoutDebtsInput = {
   bonuses?: Prisma.BonusUncheckedCreateNestedManyWithoutUserInput
   discounts?: Prisma.DiscountUncheckedCreateNestedManyWithoutUserInput
   expenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutUserInput
+  todoAssigment?: Prisma.TodoUncheckedCreateNestedManyWithoutCreateByInput
+  todosAsigments?: Prisma.TodosAsigmentUncheckedCreateNestedManyWithoutUserInput
+  todos?: Prisma.TodosUncheckedCreateNestedManyWithoutUserInput
+  todoNotes?: Prisma.TodoNoteUncheckedCreateNestedManyWithoutUserInput
+  assignmentTodos?: Prisma.AssignmentTodoUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutDebtsInput = {
@@ -757,6 +941,11 @@ export type UserUpdateWithoutDebtsInput = {
   bonuses?: Prisma.BonusUpdateManyWithoutUserNestedInput
   discounts?: Prisma.DiscountUpdateManyWithoutUserNestedInput
   expenses?: Prisma.ExpenseUpdateManyWithoutUserNestedInput
+  todoAssigment?: Prisma.TodoUpdateManyWithoutCreateByNestedInput
+  todosAsigments?: Prisma.TodosAsigmentUpdateManyWithoutUserNestedInput
+  todos?: Prisma.TodosUpdateManyWithoutUserNestedInput
+  todoNotes?: Prisma.TodoNoteUpdateManyWithoutUserNestedInput
+  assignmentTodos?: Prisma.AssignmentTodoUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDebtsInput = {
@@ -770,6 +959,11 @@ export type UserUncheckedUpdateWithoutDebtsInput = {
   bonuses?: Prisma.BonusUncheckedUpdateManyWithoutUserNestedInput
   discounts?: Prisma.DiscountUncheckedUpdateManyWithoutUserNestedInput
   expenses?: Prisma.ExpenseUncheckedUpdateManyWithoutUserNestedInput
+  todoAssigment?: Prisma.TodoUncheckedUpdateManyWithoutCreateByNestedInput
+  todosAsigments?: Prisma.TodosAsigmentUncheckedUpdateManyWithoutUserNestedInput
+  todos?: Prisma.TodosUncheckedUpdateManyWithoutUserNestedInput
+  todoNotes?: Prisma.TodoNoteUncheckedUpdateManyWithoutUserNestedInput
+  assignmentTodos?: Prisma.AssignmentTodoUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutExpensesInput = {
@@ -782,6 +976,11 @@ export type UserCreateWithoutExpensesInput = {
   bonuses?: Prisma.BonusCreateNestedManyWithoutUserInput
   discounts?: Prisma.DiscountCreateNestedManyWithoutUserInput
   debts?: Prisma.DebtsCreateNestedManyWithoutUserInput
+  todoAssigment?: Prisma.TodoCreateNestedManyWithoutCreateByInput
+  todosAsigments?: Prisma.TodosAsigmentCreateNestedManyWithoutUserInput
+  todos?: Prisma.TodosCreateNestedManyWithoutUserInput
+  todoNotes?: Prisma.TodoNoteCreateNestedManyWithoutUserInput
+  assignmentTodos?: Prisma.AssignmentTodoCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutExpensesInput = {
@@ -795,6 +994,11 @@ export type UserUncheckedCreateWithoutExpensesInput = {
   bonuses?: Prisma.BonusUncheckedCreateNestedManyWithoutUserInput
   discounts?: Prisma.DiscountUncheckedCreateNestedManyWithoutUserInput
   debts?: Prisma.DebtsUncheckedCreateNestedManyWithoutUserInput
+  todoAssigment?: Prisma.TodoUncheckedCreateNestedManyWithoutCreateByInput
+  todosAsigments?: Prisma.TodosAsigmentUncheckedCreateNestedManyWithoutUserInput
+  todos?: Prisma.TodosUncheckedCreateNestedManyWithoutUserInput
+  todoNotes?: Prisma.TodoNoteUncheckedCreateNestedManyWithoutUserInput
+  assignmentTodos?: Prisma.AssignmentTodoUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutExpensesInput = {
@@ -823,6 +1027,11 @@ export type UserUpdateWithoutExpensesInput = {
   bonuses?: Prisma.BonusUpdateManyWithoutUserNestedInput
   discounts?: Prisma.DiscountUpdateManyWithoutUserNestedInput
   debts?: Prisma.DebtsUpdateManyWithoutUserNestedInput
+  todoAssigment?: Prisma.TodoUpdateManyWithoutCreateByNestedInput
+  todosAsigments?: Prisma.TodosAsigmentUpdateManyWithoutUserNestedInput
+  todos?: Prisma.TodosUpdateManyWithoutUserNestedInput
+  todoNotes?: Prisma.TodoNoteUpdateManyWithoutUserNestedInput
+  assignmentTodos?: Prisma.AssignmentTodoUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutExpensesInput = {
@@ -836,6 +1045,441 @@ export type UserUncheckedUpdateWithoutExpensesInput = {
   bonuses?: Prisma.BonusUncheckedUpdateManyWithoutUserNestedInput
   discounts?: Prisma.DiscountUncheckedUpdateManyWithoutUserNestedInput
   debts?: Prisma.DebtsUncheckedUpdateManyWithoutUserNestedInput
+  todoAssigment?: Prisma.TodoUncheckedUpdateManyWithoutCreateByNestedInput
+  todosAsigments?: Prisma.TodosAsigmentUncheckedUpdateManyWithoutUserNestedInput
+  todos?: Prisma.TodosUncheckedUpdateManyWithoutUserNestedInput
+  todoNotes?: Prisma.TodoNoteUncheckedUpdateManyWithoutUserNestedInput
+  assignmentTodos?: Prisma.AssignmentTodoUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutTodosAsigmentsInput = {
+  name: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  monthlyExpenseLimit?: number
+  salaries?: Prisma.SalaryCreateNestedManyWithoutUserInput
+  bonuses?: Prisma.BonusCreateNestedManyWithoutUserInput
+  discounts?: Prisma.DiscountCreateNestedManyWithoutUserInput
+  debts?: Prisma.DebtsCreateNestedManyWithoutUserInput
+  expenses?: Prisma.ExpenseCreateNestedManyWithoutUserInput
+  todoAssigment?: Prisma.TodoCreateNestedManyWithoutCreateByInput
+  todos?: Prisma.TodosCreateNestedManyWithoutUserInput
+  todoNotes?: Prisma.TodoNoteCreateNestedManyWithoutUserInput
+  assignmentTodos?: Prisma.AssignmentTodoCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutTodosAsigmentsInput = {
+  userId?: number
+  name: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  monthlyExpenseLimit?: number
+  salaries?: Prisma.SalaryUncheckedCreateNestedManyWithoutUserInput
+  bonuses?: Prisma.BonusUncheckedCreateNestedManyWithoutUserInput
+  discounts?: Prisma.DiscountUncheckedCreateNestedManyWithoutUserInput
+  debts?: Prisma.DebtsUncheckedCreateNestedManyWithoutUserInput
+  expenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutUserInput
+  todoAssigment?: Prisma.TodoUncheckedCreateNestedManyWithoutCreateByInput
+  todos?: Prisma.TodosUncheckedCreateNestedManyWithoutUserInput
+  todoNotes?: Prisma.TodoNoteUncheckedCreateNestedManyWithoutUserInput
+  assignmentTodos?: Prisma.AssignmentTodoUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutTodosAsigmentsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutTodosAsigmentsInput, Prisma.UserUncheckedCreateWithoutTodosAsigmentsInput>
+}
+
+export type UserUpsertWithoutTodosAsigmentsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutTodosAsigmentsInput, Prisma.UserUncheckedUpdateWithoutTodosAsigmentsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutTodosAsigmentsInput, Prisma.UserUncheckedCreateWithoutTodosAsigmentsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutTodosAsigmentsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutTodosAsigmentsInput, Prisma.UserUncheckedUpdateWithoutTodosAsigmentsInput>
+}
+
+export type UserUpdateWithoutTodosAsigmentsInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  monthlyExpenseLimit?: Prisma.FloatFieldUpdateOperationsInput | number
+  salaries?: Prisma.SalaryUpdateManyWithoutUserNestedInput
+  bonuses?: Prisma.BonusUpdateManyWithoutUserNestedInput
+  discounts?: Prisma.DiscountUpdateManyWithoutUserNestedInput
+  debts?: Prisma.DebtsUpdateManyWithoutUserNestedInput
+  expenses?: Prisma.ExpenseUpdateManyWithoutUserNestedInput
+  todoAssigment?: Prisma.TodoUpdateManyWithoutCreateByNestedInput
+  todos?: Prisma.TodosUpdateManyWithoutUserNestedInput
+  todoNotes?: Prisma.TodoNoteUpdateManyWithoutUserNestedInput
+  assignmentTodos?: Prisma.AssignmentTodoUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutTodosAsigmentsInput = {
+  userId?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  monthlyExpenseLimit?: Prisma.FloatFieldUpdateOperationsInput | number
+  salaries?: Prisma.SalaryUncheckedUpdateManyWithoutUserNestedInput
+  bonuses?: Prisma.BonusUncheckedUpdateManyWithoutUserNestedInput
+  discounts?: Prisma.DiscountUncheckedUpdateManyWithoutUserNestedInput
+  debts?: Prisma.DebtsUncheckedUpdateManyWithoutUserNestedInput
+  expenses?: Prisma.ExpenseUncheckedUpdateManyWithoutUserNestedInput
+  todoAssigment?: Prisma.TodoUncheckedUpdateManyWithoutCreateByNestedInput
+  todos?: Prisma.TodosUncheckedUpdateManyWithoutUserNestedInput
+  todoNotes?: Prisma.TodoNoteUncheckedUpdateManyWithoutUserNestedInput
+  assignmentTodos?: Prisma.AssignmentTodoUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutTodosInput = {
+  name: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  monthlyExpenseLimit?: number
+  salaries?: Prisma.SalaryCreateNestedManyWithoutUserInput
+  bonuses?: Prisma.BonusCreateNestedManyWithoutUserInput
+  discounts?: Prisma.DiscountCreateNestedManyWithoutUserInput
+  debts?: Prisma.DebtsCreateNestedManyWithoutUserInput
+  expenses?: Prisma.ExpenseCreateNestedManyWithoutUserInput
+  todoAssigment?: Prisma.TodoCreateNestedManyWithoutCreateByInput
+  todosAsigments?: Prisma.TodosAsigmentCreateNestedManyWithoutUserInput
+  todoNotes?: Prisma.TodoNoteCreateNestedManyWithoutUserInput
+  assignmentTodos?: Prisma.AssignmentTodoCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutTodosInput = {
+  userId?: number
+  name: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  monthlyExpenseLimit?: number
+  salaries?: Prisma.SalaryUncheckedCreateNestedManyWithoutUserInput
+  bonuses?: Prisma.BonusUncheckedCreateNestedManyWithoutUserInput
+  discounts?: Prisma.DiscountUncheckedCreateNestedManyWithoutUserInput
+  debts?: Prisma.DebtsUncheckedCreateNestedManyWithoutUserInput
+  expenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutUserInput
+  todoAssigment?: Prisma.TodoUncheckedCreateNestedManyWithoutCreateByInput
+  todosAsigments?: Prisma.TodosAsigmentUncheckedCreateNestedManyWithoutUserInput
+  todoNotes?: Prisma.TodoNoteUncheckedCreateNestedManyWithoutUserInput
+  assignmentTodos?: Prisma.AssignmentTodoUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutTodosInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutTodosInput, Prisma.UserUncheckedCreateWithoutTodosInput>
+}
+
+export type UserUpsertWithoutTodosInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutTodosInput, Prisma.UserUncheckedUpdateWithoutTodosInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutTodosInput, Prisma.UserUncheckedCreateWithoutTodosInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutTodosInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutTodosInput, Prisma.UserUncheckedUpdateWithoutTodosInput>
+}
+
+export type UserUpdateWithoutTodosInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  monthlyExpenseLimit?: Prisma.FloatFieldUpdateOperationsInput | number
+  salaries?: Prisma.SalaryUpdateManyWithoutUserNestedInput
+  bonuses?: Prisma.BonusUpdateManyWithoutUserNestedInput
+  discounts?: Prisma.DiscountUpdateManyWithoutUserNestedInput
+  debts?: Prisma.DebtsUpdateManyWithoutUserNestedInput
+  expenses?: Prisma.ExpenseUpdateManyWithoutUserNestedInput
+  todoAssigment?: Prisma.TodoUpdateManyWithoutCreateByNestedInput
+  todosAsigments?: Prisma.TodosAsigmentUpdateManyWithoutUserNestedInput
+  todoNotes?: Prisma.TodoNoteUpdateManyWithoutUserNestedInput
+  assignmentTodos?: Prisma.AssignmentTodoUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutTodosInput = {
+  userId?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  monthlyExpenseLimit?: Prisma.FloatFieldUpdateOperationsInput | number
+  salaries?: Prisma.SalaryUncheckedUpdateManyWithoutUserNestedInput
+  bonuses?: Prisma.BonusUncheckedUpdateManyWithoutUserNestedInput
+  discounts?: Prisma.DiscountUncheckedUpdateManyWithoutUserNestedInput
+  debts?: Prisma.DebtsUncheckedUpdateManyWithoutUserNestedInput
+  expenses?: Prisma.ExpenseUncheckedUpdateManyWithoutUserNestedInput
+  todoAssigment?: Prisma.TodoUncheckedUpdateManyWithoutCreateByNestedInput
+  todosAsigments?: Prisma.TodosAsigmentUncheckedUpdateManyWithoutUserNestedInput
+  todoNotes?: Prisma.TodoNoteUncheckedUpdateManyWithoutUserNestedInput
+  assignmentTodos?: Prisma.AssignmentTodoUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutTodoNotesInput = {
+  name: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  monthlyExpenseLimit?: number
+  salaries?: Prisma.SalaryCreateNestedManyWithoutUserInput
+  bonuses?: Prisma.BonusCreateNestedManyWithoutUserInput
+  discounts?: Prisma.DiscountCreateNestedManyWithoutUserInput
+  debts?: Prisma.DebtsCreateNestedManyWithoutUserInput
+  expenses?: Prisma.ExpenseCreateNestedManyWithoutUserInput
+  todoAssigment?: Prisma.TodoCreateNestedManyWithoutCreateByInput
+  todosAsigments?: Prisma.TodosAsigmentCreateNestedManyWithoutUserInput
+  todos?: Prisma.TodosCreateNestedManyWithoutUserInput
+  assignmentTodos?: Prisma.AssignmentTodoCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutTodoNotesInput = {
+  userId?: number
+  name: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  monthlyExpenseLimit?: number
+  salaries?: Prisma.SalaryUncheckedCreateNestedManyWithoutUserInput
+  bonuses?: Prisma.BonusUncheckedCreateNestedManyWithoutUserInput
+  discounts?: Prisma.DiscountUncheckedCreateNestedManyWithoutUserInput
+  debts?: Prisma.DebtsUncheckedCreateNestedManyWithoutUserInput
+  expenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutUserInput
+  todoAssigment?: Prisma.TodoUncheckedCreateNestedManyWithoutCreateByInput
+  todosAsigments?: Prisma.TodosAsigmentUncheckedCreateNestedManyWithoutUserInput
+  todos?: Prisma.TodosUncheckedCreateNestedManyWithoutUserInput
+  assignmentTodos?: Prisma.AssignmentTodoUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutTodoNotesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutTodoNotesInput, Prisma.UserUncheckedCreateWithoutTodoNotesInput>
+}
+
+export type UserUpsertWithoutTodoNotesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutTodoNotesInput, Prisma.UserUncheckedUpdateWithoutTodoNotesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutTodoNotesInput, Prisma.UserUncheckedCreateWithoutTodoNotesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutTodoNotesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutTodoNotesInput, Prisma.UserUncheckedUpdateWithoutTodoNotesInput>
+}
+
+export type UserUpdateWithoutTodoNotesInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  monthlyExpenseLimit?: Prisma.FloatFieldUpdateOperationsInput | number
+  salaries?: Prisma.SalaryUpdateManyWithoutUserNestedInput
+  bonuses?: Prisma.BonusUpdateManyWithoutUserNestedInput
+  discounts?: Prisma.DiscountUpdateManyWithoutUserNestedInput
+  debts?: Prisma.DebtsUpdateManyWithoutUserNestedInput
+  expenses?: Prisma.ExpenseUpdateManyWithoutUserNestedInput
+  todoAssigment?: Prisma.TodoUpdateManyWithoutCreateByNestedInput
+  todosAsigments?: Prisma.TodosAsigmentUpdateManyWithoutUserNestedInput
+  todos?: Prisma.TodosUpdateManyWithoutUserNestedInput
+  assignmentTodos?: Prisma.AssignmentTodoUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutTodoNotesInput = {
+  userId?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  monthlyExpenseLimit?: Prisma.FloatFieldUpdateOperationsInput | number
+  salaries?: Prisma.SalaryUncheckedUpdateManyWithoutUserNestedInput
+  bonuses?: Prisma.BonusUncheckedUpdateManyWithoutUserNestedInput
+  discounts?: Prisma.DiscountUncheckedUpdateManyWithoutUserNestedInput
+  debts?: Prisma.DebtsUncheckedUpdateManyWithoutUserNestedInput
+  expenses?: Prisma.ExpenseUncheckedUpdateManyWithoutUserNestedInput
+  todoAssigment?: Prisma.TodoUncheckedUpdateManyWithoutCreateByNestedInput
+  todosAsigments?: Prisma.TodosAsigmentUncheckedUpdateManyWithoutUserNestedInput
+  todos?: Prisma.TodosUncheckedUpdateManyWithoutUserNestedInput
+  assignmentTodos?: Prisma.AssignmentTodoUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutAssignmentTodosInput = {
+  name: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  monthlyExpenseLimit?: number
+  salaries?: Prisma.SalaryCreateNestedManyWithoutUserInput
+  bonuses?: Prisma.BonusCreateNestedManyWithoutUserInput
+  discounts?: Prisma.DiscountCreateNestedManyWithoutUserInput
+  debts?: Prisma.DebtsCreateNestedManyWithoutUserInput
+  expenses?: Prisma.ExpenseCreateNestedManyWithoutUserInput
+  todoAssigment?: Prisma.TodoCreateNestedManyWithoutCreateByInput
+  todosAsigments?: Prisma.TodosAsigmentCreateNestedManyWithoutUserInput
+  todos?: Prisma.TodosCreateNestedManyWithoutUserInput
+  todoNotes?: Prisma.TodoNoteCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutAssignmentTodosInput = {
+  userId?: number
+  name: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  monthlyExpenseLimit?: number
+  salaries?: Prisma.SalaryUncheckedCreateNestedManyWithoutUserInput
+  bonuses?: Prisma.BonusUncheckedCreateNestedManyWithoutUserInput
+  discounts?: Prisma.DiscountUncheckedCreateNestedManyWithoutUserInput
+  debts?: Prisma.DebtsUncheckedCreateNestedManyWithoutUserInput
+  expenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutUserInput
+  todoAssigment?: Prisma.TodoUncheckedCreateNestedManyWithoutCreateByInput
+  todosAsigments?: Prisma.TodosAsigmentUncheckedCreateNestedManyWithoutUserInput
+  todos?: Prisma.TodosUncheckedCreateNestedManyWithoutUserInput
+  todoNotes?: Prisma.TodoNoteUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutAssignmentTodosInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutAssignmentTodosInput, Prisma.UserUncheckedCreateWithoutAssignmentTodosInput>
+}
+
+export type UserUpsertWithoutAssignmentTodosInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutAssignmentTodosInput, Prisma.UserUncheckedUpdateWithoutAssignmentTodosInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutAssignmentTodosInput, Prisma.UserUncheckedCreateWithoutAssignmentTodosInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutAssignmentTodosInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutAssignmentTodosInput, Prisma.UserUncheckedUpdateWithoutAssignmentTodosInput>
+}
+
+export type UserUpdateWithoutAssignmentTodosInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  monthlyExpenseLimit?: Prisma.FloatFieldUpdateOperationsInput | number
+  salaries?: Prisma.SalaryUpdateManyWithoutUserNestedInput
+  bonuses?: Prisma.BonusUpdateManyWithoutUserNestedInput
+  discounts?: Prisma.DiscountUpdateManyWithoutUserNestedInput
+  debts?: Prisma.DebtsUpdateManyWithoutUserNestedInput
+  expenses?: Prisma.ExpenseUpdateManyWithoutUserNestedInput
+  todoAssigment?: Prisma.TodoUpdateManyWithoutCreateByNestedInput
+  todosAsigments?: Prisma.TodosAsigmentUpdateManyWithoutUserNestedInput
+  todos?: Prisma.TodosUpdateManyWithoutUserNestedInput
+  todoNotes?: Prisma.TodoNoteUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutAssignmentTodosInput = {
+  userId?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  monthlyExpenseLimit?: Prisma.FloatFieldUpdateOperationsInput | number
+  salaries?: Prisma.SalaryUncheckedUpdateManyWithoutUserNestedInput
+  bonuses?: Prisma.BonusUncheckedUpdateManyWithoutUserNestedInput
+  discounts?: Prisma.DiscountUncheckedUpdateManyWithoutUserNestedInput
+  debts?: Prisma.DebtsUncheckedUpdateManyWithoutUserNestedInput
+  expenses?: Prisma.ExpenseUncheckedUpdateManyWithoutUserNestedInput
+  todoAssigment?: Prisma.TodoUncheckedUpdateManyWithoutCreateByNestedInput
+  todosAsigments?: Prisma.TodosAsigmentUncheckedUpdateManyWithoutUserNestedInput
+  todos?: Prisma.TodosUncheckedUpdateManyWithoutUserNestedInput
+  todoNotes?: Prisma.TodoNoteUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutTodoAssigmentInput = {
+  name: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  monthlyExpenseLimit?: number
+  salaries?: Prisma.SalaryCreateNestedManyWithoutUserInput
+  bonuses?: Prisma.BonusCreateNestedManyWithoutUserInput
+  discounts?: Prisma.DiscountCreateNestedManyWithoutUserInput
+  debts?: Prisma.DebtsCreateNestedManyWithoutUserInput
+  expenses?: Prisma.ExpenseCreateNestedManyWithoutUserInput
+  todosAsigments?: Prisma.TodosAsigmentCreateNestedManyWithoutUserInput
+  todos?: Prisma.TodosCreateNestedManyWithoutUserInput
+  todoNotes?: Prisma.TodoNoteCreateNestedManyWithoutUserInput
+  assignmentTodos?: Prisma.AssignmentTodoCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutTodoAssigmentInput = {
+  userId?: number
+  name: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  monthlyExpenseLimit?: number
+  salaries?: Prisma.SalaryUncheckedCreateNestedManyWithoutUserInput
+  bonuses?: Prisma.BonusUncheckedCreateNestedManyWithoutUserInput
+  discounts?: Prisma.DiscountUncheckedCreateNestedManyWithoutUserInput
+  debts?: Prisma.DebtsUncheckedCreateNestedManyWithoutUserInput
+  expenses?: Prisma.ExpenseUncheckedCreateNestedManyWithoutUserInput
+  todosAsigments?: Prisma.TodosAsigmentUncheckedCreateNestedManyWithoutUserInput
+  todos?: Prisma.TodosUncheckedCreateNestedManyWithoutUserInput
+  todoNotes?: Prisma.TodoNoteUncheckedCreateNestedManyWithoutUserInput
+  assignmentTodos?: Prisma.AssignmentTodoUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutTodoAssigmentInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutTodoAssigmentInput, Prisma.UserUncheckedCreateWithoutTodoAssigmentInput>
+}
+
+export type UserUpsertWithoutTodoAssigmentInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutTodoAssigmentInput, Prisma.UserUncheckedUpdateWithoutTodoAssigmentInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutTodoAssigmentInput, Prisma.UserUncheckedCreateWithoutTodoAssigmentInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutTodoAssigmentInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutTodoAssigmentInput, Prisma.UserUncheckedUpdateWithoutTodoAssigmentInput>
+}
+
+export type UserUpdateWithoutTodoAssigmentInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  monthlyExpenseLimit?: Prisma.FloatFieldUpdateOperationsInput | number
+  salaries?: Prisma.SalaryUpdateManyWithoutUserNestedInput
+  bonuses?: Prisma.BonusUpdateManyWithoutUserNestedInput
+  discounts?: Prisma.DiscountUpdateManyWithoutUserNestedInput
+  debts?: Prisma.DebtsUpdateManyWithoutUserNestedInput
+  expenses?: Prisma.ExpenseUpdateManyWithoutUserNestedInput
+  todosAsigments?: Prisma.TodosAsigmentUpdateManyWithoutUserNestedInput
+  todos?: Prisma.TodosUpdateManyWithoutUserNestedInput
+  todoNotes?: Prisma.TodoNoteUpdateManyWithoutUserNestedInput
+  assignmentTodos?: Prisma.AssignmentTodoUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutTodoAssigmentInput = {
+  userId?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  monthlyExpenseLimit?: Prisma.FloatFieldUpdateOperationsInput | number
+  salaries?: Prisma.SalaryUncheckedUpdateManyWithoutUserNestedInput
+  bonuses?: Prisma.BonusUncheckedUpdateManyWithoutUserNestedInput
+  discounts?: Prisma.DiscountUncheckedUpdateManyWithoutUserNestedInput
+  debts?: Prisma.DebtsUncheckedUpdateManyWithoutUserNestedInput
+  expenses?: Prisma.ExpenseUncheckedUpdateManyWithoutUserNestedInput
+  todosAsigments?: Prisma.TodosAsigmentUncheckedUpdateManyWithoutUserNestedInput
+  todos?: Prisma.TodosUncheckedUpdateManyWithoutUserNestedInput
+  todoNotes?: Prisma.TodoNoteUncheckedUpdateManyWithoutUserNestedInput
+  assignmentTodos?: Prisma.AssignmentTodoUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -849,6 +1493,11 @@ export type UserCountOutputType = {
   discounts: number
   debts: number
   expenses: number
+  todoAssigment: number
+  todosAsigments: number
+  todos: number
+  todoNotes: number
+  assignmentTodos: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -857,6 +1506,11 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   discounts?: boolean | UserCountOutputTypeCountDiscountsArgs
   debts?: boolean | UserCountOutputTypeCountDebtsArgs
   expenses?: boolean | UserCountOutputTypeCountExpensesArgs
+  todoAssigment?: boolean | UserCountOutputTypeCountTodoAssigmentArgs
+  todosAsigments?: boolean | UserCountOutputTypeCountTodosAsigmentsArgs
+  todos?: boolean | UserCountOutputTypeCountTodosArgs
+  todoNotes?: boolean | UserCountOutputTypeCountTodoNotesArgs
+  assignmentTodos?: boolean | UserCountOutputTypeCountAssignmentTodosArgs
 }
 
 /**
@@ -904,6 +1558,41 @@ export type UserCountOutputTypeCountExpensesArgs<ExtArgs extends runtime.Types.E
   where?: Prisma.ExpenseWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountTodoAssigmentArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TodoWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountTodosAsigmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TodosAsigmentWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountTodosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TodosWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountTodoNotesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TodoNoteWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountAssignmentTodosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AssignmentTodoWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   userId?: boolean
@@ -917,6 +1606,11 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   discounts?: boolean | Prisma.User$discountsArgs<ExtArgs>
   debts?: boolean | Prisma.User$debtsArgs<ExtArgs>
   expenses?: boolean | Prisma.User$expensesArgs<ExtArgs>
+  todoAssigment?: boolean | Prisma.User$todoAssigmentArgs<ExtArgs>
+  todosAsigments?: boolean | Prisma.User$todosAsigmentsArgs<ExtArgs>
+  todos?: boolean | Prisma.User$todosArgs<ExtArgs>
+  todoNotes?: boolean | Prisma.User$todoNotesArgs<ExtArgs>
+  assignmentTodos?: boolean | Prisma.User$assignmentTodosArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -954,6 +1648,11 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   discounts?: boolean | Prisma.User$discountsArgs<ExtArgs>
   debts?: boolean | Prisma.User$debtsArgs<ExtArgs>
   expenses?: boolean | Prisma.User$expensesArgs<ExtArgs>
+  todoAssigment?: boolean | Prisma.User$todoAssigmentArgs<ExtArgs>
+  todosAsigments?: boolean | Prisma.User$todosAsigmentsArgs<ExtArgs>
+  todos?: boolean | Prisma.User$todosArgs<ExtArgs>
+  todoNotes?: boolean | Prisma.User$todoNotesArgs<ExtArgs>
+  assignmentTodos?: boolean | Prisma.User$assignmentTodosArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -967,6 +1666,11 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     discounts: Prisma.$DiscountPayload<ExtArgs>[]
     debts: Prisma.$DebtsPayload<ExtArgs>[]
     expenses: Prisma.$ExpensePayload<ExtArgs>[]
+    todoAssigment: Prisma.$TodoPayload<ExtArgs>[]
+    todosAsigments: Prisma.$TodosAsigmentPayload<ExtArgs>[]
+    todos: Prisma.$TodosPayload<ExtArgs>[]
+    todoNotes: Prisma.$TodoNotePayload<ExtArgs>[]
+    assignmentTodos: Prisma.$AssignmentTodoPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     userId: number
@@ -1374,6 +2078,11 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   discounts<T extends Prisma.User$discountsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$discountsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DiscountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   debts<T extends Prisma.User$debtsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$debtsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DebtsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   expenses<T extends Prisma.User$expensesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$expensesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ExpensePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  todoAssigment<T extends Prisma.User$todoAssigmentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$todoAssigmentArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TodoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  todosAsigments<T extends Prisma.User$todosAsigmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$todosAsigmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TodosAsigmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  todos<T extends Prisma.User$todosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$todosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TodosPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  todoNotes<T extends Prisma.User$todoNotesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$todoNotesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TodoNotePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  assignmentTodos<T extends Prisma.User$assignmentTodosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$assignmentTodosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AssignmentTodoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1917,6 +2626,126 @@ export type User$expensesArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   take?: number
   skip?: number
   distinct?: Prisma.ExpenseScalarFieldEnum | Prisma.ExpenseScalarFieldEnum[]
+}
+
+/**
+ * User.todoAssigment
+ */
+export type User$todoAssigmentArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Todo
+   */
+  select?: Prisma.TodoSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Todo
+   */
+  omit?: Prisma.TodoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TodoInclude<ExtArgs> | null
+  where?: Prisma.TodoWhereInput
+  orderBy?: Prisma.TodoOrderByWithRelationInput | Prisma.TodoOrderByWithRelationInput[]
+  cursor?: Prisma.TodoWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TodoScalarFieldEnum | Prisma.TodoScalarFieldEnum[]
+}
+
+/**
+ * User.todosAsigments
+ */
+export type User$todosAsigmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the TodosAsigment
+   */
+  select?: Prisma.TodosAsigmentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the TodosAsigment
+   */
+  omit?: Prisma.TodosAsigmentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TodosAsigmentInclude<ExtArgs> | null
+  where?: Prisma.TodosAsigmentWhereInput
+  orderBy?: Prisma.TodosAsigmentOrderByWithRelationInput | Prisma.TodosAsigmentOrderByWithRelationInput[]
+  cursor?: Prisma.TodosAsigmentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TodosAsigmentScalarFieldEnum | Prisma.TodosAsigmentScalarFieldEnum[]
+}
+
+/**
+ * User.todos
+ */
+export type User$todosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Todos
+   */
+  select?: Prisma.TodosSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Todos
+   */
+  omit?: Prisma.TodosOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TodosInclude<ExtArgs> | null
+  where?: Prisma.TodosWhereInput
+  orderBy?: Prisma.TodosOrderByWithRelationInput | Prisma.TodosOrderByWithRelationInput[]
+  cursor?: Prisma.TodosWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TodosScalarFieldEnum | Prisma.TodosScalarFieldEnum[]
+}
+
+/**
+ * User.todoNotes
+ */
+export type User$todoNotesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the TodoNote
+   */
+  select?: Prisma.TodoNoteSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the TodoNote
+   */
+  omit?: Prisma.TodoNoteOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TodoNoteInclude<ExtArgs> | null
+  where?: Prisma.TodoNoteWhereInput
+  orderBy?: Prisma.TodoNoteOrderByWithRelationInput | Prisma.TodoNoteOrderByWithRelationInput[]
+  cursor?: Prisma.TodoNoteWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TodoNoteScalarFieldEnum | Prisma.TodoNoteScalarFieldEnum[]
+}
+
+/**
+ * User.assignmentTodos
+ */
+export type User$assignmentTodosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AssignmentTodo
+   */
+  select?: Prisma.AssignmentTodoSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AssignmentTodo
+   */
+  omit?: Prisma.AssignmentTodoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AssignmentTodoInclude<ExtArgs> | null
+  where?: Prisma.AssignmentTodoWhereInput
+  orderBy?: Prisma.AssignmentTodoOrderByWithRelationInput | Prisma.AssignmentTodoOrderByWithRelationInput[]
+  cursor?: Prisma.AssignmentTodoWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AssignmentTodoScalarFieldEnum | Prisma.AssignmentTodoScalarFieldEnum[]
 }
 
 /**

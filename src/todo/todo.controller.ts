@@ -97,19 +97,24 @@ export class TodoController {
 
   @Auth()
   @Get('not-complete')
-  async getNotCompleteTodos() {
-    return this.todoService.getNotCompleteTodos();
+  async getNotCompleteTodos(@User() user: JwtPayload) {
+    return this.todoService.getNotCompleteTodos(user);
   }
 
   @Auth()
   @Get('importance/:num')
-  async getTodosByImportance(@Param('num') num: number) {
-    return this.todoService.getTodosByImportance(num);
+  async getTodosByImportance(
+    @Param('num') num: number,
+    @User() user: JwtPayload,
+  ) {
+    return this.todoService.getTodosByImportance(num, user);
   }
 
-  @Auth()
+  @Auth({
+    role: [Role.ADMIN, Role.USER],
+  })
   @Get('/resume')
-  async getAllTodosWithResume() {
-    return this.todoService.getResume();
+  async getAllTodosWithResume(@User() user: JwtPayload) {
+    return this.todoService.getResume(user);
   }
 }

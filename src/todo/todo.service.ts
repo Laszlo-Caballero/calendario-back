@@ -29,18 +29,37 @@ export class TodoService {
       where: {
         todosId,
       },
+      include: {
+        todosAsigments: {
+          include: {
+            user: {
+              select: {
+                userId: true,
+                name: true,
+                email: true,
+              },
+            },
+          },
+        },
+      },
     });
 
     if (!findTodos) {
       throw new NotFoundException(`Todos with id ${todosId} not found`);
     }
 
-    if (!findTodos.isPublic && user?.role !== 'ADMIN') {
-      throw new ForbiddenException(`Todos with id ${todosId} not found`);
-    }
+    const isUserAssigned = findTodos.todosAsigments.some(
+      (assignment) => assignment.userId === user?.idUser,
+    );
 
-    if (!findTodos.status && user?.role != 'ADMIN') {
-      throw new ForbiddenException(`Todos with id ${todosId} not found`);
+    if (!isUserAssigned && user?.role !== 'ADMIN') {
+      if (!findTodos.isPublic) {
+        throw new ForbiddenException(`Todos with id ${todosId} not found`);
+      }
+
+      if (!findTodos.status) {
+        throw new ForbiddenException(`Todos with id ${todosId} not found`);
+      }
     }
 
     return this.prisma.todo.findMany({
@@ -53,12 +72,13 @@ export class TodoService {
             image: true,
           },
         },
+        assignmentTodos: true,
       },
     });
   }
 
   async createTodo(todo: TodoDto) {
-    const { todosId } = todo;
+    const { todosId, assignmentUserIds } = todo;
 
     const findTodos = await this.prisma.todos.findUnique({
       where: {
@@ -74,20 +94,56 @@ export class TodoService {
       throw new ForbiddenException(`Todos with id ${todosId} not found`);
     }
 
-    return this.prisma.todo.create({
+    const newTodo = await this.prisma.todo.create({
       data: {
         ...todo,
         todosId,
       },
     });
+
+    let assignmentTodos: Array<{
+      todoId: number;
+      userId: number;
+      createdAt: Date;
+      assignmentTodoId: number;
+    }> = [];
+
+    if (assignmentUserIds && assignmentUserIds.length > 0) {
+      assignmentTodos = await Promise.all(
+        assignmentUserIds.map((userId) => {
+          return this.prisma.assignmentTodo.create({
+            data: {
+              todo: {
+                connect: {
+                  todoId: newTodo.todoId,
+                },
+              },
+              user: {
+                connect: {
+                  userId,
+                },
+              },
+            },
+          });
+        }),
+      );
+    }
+
+    return {
+      ...newTodo,
+      assignmentTodos,
+    };
   }
 
   async updateTodo(id: number, todo: TodoDto) {
-    const { todosId, ...rest } = todo;
+    const { todosId, assignmentUserIds, ...rest } = todo;
 
     const findTodo = await this.prisma.todo.findUnique({
       where: {
         todoId: id,
+      },
+      include: {
+        assignmentTodos: true,
       },
     });
 
@@ -95,7 +151,7 @@ export class TodoService {
       throw new NotFoundException(`Todo with id ${id} not found`);
     }
 
-    return this.prisma.todo.update({
+    const updatedTodo = await this.prisma.todo.update({
       where: {
         todoId: id,
       },
@@ -104,6 +160,54 @@ export class TodoService {
         todosId,
       },
     });
+
+    if (assignmentUserIds !== undefined) {
+      const currentUserIds = findTodo.assignmentTodos.map(
+        (assignment) => assignment.userId,
+      );
+      const uniqueAssignmentUserIds = [...new Set(assignmentUserIds)];
+
+      const userIdsToCreate = uniqueAssignmentUserIds.filter(
+        (userId) => !currentUserIds.includes(userId),
+      );
+      const userIdsToDelete = currentUserIds.filter(
+        (userId) => !uniqueAssignmentUserIds.includes(userId),
+      );
+
+      if (userIdsToDelete.length > 0) {
+        await this.prisma.assignmentTodo.deleteMany({
+          where: {
+            todoId: id,
+            userId: {
+              in: userIdsToDelete,
+            },
+          },
+        });
+      }
+
+      if (userIdsToCreate.length > 0) {
+        await Promise.all(
+          userIdsToCreate.map((userId) => {
+            return this.prisma.assignmentTodo.create({
+              data: {
+                todo: {
+                  connect: {
+                    todoId: id,
+                  },
+                },
+                user: {
+                  connect: {
+                    userId,
+                  },
+                },
+              },
+            });
+          }),
+        );
+      }
+    }
+
+    return updatedTodo;
   }
 
   changeStatus(id: number, status: ChangeStatusDto) {
@@ -333,7 +437,7 @@ export class TodoService {
     });
   }
 
-  async getNotCompleteTodos() {
+  async getNotCompleteTodos(user: JwtPayload) {
     const [count, todos] = await this.prisma.$transaction([
       this.prisma.todo.count({
         where: {
@@ -343,11 +447,35 @@ export class TodoService {
           isArchived: false,
           todos: {
             status: true,
+            OR: [
+              {
+                todosAsigments: {
+                  some: {
+                    userId: user.idUser,
+                  },
+                },
+              },
+              {
+                userId: user.idUser,
+              },
+            ],
           },
         },
       }),
       this.prisma.todos.findMany({
         where: {
+          OR: [
+            {
+              todosAsigments: {
+                some: {
+                  userId: user.idUser,
+                },
+              },
+            },
+            {
+              userId: user.idUser,
+            },
+          ],
           todos: {
             some: {
               status: {
@@ -384,7 +512,7 @@ export class TodoService {
     };
   }
 
-  async getTodosByImportance(num: number) {
+  async getTodosByImportance(num: number, user: JwtPayload) {
     const [count, todos] = await this.prisma.$transaction([
       this.prisma.todo.count({
         where: {
@@ -392,6 +520,18 @@ export class TodoService {
           isArchived: false,
           todos: {
             status: true,
+            OR: [
+              {
+                todosAsigments: {
+                  some: {
+                    userId: user.idUser,
+                  },
+                },
+              },
+              {
+                userId: user.idUser,
+              },
+            ],
           },
         },
       }),
@@ -401,6 +541,18 @@ export class TodoService {
           isArchived: false,
           todos: {
             status: true,
+            OR: [
+              {
+                todosAsigments: {
+                  some: {
+                    userId: user.idUser,
+                  },
+                },
+              },
+              {
+                userId: user.idUser,
+              },
+            ],
           },
         },
         include: {
@@ -419,7 +571,7 @@ export class TodoService {
     };
   }
 
-  async getResume() {
+  async getResume(user: JwtPayload) {
     return this.prisma.todo.findMany({
       where: {
         isArchived: false,
@@ -428,6 +580,18 @@ export class TodoService {
         },
         todos: {
           status: true,
+          OR: [
+            {
+              todosAsigments: {
+                some: {
+                  userId: user.idUser,
+                },
+              },
+            },
+            {
+              userId: user.idUser,
+            },
+          ],
         },
         OR: [
           {
@@ -449,7 +613,28 @@ export class TodoService {
             image: true,
           },
         },
-        todos: true,
+        assignmentTodos: {
+          include: {
+            user: {
+              select: {
+                userId: true,
+                name: true,
+                email: true,
+              },
+            },
+          },
+        },
+        todos: {
+          include: {
+            user: {
+              select: {
+                userId: true,
+                name: true,
+                email: true,
+              },
+            },
+          },
+        },
       },
     });
   }

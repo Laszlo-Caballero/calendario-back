@@ -1,4 +1,5 @@
 import {
+  IsArray,
   IsDate,
   IsEnum,
   IsNotEmpty,
@@ -34,4 +35,9 @@ export class TodoDto {
   @IsNumber()
   @IsNotEmpty()
   importance: number;
+
+  @IsArray()
+  @IsNumber({}, { each: true })
+  @IsOptional()
+  assignmentUserIds?: number[];
 }

@@ -28,11 +28,13 @@ export type AggregateTodoNote = {
 
 export type TodoNoteAvgAggregateOutputType = {
   todoNoteId: number | null
+  createdBy: number | null
   todosTodosId: number | null
 }
 
 export type TodoNoteSumAggregateOutputType = {
   todoNoteId: number | null
+  createdBy: number | null
   todosTodosId: number | null
 }
 
@@ -44,6 +46,7 @@ export type TodoNoteMinAggregateOutputType = {
   isArchived: boolean | null
   status: boolean | null
   createdAt: Date | null
+  createdBy: number | null
   todosTodosId: number | null
 }
 
@@ -55,6 +58,7 @@ export type TodoNoteMaxAggregateOutputType = {
   isArchived: boolean | null
   status: boolean | null
   createdAt: Date | null
+  createdBy: number | null
   todosTodosId: number | null
 }
 
@@ -66,6 +70,7 @@ export type TodoNoteCountAggregateOutputType = {
   isArchived: number
   status: number
   createdAt: number
+  createdBy: number
   todosTodosId: number
   _all: number
 }
@@ -73,11 +78,13 @@ export type TodoNoteCountAggregateOutputType = {
 
 export type TodoNoteAvgAggregateInputType = {
   todoNoteId?: true
+  createdBy?: true
   todosTodosId?: true
 }
 
 export type TodoNoteSumAggregateInputType = {
   todoNoteId?: true
+  createdBy?: true
   todosTodosId?: true
 }
 
@@ -89,6 +96,7 @@ export type TodoNoteMinAggregateInputType = {
   isArchived?: true
   status?: true
   createdAt?: true
+  createdBy?: true
   todosTodosId?: true
 }
 
@@ -100,6 +108,7 @@ export type TodoNoteMaxAggregateInputType = {
   isArchived?: true
   status?: true
   createdAt?: true
+  createdBy?: true
   todosTodosId?: true
 }
 
@@ -111,6 +120,7 @@ export type TodoNoteCountAggregateInputType = {
   isArchived?: true
   status?: true
   createdAt?: true
+  createdBy?: true
   todosTodosId?: true
   _all?: true
 }
@@ -209,6 +219,7 @@ export type TodoNoteGroupByOutputType = {
   isArchived: boolean
   status: boolean
   createdAt: Date
+  createdBy: number | null
   todosTodosId: number | null
   _count: TodoNoteCountAggregateOutputType | null
   _avg: TodoNoteAvgAggregateOutputType | null
@@ -243,8 +254,10 @@ export type TodoNoteWhereInput = {
   isArchived?: Prisma.BoolFilter<"TodoNote"> | boolean
   status?: Prisma.BoolFilter<"TodoNote"> | boolean
   createdAt?: Prisma.DateTimeFilter<"TodoNote"> | Date | string
+  createdBy?: Prisma.IntNullableFilter<"TodoNote"> | number | null
   todosTodosId?: Prisma.IntNullableFilter<"TodoNote"> | number | null
   todos?: Prisma.XOR<Prisma.TodosNullableScalarRelationFilter, Prisma.TodosWhereInput> | null
+  user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
 }
 
 export type TodoNoteOrderByWithRelationInput = {
@@ -255,8 +268,10 @@ export type TodoNoteOrderByWithRelationInput = {
   isArchived?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  createdBy?: Prisma.SortOrderInput | Prisma.SortOrder
   todosTodosId?: Prisma.SortOrderInput | Prisma.SortOrder
   todos?: Prisma.TodosOrderByWithRelationInput
+  user?: Prisma.UserOrderByWithRelationInput
 }
 
 export type TodoNoteWhereUniqueInput = Prisma.AtLeast<{
@@ -270,8 +285,10 @@ export type TodoNoteWhereUniqueInput = Prisma.AtLeast<{
   isArchived?: Prisma.BoolFilter<"TodoNote"> | boolean
   status?: Prisma.BoolFilter<"TodoNote"> | boolean
   createdAt?: Prisma.DateTimeFilter<"TodoNote"> | Date | string
+  createdBy?: Prisma.IntNullableFilter<"TodoNote"> | number | null
   todosTodosId?: Prisma.IntNullableFilter<"TodoNote"> | number | null
   todos?: Prisma.XOR<Prisma.TodosNullableScalarRelationFilter, Prisma.TodosWhereInput> | null
+  user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
 }, "todoNoteId">
 
 export type TodoNoteOrderByWithAggregationInput = {
@@ -282,6 +299,7 @@ export type TodoNoteOrderByWithAggregationInput = {
   isArchived?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  createdBy?: Prisma.SortOrderInput | Prisma.SortOrder
   todosTodosId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.TodoNoteCountOrderByAggregateInput
   _avg?: Prisma.TodoNoteAvgOrderByAggregateInput
@@ -301,6 +319,7 @@ export type TodoNoteScalarWhereWithAggregatesInput = {
   isArchived?: Prisma.BoolWithAggregatesFilter<"TodoNote"> | boolean
   status?: Prisma.BoolWithAggregatesFilter<"TodoNote"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"TodoNote"> | Date | string
+  createdBy?: Prisma.IntNullableWithAggregatesFilter<"TodoNote"> | number | null
   todosTodosId?: Prisma.IntNullableWithAggregatesFilter<"TodoNote"> | number | null
 }
 
@@ -312,6 +331,7 @@ export type TodoNoteCreateInput = {
   status?: boolean
   createdAt?: Date | string
   todos?: Prisma.TodosCreateNestedOneWithoutNotesInput
+  user?: Prisma.UserCreateNestedOneWithoutTodoNotesInput
 }
 
 export type TodoNoteUncheckedCreateInput = {
@@ -322,6 +342,7 @@ export type TodoNoteUncheckedCreateInput = {
   isArchived?: boolean
   status?: boolean
   createdAt?: Date | string
+  createdBy?: number | null
   todosTodosId?: number | null
 }
 
@@ -333,6 +354,7 @@ export type TodoNoteUpdateInput = {
   status?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   todos?: Prisma.TodosUpdateOneWithoutNotesNestedInput
+  user?: Prisma.UserUpdateOneWithoutTodoNotesNestedInput
 }
 
 export type TodoNoteUncheckedUpdateInput = {
@@ -343,6 +365,7 @@ export type TodoNoteUncheckedUpdateInput = {
   isArchived?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   todosTodosId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
@@ -354,6 +377,7 @@ export type TodoNoteCreateManyInput = {
   isArchived?: boolean
   status?: boolean
   createdAt?: Date | string
+  createdBy?: number | null
   todosTodosId?: number | null
 }
 
@@ -374,6 +398,7 @@ export type TodoNoteUncheckedUpdateManyInput = {
   isArchived?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   todosTodosId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
@@ -395,11 +420,13 @@ export type TodoNoteCountOrderByAggregateInput = {
   isArchived?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  createdBy?: Prisma.SortOrder
   todosTodosId?: Prisma.SortOrder
 }
 
 export type TodoNoteAvgOrderByAggregateInput = {
   todoNoteId?: Prisma.SortOrder
+  createdBy?: Prisma.SortOrder
   todosTodosId?: Prisma.SortOrder
 }
 
@@ -411,6 +438,7 @@ export type TodoNoteMaxOrderByAggregateInput = {
   isArchived?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  createdBy?: Prisma.SortOrder
   todosTodosId?: Prisma.SortOrder
 }
 
@@ -422,12 +450,56 @@ export type TodoNoteMinOrderByAggregateInput = {
   isArchived?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  createdBy?: Prisma.SortOrder
   todosTodosId?: Prisma.SortOrder
 }
 
 export type TodoNoteSumOrderByAggregateInput = {
   todoNoteId?: Prisma.SortOrder
+  createdBy?: Prisma.SortOrder
   todosTodosId?: Prisma.SortOrder
+}
+
+export type TodoNoteCreateNestedManyWithoutUserInput = {
+  create?: Prisma.XOR<Prisma.TodoNoteCreateWithoutUserInput, Prisma.TodoNoteUncheckedCreateWithoutUserInput> | Prisma.TodoNoteCreateWithoutUserInput[] | Prisma.TodoNoteUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.TodoNoteCreateOrConnectWithoutUserInput | Prisma.TodoNoteCreateOrConnectWithoutUserInput[]
+  createMany?: Prisma.TodoNoteCreateManyUserInputEnvelope
+  connect?: Prisma.TodoNoteWhereUniqueInput | Prisma.TodoNoteWhereUniqueInput[]
+}
+
+export type TodoNoteUncheckedCreateNestedManyWithoutUserInput = {
+  create?: Prisma.XOR<Prisma.TodoNoteCreateWithoutUserInput, Prisma.TodoNoteUncheckedCreateWithoutUserInput> | Prisma.TodoNoteCreateWithoutUserInput[] | Prisma.TodoNoteUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.TodoNoteCreateOrConnectWithoutUserInput | Prisma.TodoNoteCreateOrConnectWithoutUserInput[]
+  createMany?: Prisma.TodoNoteCreateManyUserInputEnvelope
+  connect?: Prisma.TodoNoteWhereUniqueInput | Prisma.TodoNoteWhereUniqueInput[]
+}
+
+export type TodoNoteUpdateManyWithoutUserNestedInput = {
+  create?: Prisma.XOR<Prisma.TodoNoteCreateWithoutUserInput, Prisma.TodoNoteUncheckedCreateWithoutUserInput> | Prisma.TodoNoteCreateWithoutUserInput[] | Prisma.TodoNoteUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.TodoNoteCreateOrConnectWithoutUserInput | Prisma.TodoNoteCreateOrConnectWithoutUserInput[]
+  upsert?: Prisma.TodoNoteUpsertWithWhereUniqueWithoutUserInput | Prisma.TodoNoteUpsertWithWhereUniqueWithoutUserInput[]
+  createMany?: Prisma.TodoNoteCreateManyUserInputEnvelope
+  set?: Prisma.TodoNoteWhereUniqueInput | Prisma.TodoNoteWhereUniqueInput[]
+  disconnect?: Prisma.TodoNoteWhereUniqueInput | Prisma.TodoNoteWhereUniqueInput[]
+  delete?: Prisma.TodoNoteWhereUniqueInput | Prisma.TodoNoteWhereUniqueInput[]
+  connect?: Prisma.TodoNoteWhereUniqueInput | Prisma.TodoNoteWhereUniqueInput[]
+  update?: Prisma.TodoNoteUpdateWithWhereUniqueWithoutUserInput | Prisma.TodoNoteUpdateWithWhereUniqueWithoutUserInput[]
+  updateMany?: Prisma.TodoNoteUpdateManyWithWhereWithoutUserInput | Prisma.TodoNoteUpdateManyWithWhereWithoutUserInput[]
+  deleteMany?: Prisma.TodoNoteScalarWhereInput | Prisma.TodoNoteScalarWhereInput[]
+}
+
+export type TodoNoteUncheckedUpdateManyWithoutUserNestedInput = {
+  create?: Prisma.XOR<Prisma.TodoNoteCreateWithoutUserInput, Prisma.TodoNoteUncheckedCreateWithoutUserInput> | Prisma.TodoNoteCreateWithoutUserInput[] | Prisma.TodoNoteUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.TodoNoteCreateOrConnectWithoutUserInput | Prisma.TodoNoteCreateOrConnectWithoutUserInput[]
+  upsert?: Prisma.TodoNoteUpsertWithWhereUniqueWithoutUserInput | Prisma.TodoNoteUpsertWithWhereUniqueWithoutUserInput[]
+  createMany?: Prisma.TodoNoteCreateManyUserInputEnvelope
+  set?: Prisma.TodoNoteWhereUniqueInput | Prisma.TodoNoteWhereUniqueInput[]
+  disconnect?: Prisma.TodoNoteWhereUniqueInput | Prisma.TodoNoteWhereUniqueInput[]
+  delete?: Prisma.TodoNoteWhereUniqueInput | Prisma.TodoNoteWhereUniqueInput[]
+  connect?: Prisma.TodoNoteWhereUniqueInput | Prisma.TodoNoteWhereUniqueInput[]
+  update?: Prisma.TodoNoteUpdateWithWhereUniqueWithoutUserInput | Prisma.TodoNoteUpdateWithWhereUniqueWithoutUserInput[]
+  updateMany?: Prisma.TodoNoteUpdateManyWithWhereWithoutUserInput | Prisma.TodoNoteUpdateManyWithWhereWithoutUserInput[]
+  deleteMany?: Prisma.TodoNoteScalarWhereInput | Prisma.TodoNoteScalarWhereInput[]
 }
 
 export type TodoNoteCreateNestedManyWithoutTodosInput = {
@@ -472,6 +544,67 @@ export type TodoNoteUncheckedUpdateManyWithoutTodosNestedInput = {
   deleteMany?: Prisma.TodoNoteScalarWhereInput | Prisma.TodoNoteScalarWhereInput[]
 }
 
+export type TodoNoteCreateWithoutUserInput = {
+  title: string
+  content: string
+  isPinned?: boolean
+  isArchived?: boolean
+  status?: boolean
+  createdAt?: Date | string
+  todos?: Prisma.TodosCreateNestedOneWithoutNotesInput
+}
+
+export type TodoNoteUncheckedCreateWithoutUserInput = {
+  todoNoteId?: number
+  title: string
+  content: string
+  isPinned?: boolean
+  isArchived?: boolean
+  status?: boolean
+  createdAt?: Date | string
+  todosTodosId?: number | null
+}
+
+export type TodoNoteCreateOrConnectWithoutUserInput = {
+  where: Prisma.TodoNoteWhereUniqueInput
+  create: Prisma.XOR<Prisma.TodoNoteCreateWithoutUserInput, Prisma.TodoNoteUncheckedCreateWithoutUserInput>
+}
+
+export type TodoNoteCreateManyUserInputEnvelope = {
+  data: Prisma.TodoNoteCreateManyUserInput | Prisma.TodoNoteCreateManyUserInput[]
+}
+
+export type TodoNoteUpsertWithWhereUniqueWithoutUserInput = {
+  where: Prisma.TodoNoteWhereUniqueInput
+  update: Prisma.XOR<Prisma.TodoNoteUpdateWithoutUserInput, Prisma.TodoNoteUncheckedUpdateWithoutUserInput>
+  create: Prisma.XOR<Prisma.TodoNoteCreateWithoutUserInput, Prisma.TodoNoteUncheckedCreateWithoutUserInput>
+}
+
+export type TodoNoteUpdateWithWhereUniqueWithoutUserInput = {
+  where: Prisma.TodoNoteWhereUniqueInput
+  data: Prisma.XOR<Prisma.TodoNoteUpdateWithoutUserInput, Prisma.TodoNoteUncheckedUpdateWithoutUserInput>
+}
+
+export type TodoNoteUpdateManyWithWhereWithoutUserInput = {
+  where: Prisma.TodoNoteScalarWhereInput
+  data: Prisma.XOR<Prisma.TodoNoteUpdateManyMutationInput, Prisma.TodoNoteUncheckedUpdateManyWithoutUserInput>
+}
+
+export type TodoNoteScalarWhereInput = {
+  AND?: Prisma.TodoNoteScalarWhereInput | Prisma.TodoNoteScalarWhereInput[]
+  OR?: Prisma.TodoNoteScalarWhereInput[]
+  NOT?: Prisma.TodoNoteScalarWhereInput | Prisma.TodoNoteScalarWhereInput[]
+  todoNoteId?: Prisma.IntFilter<"TodoNote"> | number
+  title?: Prisma.StringFilter<"TodoNote"> | string
+  content?: Prisma.StringFilter<"TodoNote"> | string
+  isPinned?: Prisma.BoolFilter<"TodoNote"> | boolean
+  isArchived?: Prisma.BoolFilter<"TodoNote"> | boolean
+  status?: Prisma.BoolFilter<"TodoNote"> | boolean
+  createdAt?: Prisma.DateTimeFilter<"TodoNote"> | Date | string
+  createdBy?: Prisma.IntNullableFilter<"TodoNote"> | number | null
+  todosTodosId?: Prisma.IntNullableFilter<"TodoNote"> | number | null
+}
+
 export type TodoNoteCreateWithoutTodosInput = {
   title: string
   content: string
@@ -479,6 +612,7 @@ export type TodoNoteCreateWithoutTodosInput = {
   isArchived?: boolean
   status?: boolean
   createdAt?: Date | string
+  user?: Prisma.UserCreateNestedOneWithoutTodoNotesInput
 }
 
 export type TodoNoteUncheckedCreateWithoutTodosInput = {
@@ -489,6 +623,7 @@ export type TodoNoteUncheckedCreateWithoutTodosInput = {
   isArchived?: boolean
   status?: boolean
   createdAt?: Date | string
+  createdBy?: number | null
 }
 
 export type TodoNoteCreateOrConnectWithoutTodosInput = {
@@ -516,18 +651,47 @@ export type TodoNoteUpdateManyWithWhereWithoutTodosInput = {
   data: Prisma.XOR<Prisma.TodoNoteUpdateManyMutationInput, Prisma.TodoNoteUncheckedUpdateManyWithoutTodosInput>
 }
 
-export type TodoNoteScalarWhereInput = {
-  AND?: Prisma.TodoNoteScalarWhereInput | Prisma.TodoNoteScalarWhereInput[]
-  OR?: Prisma.TodoNoteScalarWhereInput[]
-  NOT?: Prisma.TodoNoteScalarWhereInput | Prisma.TodoNoteScalarWhereInput[]
-  todoNoteId?: Prisma.IntFilter<"TodoNote"> | number
-  title?: Prisma.StringFilter<"TodoNote"> | string
-  content?: Prisma.StringFilter<"TodoNote"> | string
-  isPinned?: Prisma.BoolFilter<"TodoNote"> | boolean
-  isArchived?: Prisma.BoolFilter<"TodoNote"> | boolean
-  status?: Prisma.BoolFilter<"TodoNote"> | boolean
-  createdAt?: Prisma.DateTimeFilter<"TodoNote"> | Date | string
-  todosTodosId?: Prisma.IntNullableFilter<"TodoNote"> | number | null
+export type TodoNoteCreateManyUserInput = {
+  todoNoteId?: number
+  title: string
+  content: string
+  isPinned?: boolean
+  isArchived?: boolean
+  status?: boolean
+  createdAt?: Date | string
+  todosTodosId?: number | null
+}
+
+export type TodoNoteUpdateWithoutUserInput = {
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  content?: Prisma.StringFieldUpdateOperationsInput | string
+  isPinned?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isArchived?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  todos?: Prisma.TodosUpdateOneWithoutNotesNestedInput
+}
+
+export type TodoNoteUncheckedUpdateWithoutUserInput = {
+  todoNoteId?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  content?: Prisma.StringFieldUpdateOperationsInput | string
+  isPinned?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isArchived?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  todosTodosId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+}
+
+export type TodoNoteUncheckedUpdateManyWithoutUserInput = {
+  todoNoteId?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  content?: Prisma.StringFieldUpdateOperationsInput | string
+  isPinned?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isArchived?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  todosTodosId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type TodoNoteCreateManyTodosInput = {
@@ -538,6 +702,7 @@ export type TodoNoteCreateManyTodosInput = {
   isArchived?: boolean
   status?: boolean
   createdAt?: Date | string
+  createdBy?: number | null
 }
 
 export type TodoNoteUpdateWithoutTodosInput = {
@@ -547,6 +712,7 @@ export type TodoNoteUpdateWithoutTodosInput = {
   isArchived?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneWithoutTodoNotesNestedInput
 }
 
 export type TodoNoteUncheckedUpdateWithoutTodosInput = {
@@ -557,6 +723,7 @@ export type TodoNoteUncheckedUpdateWithoutTodosInput = {
   isArchived?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type TodoNoteUncheckedUpdateManyWithoutTodosInput = {
@@ -567,6 +734,7 @@ export type TodoNoteUncheckedUpdateManyWithoutTodosInput = {
   isArchived?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdBy?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 
@@ -579,8 +747,10 @@ export type TodoNoteSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   isArchived?: boolean
   status?: boolean
   createdAt?: boolean
+  createdBy?: boolean
   todosTodosId?: boolean
   todos?: boolean | Prisma.TodoNote$todosArgs<ExtArgs>
+  user?: boolean | Prisma.TodoNote$userArgs<ExtArgs>
 }, ExtArgs["result"]["todoNote"]>
 
 export type TodoNoteSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -591,8 +761,10 @@ export type TodoNoteSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   isArchived?: boolean
   status?: boolean
   createdAt?: boolean
+  createdBy?: boolean
   todosTodosId?: boolean
   todos?: boolean | Prisma.TodoNote$todosArgs<ExtArgs>
+  user?: boolean | Prisma.TodoNote$userArgs<ExtArgs>
 }, ExtArgs["result"]["todoNote"]>
 
 export type TodoNoteSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -603,8 +775,10 @@ export type TodoNoteSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   isArchived?: boolean
   status?: boolean
   createdAt?: boolean
+  createdBy?: boolean
   todosTodosId?: boolean
   todos?: boolean | Prisma.TodoNote$todosArgs<ExtArgs>
+  user?: boolean | Prisma.TodoNote$userArgs<ExtArgs>
 }, ExtArgs["result"]["todoNote"]>
 
 export type TodoNoteSelectScalar = {
@@ -615,24 +789,29 @@ export type TodoNoteSelectScalar = {
   isArchived?: boolean
   status?: boolean
   createdAt?: boolean
+  createdBy?: boolean
   todosTodosId?: boolean
 }
 
-export type TodoNoteOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"todoNoteId" | "title" | "content" | "isPinned" | "isArchived" | "status" | "createdAt" | "todosTodosId", ExtArgs["result"]["todoNote"]>
+export type TodoNoteOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"todoNoteId" | "title" | "content" | "isPinned" | "isArchived" | "status" | "createdAt" | "createdBy" | "todosTodosId", ExtArgs["result"]["todoNote"]>
 export type TodoNoteInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   todos?: boolean | Prisma.TodoNote$todosArgs<ExtArgs>
+  user?: boolean | Prisma.TodoNote$userArgs<ExtArgs>
 }
 export type TodoNoteIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   todos?: boolean | Prisma.TodoNote$todosArgs<ExtArgs>
+  user?: boolean | Prisma.TodoNote$userArgs<ExtArgs>
 }
 export type TodoNoteIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   todos?: boolean | Prisma.TodoNote$todosArgs<ExtArgs>
+  user?: boolean | Prisma.TodoNote$userArgs<ExtArgs>
 }
 
 export type $TodoNotePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "TodoNote"
   objects: {
     todos: Prisma.$TodosPayload<ExtArgs> | null
+    user: Prisma.$UserPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     todoNoteId: number
@@ -642,6 +821,7 @@ export type $TodoNotePayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     isArchived: boolean
     status: boolean
     createdAt: Date
+    createdBy: number | null
     todosTodosId: number | null
   }, ExtArgs["result"]["todoNote"]>
   composites: {}
@@ -1038,6 +1218,7 @@ readonly fields: TodoNoteFieldRefs;
 export interface Prisma__TodoNoteClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   todos<T extends Prisma.TodoNote$todosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TodoNote$todosArgs<ExtArgs>>): Prisma.Prisma__TodosClient<runtime.Types.Result.GetResult<Prisma.$TodosPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  user<T extends Prisma.TodoNote$userArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TodoNote$userArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1074,6 +1255,7 @@ export interface TodoNoteFieldRefs {
   readonly isArchived: Prisma.FieldRef<"TodoNote", 'Boolean'>
   readonly status: Prisma.FieldRef<"TodoNote", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"TodoNote", 'DateTime'>
+  readonly createdBy: Prisma.FieldRef<"TodoNote", 'Int'>
   readonly todosTodosId: Prisma.FieldRef<"TodoNote", 'Int'>
 }
     
@@ -1490,6 +1672,25 @@ export type TodoNote$todosArgs<ExtArgs extends runtime.Types.Extensions.Internal
    */
   include?: Prisma.TodosInclude<ExtArgs> | null
   where?: Prisma.TodosWhereInput
+}
+
+/**
+ * TodoNote.user
+ */
+export type TodoNote$userArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the User
+   */
+  select?: Prisma.UserSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the User
+   */
+  omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  where?: Prisma.UserWhereInput
 }
 
 /**
