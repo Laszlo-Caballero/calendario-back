@@ -232,6 +232,7 @@ export type TodosWhereInput = {
   todos?: Prisma.TodoListRelationFilter
   notes?: Prisma.TodoNoteListRelationFilter
   todosAsigments?: Prisma.TodosAsigmentListRelationFilter
+  boardDoc?: Prisma.XOR<Prisma.BoardDocNullableScalarRelationFilter, Prisma.BoardDocWhereInput> | null
 }
 
 export type TodosOrderByWithRelationInput = {
@@ -245,6 +246,7 @@ export type TodosOrderByWithRelationInput = {
   todos?: Prisma.TodoOrderByRelationAggregateInput
   notes?: Prisma.TodoNoteOrderByRelationAggregateInput
   todosAsigments?: Prisma.TodosAsigmentOrderByRelationAggregateInput
+  boardDoc?: Prisma.BoardDocOrderByWithRelationInput
 }
 
 export type TodosWhereUniqueInput = Prisma.AtLeast<{
@@ -261,6 +263,7 @@ export type TodosWhereUniqueInput = Prisma.AtLeast<{
   todos?: Prisma.TodoListRelationFilter
   notes?: Prisma.TodoNoteListRelationFilter
   todosAsigments?: Prisma.TodosAsigmentListRelationFilter
+  boardDoc?: Prisma.XOR<Prisma.BoardDocNullableScalarRelationFilter, Prisma.BoardDocWhereInput> | null
 }, "todosId">
 
 export type TodosOrderByWithAggregationInput = {
@@ -298,6 +301,7 @@ export type TodosCreateInput = {
   todos?: Prisma.TodoCreateNestedManyWithoutTodosInput
   notes?: Prisma.TodoNoteCreateNestedManyWithoutTodosInput
   todosAsigments?: Prisma.TodosAsigmentCreateNestedManyWithoutTodosInput
+  boardDoc?: Prisma.BoardDocCreateNestedOneWithoutTodosInput
 }
 
 export type TodosUncheckedCreateInput = {
@@ -310,6 +314,7 @@ export type TodosUncheckedCreateInput = {
   todos?: Prisma.TodoUncheckedCreateNestedManyWithoutTodosInput
   notes?: Prisma.TodoNoteUncheckedCreateNestedManyWithoutTodosInput
   todosAsigments?: Prisma.TodosAsigmentUncheckedCreateNestedManyWithoutTodosInput
+  boardDoc?: Prisma.BoardDocUncheckedCreateNestedOneWithoutTodosInput
 }
 
 export type TodosUpdateInput = {
@@ -321,6 +326,7 @@ export type TodosUpdateInput = {
   todos?: Prisma.TodoUpdateManyWithoutTodosNestedInput
   notes?: Prisma.TodoNoteUpdateManyWithoutTodosNestedInput
   todosAsigments?: Prisma.TodosAsigmentUpdateManyWithoutTodosNestedInput
+  boardDoc?: Prisma.BoardDocUpdateOneWithoutTodosNestedInput
 }
 
 export type TodosUncheckedUpdateInput = {
@@ -333,6 +339,7 @@ export type TodosUncheckedUpdateInput = {
   todos?: Prisma.TodoUncheckedUpdateManyWithoutTodosNestedInput
   notes?: Prisma.TodoNoteUncheckedUpdateManyWithoutTodosNestedInput
   todosAsigments?: Prisma.TodosAsigmentUncheckedUpdateManyWithoutTodosNestedInput
+  boardDoc?: Prisma.BoardDocUncheckedUpdateOneWithoutTodosNestedInput
 }
 
 export type TodosCreateManyInput = {
@@ -473,6 +480,20 @@ export type TodosUpdateOneRequiredWithoutTodosAsigmentsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.TodosUpdateToOneWithWhereWithoutTodosAsigmentsInput, Prisma.TodosUpdateWithoutTodosAsigmentsInput>, Prisma.TodosUncheckedUpdateWithoutTodosAsigmentsInput>
 }
 
+export type TodosCreateNestedOneWithoutBoardDocInput = {
+  create?: Prisma.XOR<Prisma.TodosCreateWithoutBoardDocInput, Prisma.TodosUncheckedCreateWithoutBoardDocInput>
+  connectOrCreate?: Prisma.TodosCreateOrConnectWithoutBoardDocInput
+  connect?: Prisma.TodosWhereUniqueInput
+}
+
+export type TodosUpdateOneRequiredWithoutBoardDocNestedInput = {
+  create?: Prisma.XOR<Prisma.TodosCreateWithoutBoardDocInput, Prisma.TodosUncheckedCreateWithoutBoardDocInput>
+  connectOrCreate?: Prisma.TodosCreateOrConnectWithoutBoardDocInput
+  upsert?: Prisma.TodosUpsertWithoutBoardDocInput
+  connect?: Prisma.TodosWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TodosUpdateToOneWithWhereWithoutBoardDocInput, Prisma.TodosUpdateWithoutBoardDocInput>, Prisma.TodosUncheckedUpdateWithoutBoardDocInput>
+}
+
 export type TodosCreateNestedOneWithoutNotesInput = {
   create?: Prisma.XOR<Prisma.TodosCreateWithoutNotesInput, Prisma.TodosUncheckedCreateWithoutNotesInput>
   connectOrCreate?: Prisma.TodosCreateOrConnectWithoutNotesInput
@@ -511,6 +532,7 @@ export type TodosCreateWithoutUserInput = {
   todos?: Prisma.TodoCreateNestedManyWithoutTodosInput
   notes?: Prisma.TodoNoteCreateNestedManyWithoutTodosInput
   todosAsigments?: Prisma.TodosAsigmentCreateNestedManyWithoutTodosInput
+  boardDoc?: Prisma.BoardDocCreateNestedOneWithoutTodosInput
 }
 
 export type TodosUncheckedCreateWithoutUserInput = {
@@ -522,6 +544,7 @@ export type TodosUncheckedCreateWithoutUserInput = {
   todos?: Prisma.TodoUncheckedCreateNestedManyWithoutTodosInput
   notes?: Prisma.TodoNoteUncheckedCreateNestedManyWithoutTodosInput
   todosAsigments?: Prisma.TodosAsigmentUncheckedCreateNestedManyWithoutTodosInput
+  boardDoc?: Prisma.BoardDocUncheckedCreateNestedOneWithoutTodosInput
 }
 
 export type TodosCreateOrConnectWithoutUserInput = {
@@ -569,6 +592,7 @@ export type TodosCreateWithoutTodosAsigmentsInput = {
   user: Prisma.UserCreateNestedOneWithoutTodosInput
   todos?: Prisma.TodoCreateNestedManyWithoutTodosInput
   notes?: Prisma.TodoNoteCreateNestedManyWithoutTodosInput
+  boardDoc?: Prisma.BoardDocCreateNestedOneWithoutTodosInput
 }
 
 export type TodosUncheckedCreateWithoutTodosAsigmentsInput = {
@@ -580,6 +604,7 @@ export type TodosUncheckedCreateWithoutTodosAsigmentsInput = {
   userId: number
   todos?: Prisma.TodoUncheckedCreateNestedManyWithoutTodosInput
   notes?: Prisma.TodoNoteUncheckedCreateNestedManyWithoutTodosInput
+  boardDoc?: Prisma.BoardDocUncheckedCreateNestedOneWithoutTodosInput
 }
 
 export type TodosCreateOrConnectWithoutTodosAsigmentsInput = {
@@ -606,6 +631,7 @@ export type TodosUpdateWithoutTodosAsigmentsInput = {
   user?: Prisma.UserUpdateOneRequiredWithoutTodosNestedInput
   todos?: Prisma.TodoUpdateManyWithoutTodosNestedInput
   notes?: Prisma.TodoNoteUpdateManyWithoutTodosNestedInput
+  boardDoc?: Prisma.BoardDocUpdateOneWithoutTodosNestedInput
 }
 
 export type TodosUncheckedUpdateWithoutTodosAsigmentsInput = {
@@ -617,6 +643,69 @@ export type TodosUncheckedUpdateWithoutTodosAsigmentsInput = {
   userId?: Prisma.IntFieldUpdateOperationsInput | number
   todos?: Prisma.TodoUncheckedUpdateManyWithoutTodosNestedInput
   notes?: Prisma.TodoNoteUncheckedUpdateManyWithoutTodosNestedInput
+  boardDoc?: Prisma.BoardDocUncheckedUpdateOneWithoutTodosNestedInput
+}
+
+export type TodosCreateWithoutBoardDocInput = {
+  title: string
+  status?: boolean
+  isPublic?: boolean
+  createdAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutTodosInput
+  todos?: Prisma.TodoCreateNestedManyWithoutTodosInput
+  notes?: Prisma.TodoNoteCreateNestedManyWithoutTodosInput
+  todosAsigments?: Prisma.TodosAsigmentCreateNestedManyWithoutTodosInput
+}
+
+export type TodosUncheckedCreateWithoutBoardDocInput = {
+  todosId?: number
+  title: string
+  status?: boolean
+  isPublic?: boolean
+  createdAt?: Date | string
+  userId: number
+  todos?: Prisma.TodoUncheckedCreateNestedManyWithoutTodosInput
+  notes?: Prisma.TodoNoteUncheckedCreateNestedManyWithoutTodosInput
+  todosAsigments?: Prisma.TodosAsigmentUncheckedCreateNestedManyWithoutTodosInput
+}
+
+export type TodosCreateOrConnectWithoutBoardDocInput = {
+  where: Prisma.TodosWhereUniqueInput
+  create: Prisma.XOR<Prisma.TodosCreateWithoutBoardDocInput, Prisma.TodosUncheckedCreateWithoutBoardDocInput>
+}
+
+export type TodosUpsertWithoutBoardDocInput = {
+  update: Prisma.XOR<Prisma.TodosUpdateWithoutBoardDocInput, Prisma.TodosUncheckedUpdateWithoutBoardDocInput>
+  create: Prisma.XOR<Prisma.TodosCreateWithoutBoardDocInput, Prisma.TodosUncheckedCreateWithoutBoardDocInput>
+  where?: Prisma.TodosWhereInput
+}
+
+export type TodosUpdateToOneWithWhereWithoutBoardDocInput = {
+  where?: Prisma.TodosWhereInput
+  data: Prisma.XOR<Prisma.TodosUpdateWithoutBoardDocInput, Prisma.TodosUncheckedUpdateWithoutBoardDocInput>
+}
+
+export type TodosUpdateWithoutBoardDocInput = {
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutTodosNestedInput
+  todos?: Prisma.TodoUpdateManyWithoutTodosNestedInput
+  notes?: Prisma.TodoNoteUpdateManyWithoutTodosNestedInput
+  todosAsigments?: Prisma.TodosAsigmentUpdateManyWithoutTodosNestedInput
+}
+
+export type TodosUncheckedUpdateWithoutBoardDocInput = {
+  todosId?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  userId?: Prisma.IntFieldUpdateOperationsInput | number
+  todos?: Prisma.TodoUncheckedUpdateManyWithoutTodosNestedInput
+  notes?: Prisma.TodoNoteUncheckedUpdateManyWithoutTodosNestedInput
+  todosAsigments?: Prisma.TodosAsigmentUncheckedUpdateManyWithoutTodosNestedInput
 }
 
 export type TodosCreateWithoutNotesInput = {
@@ -627,6 +716,7 @@ export type TodosCreateWithoutNotesInput = {
   user: Prisma.UserCreateNestedOneWithoutTodosInput
   todos?: Prisma.TodoCreateNestedManyWithoutTodosInput
   todosAsigments?: Prisma.TodosAsigmentCreateNestedManyWithoutTodosInput
+  boardDoc?: Prisma.BoardDocCreateNestedOneWithoutTodosInput
 }
 
 export type TodosUncheckedCreateWithoutNotesInput = {
@@ -638,6 +728,7 @@ export type TodosUncheckedCreateWithoutNotesInput = {
   userId: number
   todos?: Prisma.TodoUncheckedCreateNestedManyWithoutTodosInput
   todosAsigments?: Prisma.TodosAsigmentUncheckedCreateNestedManyWithoutTodosInput
+  boardDoc?: Prisma.BoardDocUncheckedCreateNestedOneWithoutTodosInput
 }
 
 export type TodosCreateOrConnectWithoutNotesInput = {
@@ -664,6 +755,7 @@ export type TodosUpdateWithoutNotesInput = {
   user?: Prisma.UserUpdateOneRequiredWithoutTodosNestedInput
   todos?: Prisma.TodoUpdateManyWithoutTodosNestedInput
   todosAsigments?: Prisma.TodosAsigmentUpdateManyWithoutTodosNestedInput
+  boardDoc?: Prisma.BoardDocUpdateOneWithoutTodosNestedInput
 }
 
 export type TodosUncheckedUpdateWithoutNotesInput = {
@@ -675,6 +767,7 @@ export type TodosUncheckedUpdateWithoutNotesInput = {
   userId?: Prisma.IntFieldUpdateOperationsInput | number
   todos?: Prisma.TodoUncheckedUpdateManyWithoutTodosNestedInput
   todosAsigments?: Prisma.TodosAsigmentUncheckedUpdateManyWithoutTodosNestedInput
+  boardDoc?: Prisma.BoardDocUncheckedUpdateOneWithoutTodosNestedInput
 }
 
 export type TodosCreateWithoutTodosInput = {
@@ -685,6 +778,7 @@ export type TodosCreateWithoutTodosInput = {
   user: Prisma.UserCreateNestedOneWithoutTodosInput
   notes?: Prisma.TodoNoteCreateNestedManyWithoutTodosInput
   todosAsigments?: Prisma.TodosAsigmentCreateNestedManyWithoutTodosInput
+  boardDoc?: Prisma.BoardDocCreateNestedOneWithoutTodosInput
 }
 
 export type TodosUncheckedCreateWithoutTodosInput = {
@@ -696,6 +790,7 @@ export type TodosUncheckedCreateWithoutTodosInput = {
   userId: number
   notes?: Prisma.TodoNoteUncheckedCreateNestedManyWithoutTodosInput
   todosAsigments?: Prisma.TodosAsigmentUncheckedCreateNestedManyWithoutTodosInput
+  boardDoc?: Prisma.BoardDocUncheckedCreateNestedOneWithoutTodosInput
 }
 
 export type TodosCreateOrConnectWithoutTodosInput = {
@@ -722,6 +817,7 @@ export type TodosUpdateWithoutTodosInput = {
   user?: Prisma.UserUpdateOneRequiredWithoutTodosNestedInput
   notes?: Prisma.TodoNoteUpdateManyWithoutTodosNestedInput
   todosAsigments?: Prisma.TodosAsigmentUpdateManyWithoutTodosNestedInput
+  boardDoc?: Prisma.BoardDocUpdateOneWithoutTodosNestedInput
 }
 
 export type TodosUncheckedUpdateWithoutTodosInput = {
@@ -733,6 +829,7 @@ export type TodosUncheckedUpdateWithoutTodosInput = {
   userId?: Prisma.IntFieldUpdateOperationsInput | number
   notes?: Prisma.TodoNoteUncheckedUpdateManyWithoutTodosNestedInput
   todosAsigments?: Prisma.TodosAsigmentUncheckedUpdateManyWithoutTodosNestedInput
+  boardDoc?: Prisma.BoardDocUncheckedUpdateOneWithoutTodosNestedInput
 }
 
 export type TodosCreateManyUserInput = {
@@ -751,6 +848,7 @@ export type TodosUpdateWithoutUserInput = {
   todos?: Prisma.TodoUpdateManyWithoutTodosNestedInput
   notes?: Prisma.TodoNoteUpdateManyWithoutTodosNestedInput
   todosAsigments?: Prisma.TodosAsigmentUpdateManyWithoutTodosNestedInput
+  boardDoc?: Prisma.BoardDocUpdateOneWithoutTodosNestedInput
 }
 
 export type TodosUncheckedUpdateWithoutUserInput = {
@@ -762,6 +860,7 @@ export type TodosUncheckedUpdateWithoutUserInput = {
   todos?: Prisma.TodoUncheckedUpdateManyWithoutTodosNestedInput
   notes?: Prisma.TodoNoteUncheckedUpdateManyWithoutTodosNestedInput
   todosAsigments?: Prisma.TodosAsigmentUncheckedUpdateManyWithoutTodosNestedInput
+  boardDoc?: Prisma.BoardDocUncheckedUpdateOneWithoutTodosNestedInput
 }
 
 export type TodosUncheckedUpdateManyWithoutUserInput = {
@@ -832,6 +931,7 @@ export type TodosSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   todos?: boolean | Prisma.Todos$todosArgs<ExtArgs>
   notes?: boolean | Prisma.Todos$notesArgs<ExtArgs>
   todosAsigments?: boolean | Prisma.Todos$todosAsigmentsArgs<ExtArgs>
+  boardDoc?: boolean | Prisma.Todos$boardDocArgs<ExtArgs>
   _count?: boolean | Prisma.TodosCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["todos"]>
 
@@ -870,6 +970,7 @@ export type TodosInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   todos?: boolean | Prisma.Todos$todosArgs<ExtArgs>
   notes?: boolean | Prisma.Todos$notesArgs<ExtArgs>
   todosAsigments?: boolean | Prisma.Todos$todosAsigmentsArgs<ExtArgs>
+  boardDoc?: boolean | Prisma.Todos$boardDocArgs<ExtArgs>
   _count?: boolean | Prisma.TodosCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type TodosIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -886,6 +987,7 @@ export type $TodosPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     todos: Prisma.$TodoPayload<ExtArgs>[]
     notes: Prisma.$TodoNotePayload<ExtArgs>[]
     todosAsigments: Prisma.$TodosAsigmentPayload<ExtArgs>[]
+    boardDoc: Prisma.$BoardDocPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     todosId: number
@@ -1292,6 +1394,7 @@ export interface Prisma__TodosClient<T, Null = never, ExtArgs extends runtime.Ty
   todos<T extends Prisma.Todos$todosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Todos$todosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TodoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   notes<T extends Prisma.Todos$notesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Todos$notesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TodoNotePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   todosAsigments<T extends Prisma.Todos$todosAsigmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Todos$todosAsigmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TodosAsigmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  boardDoc<T extends Prisma.Todos$boardDocArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Todos$boardDocArgs<ExtArgs>>): Prisma.Prisma__BoardDocClient<runtime.Types.Result.GetResult<Prisma.$BoardDocPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1795,6 +1898,25 @@ export type Todos$todosAsigmentsArgs<ExtArgs extends runtime.Types.Extensions.In
   take?: number
   skip?: number
   distinct?: Prisma.TodosAsigmentScalarFieldEnum | Prisma.TodosAsigmentScalarFieldEnum[]
+}
+
+/**
+ * Todos.boardDoc
+ */
+export type Todos$boardDocArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the BoardDoc
+   */
+  select?: Prisma.BoardDocSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the BoardDoc
+   */
+  omit?: Prisma.BoardDocOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BoardDocInclude<ExtArgs> | null
+  where?: Prisma.BoardDocWhereInput
 }
 
 /**

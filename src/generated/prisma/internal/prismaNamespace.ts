@@ -397,6 +397,7 @@ export const ModelName = {
   Schedule: 'Schedule',
   TodosAsigment: 'TodosAsigment',
   Todos: 'Todos',
+  BoardDoc: 'BoardDoc',
   TodoNote: 'TodoNote',
   AssignmentTodo: 'AssignmentTodo',
   Todo: 'Todo',
@@ -419,7 +420,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "salary" | "bonus" | "discount" | "debts" | "debtPayment" | "expense" | "expenseCategory" | "paymentMethod" | "calendar" | "schedule" | "todosAsigment" | "todos" | "todoNote" | "assignmentTodo" | "todo" | "todoImage" | "images" | "archives" | "folder"
+    modelProps: "user" | "salary" | "bonus" | "discount" | "debts" | "debtPayment" | "expense" | "expenseCategory" | "paymentMethod" | "calendar" | "schedule" | "todosAsigment" | "todos" | "boardDoc" | "todoNote" | "assignmentTodo" | "todo" | "todoImage" | "images" | "archives" | "folder"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1385,6 +1386,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    BoardDoc: {
+      payload: Prisma.$BoardDocPayload<ExtArgs>
+      fields: Prisma.BoardDocFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.BoardDocFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BoardDocPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.BoardDocFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BoardDocPayload>
+        }
+        findFirst: {
+          args: Prisma.BoardDocFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BoardDocPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.BoardDocFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BoardDocPayload>
+        }
+        findMany: {
+          args: Prisma.BoardDocFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BoardDocPayload>[]
+        }
+        create: {
+          args: Prisma.BoardDocCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BoardDocPayload>
+        }
+        createMany: {
+          args: Prisma.BoardDocCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.BoardDocCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BoardDocPayload>[]
+        }
+        delete: {
+          args: Prisma.BoardDocDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BoardDocPayload>
+        }
+        update: {
+          args: Prisma.BoardDocUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BoardDocPayload>
+        }
+        deleteMany: {
+          args: Prisma.BoardDocDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.BoardDocUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.BoardDocUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BoardDocPayload>[]
+        }
+        upsert: {
+          args: Prisma.BoardDocUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BoardDocPayload>
+        }
+        aggregate: {
+          args: Prisma.BoardDocAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateBoardDoc>
+        }
+        groupBy: {
+          args: Prisma.BoardDocGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BoardDocGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.BoardDocCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BoardDocCountAggregateOutputType> | number
+        }
+      }
+    }
     TodoNote: {
       payload: Prisma.$TodoNotePayload<ExtArgs>
       fields: Prisma.TodoNoteFieldRefs
@@ -2112,6 +2187,19 @@ export const TodosScalarFieldEnum = {
 export type TodosScalarFieldEnum = (typeof TodosScalarFieldEnum)[keyof typeof TodosScalarFieldEnum]
 
 
+export const BoardDocScalarFieldEnum = {
+  boardDocId: 'boardDocId',
+  title: 'title',
+  subtitle: 'subtitle',
+  content: 'content',
+  todosId: 'todosId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type BoardDocScalarFieldEnum = (typeof BoardDocScalarFieldEnum)[keyof typeof BoardDocScalarFieldEnum]
+
+
 export const TodoNoteScalarFieldEnum = {
   todoNoteId: 'todoNoteId',
   title: 'title',
@@ -2389,6 +2477,7 @@ export type GlobalOmitConfig = {
   schedule?: Prisma.ScheduleOmit
   todosAsigment?: Prisma.TodosAsigmentOmit
   todos?: Prisma.TodosOmit
+  boardDoc?: Prisma.BoardDocOmit
   todoNote?: Prisma.TodoNoteOmit
   assignmentTodo?: Prisma.AssignmentTodoOmit
   todo?: Prisma.TodoOmit

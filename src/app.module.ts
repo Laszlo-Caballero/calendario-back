@@ -16,6 +16,7 @@ import { ExpenseCategoryModule } from './expense-category/expense-category.modul
 import { PaymentMethodModule } from './payment-method/payment-method.module';
 import { ExpenseModule } from './expense/expense.module';
 import { TodoNotesModule } from './todo-notes/todo-notes.module';
+import { BoardDocModule } from './board-doc/board-doc.module';
 
 @Module({
   imports: [
@@ -34,6 +35,7 @@ import { TodoNotesModule } from './todo-notes/todo-notes.module';
     PaymentMethodModule,
     ExpenseModule,
     TodoNotesModule,
+    BoardDocModule,
   ],
   controllers: [AppController],
   providers: [AppService],

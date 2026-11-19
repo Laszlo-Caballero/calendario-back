@@ -64,6 +64,7 @@ export const ModelName = {
   Schedule: 'Schedule',
   TodosAsigment: 'TodosAsigment',
   Todos: 'Todos',
+  BoardDoc: 'BoardDoc',
   TodoNote: 'TodoNote',
   AssignmentTodo: 'AssignmentTodo',
   Todo: 'Todo',
@@ -257,6 +258,19 @@ export const TodosScalarFieldEnum = {
 } as const
 
 export type TodosScalarFieldEnum = (typeof TodosScalarFieldEnum)[keyof typeof TodosScalarFieldEnum]
+
+
+export const BoardDocScalarFieldEnum = {
+  boardDocId: 'boardDocId',
+  title: 'title',
+  subtitle: 'subtitle',
+  content: 'content',
+  todosId: 'todosId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type BoardDocScalarFieldEnum = (typeof BoardDocScalarFieldEnum)[keyof typeof BoardDocScalarFieldEnum]
 
 
 export const TodoNoteScalarFieldEnum = {

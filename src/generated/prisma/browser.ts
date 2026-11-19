@@ -83,6 +83,11 @@ export type TodosAsigment = Prisma.TodosAsigmentModel
  */
 export type Todos = Prisma.TodosModel
 /**
+ * Model BoardDoc
+ * 
+ */
+export type BoardDoc = Prisma.BoardDocModel
+/**
  * Model TodoNote
  * 
  */

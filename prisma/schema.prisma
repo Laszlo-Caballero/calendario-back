@@ -188,6 +188,18 @@ model Todos {
   todos          Todo[]
   notes          TodoNote[]
   todosAsigments TodosAsigment[]
+  boardDoc       BoardDoc?
+}
+
+model BoardDoc {
+  boardDocId Int      @id @default(autoincrement())
+  title      String   @default("Hoja de Planificación & Tareas")
+  subtitle   String?  @default("")
+  content    String
+  todosId    Int      @unique
+  todos      Todos    @relation(fields: [todosId], references: [todosId], onDelete: Cascade)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 }
 
 model TodoNote {
