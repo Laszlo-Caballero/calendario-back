@@ -66,6 +66,7 @@ export class TodoService {
       where: {
         todosId,
       },
+      orderBy: [{ order: 'asc' }, { todoId: 'asc' }],
       include: {
         images: {
           include: {
@@ -78,7 +79,7 @@ export class TodoService {
   }
 
   async createTodo(todo: TodoDto) {
-    const { todosId, assignmentUserIds } = todo;
+    const { todosId, assignmentUserIds, ...todoData } = todo;
 
     const findTodos = await this.prisma.todos.findUnique({
       where: {
@@ -96,7 +97,7 @@ export class TodoService {
 
     const newTodo = await this.prisma.todo.create({
       data: {
-        ...todo,
+        ...todoData,
         todosId,
       },
     });
@@ -109,24 +110,37 @@ export class TodoService {
     }> = [];
 
     if (assignmentUserIds && assignmentUserIds.length > 0) {
-      assignmentTodos = await Promise.all(
-        assignmentUserIds.map((userId) => {
-          return this.prisma.assignmentTodo.create({
-            data: {
-              todo: {
-                connect: {
-                  todoId: newTodo.todoId,
+      const existingUsers = await this.prisma.user.findMany({
+        where: {
+          userId: {
+            in: assignmentUserIds,
+          },
+        },
+        select: { userId: true },
+      });
+
+      const validUserIds = existingUsers.map((u) => u.userId);
+
+      if (validUserIds.length > 0) {
+        assignmentTodos = await Promise.all(
+          validUserIds.map((userId) => {
+            return this.prisma.assignmentTodo.create({
+              data: {
+                todo: {
+                  connect: {
+                    todoId: newTodo.todoId,
+                  },
+                },
+                user: {
+                  connect: {
+                    userId,
+                  },
                 },
               },
-              user: {
-                connect: {
-                  userId,
-                },
-              },
-            },
-          });
-        }),
-      );
+            });
+          }),
+        );
+      }
     }
 
     return {
@@ -186,24 +200,37 @@ export class TodoService {
       }
 
       if (userIdsToCreate.length > 0) {
-        await Promise.all(
-          userIdsToCreate.map((userId) => {
-            return this.prisma.assignmentTodo.create({
-              data: {
-                todo: {
-                  connect: {
-                    todoId: id,
+        const existingUsers = await this.prisma.user.findMany({
+          where: {
+            userId: {
+              in: userIdsToCreate,
+            },
+          },
+          select: { userId: true },
+        });
+
+        const validUserIdsToCreate = existingUsers.map((u) => u.userId);
+
+        if (validUserIdsToCreate.length > 0) {
+          await Promise.all(
+            validUserIdsToCreate.map((userId) => {
+              return this.prisma.assignmentTodo.create({
+                data: {
+                  todo: {
+                    connect: {
+                      todoId: id,
+                    },
+                  },
+                  user: {
+                    connect: {
+                      userId,
+                    },
                   },
                 },
-                user: {
-                  connect: {
-                    userId,
-                  },
-                },
-              },
-            });
-          }),
-        );
+              });
+            }),
+          );
+        }
       }
     }
 
@@ -241,6 +268,12 @@ export class TodoService {
     if (!todos.isPublic && user?.role !== 'ADMIN') {
       throw new ForbiddenException(`Todo with id ${id} not found`);
     }
+
+    await this.prisma.assignmentTodo.deleteMany({
+      where: {
+        todoId: id,
+      },
+    });
 
     const deletedImages = await this.prisma.todoImage.deleteMany({
       where: {

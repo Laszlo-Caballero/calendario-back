@@ -290,6 +290,8 @@ export const TodoScalarFieldEnum = {
   description: 'description',
   status: 'status',
   todosId: 'todosId',
+  phase: 'phase',
+  order: 'order',
   isArchived: 'isArchived',
   pinned: 'pinned',
   completedAt: 'completedAt',

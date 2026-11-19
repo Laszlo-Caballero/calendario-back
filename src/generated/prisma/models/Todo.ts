@@ -29,6 +29,7 @@ export type AggregateTodo = {
 export type TodoAvgAggregateOutputType = {
   todoId: number | null
   todosId: number | null
+  order: number | null
   importance: number | null
   createById: number | null
 }
@@ -36,6 +37,7 @@ export type TodoAvgAggregateOutputType = {
 export type TodoSumAggregateOutputType = {
   todoId: number | null
   todosId: number | null
+  order: number | null
   importance: number | null
   createById: number | null
 }
@@ -46,6 +48,8 @@ export type TodoMinAggregateOutputType = {
   description: string | null
   status: $Enums.TodoStatus | null
   todosId: number | null
+  phase: string | null
+  order: number | null
   isArchived: boolean | null
   pinned: boolean | null
   completedAt: Date | null
@@ -60,6 +64,8 @@ export type TodoMaxAggregateOutputType = {
   description: string | null
   status: $Enums.TodoStatus | null
   todosId: number | null
+  phase: string | null
+  order: number | null
   isArchived: boolean | null
   pinned: boolean | null
   completedAt: Date | null
@@ -74,6 +80,8 @@ export type TodoCountAggregateOutputType = {
   description: number
   status: number
   todosId: number
+  phase: number
+  order: number
   isArchived: number
   pinned: number
   completedAt: number
@@ -87,6 +95,7 @@ export type TodoCountAggregateOutputType = {
 export type TodoAvgAggregateInputType = {
   todoId?: true
   todosId?: true
+  order?: true
   importance?: true
   createById?: true
 }
@@ -94,6 +103,7 @@ export type TodoAvgAggregateInputType = {
 export type TodoSumAggregateInputType = {
   todoId?: true
   todosId?: true
+  order?: true
   importance?: true
   createById?: true
 }
@@ -104,6 +114,8 @@ export type TodoMinAggregateInputType = {
   description?: true
   status?: true
   todosId?: true
+  phase?: true
+  order?: true
   isArchived?: true
   pinned?: true
   completedAt?: true
@@ -118,6 +130,8 @@ export type TodoMaxAggregateInputType = {
   description?: true
   status?: true
   todosId?: true
+  phase?: true
+  order?: true
   isArchived?: true
   pinned?: true
   completedAt?: true
@@ -132,6 +146,8 @@ export type TodoCountAggregateInputType = {
   description?: true
   status?: true
   todosId?: true
+  phase?: true
+  order?: true
   isArchived?: true
   pinned?: true
   completedAt?: true
@@ -233,6 +249,8 @@ export type TodoGroupByOutputType = {
   description: string
   status: $Enums.TodoStatus
   todosId: number
+  phase: string | null
+  order: number
   isArchived: boolean
   pinned: boolean
   completedAt: Date | null
@@ -270,6 +288,8 @@ export type TodoWhereInput = {
   description?: Prisma.StringFilter<"Todo"> | string
   status?: Prisma.EnumTodoStatusFilter<"Todo"> | $Enums.TodoStatus
   todosId?: Prisma.IntFilter<"Todo"> | number
+  phase?: Prisma.StringNullableFilter<"Todo"> | string | null
+  order?: Prisma.IntFilter<"Todo"> | number
   isArchived?: Prisma.BoolFilter<"Todo"> | boolean
   pinned?: Prisma.BoolFilter<"Todo"> | boolean
   completedAt?: Prisma.DateTimeNullableFilter<"Todo"> | Date | string | null
@@ -288,6 +308,8 @@ export type TodoOrderByWithRelationInput = {
   description?: Prisma.SortOrder
   status?: Prisma.SortOrder
   todosId?: Prisma.SortOrder
+  phase?: Prisma.SortOrderInput | Prisma.SortOrder
+  order?: Prisma.SortOrder
   isArchived?: Prisma.SortOrder
   pinned?: Prisma.SortOrder
   completedAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -309,6 +331,8 @@ export type TodoWhereUniqueInput = Prisma.AtLeast<{
   description?: Prisma.StringFilter<"Todo"> | string
   status?: Prisma.EnumTodoStatusFilter<"Todo"> | $Enums.TodoStatus
   todosId?: Prisma.IntFilter<"Todo"> | number
+  phase?: Prisma.StringNullableFilter<"Todo"> | string | null
+  order?: Prisma.IntFilter<"Todo"> | number
   isArchived?: Prisma.BoolFilter<"Todo"> | boolean
   pinned?: Prisma.BoolFilter<"Todo"> | boolean
   completedAt?: Prisma.DateTimeNullableFilter<"Todo"> | Date | string | null
@@ -327,6 +351,8 @@ export type TodoOrderByWithAggregationInput = {
   description?: Prisma.SortOrder
   status?: Prisma.SortOrder
   todosId?: Prisma.SortOrder
+  phase?: Prisma.SortOrderInput | Prisma.SortOrder
+  order?: Prisma.SortOrder
   isArchived?: Prisma.SortOrder
   pinned?: Prisma.SortOrder
   completedAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -349,6 +375,8 @@ export type TodoScalarWhereWithAggregatesInput = {
   description?: Prisma.StringWithAggregatesFilter<"Todo"> | string
   status?: Prisma.EnumTodoStatusWithAggregatesFilter<"Todo"> | $Enums.TodoStatus
   todosId?: Prisma.IntWithAggregatesFilter<"Todo"> | number
+  phase?: Prisma.StringNullableWithAggregatesFilter<"Todo"> | string | null
+  order?: Prisma.IntWithAggregatesFilter<"Todo"> | number
   isArchived?: Prisma.BoolWithAggregatesFilter<"Todo"> | boolean
   pinned?: Prisma.BoolWithAggregatesFilter<"Todo"> | boolean
   completedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Todo"> | Date | string | null
@@ -361,6 +389,8 @@ export type TodoCreateInput = {
   title: string
   description: string
   status?: $Enums.TodoStatus
+  phase?: string | null
+  order?: number
   isArchived?: boolean
   pinned?: boolean
   completedAt?: Date | string | null
@@ -378,6 +408,8 @@ export type TodoUncheckedCreateInput = {
   description: string
   status?: $Enums.TodoStatus
   todosId: number
+  phase?: string | null
+  order?: number
   isArchived?: boolean
   pinned?: boolean
   completedAt?: Date | string | null
@@ -392,6 +424,8 @@ export type TodoUpdateInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumTodoStatusFieldUpdateOperationsInput | $Enums.TodoStatus
+  phase?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  order?: Prisma.IntFieldUpdateOperationsInput | number
   isArchived?: Prisma.BoolFieldUpdateOperationsInput | boolean
   pinned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -409,6 +443,8 @@ export type TodoUncheckedUpdateInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumTodoStatusFieldUpdateOperationsInput | $Enums.TodoStatus
   todosId?: Prisma.IntFieldUpdateOperationsInput | number
+  phase?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  order?: Prisma.IntFieldUpdateOperationsInput | number
   isArchived?: Prisma.BoolFieldUpdateOperationsInput | boolean
   pinned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -425,6 +461,8 @@ export type TodoCreateManyInput = {
   description: string
   status?: $Enums.TodoStatus
   todosId: number
+  phase?: string | null
+  order?: number
   isArchived?: boolean
   pinned?: boolean
   completedAt?: Date | string | null
@@ -437,6 +475,8 @@ export type TodoUpdateManyMutationInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumTodoStatusFieldUpdateOperationsInput | $Enums.TodoStatus
+  phase?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  order?: Prisma.IntFieldUpdateOperationsInput | number
   isArchived?: Prisma.BoolFieldUpdateOperationsInput | boolean
   pinned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -450,6 +490,8 @@ export type TodoUncheckedUpdateManyInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumTodoStatusFieldUpdateOperationsInput | $Enums.TodoStatus
   todosId?: Prisma.IntFieldUpdateOperationsInput | number
+  phase?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  order?: Prisma.IntFieldUpdateOperationsInput | number
   isArchived?: Prisma.BoolFieldUpdateOperationsInput | boolean
   pinned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -479,6 +521,8 @@ export type TodoCountOrderByAggregateInput = {
   description?: Prisma.SortOrder
   status?: Prisma.SortOrder
   todosId?: Prisma.SortOrder
+  phase?: Prisma.SortOrder
+  order?: Prisma.SortOrder
   isArchived?: Prisma.SortOrder
   pinned?: Prisma.SortOrder
   completedAt?: Prisma.SortOrder
@@ -490,6 +534,7 @@ export type TodoCountOrderByAggregateInput = {
 export type TodoAvgOrderByAggregateInput = {
   todoId?: Prisma.SortOrder
   todosId?: Prisma.SortOrder
+  order?: Prisma.SortOrder
   importance?: Prisma.SortOrder
   createById?: Prisma.SortOrder
 }
@@ -500,6 +545,8 @@ export type TodoMaxOrderByAggregateInput = {
   description?: Prisma.SortOrder
   status?: Prisma.SortOrder
   todosId?: Prisma.SortOrder
+  phase?: Prisma.SortOrder
+  order?: Prisma.SortOrder
   isArchived?: Prisma.SortOrder
   pinned?: Prisma.SortOrder
   completedAt?: Prisma.SortOrder
@@ -514,6 +561,8 @@ export type TodoMinOrderByAggregateInput = {
   description?: Prisma.SortOrder
   status?: Prisma.SortOrder
   todosId?: Prisma.SortOrder
+  phase?: Prisma.SortOrder
+  order?: Prisma.SortOrder
   isArchived?: Prisma.SortOrder
   pinned?: Prisma.SortOrder
   completedAt?: Prisma.SortOrder
@@ -525,6 +574,7 @@ export type TodoMinOrderByAggregateInput = {
 export type TodoSumOrderByAggregateInput = {
   todoId?: Prisma.SortOrder
   todosId?: Prisma.SortOrder
+  order?: Prisma.SortOrder
   importance?: Prisma.SortOrder
   createById?: Prisma.SortOrder
 }
@@ -631,6 +681,10 @@ export type EnumTodoStatusFieldUpdateOperationsInput = {
   set?: $Enums.TodoStatus
 }
 
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
+}
+
 export type NullableDateTimeFieldUpdateOperationsInput = {
   set?: Date | string | null
 }
@@ -653,6 +707,8 @@ export type TodoCreateWithoutCreateByInput = {
   title: string
   description: string
   status?: $Enums.TodoStatus
+  phase?: string | null
+  order?: number
   isArchived?: boolean
   pinned?: boolean
   completedAt?: Date | string | null
@@ -669,6 +725,8 @@ export type TodoUncheckedCreateWithoutCreateByInput = {
   description: string
   status?: $Enums.TodoStatus
   todosId: number
+  phase?: string | null
+  order?: number
   isArchived?: boolean
   pinned?: boolean
   completedAt?: Date | string | null
@@ -712,6 +770,8 @@ export type TodoScalarWhereInput = {
   description?: Prisma.StringFilter<"Todo"> | string
   status?: Prisma.EnumTodoStatusFilter<"Todo"> | $Enums.TodoStatus
   todosId?: Prisma.IntFilter<"Todo"> | number
+  phase?: Prisma.StringNullableFilter<"Todo"> | string | null
+  order?: Prisma.IntFilter<"Todo"> | number
   isArchived?: Prisma.BoolFilter<"Todo"> | boolean
   pinned?: Prisma.BoolFilter<"Todo"> | boolean
   completedAt?: Prisma.DateTimeNullableFilter<"Todo"> | Date | string | null
@@ -724,6 +784,8 @@ export type TodoCreateWithoutTodosInput = {
   title: string
   description: string
   status?: $Enums.TodoStatus
+  phase?: string | null
+  order?: number
   isArchived?: boolean
   pinned?: boolean
   completedAt?: Date | string | null
@@ -739,6 +801,8 @@ export type TodoUncheckedCreateWithoutTodosInput = {
   title: string
   description: string
   status?: $Enums.TodoStatus
+  phase?: string | null
+  order?: number
   isArchived?: boolean
   pinned?: boolean
   completedAt?: Date | string | null
@@ -778,6 +842,8 @@ export type TodoCreateWithoutAssignmentTodosInput = {
   title: string
   description: string
   status?: $Enums.TodoStatus
+  phase?: string | null
+  order?: number
   isArchived?: boolean
   pinned?: boolean
   completedAt?: Date | string | null
@@ -794,6 +860,8 @@ export type TodoUncheckedCreateWithoutAssignmentTodosInput = {
   description: string
   status?: $Enums.TodoStatus
   todosId: number
+  phase?: string | null
+  order?: number
   isArchived?: boolean
   pinned?: boolean
   completedAt?: Date | string | null
@@ -823,6 +891,8 @@ export type TodoUpdateWithoutAssignmentTodosInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumTodoStatusFieldUpdateOperationsInput | $Enums.TodoStatus
+  phase?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  order?: Prisma.IntFieldUpdateOperationsInput | number
   isArchived?: Prisma.BoolFieldUpdateOperationsInput | boolean
   pinned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -839,6 +909,8 @@ export type TodoUncheckedUpdateWithoutAssignmentTodosInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumTodoStatusFieldUpdateOperationsInput | $Enums.TodoStatus
   todosId?: Prisma.IntFieldUpdateOperationsInput | number
+  phase?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  order?: Prisma.IntFieldUpdateOperationsInput | number
   isArchived?: Prisma.BoolFieldUpdateOperationsInput | boolean
   pinned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -852,6 +924,8 @@ export type TodoCreateWithoutImagesInput = {
   title: string
   description: string
   status?: $Enums.TodoStatus
+  phase?: string | null
+  order?: number
   isArchived?: boolean
   pinned?: boolean
   completedAt?: Date | string | null
@@ -868,6 +942,8 @@ export type TodoUncheckedCreateWithoutImagesInput = {
   description: string
   status?: $Enums.TodoStatus
   todosId: number
+  phase?: string | null
+  order?: number
   isArchived?: boolean
   pinned?: boolean
   completedAt?: Date | string | null
@@ -897,6 +973,8 @@ export type TodoUpdateWithoutImagesInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumTodoStatusFieldUpdateOperationsInput | $Enums.TodoStatus
+  phase?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  order?: Prisma.IntFieldUpdateOperationsInput | number
   isArchived?: Prisma.BoolFieldUpdateOperationsInput | boolean
   pinned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -913,6 +991,8 @@ export type TodoUncheckedUpdateWithoutImagesInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumTodoStatusFieldUpdateOperationsInput | $Enums.TodoStatus
   todosId?: Prisma.IntFieldUpdateOperationsInput | number
+  phase?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  order?: Prisma.IntFieldUpdateOperationsInput | number
   isArchived?: Prisma.BoolFieldUpdateOperationsInput | boolean
   pinned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -928,6 +1008,8 @@ export type TodoCreateManyCreateByInput = {
   description: string
   status?: $Enums.TodoStatus
   todosId: number
+  phase?: string | null
+  order?: number
   isArchived?: boolean
   pinned?: boolean
   completedAt?: Date | string | null
@@ -939,6 +1021,8 @@ export type TodoUpdateWithoutCreateByInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumTodoStatusFieldUpdateOperationsInput | $Enums.TodoStatus
+  phase?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  order?: Prisma.IntFieldUpdateOperationsInput | number
   isArchived?: Prisma.BoolFieldUpdateOperationsInput | boolean
   pinned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -955,6 +1039,8 @@ export type TodoUncheckedUpdateWithoutCreateByInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumTodoStatusFieldUpdateOperationsInput | $Enums.TodoStatus
   todosId?: Prisma.IntFieldUpdateOperationsInput | number
+  phase?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  order?: Prisma.IntFieldUpdateOperationsInput | number
   isArchived?: Prisma.BoolFieldUpdateOperationsInput | boolean
   pinned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -970,6 +1056,8 @@ export type TodoUncheckedUpdateManyWithoutCreateByInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumTodoStatusFieldUpdateOperationsInput | $Enums.TodoStatus
   todosId?: Prisma.IntFieldUpdateOperationsInput | number
+  phase?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  order?: Prisma.IntFieldUpdateOperationsInput | number
   isArchived?: Prisma.BoolFieldUpdateOperationsInput | boolean
   pinned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -982,6 +1070,8 @@ export type TodoCreateManyTodosInput = {
   title: string
   description: string
   status?: $Enums.TodoStatus
+  phase?: string | null
+  order?: number
   isArchived?: boolean
   pinned?: boolean
   completedAt?: Date | string | null
@@ -994,6 +1084,8 @@ export type TodoUpdateWithoutTodosInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumTodoStatusFieldUpdateOperationsInput | $Enums.TodoStatus
+  phase?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  order?: Prisma.IntFieldUpdateOperationsInput | number
   isArchived?: Prisma.BoolFieldUpdateOperationsInput | boolean
   pinned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1009,6 +1101,8 @@ export type TodoUncheckedUpdateWithoutTodosInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumTodoStatusFieldUpdateOperationsInput | $Enums.TodoStatus
+  phase?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  order?: Prisma.IntFieldUpdateOperationsInput | number
   isArchived?: Prisma.BoolFieldUpdateOperationsInput | boolean
   pinned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1024,6 +1118,8 @@ export type TodoUncheckedUpdateManyWithoutTodosInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumTodoStatusFieldUpdateOperationsInput | $Enums.TodoStatus
+  phase?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  order?: Prisma.IntFieldUpdateOperationsInput | number
   isArchived?: Prisma.BoolFieldUpdateOperationsInput | boolean
   pinned?: Prisma.BoolFieldUpdateOperationsInput | boolean
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1078,6 +1174,8 @@ export type TodoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   description?: boolean
   status?: boolean
   todosId?: boolean
+  phase?: boolean
+  order?: boolean
   isArchived?: boolean
   pinned?: boolean
   completedAt?: boolean
@@ -1097,6 +1195,8 @@ export type TodoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   description?: boolean
   status?: boolean
   todosId?: boolean
+  phase?: boolean
+  order?: boolean
   isArchived?: boolean
   pinned?: boolean
   completedAt?: boolean
@@ -1113,6 +1213,8 @@ export type TodoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   description?: boolean
   status?: boolean
   todosId?: boolean
+  phase?: boolean
+  order?: boolean
   isArchived?: boolean
   pinned?: boolean
   completedAt?: boolean
@@ -1129,6 +1231,8 @@ export type TodoSelectScalar = {
   description?: boolean
   status?: boolean
   todosId?: boolean
+  phase?: boolean
+  order?: boolean
   isArchived?: boolean
   pinned?: boolean
   completedAt?: boolean
@@ -1137,7 +1241,7 @@ export type TodoSelectScalar = {
   createById?: boolean
 }
 
-export type TodoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"todoId" | "title" | "description" | "status" | "todosId" | "isArchived" | "pinned" | "completedAt" | "hourNotification" | "importance" | "createById", ExtArgs["result"]["todo"]>
+export type TodoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"todoId" | "title" | "description" | "status" | "todosId" | "phase" | "order" | "isArchived" | "pinned" | "completedAt" | "hourNotification" | "importance" | "createById", ExtArgs["result"]["todo"]>
 export type TodoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   todos?: boolean | Prisma.TodosDefaultArgs<ExtArgs>
   images?: boolean | Prisma.Todo$imagesArgs<ExtArgs>
@@ -1168,6 +1272,8 @@ export type $TodoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     description: string
     status: $Enums.TodoStatus
     todosId: number
+    phase: string | null
+    order: number
     isArchived: boolean
     pinned: boolean
     completedAt: Date | null
@@ -1606,6 +1712,8 @@ export interface TodoFieldRefs {
   readonly description: Prisma.FieldRef<"Todo", 'String'>
   readonly status: Prisma.FieldRef<"Todo", 'TodoStatus'>
   readonly todosId: Prisma.FieldRef<"Todo", 'Int'>
+  readonly phase: Prisma.FieldRef<"Todo", 'String'>
+  readonly order: Prisma.FieldRef<"Todo", 'Int'>
   readonly isArchived: Prisma.FieldRef<"Todo", 'Boolean'>
   readonly pinned: Prisma.FieldRef<"Todo", 'Boolean'>
   readonly completedAt: Prisma.FieldRef<"Todo", 'DateTime'>

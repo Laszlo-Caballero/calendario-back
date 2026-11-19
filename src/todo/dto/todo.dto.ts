@@ -36,6 +36,14 @@ export class TodoDto {
   @IsNotEmpty()
   importance: number;
 
+  @IsString()
+  @IsOptional()
+  phase?: string;
+
+  @IsNumber()
+  @IsOptional()
+  order?: number;
+
   @IsArray()
   @IsNumber({}, { each: true })
   @IsOptional()

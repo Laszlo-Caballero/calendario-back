@@ -217,8 +217,8 @@ model AssignmentTodo {
   assignmentTodoId Int      @id @default(autoincrement())
   todoId           Int
   userId           Int
-  todo             Todo     @relation(fields: [todoId], references: [todoId])
-  user             User     @relation(fields: [userId], references: [userId])
+  todo             Todo     @relation(fields: [todoId], references: [todoId], onDelete: Cascade)
+  user             User     @relation(fields: [userId], references: [userId], onDelete: Cascade)
   createdAt        DateTime @default(now())
 }
 
@@ -229,6 +229,8 @@ model Todo {
   status           TodoStatus       @default(PENDING)
   todosId          Int
   todos            Todos            @relation(fields: [todosId], references: [todosId])
+  phase            String?
+  order            Int              @default(0)
   images           TodoImage[]
   isArchived       Boolean          @default(false)
   pinned           Boolean          @default(false)
@@ -243,9 +245,9 @@ model Todo {
 model TodoImage {
   todoImageId Int    @id @default(autoincrement())
   todoId      Int
-  todo        Todo   @relation(fields: [todoId], references: [todoId])
+  todo        Todo   @relation(fields: [todoId], references: [todoId], onDelete: Cascade)
   imageId     Int
-  image       Images @relation(fields: [imageId], references: [imageId])
+  image       Images @relation(fields: [imageId], references: [imageId], onDelete: Cascade)
 }
 
 model Images {
