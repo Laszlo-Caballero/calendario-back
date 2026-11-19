@@ -107,7 +107,7 @@ export class BoardDocService {
     }
 
     if (todoBoard.boardDoc) {
-      return todoBoard.boardDoc;
+      return this.syncLiveTasksToDoc(todoBoard.boardDoc);
     }
 
     const defaultTitle = `${todoBoard.title} - Hoja de Trabajo`;
@@ -121,6 +121,69 @@ export class BoardDocService {
         content: defaultContent,
       },
     });
+  }
+
+  private async syncLiveTasksToDoc(boardDoc: any) {
+    if (!boardDoc || !boardDoc.content) return boardDoc;
+    try {
+      const parsed = JSON.parse(boardDoc.content) as ParsedDocContent;
+      if (!parsed || !Array.isArray(parsed.blocks)) return boardDoc;
+
+      const syncedTodoIds = new Set<number>();
+      for (const block of parsed.blocks) {
+        if (block.type === 'checklist' && Array.isArray(block.checklistItems)) {
+          for (const item of block.checklistItems) {
+            if (item.syncedTodoId) syncedTodoIds.add(item.syncedTodoId);
+          }
+        }
+        if (block.type === 'synced-task' && block.syncedTodoId) {
+          syncedTodoIds.add(block.syncedTodoId as number);
+        }
+      }
+
+      if (syncedTodoIds.size === 0) return boardDoc;
+
+      const liveTasks = await this.prisma.todo.findMany({
+        where: { todoId: { in: Array.from(syncedTodoIds) } },
+      });
+      const taskMap = new Map(liveTasks.map((t) => [t.todoId, t]));
+
+      let changed = false;
+      parsed.blocks = parsed.blocks.map((block) => {
+        if (block.type === 'checklist' && Array.isArray(block.checklistItems)) {
+          const updatedItems = block.checklistItems.map((item) => {
+            if (item.syncedTodoId && taskMap.has(item.syncedTodoId)) {
+              const liveTask = taskMap.get(item.syncedTodoId)!;
+              const isCompleted = liveTask.status === 'COMPLETED';
+              if (item.completed !== isCompleted || item.text !== liveTask.title) {
+                changed = true;
+                return {
+                  ...item,
+                  completed: isCompleted,
+                  text: liveTask.title,
+                };
+              }
+            }
+            return item;
+          });
+          return { ...block, checklistItems: updatedItems };
+        }
+        return block;
+      });
+
+      if (changed) {
+        parsed.updatedAt = new Date().toISOString();
+        return await this.prisma.boardDoc.update({
+          where: { todosId: boardDoc.todosId },
+          data: {
+            content: JSON.stringify(parsed),
+          },
+        });
+      }
+    } catch (err) {
+      console.error('Error synchronizing live tasks in BoardDocService:', err);
+    }
+    return boardDoc;
   }
 
   async upsert(todosId: number, dto: UpsertBoardDocDto) {
@@ -177,6 +240,10 @@ export class BoardDocService {
     let currentDoc = todoBoard.boardDoc;
     if (!currentDoc) {
       currentDoc = await this.findByTodoId(todosId);
+    }
+
+    if (!currentDoc) {
+      throw new NotFoundException(`Hoja de trabajo no encontrada`);
     }
 
     let parsedContent: ParsedDocContent;

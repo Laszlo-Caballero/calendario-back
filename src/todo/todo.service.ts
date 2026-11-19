@@ -237,8 +237,8 @@ export class TodoService {
     return updatedTodo;
   }
 
-  changeStatus(id: number, status: ChangeStatusDto) {
-    return this.prisma.todo.update({
+  async changeStatus(id: number, status: ChangeStatusDto) {
+    const updatedTodo = await this.prisma.todo.update({
       where: {
         todoId: id,
       },
@@ -247,6 +247,69 @@ export class TodoService {
         completedAt: status.status == TodoStatus.COMPLETED ? new Date() : null,
       },
     });
+
+    try {
+      await this.syncTaskToBoardDoc(
+        updatedTodo.todosId,
+        updatedTodo.todoId,
+        updatedTodo.status === TodoStatus.COMPLETED,
+        updatedTodo.title,
+      );
+    } catch (err) {
+      console.error('Error syncing task status to board doc:', err);
+    }
+
+    return updatedTodo;
+  }
+
+  private async syncTaskToBoardDoc(
+    todosId: number,
+    todoId: number,
+    isCompleted: boolean,
+    title?: string,
+  ) {
+    const boardDoc = await this.prisma.boardDoc.findUnique({
+      where: { todosId },
+    });
+    if (!boardDoc || !boardDoc.content) return;
+
+    try {
+      const parsed = JSON.parse(boardDoc.content);
+      if (!parsed || !Array.isArray(parsed.blocks)) return;
+
+      let changed = false;
+      parsed.blocks = parsed.blocks.map((block: any) => {
+        if (block.type === 'checklist' && Array.isArray(block.checklistItems)) {
+          const updatedItems = block.checklistItems.map((item: any) => {
+            if (item.syncedTodoId === todoId) {
+              if (item.completed !== isCompleted || (title && item.text !== title)) {
+                changed = true;
+                return {
+                  ...item,
+                  completed: isCompleted,
+                  text: title ?? item.text,
+                };
+              }
+            }
+            return item;
+          });
+          return { ...block, checklistItems: updatedItems };
+        }
+        return block;
+      });
+
+      if (changed) {
+        parsed.updatedAt = new Date().toISOString();
+        await this.prisma.boardDoc.update({
+          where: { todosId },
+          data: {
+            content: JSON.stringify(parsed),
+          },
+        });
+      }
+    } catch (err) {
+      console.error('Error in syncTaskToBoardDoc:', err);
+    }
   }
 
   async deleteTodo(id: number, user?: JwtPayload) {
