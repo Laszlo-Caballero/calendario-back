@@ -2181,7 +2181,8 @@ export const TodosScalarFieldEnum = {
   status: 'status',
   isPublic: 'isPublic',
   createdAt: 'createdAt',
-  userId: 'userId'
+  userId: 'userId',
+  parentTodosId: 'parentTodosId'
 } as const
 
 export type TodosScalarFieldEnum = (typeof TodosScalarFieldEnum)[keyof typeof TodosScalarFieldEnum]

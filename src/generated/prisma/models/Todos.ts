@@ -29,11 +29,13 @@ export type AggregateTodos = {
 export type TodosAvgAggregateOutputType = {
   todosId: number | null
   userId: number | null
+  parentTodosId: number | null
 }
 
 export type TodosSumAggregateOutputType = {
   todosId: number | null
   userId: number | null
+  parentTodosId: number | null
 }
 
 export type TodosMinAggregateOutputType = {
@@ -43,6 +45,7 @@ export type TodosMinAggregateOutputType = {
   isPublic: boolean | null
   createdAt: Date | null
   userId: number | null
+  parentTodosId: number | null
 }
 
 export type TodosMaxAggregateOutputType = {
@@ -52,6 +55,7 @@ export type TodosMaxAggregateOutputType = {
   isPublic: boolean | null
   createdAt: Date | null
   userId: number | null
+  parentTodosId: number | null
 }
 
 export type TodosCountAggregateOutputType = {
@@ -61,6 +65,7 @@ export type TodosCountAggregateOutputType = {
   isPublic: number
   createdAt: number
   userId: number
+  parentTodosId: number
   _all: number
 }
 
@@ -68,11 +73,13 @@ export type TodosCountAggregateOutputType = {
 export type TodosAvgAggregateInputType = {
   todosId?: true
   userId?: true
+  parentTodosId?: true
 }
 
 export type TodosSumAggregateInputType = {
   todosId?: true
   userId?: true
+  parentTodosId?: true
 }
 
 export type TodosMinAggregateInputType = {
@@ -82,6 +89,7 @@ export type TodosMinAggregateInputType = {
   isPublic?: true
   createdAt?: true
   userId?: true
+  parentTodosId?: true
 }
 
 export type TodosMaxAggregateInputType = {
@@ -91,6 +99,7 @@ export type TodosMaxAggregateInputType = {
   isPublic?: true
   createdAt?: true
   userId?: true
+  parentTodosId?: true
 }
 
 export type TodosCountAggregateInputType = {
@@ -100,6 +109,7 @@ export type TodosCountAggregateInputType = {
   isPublic?: true
   createdAt?: true
   userId?: true
+  parentTodosId?: true
   _all?: true
 }
 
@@ -196,6 +206,7 @@ export type TodosGroupByOutputType = {
   isPublic: boolean
   createdAt: Date
   userId: number
+  parentTodosId: number | null
   _count: TodosCountAggregateOutputType | null
   _avg: TodosAvgAggregateOutputType | null
   _sum: TodosSumAggregateOutputType | null
@@ -228,7 +239,10 @@ export type TodosWhereInput = {
   isPublic?: Prisma.BoolFilter<"Todos"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Todos"> | Date | string
   userId?: Prisma.IntFilter<"Todos"> | number
+  parentTodosId?: Prisma.IntNullableFilter<"Todos"> | number | null
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  parentTodos?: Prisma.XOR<Prisma.TodosNullableScalarRelationFilter, Prisma.TodosWhereInput> | null
+  childTodos?: Prisma.TodosListRelationFilter
   todos?: Prisma.TodoListRelationFilter
   notes?: Prisma.TodoNoteListRelationFilter
   todosAsigments?: Prisma.TodosAsigmentListRelationFilter
@@ -242,7 +256,10 @@ export type TodosOrderByWithRelationInput = {
   isPublic?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  parentTodosId?: Prisma.SortOrderInput | Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
+  parentTodos?: Prisma.TodosOrderByWithRelationInput
+  childTodos?: Prisma.TodosOrderByRelationAggregateInput
   todos?: Prisma.TodoOrderByRelationAggregateInput
   notes?: Prisma.TodoNoteOrderByRelationAggregateInput
   todosAsigments?: Prisma.TodosAsigmentOrderByRelationAggregateInput
@@ -259,7 +276,10 @@ export type TodosWhereUniqueInput = Prisma.AtLeast<{
   isPublic?: Prisma.BoolFilter<"Todos"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Todos"> | Date | string
   userId?: Prisma.IntFilter<"Todos"> | number
+  parentTodosId?: Prisma.IntNullableFilter<"Todos"> | number | null
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  parentTodos?: Prisma.XOR<Prisma.TodosNullableScalarRelationFilter, Prisma.TodosWhereInput> | null
+  childTodos?: Prisma.TodosListRelationFilter
   todos?: Prisma.TodoListRelationFilter
   notes?: Prisma.TodoNoteListRelationFilter
   todosAsigments?: Prisma.TodosAsigmentListRelationFilter
@@ -273,6 +293,7 @@ export type TodosOrderByWithAggregationInput = {
   isPublic?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  parentTodosId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.TodosCountOrderByAggregateInput
   _avg?: Prisma.TodosAvgOrderByAggregateInput
   _max?: Prisma.TodosMaxOrderByAggregateInput
@@ -290,6 +311,7 @@ export type TodosScalarWhereWithAggregatesInput = {
   isPublic?: Prisma.BoolWithAggregatesFilter<"Todos"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Todos"> | Date | string
   userId?: Prisma.IntWithAggregatesFilter<"Todos"> | number
+  parentTodosId?: Prisma.IntNullableWithAggregatesFilter<"Todos"> | number | null
 }
 
 export type TodosCreateInput = {
@@ -298,6 +320,8 @@ export type TodosCreateInput = {
   isPublic?: boolean
   createdAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutTodosInput
+  parentTodos?: Prisma.TodosCreateNestedOneWithoutChildTodosInput
+  childTodos?: Prisma.TodosCreateNestedManyWithoutParentTodosInput
   todos?: Prisma.TodoCreateNestedManyWithoutTodosInput
   notes?: Prisma.TodoNoteCreateNestedManyWithoutTodosInput
   todosAsigments?: Prisma.TodosAsigmentCreateNestedManyWithoutTodosInput
@@ -311,6 +335,8 @@ export type TodosUncheckedCreateInput = {
   isPublic?: boolean
   createdAt?: Date | string
   userId: number
+  parentTodosId?: number | null
+  childTodos?: Prisma.TodosUncheckedCreateNestedManyWithoutParentTodosInput
   todos?: Prisma.TodoUncheckedCreateNestedManyWithoutTodosInput
   notes?: Prisma.TodoNoteUncheckedCreateNestedManyWithoutTodosInput
   todosAsigments?: Prisma.TodosAsigmentUncheckedCreateNestedManyWithoutTodosInput
@@ -323,6 +349,8 @@ export type TodosUpdateInput = {
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutTodosNestedInput
+  parentTodos?: Prisma.TodosUpdateOneWithoutChildTodosNestedInput
+  childTodos?: Prisma.TodosUpdateManyWithoutParentTodosNestedInput
   todos?: Prisma.TodoUpdateManyWithoutTodosNestedInput
   notes?: Prisma.TodoNoteUpdateManyWithoutTodosNestedInput
   todosAsigments?: Prisma.TodosAsigmentUpdateManyWithoutTodosNestedInput
@@ -336,6 +364,8 @@ export type TodosUncheckedUpdateInput = {
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.IntFieldUpdateOperationsInput | number
+  parentTodosId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  childTodos?: Prisma.TodosUncheckedUpdateManyWithoutParentTodosNestedInput
   todos?: Prisma.TodoUncheckedUpdateManyWithoutTodosNestedInput
   notes?: Prisma.TodoNoteUncheckedUpdateManyWithoutTodosNestedInput
   todosAsigments?: Prisma.TodosAsigmentUncheckedUpdateManyWithoutTodosNestedInput
@@ -349,6 +379,7 @@ export type TodosCreateManyInput = {
   isPublic?: boolean
   createdAt?: Date | string
   userId: number
+  parentTodosId?: number | null
 }
 
 export type TodosUpdateManyMutationInput = {
@@ -365,6 +396,7 @@ export type TodosUncheckedUpdateManyInput = {
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.IntFieldUpdateOperationsInput | number
+  parentTodosId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type TodosListRelationFilter = {
@@ -382,6 +414,11 @@ export type TodosScalarRelationFilter = {
   isNot?: Prisma.TodosWhereInput
 }
 
+export type TodosNullableScalarRelationFilter = {
+  is?: Prisma.TodosWhereInput | null
+  isNot?: Prisma.TodosWhereInput | null
+}
+
 export type TodosCountOrderByAggregateInput = {
   todosId?: Prisma.SortOrder
   title?: Prisma.SortOrder
@@ -389,11 +426,13 @@ export type TodosCountOrderByAggregateInput = {
   isPublic?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  parentTodosId?: Prisma.SortOrder
 }
 
 export type TodosAvgOrderByAggregateInput = {
   todosId?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  parentTodosId?: Prisma.SortOrder
 }
 
 export type TodosMaxOrderByAggregateInput = {
@@ -403,6 +442,7 @@ export type TodosMaxOrderByAggregateInput = {
   isPublic?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  parentTodosId?: Prisma.SortOrder
 }
 
 export type TodosMinOrderByAggregateInput = {
@@ -412,16 +452,13 @@ export type TodosMinOrderByAggregateInput = {
   isPublic?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  parentTodosId?: Prisma.SortOrder
 }
 
 export type TodosSumOrderByAggregateInput = {
   todosId?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-}
-
-export type TodosNullableScalarRelationFilter = {
-  is?: Prisma.TodosWhereInput | null
-  isNot?: Prisma.TodosWhereInput | null
+  parentTodosId?: Prisma.SortOrder
 }
 
 export type TodosCreateNestedManyWithoutUserInput = {
@@ -480,6 +517,64 @@ export type TodosUpdateOneRequiredWithoutTodosAsigmentsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.TodosUpdateToOneWithWhereWithoutTodosAsigmentsInput, Prisma.TodosUpdateWithoutTodosAsigmentsInput>, Prisma.TodosUncheckedUpdateWithoutTodosAsigmentsInput>
 }
 
+export type TodosCreateNestedOneWithoutChildTodosInput = {
+  create?: Prisma.XOR<Prisma.TodosCreateWithoutChildTodosInput, Prisma.TodosUncheckedCreateWithoutChildTodosInput>
+  connectOrCreate?: Prisma.TodosCreateOrConnectWithoutChildTodosInput
+  connect?: Prisma.TodosWhereUniqueInput
+}
+
+export type TodosCreateNestedManyWithoutParentTodosInput = {
+  create?: Prisma.XOR<Prisma.TodosCreateWithoutParentTodosInput, Prisma.TodosUncheckedCreateWithoutParentTodosInput> | Prisma.TodosCreateWithoutParentTodosInput[] | Prisma.TodosUncheckedCreateWithoutParentTodosInput[]
+  connectOrCreate?: Prisma.TodosCreateOrConnectWithoutParentTodosInput | Prisma.TodosCreateOrConnectWithoutParentTodosInput[]
+  createMany?: Prisma.TodosCreateManyParentTodosInputEnvelope
+  connect?: Prisma.TodosWhereUniqueInput | Prisma.TodosWhereUniqueInput[]
+}
+
+export type TodosUncheckedCreateNestedManyWithoutParentTodosInput = {
+  create?: Prisma.XOR<Prisma.TodosCreateWithoutParentTodosInput, Prisma.TodosUncheckedCreateWithoutParentTodosInput> | Prisma.TodosCreateWithoutParentTodosInput[] | Prisma.TodosUncheckedCreateWithoutParentTodosInput[]
+  connectOrCreate?: Prisma.TodosCreateOrConnectWithoutParentTodosInput | Prisma.TodosCreateOrConnectWithoutParentTodosInput[]
+  createMany?: Prisma.TodosCreateManyParentTodosInputEnvelope
+  connect?: Prisma.TodosWhereUniqueInput | Prisma.TodosWhereUniqueInput[]
+}
+
+export type TodosUpdateOneWithoutChildTodosNestedInput = {
+  create?: Prisma.XOR<Prisma.TodosCreateWithoutChildTodosInput, Prisma.TodosUncheckedCreateWithoutChildTodosInput>
+  connectOrCreate?: Prisma.TodosCreateOrConnectWithoutChildTodosInput
+  upsert?: Prisma.TodosUpsertWithoutChildTodosInput
+  disconnect?: Prisma.TodosWhereInput | boolean
+  delete?: Prisma.TodosWhereInput | boolean
+  connect?: Prisma.TodosWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TodosUpdateToOneWithWhereWithoutChildTodosInput, Prisma.TodosUpdateWithoutChildTodosInput>, Prisma.TodosUncheckedUpdateWithoutChildTodosInput>
+}
+
+export type TodosUpdateManyWithoutParentTodosNestedInput = {
+  create?: Prisma.XOR<Prisma.TodosCreateWithoutParentTodosInput, Prisma.TodosUncheckedCreateWithoutParentTodosInput> | Prisma.TodosCreateWithoutParentTodosInput[] | Prisma.TodosUncheckedCreateWithoutParentTodosInput[]
+  connectOrCreate?: Prisma.TodosCreateOrConnectWithoutParentTodosInput | Prisma.TodosCreateOrConnectWithoutParentTodosInput[]
+  upsert?: Prisma.TodosUpsertWithWhereUniqueWithoutParentTodosInput | Prisma.TodosUpsertWithWhereUniqueWithoutParentTodosInput[]
+  createMany?: Prisma.TodosCreateManyParentTodosInputEnvelope
+  set?: Prisma.TodosWhereUniqueInput | Prisma.TodosWhereUniqueInput[]
+  disconnect?: Prisma.TodosWhereUniqueInput | Prisma.TodosWhereUniqueInput[]
+  delete?: Prisma.TodosWhereUniqueInput | Prisma.TodosWhereUniqueInput[]
+  connect?: Prisma.TodosWhereUniqueInput | Prisma.TodosWhereUniqueInput[]
+  update?: Prisma.TodosUpdateWithWhereUniqueWithoutParentTodosInput | Prisma.TodosUpdateWithWhereUniqueWithoutParentTodosInput[]
+  updateMany?: Prisma.TodosUpdateManyWithWhereWithoutParentTodosInput | Prisma.TodosUpdateManyWithWhereWithoutParentTodosInput[]
+  deleteMany?: Prisma.TodosScalarWhereInput | Prisma.TodosScalarWhereInput[]
+}
+
+export type TodosUncheckedUpdateManyWithoutParentTodosNestedInput = {
+  create?: Prisma.XOR<Prisma.TodosCreateWithoutParentTodosInput, Prisma.TodosUncheckedCreateWithoutParentTodosInput> | Prisma.TodosCreateWithoutParentTodosInput[] | Prisma.TodosUncheckedCreateWithoutParentTodosInput[]
+  connectOrCreate?: Prisma.TodosCreateOrConnectWithoutParentTodosInput | Prisma.TodosCreateOrConnectWithoutParentTodosInput[]
+  upsert?: Prisma.TodosUpsertWithWhereUniqueWithoutParentTodosInput | Prisma.TodosUpsertWithWhereUniqueWithoutParentTodosInput[]
+  createMany?: Prisma.TodosCreateManyParentTodosInputEnvelope
+  set?: Prisma.TodosWhereUniqueInput | Prisma.TodosWhereUniqueInput[]
+  disconnect?: Prisma.TodosWhereUniqueInput | Prisma.TodosWhereUniqueInput[]
+  delete?: Prisma.TodosWhereUniqueInput | Prisma.TodosWhereUniqueInput[]
+  connect?: Prisma.TodosWhereUniqueInput | Prisma.TodosWhereUniqueInput[]
+  update?: Prisma.TodosUpdateWithWhereUniqueWithoutParentTodosInput | Prisma.TodosUpdateWithWhereUniqueWithoutParentTodosInput[]
+  updateMany?: Prisma.TodosUpdateManyWithWhereWithoutParentTodosInput | Prisma.TodosUpdateManyWithWhereWithoutParentTodosInput[]
+  deleteMany?: Prisma.TodosScalarWhereInput | Prisma.TodosScalarWhereInput[]
+}
+
 export type TodosCreateNestedOneWithoutBoardDocInput = {
   create?: Prisma.XOR<Prisma.TodosCreateWithoutBoardDocInput, Prisma.TodosUncheckedCreateWithoutBoardDocInput>
   connectOrCreate?: Prisma.TodosCreateOrConnectWithoutBoardDocInput
@@ -529,6 +624,8 @@ export type TodosCreateWithoutUserInput = {
   status?: boolean
   isPublic?: boolean
   createdAt?: Date | string
+  parentTodos?: Prisma.TodosCreateNestedOneWithoutChildTodosInput
+  childTodos?: Prisma.TodosCreateNestedManyWithoutParentTodosInput
   todos?: Prisma.TodoCreateNestedManyWithoutTodosInput
   notes?: Prisma.TodoNoteCreateNestedManyWithoutTodosInput
   todosAsigments?: Prisma.TodosAsigmentCreateNestedManyWithoutTodosInput
@@ -541,6 +638,8 @@ export type TodosUncheckedCreateWithoutUserInput = {
   status?: boolean
   isPublic?: boolean
   createdAt?: Date | string
+  parentTodosId?: number | null
+  childTodos?: Prisma.TodosUncheckedCreateNestedManyWithoutParentTodosInput
   todos?: Prisma.TodoUncheckedCreateNestedManyWithoutTodosInput
   notes?: Prisma.TodoNoteUncheckedCreateNestedManyWithoutTodosInput
   todosAsigments?: Prisma.TodosAsigmentUncheckedCreateNestedManyWithoutTodosInput
@@ -582,6 +681,7 @@ export type TodosScalarWhereInput = {
   isPublic?: Prisma.BoolFilter<"Todos"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Todos"> | Date | string
   userId?: Prisma.IntFilter<"Todos"> | number
+  parentTodosId?: Prisma.IntNullableFilter<"Todos"> | number | null
 }
 
 export type TodosCreateWithoutTodosAsigmentsInput = {
@@ -590,6 +690,8 @@ export type TodosCreateWithoutTodosAsigmentsInput = {
   isPublic?: boolean
   createdAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutTodosInput
+  parentTodos?: Prisma.TodosCreateNestedOneWithoutChildTodosInput
+  childTodos?: Prisma.TodosCreateNestedManyWithoutParentTodosInput
   todos?: Prisma.TodoCreateNestedManyWithoutTodosInput
   notes?: Prisma.TodoNoteCreateNestedManyWithoutTodosInput
   boardDoc?: Prisma.BoardDocCreateNestedOneWithoutTodosInput
@@ -602,6 +704,8 @@ export type TodosUncheckedCreateWithoutTodosAsigmentsInput = {
   isPublic?: boolean
   createdAt?: Date | string
   userId: number
+  parentTodosId?: number | null
+  childTodos?: Prisma.TodosUncheckedCreateNestedManyWithoutParentTodosInput
   todos?: Prisma.TodoUncheckedCreateNestedManyWithoutTodosInput
   notes?: Prisma.TodoNoteUncheckedCreateNestedManyWithoutTodosInput
   boardDoc?: Prisma.BoardDocUncheckedCreateNestedOneWithoutTodosInput
@@ -629,6 +733,8 @@ export type TodosUpdateWithoutTodosAsigmentsInput = {
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutTodosNestedInput
+  parentTodos?: Prisma.TodosUpdateOneWithoutChildTodosNestedInput
+  childTodos?: Prisma.TodosUpdateManyWithoutParentTodosNestedInput
   todos?: Prisma.TodoUpdateManyWithoutTodosNestedInput
   notes?: Prisma.TodoNoteUpdateManyWithoutTodosNestedInput
   boardDoc?: Prisma.BoardDocUpdateOneWithoutTodosNestedInput
@@ -641,9 +747,133 @@ export type TodosUncheckedUpdateWithoutTodosAsigmentsInput = {
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.IntFieldUpdateOperationsInput | number
+  parentTodosId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  childTodos?: Prisma.TodosUncheckedUpdateManyWithoutParentTodosNestedInput
   todos?: Prisma.TodoUncheckedUpdateManyWithoutTodosNestedInput
   notes?: Prisma.TodoNoteUncheckedUpdateManyWithoutTodosNestedInput
   boardDoc?: Prisma.BoardDocUncheckedUpdateOneWithoutTodosNestedInput
+}
+
+export type TodosCreateWithoutChildTodosInput = {
+  title: string
+  status?: boolean
+  isPublic?: boolean
+  createdAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutTodosInput
+  parentTodos?: Prisma.TodosCreateNestedOneWithoutChildTodosInput
+  todos?: Prisma.TodoCreateNestedManyWithoutTodosInput
+  notes?: Prisma.TodoNoteCreateNestedManyWithoutTodosInput
+  todosAsigments?: Prisma.TodosAsigmentCreateNestedManyWithoutTodosInput
+  boardDoc?: Prisma.BoardDocCreateNestedOneWithoutTodosInput
+}
+
+export type TodosUncheckedCreateWithoutChildTodosInput = {
+  todosId?: number
+  title: string
+  status?: boolean
+  isPublic?: boolean
+  createdAt?: Date | string
+  userId: number
+  parentTodosId?: number | null
+  todos?: Prisma.TodoUncheckedCreateNestedManyWithoutTodosInput
+  notes?: Prisma.TodoNoteUncheckedCreateNestedManyWithoutTodosInput
+  todosAsigments?: Prisma.TodosAsigmentUncheckedCreateNestedManyWithoutTodosInput
+  boardDoc?: Prisma.BoardDocUncheckedCreateNestedOneWithoutTodosInput
+}
+
+export type TodosCreateOrConnectWithoutChildTodosInput = {
+  where: Prisma.TodosWhereUniqueInput
+  create: Prisma.XOR<Prisma.TodosCreateWithoutChildTodosInput, Prisma.TodosUncheckedCreateWithoutChildTodosInput>
+}
+
+export type TodosCreateWithoutParentTodosInput = {
+  title: string
+  status?: boolean
+  isPublic?: boolean
+  createdAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutTodosInput
+  childTodos?: Prisma.TodosCreateNestedManyWithoutParentTodosInput
+  todos?: Prisma.TodoCreateNestedManyWithoutTodosInput
+  notes?: Prisma.TodoNoteCreateNestedManyWithoutTodosInput
+  todosAsigments?: Prisma.TodosAsigmentCreateNestedManyWithoutTodosInput
+  boardDoc?: Prisma.BoardDocCreateNestedOneWithoutTodosInput
+}
+
+export type TodosUncheckedCreateWithoutParentTodosInput = {
+  todosId?: number
+  title: string
+  status?: boolean
+  isPublic?: boolean
+  createdAt?: Date | string
+  userId: number
+  childTodos?: Prisma.TodosUncheckedCreateNestedManyWithoutParentTodosInput
+  todos?: Prisma.TodoUncheckedCreateNestedManyWithoutTodosInput
+  notes?: Prisma.TodoNoteUncheckedCreateNestedManyWithoutTodosInput
+  todosAsigments?: Prisma.TodosAsigmentUncheckedCreateNestedManyWithoutTodosInput
+  boardDoc?: Prisma.BoardDocUncheckedCreateNestedOneWithoutTodosInput
+}
+
+export type TodosCreateOrConnectWithoutParentTodosInput = {
+  where: Prisma.TodosWhereUniqueInput
+  create: Prisma.XOR<Prisma.TodosCreateWithoutParentTodosInput, Prisma.TodosUncheckedCreateWithoutParentTodosInput>
+}
+
+export type TodosCreateManyParentTodosInputEnvelope = {
+  data: Prisma.TodosCreateManyParentTodosInput | Prisma.TodosCreateManyParentTodosInput[]
+}
+
+export type TodosUpsertWithoutChildTodosInput = {
+  update: Prisma.XOR<Prisma.TodosUpdateWithoutChildTodosInput, Prisma.TodosUncheckedUpdateWithoutChildTodosInput>
+  create: Prisma.XOR<Prisma.TodosCreateWithoutChildTodosInput, Prisma.TodosUncheckedCreateWithoutChildTodosInput>
+  where?: Prisma.TodosWhereInput
+}
+
+export type TodosUpdateToOneWithWhereWithoutChildTodosInput = {
+  where?: Prisma.TodosWhereInput
+  data: Prisma.XOR<Prisma.TodosUpdateWithoutChildTodosInput, Prisma.TodosUncheckedUpdateWithoutChildTodosInput>
+}
+
+export type TodosUpdateWithoutChildTodosInput = {
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutTodosNestedInput
+  parentTodos?: Prisma.TodosUpdateOneWithoutChildTodosNestedInput
+  todos?: Prisma.TodoUpdateManyWithoutTodosNestedInput
+  notes?: Prisma.TodoNoteUpdateManyWithoutTodosNestedInput
+  todosAsigments?: Prisma.TodosAsigmentUpdateManyWithoutTodosNestedInput
+  boardDoc?: Prisma.BoardDocUpdateOneWithoutTodosNestedInput
+}
+
+export type TodosUncheckedUpdateWithoutChildTodosInput = {
+  todosId?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  userId?: Prisma.IntFieldUpdateOperationsInput | number
+  parentTodosId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  todos?: Prisma.TodoUncheckedUpdateManyWithoutTodosNestedInput
+  notes?: Prisma.TodoNoteUncheckedUpdateManyWithoutTodosNestedInput
+  todosAsigments?: Prisma.TodosAsigmentUncheckedUpdateManyWithoutTodosNestedInput
+  boardDoc?: Prisma.BoardDocUncheckedUpdateOneWithoutTodosNestedInput
+}
+
+export type TodosUpsertWithWhereUniqueWithoutParentTodosInput = {
+  where: Prisma.TodosWhereUniqueInput
+  update: Prisma.XOR<Prisma.TodosUpdateWithoutParentTodosInput, Prisma.TodosUncheckedUpdateWithoutParentTodosInput>
+  create: Prisma.XOR<Prisma.TodosCreateWithoutParentTodosInput, Prisma.TodosUncheckedCreateWithoutParentTodosInput>
+}
+
+export type TodosUpdateWithWhereUniqueWithoutParentTodosInput = {
+  where: Prisma.TodosWhereUniqueInput
+  data: Prisma.XOR<Prisma.TodosUpdateWithoutParentTodosInput, Prisma.TodosUncheckedUpdateWithoutParentTodosInput>
+}
+
+export type TodosUpdateManyWithWhereWithoutParentTodosInput = {
+  where: Prisma.TodosScalarWhereInput
+  data: Prisma.XOR<Prisma.TodosUpdateManyMutationInput, Prisma.TodosUncheckedUpdateManyWithoutParentTodosInput>
 }
 
 export type TodosCreateWithoutBoardDocInput = {
@@ -652,6 +882,8 @@ export type TodosCreateWithoutBoardDocInput = {
   isPublic?: boolean
   createdAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutTodosInput
+  parentTodos?: Prisma.TodosCreateNestedOneWithoutChildTodosInput
+  childTodos?: Prisma.TodosCreateNestedManyWithoutParentTodosInput
   todos?: Prisma.TodoCreateNestedManyWithoutTodosInput
   notes?: Prisma.TodoNoteCreateNestedManyWithoutTodosInput
   todosAsigments?: Prisma.TodosAsigmentCreateNestedManyWithoutTodosInput
@@ -664,6 +896,8 @@ export type TodosUncheckedCreateWithoutBoardDocInput = {
   isPublic?: boolean
   createdAt?: Date | string
   userId: number
+  parentTodosId?: number | null
+  childTodos?: Prisma.TodosUncheckedCreateNestedManyWithoutParentTodosInput
   todos?: Prisma.TodoUncheckedCreateNestedManyWithoutTodosInput
   notes?: Prisma.TodoNoteUncheckedCreateNestedManyWithoutTodosInput
   todosAsigments?: Prisma.TodosAsigmentUncheckedCreateNestedManyWithoutTodosInput
@@ -691,6 +925,8 @@ export type TodosUpdateWithoutBoardDocInput = {
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutTodosNestedInput
+  parentTodos?: Prisma.TodosUpdateOneWithoutChildTodosNestedInput
+  childTodos?: Prisma.TodosUpdateManyWithoutParentTodosNestedInput
   todos?: Prisma.TodoUpdateManyWithoutTodosNestedInput
   notes?: Prisma.TodoNoteUpdateManyWithoutTodosNestedInput
   todosAsigments?: Prisma.TodosAsigmentUpdateManyWithoutTodosNestedInput
@@ -703,6 +939,8 @@ export type TodosUncheckedUpdateWithoutBoardDocInput = {
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.IntFieldUpdateOperationsInput | number
+  parentTodosId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  childTodos?: Prisma.TodosUncheckedUpdateManyWithoutParentTodosNestedInput
   todos?: Prisma.TodoUncheckedUpdateManyWithoutTodosNestedInput
   notes?: Prisma.TodoNoteUncheckedUpdateManyWithoutTodosNestedInput
   todosAsigments?: Prisma.TodosAsigmentUncheckedUpdateManyWithoutTodosNestedInput
@@ -714,6 +952,8 @@ export type TodosCreateWithoutNotesInput = {
   isPublic?: boolean
   createdAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutTodosInput
+  parentTodos?: Prisma.TodosCreateNestedOneWithoutChildTodosInput
+  childTodos?: Prisma.TodosCreateNestedManyWithoutParentTodosInput
   todos?: Prisma.TodoCreateNestedManyWithoutTodosInput
   todosAsigments?: Prisma.TodosAsigmentCreateNestedManyWithoutTodosInput
   boardDoc?: Prisma.BoardDocCreateNestedOneWithoutTodosInput
@@ -726,6 +966,8 @@ export type TodosUncheckedCreateWithoutNotesInput = {
   isPublic?: boolean
   createdAt?: Date | string
   userId: number
+  parentTodosId?: number | null
+  childTodos?: Prisma.TodosUncheckedCreateNestedManyWithoutParentTodosInput
   todos?: Prisma.TodoUncheckedCreateNestedManyWithoutTodosInput
   todosAsigments?: Prisma.TodosAsigmentUncheckedCreateNestedManyWithoutTodosInput
   boardDoc?: Prisma.BoardDocUncheckedCreateNestedOneWithoutTodosInput
@@ -753,6 +995,8 @@ export type TodosUpdateWithoutNotesInput = {
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutTodosNestedInput
+  parentTodos?: Prisma.TodosUpdateOneWithoutChildTodosNestedInput
+  childTodos?: Prisma.TodosUpdateManyWithoutParentTodosNestedInput
   todos?: Prisma.TodoUpdateManyWithoutTodosNestedInput
   todosAsigments?: Prisma.TodosAsigmentUpdateManyWithoutTodosNestedInput
   boardDoc?: Prisma.BoardDocUpdateOneWithoutTodosNestedInput
@@ -765,6 +1009,8 @@ export type TodosUncheckedUpdateWithoutNotesInput = {
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.IntFieldUpdateOperationsInput | number
+  parentTodosId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  childTodos?: Prisma.TodosUncheckedUpdateManyWithoutParentTodosNestedInput
   todos?: Prisma.TodoUncheckedUpdateManyWithoutTodosNestedInput
   todosAsigments?: Prisma.TodosAsigmentUncheckedUpdateManyWithoutTodosNestedInput
   boardDoc?: Prisma.BoardDocUncheckedUpdateOneWithoutTodosNestedInput
@@ -776,6 +1022,8 @@ export type TodosCreateWithoutTodosInput = {
   isPublic?: boolean
   createdAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutTodosInput
+  parentTodos?: Prisma.TodosCreateNestedOneWithoutChildTodosInput
+  childTodos?: Prisma.TodosCreateNestedManyWithoutParentTodosInput
   notes?: Prisma.TodoNoteCreateNestedManyWithoutTodosInput
   todosAsigments?: Prisma.TodosAsigmentCreateNestedManyWithoutTodosInput
   boardDoc?: Prisma.BoardDocCreateNestedOneWithoutTodosInput
@@ -788,6 +1036,8 @@ export type TodosUncheckedCreateWithoutTodosInput = {
   isPublic?: boolean
   createdAt?: Date | string
   userId: number
+  parentTodosId?: number | null
+  childTodos?: Prisma.TodosUncheckedCreateNestedManyWithoutParentTodosInput
   notes?: Prisma.TodoNoteUncheckedCreateNestedManyWithoutTodosInput
   todosAsigments?: Prisma.TodosAsigmentUncheckedCreateNestedManyWithoutTodosInput
   boardDoc?: Prisma.BoardDocUncheckedCreateNestedOneWithoutTodosInput
@@ -815,6 +1065,8 @@ export type TodosUpdateWithoutTodosInput = {
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutTodosNestedInput
+  parentTodos?: Prisma.TodosUpdateOneWithoutChildTodosNestedInput
+  childTodos?: Prisma.TodosUpdateManyWithoutParentTodosNestedInput
   notes?: Prisma.TodoNoteUpdateManyWithoutTodosNestedInput
   todosAsigments?: Prisma.TodosAsigmentUpdateManyWithoutTodosNestedInput
   boardDoc?: Prisma.BoardDocUpdateOneWithoutTodosNestedInput
@@ -827,6 +1079,8 @@ export type TodosUncheckedUpdateWithoutTodosInput = {
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.IntFieldUpdateOperationsInput | number
+  parentTodosId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  childTodos?: Prisma.TodosUncheckedUpdateManyWithoutParentTodosNestedInput
   notes?: Prisma.TodoNoteUncheckedUpdateManyWithoutTodosNestedInput
   todosAsigments?: Prisma.TodosAsigmentUncheckedUpdateManyWithoutTodosNestedInput
   boardDoc?: Prisma.BoardDocUncheckedUpdateOneWithoutTodosNestedInput
@@ -838,6 +1092,7 @@ export type TodosCreateManyUserInput = {
   status?: boolean
   isPublic?: boolean
   createdAt?: Date | string
+  parentTodosId?: number | null
 }
 
 export type TodosUpdateWithoutUserInput = {
@@ -845,6 +1100,8 @@ export type TodosUpdateWithoutUserInput = {
   status?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  parentTodos?: Prisma.TodosUpdateOneWithoutChildTodosNestedInput
+  childTodos?: Prisma.TodosUpdateManyWithoutParentTodosNestedInput
   todos?: Prisma.TodoUpdateManyWithoutTodosNestedInput
   notes?: Prisma.TodoNoteUpdateManyWithoutTodosNestedInput
   todosAsigments?: Prisma.TodosAsigmentUpdateManyWithoutTodosNestedInput
@@ -857,6 +1114,8 @@ export type TodosUncheckedUpdateWithoutUserInput = {
   status?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  parentTodosId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  childTodos?: Prisma.TodosUncheckedUpdateManyWithoutParentTodosNestedInput
   todos?: Prisma.TodoUncheckedUpdateManyWithoutTodosNestedInput
   notes?: Prisma.TodoNoteUncheckedUpdateManyWithoutTodosNestedInput
   todosAsigments?: Prisma.TodosAsigmentUncheckedUpdateManyWithoutTodosNestedInput
@@ -869,6 +1128,52 @@ export type TodosUncheckedUpdateManyWithoutUserInput = {
   status?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  parentTodosId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+}
+
+export type TodosCreateManyParentTodosInput = {
+  todosId?: number
+  title: string
+  status?: boolean
+  isPublic?: boolean
+  createdAt?: Date | string
+  userId: number
+}
+
+export type TodosUpdateWithoutParentTodosInput = {
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutTodosNestedInput
+  childTodos?: Prisma.TodosUpdateManyWithoutParentTodosNestedInput
+  todos?: Prisma.TodoUpdateManyWithoutTodosNestedInput
+  notes?: Prisma.TodoNoteUpdateManyWithoutTodosNestedInput
+  todosAsigments?: Prisma.TodosAsigmentUpdateManyWithoutTodosNestedInput
+  boardDoc?: Prisma.BoardDocUpdateOneWithoutTodosNestedInput
+}
+
+export type TodosUncheckedUpdateWithoutParentTodosInput = {
+  todosId?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  userId?: Prisma.IntFieldUpdateOperationsInput | number
+  childTodos?: Prisma.TodosUncheckedUpdateManyWithoutParentTodosNestedInput
+  todos?: Prisma.TodoUncheckedUpdateManyWithoutTodosNestedInput
+  notes?: Prisma.TodoNoteUncheckedUpdateManyWithoutTodosNestedInput
+  todosAsigments?: Prisma.TodosAsigmentUncheckedUpdateManyWithoutTodosNestedInput
+  boardDoc?: Prisma.BoardDocUncheckedUpdateOneWithoutTodosNestedInput
+}
+
+export type TodosUncheckedUpdateManyWithoutParentTodosInput = {
+  todosId?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isPublic?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  userId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 
@@ -877,12 +1182,14 @@ export type TodosUncheckedUpdateManyWithoutUserInput = {
  */
 
 export type TodosCountOutputType = {
+  childTodos: number
   todos: number
   notes: number
   todosAsigments: number
 }
 
 export type TodosCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  childTodos?: boolean | TodosCountOutputTypeCountChildTodosArgs
   todos?: boolean | TodosCountOutputTypeCountTodosArgs
   notes?: boolean | TodosCountOutputTypeCountNotesArgs
   todosAsigments?: boolean | TodosCountOutputTypeCountTodosAsigmentsArgs
@@ -896,6 +1203,13 @@ export type TodosCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extens
    * Select specific fields to fetch from the TodosCountOutputType
    */
   select?: Prisma.TodosCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * TodosCountOutputType without action
+ */
+export type TodosCountOutputTypeCountChildTodosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TodosWhereInput
 }
 
 /**
@@ -927,7 +1241,10 @@ export type TodosSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   isPublic?: boolean
   createdAt?: boolean
   userId?: boolean
+  parentTodosId?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  parentTodos?: boolean | Prisma.Todos$parentTodosArgs<ExtArgs>
+  childTodos?: boolean | Prisma.Todos$childTodosArgs<ExtArgs>
   todos?: boolean | Prisma.Todos$todosArgs<ExtArgs>
   notes?: boolean | Prisma.Todos$notesArgs<ExtArgs>
   todosAsigments?: boolean | Prisma.Todos$todosAsigmentsArgs<ExtArgs>
@@ -942,7 +1259,9 @@ export type TodosSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   isPublic?: boolean
   createdAt?: boolean
   userId?: boolean
+  parentTodosId?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  parentTodos?: boolean | Prisma.Todos$parentTodosArgs<ExtArgs>
 }, ExtArgs["result"]["todos"]>
 
 export type TodosSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -952,7 +1271,9 @@ export type TodosSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   isPublic?: boolean
   createdAt?: boolean
   userId?: boolean
+  parentTodosId?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  parentTodos?: boolean | Prisma.Todos$parentTodosArgs<ExtArgs>
 }, ExtArgs["result"]["todos"]>
 
 export type TodosSelectScalar = {
@@ -962,11 +1283,14 @@ export type TodosSelectScalar = {
   isPublic?: boolean
   createdAt?: boolean
   userId?: boolean
+  parentTodosId?: boolean
 }
 
-export type TodosOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"todosId" | "title" | "status" | "isPublic" | "createdAt" | "userId", ExtArgs["result"]["todos"]>
+export type TodosOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"todosId" | "title" | "status" | "isPublic" | "createdAt" | "userId" | "parentTodosId", ExtArgs["result"]["todos"]>
 export type TodosInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  parentTodos?: boolean | Prisma.Todos$parentTodosArgs<ExtArgs>
+  childTodos?: boolean | Prisma.Todos$childTodosArgs<ExtArgs>
   todos?: boolean | Prisma.Todos$todosArgs<ExtArgs>
   notes?: boolean | Prisma.Todos$notesArgs<ExtArgs>
   todosAsigments?: boolean | Prisma.Todos$todosAsigmentsArgs<ExtArgs>
@@ -975,15 +1299,19 @@ export type TodosInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs =
 }
 export type TodosIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  parentTodos?: boolean | Prisma.Todos$parentTodosArgs<ExtArgs>
 }
 export type TodosIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  parentTodos?: boolean | Prisma.Todos$parentTodosArgs<ExtArgs>
 }
 
 export type $TodosPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Todos"
   objects: {
     user: Prisma.$UserPayload<ExtArgs>
+    parentTodos: Prisma.$TodosPayload<ExtArgs> | null
+    childTodos: Prisma.$TodosPayload<ExtArgs>[]
     todos: Prisma.$TodoPayload<ExtArgs>[]
     notes: Prisma.$TodoNotePayload<ExtArgs>[]
     todosAsigments: Prisma.$TodosAsigmentPayload<ExtArgs>[]
@@ -996,6 +1324,7 @@ export type $TodosPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     isPublic: boolean
     createdAt: Date
     userId: number
+    parentTodosId: number | null
   }, ExtArgs["result"]["todos"]>
   composites: {}
 }
@@ -1391,6 +1720,8 @@ readonly fields: TodosFieldRefs;
 export interface Prisma__TodosClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  parentTodos<T extends Prisma.Todos$parentTodosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Todos$parentTodosArgs<ExtArgs>>): Prisma.Prisma__TodosClient<runtime.Types.Result.GetResult<Prisma.$TodosPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  childTodos<T extends Prisma.Todos$childTodosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Todos$childTodosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TodosPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   todos<T extends Prisma.Todos$todosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Todos$todosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TodoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   notes<T extends Prisma.Todos$notesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Todos$notesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TodoNotePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   todosAsigments<T extends Prisma.Todos$todosAsigmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Todos$todosAsigmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TodosAsigmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -1430,6 +1761,7 @@ export interface TodosFieldRefs {
   readonly isPublic: Prisma.FieldRef<"Todos", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"Todos", 'DateTime'>
   readonly userId: Prisma.FieldRef<"Todos", 'Int'>
+  readonly parentTodosId: Prisma.FieldRef<"Todos", 'Int'>
 }
     
 
@@ -1826,6 +2158,49 @@ export type TodosDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Interna
    * Limit how many Todos to delete.
    */
   limit?: number
+}
+
+/**
+ * Todos.parentTodos
+ */
+export type Todos$parentTodosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Todos
+   */
+  select?: Prisma.TodosSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Todos
+   */
+  omit?: Prisma.TodosOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TodosInclude<ExtArgs> | null
+  where?: Prisma.TodosWhereInput
+}
+
+/**
+ * Todos.childTodos
+ */
+export type Todos$childTodosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Todos
+   */
+  select?: Prisma.TodosSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Todos
+   */
+  omit?: Prisma.TodosOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TodosInclude<ExtArgs> | null
+  where?: Prisma.TodosWhereInput
+  orderBy?: Prisma.TodosOrderByWithRelationInput | Prisma.TodosOrderByWithRelationInput[]
+  cursor?: Prisma.TodosWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TodosScalarFieldEnum | Prisma.TodosScalarFieldEnum[]
 }
 
 /**
