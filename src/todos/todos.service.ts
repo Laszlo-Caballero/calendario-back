@@ -11,9 +11,43 @@ export class TodosService {
   constructor(private readonly prisma: PrismaService) {}
 
   async getAllTodos(user?: JwtPayload) {
+    const childInclude = {
+      where: {
+        status: true,
+      },
+      include: {
+        _count: {
+          select: {
+            todos: {
+              where: {
+                status: {
+                  in: [TodoStatus.PENDING, TodoStatus.IN_PROGRESS],
+                },
+                isArchived: false,
+              },
+            },
+          },
+        },
+        user: {
+          select: {
+            userId: true,
+            name: true,
+            email: true,
+          },
+        },
+      },
+      orderBy: {
+        createdAt: 'asc' as const,
+      },
+    };
+
     if (user?.role === 'ADMIN') {
       return this.prisma.todos.findMany({
+        where: {
+          parentTodosId: null,
+        },
         include: {
+          childTodos: childInclude,
           _count: {
             select: {
               todos: {
@@ -45,11 +79,15 @@ export class TodosService {
             },
           },
         },
+        orderBy: {
+          createdAt: 'asc',
+        },
       });
     }
 
     return this.prisma.todos.findMany({
       where: {
+        parentTodosId: null,
         OR: [
           {
             isPublic: true,
@@ -72,6 +110,7 @@ export class TodosService {
         ],
       },
       include: {
+        childTodos: childInclude,
         todosAsigments: {
           include: {
             user: {
@@ -90,7 +129,6 @@ export class TodosService {
             email: true,
           },
         },
-
         _count: {
           select: {
             todos: {
@@ -104,6 +142,9 @@ export class TodosService {
           },
         },
       },
+      orderBy: {
+        createdAt: 'asc',
+      },
     });
   }
 
@@ -112,11 +153,11 @@ export class TodosService {
       data: {
         title: data.name,
         isPublic: data.isPublic,
-        user: {
-          connect: {
-            userId: user.idUser,
-          },
-        },
+        userId: user.idUser,
+        parentTodosId: data.parentId ?? null,
+      },
+      include: {
+        childTodos: true,
       },
     });
   }
@@ -142,6 +183,10 @@ export class TodosService {
       data: {
         title: updateDto.name,
         isPublic: updateDto.isPublic,
+        ...(updateDto.parentId !== undefined ? { parentTodosId: updateDto.parentId } : {}),
+      },
+      include: {
+        childTodos: true,
       },
     });
   }
@@ -161,6 +206,13 @@ export class TodosService {
     if (user.role !== 'ADMIN' && findTodo.user.userId !== user.idUser) {
       throw new NotFoundException('Todo not found');
     }
+
+    await this.prisma.todos.updateMany({
+      where: { parentTodosId: id },
+      data: {
+        status: false,
+      },
+    });
 
     return this.prisma.todos.update({
       where: { todosId: id },

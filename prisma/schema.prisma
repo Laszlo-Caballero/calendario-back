@@ -185,6 +185,9 @@ model Todos {
   createdAt      DateTime        @default(now())
   userId         Int
   user           User            @relation(fields: [userId], references: [userId])
+  parentTodosId  Int?
+  parentTodos    Todos?          @relation("TodosHierarchy", fields: [parentTodosId], references: [todosId], onDelete: Cascade)
+  childTodos     Todos[]         @relation("TodosHierarchy")
   todos          Todo[]
   notes          TodoNote[]
   todosAsigments TodosAsigment[]
