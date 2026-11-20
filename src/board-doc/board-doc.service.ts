@@ -1,5 +1,11 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  HttpException,
+  HttpStatus,
+} from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
+import { CloudinaryService } from '../common/cloudinary/cloudinary.service';
 import { UpsertBoardDocDto } from './dto/upsert-board-doc.dto';
 import { ImportTasksToDocDto } from './dto/import-tasks-to-doc.dto';
 
@@ -25,7 +31,33 @@ interface ParsedDocContent {
 
 @Injectable()
 export class BoardDocService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly cloudinary: CloudinaryService,
+  ) {}
+
+  async uploadImage(file: Express.Multer.File) {
+    if (!file) {
+      throw new NotFoundException('Archivo no encontrado');
+    }
+
+    const [error, uploadResult] = await this.cloudinary.uploadImage(file);
+
+    if (error || !uploadResult) {
+      throw new HttpException(
+        'Error al subir la imagen a Cloudinary',
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
+
+    return {
+      url: uploadResult.secure_url,
+      publicId: uploadResult.public_id,
+      width: uploadResult.width,
+      height: uploadResult.height,
+      format: uploadResult.format,
+    };
+  }
 
   private getDefaultInitialContent(title: string): string {
     const initialState: ParsedDocContent = {

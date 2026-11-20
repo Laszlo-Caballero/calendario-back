@@ -67,9 +67,7 @@ export class TodoController {
     return this.todoService.importTodo(data);
   }
 
-  @Auth({
-    role: [Role.ADMIN],
-  })
+  @Auth()
   @Post('/upload-image')
   @UseInterceptors(FileInterceptor('file'))
   async uploadImage(
@@ -79,9 +77,7 @@ export class TodoController {
     return this.todoService.uploadImage(file, body);
   }
 
-  @Auth({
-    role: [Role.ADMIN],
-  })
+  @Auth()
   @Delete('image/delete')
   async deleteImage(@Body() body: DeleteImagenDto) {
     return this.todoService.deleteImage(body);
