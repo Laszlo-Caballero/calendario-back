@@ -167,6 +167,13 @@ export class TodosService {
       where: { todosId: id },
       include: {
         user: true,
+        todosAsigments: true,
+        parentTodos: {
+          include: {
+            user: true,
+            todosAsigments: true,
+          },
+        },
       },
     });
 
@@ -174,7 +181,14 @@ export class TodosService {
       throw new NotFoundException('Todo not found');
     }
 
-    if (user.role !== 'ADMIN' && findTodo.user.userId !== user.idUser) {
+    const hasPermission =
+      user.role === 'ADMIN' ||
+      findTodo.user.userId === user.idUser ||
+      findTodo.parentTodos?.user.userId === user.idUser ||
+      findTodo.todosAsigments.some((a) => a.userId === user.idUser) ||
+      Boolean(findTodo.parentTodos?.todosAsigments.some((a) => a.userId === user.idUser));
+
+    if (!hasPermission) {
       throw new NotFoundException('Todo not found');
     }
 
@@ -196,6 +210,11 @@ export class TodosService {
       where: { todosId: id },
       include: {
         user: true,
+        parentTodos: {
+          include: {
+            user: true,
+          },
+        },
       },
     });
 
@@ -203,7 +222,12 @@ export class TodosService {
       throw new NotFoundException('Todo not found');
     }
 
-    if (user.role !== 'ADMIN' && findTodo.user.userId !== user.idUser) {
+    const canDelete =
+      user.role === 'ADMIN' ||
+      findTodo.user.userId === user.idUser ||
+      findTodo.parentTodos?.user.userId === user.idUser;
+
+    if (!canDelete) {
       throw new NotFoundException('Todo not found');
     }
 
@@ -241,6 +265,23 @@ export class TodosService {
               },
             },
           },
+          {
+            parentTodos: {
+              status: true,
+              OR: [
+                {
+                  userId: user.idUser,
+                },
+                {
+                  todosAsigments: {
+                    some: {
+                      userId: user.idUser,
+                    },
+                  },
+                },
+              ],
+            },
+          },
         ],
       },
       include: {
@@ -255,6 +296,11 @@ export class TodosService {
       include: {
         user: true,
         todosAsigments: true,
+        parentTodos: {
+          include: {
+            user: true,
+          },
+        },
       },
     });
 
@@ -262,7 +308,12 @@ export class TodosService {
       throw new NotFoundException('Todo not found');
     }
 
-    if (user.role !== 'ADMIN' && findTodo.user.userId !== user.idUser) {
+    const canInvite =
+      user.role === 'ADMIN' ||
+      findTodo.user.userId === user.idUser ||
+      findTodo.parentTodos?.user.userId === user.idUser;
+
+    if (!canInvite) {
       throw new NotFoundException('Todo not found');
     }
 
@@ -297,6 +348,11 @@ export class TodosService {
         todos: {
           include: {
             user: true,
+            parentTodos: {
+              include: {
+                user: true,
+              },
+            },
           },
         },
       },
@@ -306,10 +362,12 @@ export class TodosService {
       throw new NotFoundException('Assignment not found');
     }
 
-    if (
-      user.role !== 'ADMIN' &&
-      findAssignment.todos.user.userId !== user.idUser
-    ) {
+    const canDeleteInvite =
+      user.role === 'ADMIN' ||
+      findAssignment.todos.user.userId === user.idUser ||
+      findAssignment.todos.parentTodos?.user.userId === user.idUser;
+
+    if (!canDeleteInvite) {
       throw new NotFoundException('Assignment not found');
     }
 

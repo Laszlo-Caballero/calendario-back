@@ -22,6 +22,48 @@ export class TodoService {
     private readonly cloudinary: CloudinaryService,
   ) {}
 
+  private checkAccess(
+    findTodos: {
+      userId: number;
+      isPublic: boolean;
+      status: boolean;
+      todosAsigments?: Array<{ userId: number }>;
+      parentTodos?: {
+        userId: number;
+        isPublic: boolean;
+        status: boolean;
+        todosAsigments?: Array<{ userId: number }>;
+      } | null;
+    },
+    user?: JwtPayload,
+  ): boolean {
+    if (user?.role === 'ADMIN') return true;
+    if (!findTodos.status) return false;
+
+    if (findTodos.isPublic) return true;
+    if (user?.idUser && findTodos.userId === user.idUser) return true;
+    if (
+      user?.idUser &&
+      findTodos.todosAsigments?.some((a) => a.userId === user.idUser)
+    ) {
+      return true;
+    }
+
+    if (findTodos.parentTodos) {
+      if (!findTodos.parentTodos.status) return false;
+      if (findTodos.parentTodos.isPublic) return true;
+      if (user?.idUser && findTodos.parentTodos.userId === user.idUser) return true;
+      if (
+        user?.idUser &&
+        findTodos.parentTodos.todosAsigments?.some((a) => a.userId === user.idUser)
+      ) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
   async getAllTodos(query: TodoQueryDto, user?: JwtPayload) {
     const { todosId } = query;
 
@@ -41,6 +83,21 @@ export class TodoService {
             },
           },
         },
+        parentTodos: {
+          include: {
+            todosAsigments: {
+              include: {
+                user: {
+                  select: {
+                    userId: true,
+                    name: true,
+                    email: true,
+                  },
+                },
+              },
+            },
+          },
+        },
       },
     });
 
@@ -48,18 +105,8 @@ export class TodoService {
       throw new NotFoundException(`Todos with id ${todosId} not found`);
     }
 
-    const isUserAssigned = findTodos.todosAsigments.some(
-      (assignment) => assignment.userId === user?.idUser,
-    );
-
-    if (!isUserAssigned && user?.role !== 'ADMIN') {
-      if (!findTodos.isPublic) {
-        throw new ForbiddenException(`Todos with id ${todosId} not found`);
-      }
-
-      if (!findTodos.status) {
-        throw new ForbiddenException(`Todos with id ${todosId} not found`);
-      }
+    if (!this.checkAccess(findTodos, user)) {
+      throw new ForbiddenException(`Todos with id ${todosId} not found`);
     }
 
     return this.prisma.todo.findMany({
@@ -318,7 +365,16 @@ export class TodoService {
         todoId: id,
       },
       include: {
-        todos: true,
+        todos: {
+          include: {
+            todosAsigments: true,
+            parentTodos: {
+              include: {
+                todosAsigments: true,
+              },
+            },
+          },
+        },
       },
     });
 
@@ -328,7 +384,7 @@ export class TodoService {
 
     const { todos } = findTodo;
 
-    if (!todos.isPublic && user?.role !== 'ADMIN') {
+    if (!this.checkAccess(todos, user)) {
       throw new ForbiddenException(`Todo with id ${id} not found`);
     }
 
@@ -534,16 +590,26 @@ export class TodoService {
   }
 
   async getNotCompleteTodos(user: JwtPayload) {
-    const [count, todos] = await this.prisma.$transaction([
-      this.prisma.todo.count({
-        where: {
-          status: {
-            notIn: [TodoStatus.COMPLETED, TodoStatus.ARCHIVED],
+    const accessFilter = {
+      status: true,
+      OR: [
+        {
+          todosAsigments: {
+            some: {
+              userId: user.idUser,
+            },
           },
-          isArchived: false,
-          todos: {
+        },
+        {
+          userId: user.idUser,
+        },
+        {
+          parentTodos: {
             status: true,
             OR: [
+              {
+                userId: user.idUser,
+              },
               {
                 todosAsigments: {
                   some: {
@@ -551,11 +617,20 @@ export class TodoService {
                   },
                 },
               },
-              {
-                userId: user.idUser,
-              },
             ],
           },
+        },
+      ],
+    };
+
+    const [count, todos] = await this.prisma.$transaction([
+      this.prisma.todo.count({
+        where: {
+          status: {
+            notIn: [TodoStatus.COMPLETED, TodoStatus.ARCHIVED],
+          },
+          isArchived: false,
+          todos: accessFilter,
         },
       }),
       this.prisma.todos.findMany({
@@ -570,6 +645,23 @@ export class TodoService {
             },
             {
               userId: user.idUser,
+            },
+            {
+              parentTodos: {
+                status: true,
+                OR: [
+                  {
+                    userId: user.idUser,
+                  },
+                  {
+                    todosAsigments: {
+                      some: {
+                        userId: user.idUser,
+                      },
+                    },
+                  },
+                ],
+              },
             },
           ],
           todos: {
@@ -609,14 +701,26 @@ export class TodoService {
   }
 
   async getTodosByImportance(num: number, user: JwtPayload) {
-    const [count, todos] = await this.prisma.$transaction([
-      this.prisma.todo.count({
-        where: {
-          importance: num,
-          isArchived: false,
-          todos: {
+    const accessFilter = {
+      status: true,
+      OR: [
+        {
+          todosAsigments: {
+            some: {
+              userId: user.idUser,
+            },
+          },
+        },
+        {
+          userId: user.idUser,
+        },
+        {
+          parentTodos: {
             status: true,
             OR: [
+              {
+                userId: user.idUser,
+              },
               {
                 todosAsigments: {
                   some: {
@@ -624,32 +728,25 @@ export class TodoService {
                   },
                 },
               },
-              {
-                userId: user.idUser,
-              },
             ],
           },
+        },
+      ],
+    };
+
+    const [count, todos] = await this.prisma.$transaction([
+      this.prisma.todo.count({
+        where: {
+          importance: num,
+          isArchived: false,
+          todos: accessFilter,
         },
       }),
       this.prisma.todo.findMany({
         where: {
           importance: num,
           isArchived: false,
-          todos: {
-            status: true,
-            OR: [
-              {
-                todosAsigments: {
-                  some: {
-                    userId: user.idUser,
-                  },
-                },
-              },
-              {
-                userId: user.idUser,
-              },
-            ],
-          },
+          todos: accessFilter,
         },
         include: {
           images: {
@@ -686,6 +783,23 @@ export class TodoService {
             },
             {
               userId: user.idUser,
+            },
+            {
+              parentTodos: {
+                status: true,
+                OR: [
+                  {
+                    userId: user.idUser,
+                  },
+                  {
+                    todosAsigments: {
+                      some: {
+                        userId: user.idUser,
+                      },
+                    },
+                  },
+                ],
+              },
             },
           ],
         },
